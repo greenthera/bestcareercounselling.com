@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Layout } from '@/components/layout/Layout'
+import { ScrollToTop } from '@/components/layout/ScrollToTop'
 
 const Home = lazy(() => import('@/pages/Home'))
 const WhoWeAre = lazy(() => import('@/pages/WhoWeAre'))
@@ -13,19 +14,22 @@ const ThankYou = lazy(() => import('@/pages/ThankYou'))
 
 export default function App() {
   return (
-    <Suspense fallback={<div className="py-24 text-center text-muted-ink">Loading…</div>}>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/who-we-are" element={<WhoWeAre />} />
-          <Route path="/what-we-do" element={<WhatWeDo />} />
-          <Route path="/success-stories" element={<SuccessStories />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blogs/:slug" element={<BlogDetail />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/thank-you" element={<ThankYou />} />
-        </Route>
-      </Routes>
-    </Suspense>
+    <>
+      <ScrollToTop />
+      <Suspense fallback={<div className="py-24 text-center text-muted-ink">Loading…</div>}>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/who-we-are" element={<WhoWeAre />} />
+            <Route path="/what-we-do" element={<WhatWeDo />} />
+            <Route path="/success-stories" element={<SuccessStories />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/blogs/:slug" element={<BlogDetail />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/thank-you" element={<ThankYou />} />
+          </Route>
+        </Routes>
+      </Suspense>
+    </>
   )
 }

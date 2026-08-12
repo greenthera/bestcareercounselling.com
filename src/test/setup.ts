@@ -11,3 +11,5 @@ window.IntersectionObserver = class {
     return []
   }
 } as unknown as typeof IntersectionObserver
+
+window.scrollTo = () => {}
