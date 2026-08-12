@@ -25,6 +25,12 @@ describe('BlogDetail page', () => {
     expect(screen.getByText(/not sure what is right for your child/i)).toBeInTheDocument()
     expect(screen.getAllByLabelText(/student name/i).length).toBeGreaterThan(0)
     expect(screen.getAllByText('Kishan Patel').length).toBeGreaterThan(0)
+
+    expect(document.title).toBe(`${post.title} | Career Counselling Blog`)
+    const articleScript = Array.from(document.querySelectorAll('script[type="application/ld+json"]')).find((s) =>
+      s.textContent?.includes('"@type":"Article"'),
+    )
+    expect(articleScript).toBeDefined()
   })
 
   it('renders an honest not-found state for an unknown slug', () => {

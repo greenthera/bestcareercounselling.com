@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
 import { blogPosts } from '@/data/blogs'
+import { usePageSeo } from '@/hooks/usePageSeo'
+import { pageSeo } from '@/data/seo'
 
 const DEFAULT_MESSAGE = 'Hi, I want to know about career counselling for my child in Class ___'
 
 export default function ThankYou() {
+  usePageSeo(pageSeo.thankYou)
   const recommended = blogPosts.slice(0, 3)
 
   return (

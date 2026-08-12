@@ -6,8 +6,11 @@ import { VideoTestimonials } from '@/components/home/VideoTestimonials'
 import { WhatMakesTheDifference } from '@/components/success-stories/WhatMakesTheDifference'
 import { GoogleReviews } from '@/components/trust/GoogleReviews'
 import { FinalCTA } from '@/components/home/FinalCTA'
+import { usePageSeo } from '@/hooks/usePageSeo'
+import { pageSeo } from '@/data/seo'
 
 export default function SuccessStories() {
+  usePageSeo(pageSeo.successStories)
   return (
     <>
       <SuccessStoriesHero />

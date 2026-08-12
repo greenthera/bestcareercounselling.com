@@ -14,6 +14,7 @@ describe('Blogs page', () => {
     )
     expect(screen.getByRole('heading', { level: 1, name: /career guidance, explained\./i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Parenting' })).toBeInTheDocument()
+    expect(document.title).toBe('Blog | Career Guidance, Explained')
   })
 
   it('filters the grid by category', async () => {

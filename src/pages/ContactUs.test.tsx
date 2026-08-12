@@ -24,6 +24,8 @@ describe('ContactUs page', () => {
     headingNames.forEach((name) => {
       expect(screen.getByRole('heading', { name })).toBeInTheDocument()
     })
+
+    expect(document.title).toBe('Contact Us | Book a Free Consultation')
   })
 
   it('renders the Google reviews section', () => {

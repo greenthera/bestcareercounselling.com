@@ -12,8 +12,11 @@ import { GoogleReviews } from '@/components/trust/GoogleReviews'
 import { FreeAssessmentSection } from '@/components/home/FreeAssessmentSection'
 import { FinalCTA } from '@/components/home/FinalCTA'
 import { services } from '@/data/services'
+import { usePageSeo } from '@/hooks/usePageSeo'
+import { pageSeo } from '@/data/seo'
 
 export default function WhatWeDo() {
+  usePageSeo(pageSeo.whatWeDo)
   return (
     <>
       <WhatWeDoHero />

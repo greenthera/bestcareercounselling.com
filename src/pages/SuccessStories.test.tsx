@@ -21,6 +21,8 @@ describe('SuccessStories page', () => {
     headingNames.forEach((name) => {
       expect(screen.getByRole('heading', { name })).toBeInTheDocument()
     })
+
+    expect(document.title).toBe('Success Stories | Kishan & Meeta Patel')
   })
 
   it('renders the trust strip, featured case study and Google reviews', () => {

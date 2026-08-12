@@ -14,10 +14,16 @@ import { UniversitiesSection } from '@/components/who-we-are/UniversitiesSection
 import { GoogleReviews } from '@/components/trust/GoogleReviews'
 import { WhoWeHelp } from '@/components/home/WhoWeHelp'
 import { FinalCTA } from '@/components/home/FinalCTA'
+import { PersonSchema } from '@/components/seo/PersonSchema'
+import { usePageSeo } from '@/hooks/usePageSeo'
+import { pageSeo } from '@/data/seo'
 
 export default function WhoWeAre() {
+  usePageSeo(pageSeo.whoWeAre)
   return (
     <>
+      <PersonSchema person="kishan" />
+      <PersonSchema person="meeta" />
       <WhoWeAreHero />
       <TrustStrip />
       <OurStory />

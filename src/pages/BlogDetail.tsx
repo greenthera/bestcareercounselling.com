@@ -7,11 +7,20 @@ import { SidebarBookingForm } from '@/components/blog-detail/SidebarBookingForm'
 import { AuthorBio } from '@/components/blog-detail/AuthorBio'
 import { RelatedPosts } from '@/components/blog-detail/RelatedPosts'
 import { FinalCTA } from '@/components/home/FinalCTA'
+import { ArticleSchema } from '@/components/seo/ArticleSchema'
+import { BreadcrumbListSchema } from '@/components/seo/BreadcrumbListSchema'
+import { usePageSeo } from '@/hooks/usePageSeo'
 import { blogPosts } from '@/data/blogs'
 
 export default function BlogDetail() {
   const { slug } = useParams()
   const post = blogPosts.find((p) => p.slug === slug)
+
+  usePageSeo({
+    title: post ? `${post.title} | Career Counselling Blog` : 'Article Not Found | Career Counselling Blog',
+    description: post ? post.excerpt : 'This article may have been moved or the link is out of date.',
+    path: `/blogs/${slug ?? ''}`,
+  })
 
   if (!post) {
     return (
@@ -27,6 +36,8 @@ export default function BlogDetail() {
 
   return (
     <>
+      <ArticleSchema post={post} />
+      <BreadcrumbListSchema title={post.title} path={`/blogs/${post.slug}`} />
       <Breadcrumb title={post.title} />
       <ArticleHeader post={post} />
 

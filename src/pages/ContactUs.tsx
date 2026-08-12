@@ -7,8 +7,11 @@ import { MeetFounders } from '@/components/home/MeetFounders'
 import { GoogleReviews } from '@/components/trust/GoogleReviews'
 import { FAQSection } from '@/components/home/FAQSection'
 import { bookingFaqs } from '@/data/faqs'
+import { usePageSeo } from '@/hooks/usePageSeo'
+import { pageSeo } from '@/data/seo'
 
 export default function ContactUs() {
+  usePageSeo(pageSeo.contactUs)
   return (
     <>
       <ContactHero />

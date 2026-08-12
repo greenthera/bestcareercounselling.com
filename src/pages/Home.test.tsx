@@ -29,6 +29,8 @@ describe('Home page', () => {
     headingNames.forEach((name) => {
       expect(screen.getByRole('heading', { name })).toBeInTheDocument()
     })
+
+    expect(document.title).toBe('Career Counselling in Surat | Kishan & Meeta Patel')
   })
 
   it('renders the trust strip and Google reviews', () => {

@@ -6,8 +6,11 @@ import { BlogGrid } from '@/components/blogs/BlogGrid'
 import { FreeAssessmentSection } from '@/components/home/FreeAssessmentSection'
 import { FinalCTA } from '@/components/home/FinalCTA'
 import { blogPosts, type BlogCategory } from '@/data/blogs'
+import { usePageSeo } from '@/hooks/usePageSeo'
+import { pageSeo } from '@/data/seo'
 
 export default function Blogs() {
+  usePageSeo(pageSeo.blogs)
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState<BlogCategory | 'All'>('All')
 

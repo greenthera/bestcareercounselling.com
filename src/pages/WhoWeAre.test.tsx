@@ -31,6 +31,8 @@ describe('WhoWeAre page', () => {
     headingNames.forEach((name) => {
       expect(screen.getByRole('heading', { name })).toBeInTheDocument()
     })
+
+    expect(document.title).toBe('Who We Are | Kishan & Meeta Patel Career Counselling')
   })
 
   it('renders the trust strip and Google reviews', () => {

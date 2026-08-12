@@ -19,6 +19,7 @@ describe('WhatWeDo page', () => {
     expect(screen.getByRole('heading', { name: 'Study Abroad' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Career Change' })).toBeInTheDocument()
     expect(screen.getByRole('table')).toBeInTheDocument()
+    expect(document.title).toBe('What We Do | Career Counselling Services')
   })
 
   it('renders the shared sections and final CTA', () => {
