@@ -1,9 +1,13 @@
+import type { WhatsAppContext } from '@/components/whatsapp/whatsappMessages'
+
 export interface SuccessStory {
   slug: string
   studentInitial: string
   studentClass: string
   city: string
   service: string
+  filterCategory: WhatsAppContext
+  imageAlt: string
   was: string
   found: string
   chose: string
@@ -17,6 +21,8 @@ export const successStories: SuccessStory[] = [
     studentClass: 'Class 10',
     city: 'Surat',
     service: 'After 10th',
+    filterCategory: 'after-10th',
+    imageAlt: '[REAL PHOTO — STUDENT, SURAT]',
     was: '[CLIENT TO PROVIDE: original situation before counselling]',
     found: '[CLIENT TO PROVIDE: what assessment/counselling revealed]',
     chose: '[CLIENT TO PROVIDE: the final decision]',
@@ -28,6 +34,8 @@ export const successStories: SuccessStory[] = [
     studentClass: 'Class 12',
     city: 'Navsari',
     service: 'After 12th',
+    filterCategory: 'after-12th',
+    imageAlt: '[REAL PHOTO — STUDENT, NAVSARI]',
     was: '[CLIENT TO PROVIDE: original situation before counselling]',
     found: '[CLIENT TO PROVIDE: what assessment/counselling revealed]',
     chose: '[CLIENT TO PROVIDE: the final decision]',
@@ -39,6 +47,8 @@ export const successStories: SuccessStory[] = [
     studentClass: 'Working Professional',
     city: 'Valsad',
     service: 'Career Change',
+    filterCategory: 'career-change',
+    imageAlt: '[REAL PHOTO — CLIENT, VALSAD]',
     was: '[CLIENT TO PROVIDE: original situation before counselling]',
     found: '[CLIENT TO PROVIDE: what assessment/counselling revealed]',
     chose: '[CLIENT TO PROVIDE: the final decision]',

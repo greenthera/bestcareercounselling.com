@@ -1,0 +1,369 @@
+export type BlogCategory = 'After 10th' | 'After 12th' | 'Exams' | 'Colleges' | 'Careers' | 'Parenting'
+export type BlogAuthor = 'kishan' | 'meeta'
+
+export interface BlogSection {
+  heading: string
+  paragraphs: string[]
+}
+
+export interface BlogPost {
+  slug: string
+  title: string
+  category: BlogCategory
+  excerpt: string
+  readTime: string
+  date: string
+  author: BlogAuthor
+  sections: BlogSection[]
+}
+
+export const blogPosts: BlogPost[] = [
+  {
+    slug: 'stream-after-10th-science-commerce-arts',
+    title: 'Which Stream After 10th — Science, Commerce or Arts?',
+    category: 'After 10th',
+    excerpt: 'There is no universally "best" stream — only the one that fits a specific student. Here is how to think it through.',
+    readTime: '6 min read',
+    date: '2026-07-20',
+    author: 'kishan',
+    sections: [
+      {
+        heading: 'Start with the student, not the stream',
+        paragraphs: [
+          "Every year, families ask us to rank Science, Commerce and Arts. There is no ranking — each stream opens a different set of doors, and the right one depends on the student's aptitude, interests and working style, not on which stream is considered prestigious in the neighbourhood.",
+        ],
+      },
+      {
+        heading: 'What to actually look at',
+        paragraphs: [
+          'Aptitude (how a student naturally reasons — numerical, verbal, spatial, logical), genuine interest (not borrowed interest from a friend or relative), and comfort with the day-to-day workload of each stream all matter more than a single subject grade.',
+        ],
+      },
+      {
+        heading: 'Where an assessment helps',
+        paragraphs: [
+          'A structured psychometric assessment, read together in a counselling session, turns a vague "I think I like Science" into a clearer picture of where a student is actually likely to do well and stay engaged for the next two years.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'commerce-with-maths-good-choice',
+    title: 'Is Commerce With Maths a Good Choice?',
+    category: 'After 10th',
+    excerpt: "Commerce with Maths keeps more doors open than Commerce without it — but that alone shouldn't decide it.",
+    readTime: '5 min read',
+    date: '2026-07-05',
+    author: 'meeta',
+    sections: [
+      {
+        heading: 'What Maths adds to Commerce',
+        paragraphs: [
+          'Commerce with Maths generally keeps quantitative-heavy paths — like certain finance, economics and analytics routes — more accessible later, since it builds comfort with the kind of numerical reasoning those fields lean on.',
+        ],
+      },
+      {
+        heading: "But it's not right for everyone",
+        paragraphs: [
+          'A student who finds Maths consistently stressful rather than engaging may do better, and stay more motivated, without it — Commerce without Maths still supports a wide range of career paths.',
+        ],
+      },
+      {
+        heading: 'How we help families decide',
+        paragraphs: [
+          "In a session, we look at the student's numerical aptitude alongside their interest level, not just their most recent Maths grade, since grades under exam pressure don't always reflect genuine aptitude.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'career-options-after-12th-science-without-neet',
+    title: 'Career Options After 12th Science Without NEET',
+    category: 'After 12th',
+    excerpt: "Not clearing NEET, or choosing not to attempt it, doesn't close off Science — it just changes the route.",
+    readTime: '7 min read',
+    date: '2026-06-28',
+    author: 'kishan',
+    sections: [
+      {
+        heading: 'Science opens more than one door',
+        paragraphs: [
+          'Medicine is one path out of a Science background, not the only one. Engineering, pure sciences, biotechnology, paramedical and allied health fields, and data-oriented careers are all realistic continuations of a Science background.',
+        ],
+      },
+      {
+        heading: 'Matching the option to the student',
+        paragraphs: [
+          "The right next step depends on which parts of Science a student actually enjoyed — the biology, the physics/maths, or the lab-and-experiment side — and how that maps to their aptitude profile.",
+        ],
+      },
+      {
+        heading: 'Avoiding the "plan B" trap',
+        paragraphs: [
+          'A course chosen only because it wasn\'t Medicine tends to be a weak foundation for the next few years. We work through the same assessment-and-counselling process regardless of which door a student is walking through.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'best-colleges-gujarat-for-bba',
+    title: 'Best Colleges in Gujarat for BBA',
+    category: 'Colleges',
+    excerpt: "\"Best\" depends on what a family is optimising for — here's how to evaluate a BBA college shortlist properly.",
+    readTime: '6 min read',
+    date: '2026-06-14',
+    author: 'meeta',
+    sections: [
+      {
+        heading: 'What to check beyond the name',
+        paragraphs: [
+          'Accreditation, faculty background, the structure of the curriculum, internship and placement support, and the specific specialisations offered all matter more than a college\'s general reputation alone.',
+        ],
+      },
+      {
+        heading: 'Fit matters as much as ranking',
+        paragraphs: [
+          'A college that is a strong fit for a student\'s interests and learning style — and realistic given their marks and budget — usually serves them better than a "top" college that is a poor fit.',
+        ],
+      },
+      {
+        heading: 'How we help with shortlisting',
+        paragraphs: [
+          "As part of UG admission guidance, we help build and narrow a shortlist based on the student's profile, rather than starting from a generic list of names.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'what-is-a-psychometric-test',
+    title: 'What Is a Psychometric Test — and Does It Actually Work?',
+    category: 'Careers',
+    excerpt: 'A psychometric test is one input into a counselling process — not a verdict on its own. Here is what it actually measures.',
+    readTime: '5 min read',
+    date: '2026-06-02',
+    author: 'kishan',
+    sections: [
+      {
+        heading: 'What it measures',
+        paragraphs: [
+          'A well-built psychometric assessment looks at aptitude, interest, personality traits and emotional intelligence — giving a structured snapshot rather than a single test score.',
+        ],
+      },
+      {
+        heading: 'What it does not do',
+        paragraphs: [
+          "It does not predict the future, and it is not a pass/fail exam. It is a starting point for a conversation, not a substitute for one — which is why we always pair it with a one-on-one counselling session.",
+        ],
+      },
+      {
+        heading: 'How we use it',
+        paragraphs: [
+          'We use the Edumilestones framework, then interpret the results together with the student and family, connecting the data back to real, specific options rather than leaving it as an abstract report.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'career-when-parents-disagree',
+    title: 'How to Choose a Career When Your Parents Disagree',
+    category: 'Parenting',
+    excerpt: 'When a student and their parents want different things, the goal is a decision everyone can stand behind — not a winner.',
+    readTime: '5 min read',
+    date: '2026-05-24',
+    author: 'meeta',
+    sections: [
+      {
+        heading: 'Why this is so common',
+        paragraphs: [
+          'Parents are usually drawing on their own experience of what "worked," while the student is weighing their own interests and the world as it looks today. Both perspectives come from a good place.',
+        ],
+      },
+      {
+        heading: 'Get everyone looking at the same data',
+        paragraphs: [
+          "A shared assessment and a joint counselling session gives the family a common reference point, instead of two people arguing from two different sets of assumptions.",
+        ],
+      },
+      {
+        heading: 'Why we bring parents into the room',
+        paragraphs: [
+          'We generally recommend parents join the counselling conversation precisely for this reason — decisions that both the student and the family understand and support tend to stick.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'career-counselling-in-surat-what-to-expect',
+    title: 'Career Counselling in Surat — What to Expect',
+    category: 'Careers',
+    excerpt: "A walkthrough of what actually happens when a family in Surat books a session with us.",
+    readTime: '4 min read',
+    date: '2026-05-15',
+    author: 'kishan',
+    sections: [
+      {
+        heading: 'Before the session',
+        paragraphs: [
+          "It starts with a free consultation call, where we understand the student's current class, situation and the questions on the family's mind.",
+        ],
+      },
+      {
+        heading: 'The assessment and the session',
+        paragraphs: [
+          'Next is a psychometric assessment, followed by a one-on-one counselling session — in person at our Surat location or online — where we walk through the results together.',
+        ],
+      },
+      {
+        heading: 'What a family leaves with',
+        paragraphs: [
+          'A written report, a shortlist of realistic options, and a roadmap — not just a conversation that ends when the meeting does.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'career-counselling-navsari-ankleshwar-valsad',
+    title: 'Career Counselling in Navsari, Ankleshwar and Valsad',
+    category: 'Careers',
+    excerpt: 'The same counselling process, closer to home, across our Navsari, Ankleshwar and Valsad locations.',
+    readTime: '4 min read',
+    date: '2026-05-08',
+    author: 'kishan',
+    sections: [
+      {
+        heading: 'Local access, same process',
+        paragraphs: [
+          'Families in Navsari, Ankleshwar and Valsad get the same assessment-plus-counselling process available in Surat, without needing to travel further for it.',
+        ],
+      },
+      {
+        heading: "Online is always an option too",
+        paragraphs: [
+          "For families who prefer it, or when schedules don't line up with an in-person visit, we also offer the full process online.",
+        ],
+      },
+      {
+        heading: 'Getting started',
+        paragraphs: [
+          'A free 15-minute consultation call is the first step, regardless of which of the four locations is closest to a family.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'arts-stream-careers-that-pay-well',
+    title: 'Arts Stream Careers That Actually Pay Well in India',
+    category: 'Careers',
+    excerpt: "Arts is often treated as a fallback stream. For the right student, it's a deliberate and financially sound choice.",
+    readTime: '6 min read',
+    date: '2026-04-27',
+    author: 'meeta',
+    sections: [
+      {
+        heading: 'Reframing the Arts stream',
+        paragraphs: [
+          "Design, law, psychology, media, public policy, the civil services and several social-science-adjacent careers all start from an Arts background — and none of them are consolation choices.",
+        ],
+      },
+      {
+        heading: "What matters isn't the stream label",
+        paragraphs: [
+          'Outcomes in these fields depend far more on skill-building, specialisation and consistency than on which stream a student came from in Class 11–12.',
+        ],
+      },
+      {
+        heading: 'Choosing Arts on purpose',
+        paragraphs: [
+          'When a student\'s aptitude and interest genuinely point toward Arts, we help the family see it as a deliberate, well-reasoned choice — not a fallback.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'study-abroad-after-12th-countries-costs-timelines',
+    title: 'Study Abroad After 12th — Countries, Costs and Timelines',
+    category: 'After 12th',
+    excerpt: 'Studying abroad after 12th is a real option for some students — and a process with a lot of moving parts to plan around.',
+    readTime: '8 min read',
+    date: '2026-04-15',
+    author: 'kishan',
+    sections: [
+      {
+        heading: 'Country and course come first',
+        paragraphs: [
+          "Before costs or timelines, the country and course need to fit the student's academic profile, budget range and long-term goals — chasing a popular destination without that fit tends to backfire.",
+        ],
+      },
+      {
+        heading: 'Budgeting realistically',
+        paragraphs: [
+          'Costs vary widely by country, city and institution, and change over time, so we work with families to build a realistic, current budget picture rather than relying on general assumptions.',
+        ],
+      },
+      {
+        heading: 'Timelines need a head start',
+        paragraphs: [
+          'Between shortlisting, applications, and visa processing, study-abroad timelines run longer than most families expect — starting the process early matters more than almost anything else.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'should-my-child-take-a-drop-year',
+    title: 'Should My Child Take a Drop Year?',
+    category: 'Parenting',
+    excerpt: "A drop year can be the right call — or the wrong one. The difference is whether it has a clear purpose.",
+    readTime: '5 min read',
+    date: '2026-04-02',
+    author: 'meeta',
+    sections: [
+      {
+        heading: 'When it tends to help',
+        paragraphs: [
+          "A drop year with a specific, well-understood purpose — a focused re-attempt at an exam, or genuinely more time to decide — can be a sound decision for the right student.",
+        ],
+      },
+      {
+        heading: 'When it tends not to',
+        paragraphs: [
+          'A drop year taken without a clear plan, just to delay a decision, often just delays the same uncertainty by twelve months.',
+        ],
+      },
+      {
+        heading: 'How we help families decide',
+        paragraphs: [
+          "We talk through the reasoning with the family before recommending either direction — the goal is a decision the family feels confident about, not a default answer.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'complete-admission-timeline-gujarat-students',
+    title: 'Complete Admission Timeline for Gujarat Students',
+    category: 'Exams',
+    excerpt: 'Admission season has a lot of moving deadlines. Here is how to think about building your own timeline.',
+    readTime: '6 min read',
+    date: '2026-03-20',
+    author: 'kishan',
+    sections: [
+      {
+        heading: 'Why a personal timeline matters more than a generic one',
+        paragraphs: [
+          'Exact dates shift year to year and vary by course, college and category, so rather than publishing fixed dates that go stale, we help each family build a timeline specific to their situation, updated as official dates are announced.',
+        ],
+      },
+      {
+        heading: 'What to track',
+        paragraphs: [
+          'Entrance exam registration and result windows, college application windows, document preparation, and category- or quota-specific requirements are the pieces that most often catch families off guard.',
+        ],
+      },
+      {
+        heading: 'How we help families stay on track',
+        paragraphs: [
+          "As part of admission guidance, we help track deadlines and follow up on applications, so nothing important slips because two important dates landed in the same week.",
+        ],
+      },
+    ],
+  },
+]
