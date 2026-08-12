@@ -1,37 +1,50 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { AssessmentForm } from '@/components/forms/AssessmentForm'
+import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
+import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
+import { Reveal } from '@/components/ui/reveal'
 
 export function FreeAssessmentSection() {
   return (
-    <section className="bg-brand-green px-4 py-16 text-warm-white md:px-8 md:py-24">
-      <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-3xl font-bold md:text-4xl">Not ready to book? Start with the free assessment.</h2>
-        <p className="mt-3 text-warm-white/80">
-          10 minutes. No payment. Get a snapshot of your child's aptitude and interest profile.
-        </p>
+    <section className="px-4 py-8 md:px-8">
+      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-ink px-6 py-14 text-center text-warm-white md:px-8 md:py-16">
+        <div className="pointer-events-none absolute right-4 top-4 h-56 w-56 animate-float-slow rounded-full bg-brand-yellow/10 blur-3xl" aria-hidden="true" />
+        <Reveal className="relative mx-auto max-w-3xl">
+          <h2 className="text-3xl font-bold md:text-4xl">
+            Not ready to book? Start with the <span className="text-brand-yellow">free</span> assessment.
+          </h2>
+          <p className="mt-3 text-warm-white/60">
+            10 minutes. No payment. Get a snapshot of your child's aptitude and interest profile.
+          </p>
 
-        <div className="mx-auto mt-8 aspect-[3/2] max-w-md rounded-xl border border-white/20 bg-white/5 blur-[1px]" role="img" aria-label="[SAMPLE REPORT PREVIEW — PARTIALLY BLURRED]">
-          <div className="flex h-full items-center justify-center p-6 text-center text-sm text-warm-white/70">
-            [SAMPLE REPORT PREVIEW — PARTIALLY BLURRED]
+          <div
+            className="group mx-auto mt-8 aspect-[3/2] max-w-md overflow-hidden rounded-[1.6rem] border border-white/15"
+            role="img"
+            aria-label="[SAMPLE REPORT PREVIEW — PARTIALLY BLURRED]"
+          >
+            <div className="h-full w-full blur-[1px] transition-all duration-500 group-hover:blur-none">
+              <PlaceholderVisual label="[SAMPLE REPORT PREVIEW — PARTIALLY BLURRED]" tone="dark" />
+            </div>
           </div>
-        </div>
 
-        <Dialog>
-          <DialogTrigger asChild>
-            <button
-              type="button"
-              className="mt-8 rounded-full bg-brand-yellow px-6 py-3 text-sm font-semibold text-ink hover:bg-brand-yellow/90"
-            >
-              Take the Free Assessment
-            </button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Take the Free Assessment</DialogTitle>
-            </DialogHeader>
-            <AssessmentForm />
-          </DialogContent>
-        </Dialog>
+          <Dialog>
+            <DialogTrigger asChild>
+              <button
+                type="button"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-yellow py-1.5 pl-6 pr-1.5 text-sm font-semibold text-ink transition-all duration-300 hover:bg-brand-yellow/90 hover:shadow-[0_10px_30px_-8px_rgba(255,204,1,0.5)]"
+              >
+                Take the Free Assessment
+                <PillCtaEndcap tone="dark" />
+              </button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Take the Free Assessment</DialogTitle>
+              </DialogHeader>
+              <AssessmentForm />
+            </DialogContent>
+          </Dialog>
+        </Reveal>
       </div>
     </section>
   )

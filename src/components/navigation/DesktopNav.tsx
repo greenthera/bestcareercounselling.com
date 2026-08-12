@@ -11,7 +11,7 @@ const NAV_ITEMS = [
 
 export function DesktopNav() {
   return (
-    <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
+    <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex">
       {NAV_ITEMS.map((item) => (
         <NavLink
           key={item.to}

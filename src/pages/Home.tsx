@@ -30,7 +30,7 @@ export default function Home() {
       <MeetFounders />
       <VideoTestimonials />
       <SuccessStoriesPreview />
-      <div className="mx-auto max-w-3xl px-4 py-16 md:px-8">
+      <div className="mx-auto max-w-3xl px-4 py-10 md:px-8">
         <GoogleReviews />
       </div>
       <LocationsSection />

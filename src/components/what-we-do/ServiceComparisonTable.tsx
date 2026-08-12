@@ -3,7 +3,7 @@ import { services } from '@/data/services'
 
 export function ServiceComparisonTable() {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto rounded-[1.6rem] border border-neutral-border bg-white shadow-sm">
       <Table>
         <TableHeader>
           <TableRow>

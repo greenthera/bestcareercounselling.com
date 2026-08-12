@@ -1,45 +1,55 @@
 import { Link } from 'react-router-dom'
 import { successStories } from '@/data/stories'
+import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
+import { Reveal } from '@/components/ui/reveal'
 
 export function SuccessStoriesPreview() {
   return (
-    <section className="bg-green-tint px-4 py-16 md:px-8 md:py-24">
-      <div className="mx-auto max-w-7xl">
-        <h2 className="text-center text-3xl font-bold text-ink md:text-4xl">Real students. Real decisions.</h2>
+    <section className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14">
+      <Reveal>
+        <h2 className="text-3xl font-bold text-ink md:text-4xl">
+          Real students. Real <span className="text-brand-green">decisions</span>.
+        </h2>
+      </Reveal>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {successStories.slice(0, 3).map((story) => (
-            <div key={`${story.studentInitial}-${story.city}`} className="rounded-xl border border-neutral-border bg-white p-5">
-              <p className="text-sm font-semibold text-brand-green">
+      <div className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {successStories.slice(0, 3).map((story, index) => (
+          <Reveal key={`${story.studentInitial}-${story.city}`} delay={index * 100}>
+            <div className="group h-full rounded-[1.6rem] border border-neutral-border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <p className="text-xs font-bold uppercase tracking-wide text-brand-green">
                 {story.studentInitial} · {story.studentClass} · {story.city}
               </p>
-              <dl className="mt-3 space-y-2 text-sm">
+              <dl className="mt-4 space-y-3 text-sm">
                 <div>
-                  <dt className="font-semibold text-ink">Was</dt>
-                  <dd className="text-muted-ink">{story.was}</dd>
+                  <dt className="text-[11px] font-bold uppercase tracking-wide text-muted-ink">Was</dt>
+                  <dd className="mt-0.5 text-ink">{story.was}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-ink">Found</dt>
-                  <dd className="text-muted-ink">{story.found}</dd>
+                  <dt className="text-[11px] font-bold uppercase tracking-wide text-muted-ink">Found</dt>
+                  <dd className="mt-0.5 text-ink">{story.found}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-ink">Chose</dt>
-                  <dd className="text-muted-ink">{story.chose}</dd>
+                  <dt className="text-[11px] font-bold uppercase tracking-wide text-muted-ink">Chose</dt>
+                  <dd className="mt-0.5 text-ink">{story.chose}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-ink">Now</dt>
-                  <dd className="text-muted-ink">{story.now}</dd>
+                  <dt className="text-[11px] font-bold uppercase tracking-wide text-muted-ink">Now</dt>
+                  <dd className="mt-0.5 text-ink">{story.now}</dd>
                 </div>
               </dl>
             </div>
-          ))}
-        </div>
+          </Reveal>
+        ))}
+      </div>
 
-        <div className="mt-8 text-center">
-          <Link to="/success-stories" className="font-medium text-brand-green hover:underline">
-            View All Success Stories →
-          </Link>
-        </div>
+      <div className="mt-8 text-center">
+        <Link
+          to="/success-stories"
+          className="group inline-flex items-center gap-2 font-medium text-brand-green hover:underline"
+        >
+          View All Success Stories
+          <PillCtaEndcap className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-0.5" />
+        </Link>
       </div>
     </section>
   )

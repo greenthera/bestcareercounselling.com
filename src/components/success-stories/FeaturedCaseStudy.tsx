@@ -1,15 +1,15 @@
 import { successStories } from '@/data/stories'
+import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
+import { Reveal } from '@/components/ui/reveal'
 
 export function FeaturedCaseStudy() {
   const story = successStories[0]
 
   return (
-    <section className="mx-auto max-w-5xl px-4 py-16 md:px-8 md:py-24">
-      <div className="overflow-hidden rounded-2xl border border-neutral-border bg-white md:grid md:grid-cols-2">
-        <div className="aspect-video bg-soft-cream md:aspect-auto" role="img" aria-label={story.imageAlt}>
-          <div className="flex h-full items-center justify-center p-6 text-center text-sm text-muted-ink">
-            [REAL PHOTO]
-          </div>
+    <section className="mx-auto max-w-5xl px-4 py-10 md:px-8 md:py-14">
+      <Reveal className="overflow-hidden rounded-[1.6rem] border border-neutral-border bg-white shadow-sm md:grid md:grid-cols-2">
+        <div className="aspect-video md:aspect-auto" role="img" aria-label={story.imageAlt}>
+          <PlaceholderVisual label="[REAL PHOTO]" />
         </div>
 
         <div className="p-6 md:p-10">
@@ -37,7 +37,7 @@ export function FeaturedCaseStudy() {
             </div>
           </dl>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

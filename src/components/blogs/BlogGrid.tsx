@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
+import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
+import { Reveal } from '@/components/ui/reveal'
 import type { BlogPost } from '@/data/blogs'
 
 const PAGE_SIZE = 6
@@ -26,29 +28,30 @@ export function BlogGrid({ posts }: BlogGridProps) {
   const pagePosts = posts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-16 md:px-8">
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {pagePosts.map((post) => (
-          <Link
-            key={post.slug}
-            to={`/blogs/${post.slug}`}
-            className="block overflow-hidden rounded-xl border border-neutral-border bg-white"
-            aria-label={`${post.title} — ${post.readTime}`}
-          >
-            <div className="aspect-video bg-soft-cream" role="img" aria-label={`[IMAGE — ${post.title.toUpperCase()}]`}>
-              <div className="flex h-full items-center justify-center p-4 text-center text-xs text-muted-ink">
-                [IMAGE]
+    <div className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {pagePosts.map((post, index) => (
+          <Reveal key={post.slug} delay={index * 70}>
+            <Link
+              to={`/blogs/${post.slug}`}
+              className="group block h-full overflow-hidden rounded-[1.375rem] border border-neutral-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              aria-label={`${post.title} — ${post.readTime}`}
+            >
+              <div className="aspect-video overflow-hidden" role="img" aria-label={`[IMAGE — ${post.title.toUpperCase()}]`}>
+                <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
+                  <PlaceholderVisual label="[IMAGE]" />
+                </div>
               </div>
-            </div>
-            <div className="p-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-brand-green">{post.category}</p>
-              <p className="mt-2 font-semibold text-ink">{post.title}</p>
-              <p className="mt-1 text-sm text-muted-ink">{post.excerpt}</p>
-              <p className="mt-3 text-xs text-muted-ink">
-                {post.readTime} · {post.date}
-              </p>
-            </div>
-          </Link>
+              <div className="p-5">
+                <p className="text-xs font-semibold uppercase tracking-wide text-brand-green">{post.category}</p>
+                <p className="mt-2 font-semibold text-ink">{post.title}</p>
+                <p className="mt-1 text-sm text-muted-ink">{post.excerpt}</p>
+                <p className="mt-3 text-xs text-muted-ink">
+                  {post.readTime} · {post.date}
+                </p>
+              </div>
+            </Link>
+          </Reveal>
         ))}
       </div>
 

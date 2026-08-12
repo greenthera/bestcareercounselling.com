@@ -16,15 +16,18 @@ const STATS: Stat[] = [
   { value: 'Edumilestones', label: 'Certified' },
 ]
 
-function StatItem({ stat, isInView }: { stat: Stat; isInView: boolean }) {
+function StatItem({ stat, isInView, index }: { stat: Stat; isInView: boolean; index: number }) {
   const count = useCountUp(stat.numeric ?? 0, { start: isInView && stat.numeric !== undefined })
   const display =
     stat.numeric !== undefined && isInView ? `${count}${stat.value.replace(/[0-9,]/g, '')}` : stat.value
 
   return (
-    <div className="text-center">
-      <p className="text-2xl font-bold text-brand-green md:text-3xl">{display}</p>
-      <p className="text-xs text-muted-ink md:text-sm">{stat.label}</p>
+    <div
+      className="flex flex-col items-center gap-1 px-2 py-5 text-center transition-all duration-500"
+      style={{ transitionDelay: isInView ? `${index * 70}ms` : '0ms' }}
+    >
+      <p className="break-words text-lg font-bold text-brand-green sm:text-xl lg:text-2xl">{display}</p>
+      <p className="text-xs text-muted-ink">{stat.label}</p>
     </div>
   )
 }
@@ -33,10 +36,15 @@ export function TrustStrip() {
   const { ref, isInView } = useInView<HTMLDivElement>()
 
   return (
-    <div ref={ref} className="grid grid-cols-2 gap-6 bg-green-tint px-4 py-8 md:grid-cols-6 md:px-8">
-      {STATS.map((stat) => (
-        <StatItem key={stat.label} stat={stat} isInView={isInView} />
-      ))}
+    <div className="px-4 md:px-8">
+      <div
+        ref={ref}
+        className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-neutral-border rounded-[2rem] border border-neutral-border bg-white shadow-lg sm:grid-cols-3 lg:grid-cols-6 lg:divide-y-0"
+      >
+        {STATS.map((stat, index) => (
+          <StatItem key={stat.label} stat={stat} isInView={isInView} index={index} />
+        ))}
+      </div>
     </div>
   )
 }

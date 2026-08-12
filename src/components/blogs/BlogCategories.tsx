@@ -17,8 +17,8 @@ export function BlogCategories({ selected, onSelect }: BlogCategoriesProps) {
           type="button"
           onClick={() => onSelect(category)}
           className={cn(
-            'rounded-full border border-neutral-border px-4 py-2 text-sm font-medium',
-            selected === category ? 'bg-brand-green text-warm-white' : 'bg-white text-ink hover:bg-green-tint',
+            'rounded-full border border-neutral-border px-4 py-2 text-sm font-medium transition-colors duration-200',
+            selected === category ? 'border-ink bg-ink text-warm-white' : 'bg-white text-ink hover:bg-green-tint',
           )}
         >
           {category}

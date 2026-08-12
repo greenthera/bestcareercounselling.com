@@ -31,13 +31,14 @@ export default function WhoWeAre() {
       <OurMethodology />
       <OurJourney />
       <RealWork />
+      <div className="h-2 md:h-4" aria-hidden="true" />
       <ProblemSection />
       <HowItWorks />
       <ReportSection />
       <SuccessStoriesPreview />
       <VideoTestimonials />
       <UniversitiesSection />
-      <div className="mx-auto max-w-3xl px-4 py-16 md:px-8">
+      <div className="mx-auto max-w-3xl px-4 py-10 md:px-8">
         <GoogleReviews />
       </div>
       <WhoWeHelp />

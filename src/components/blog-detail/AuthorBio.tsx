@@ -21,7 +21,7 @@ export function AuthorBio({ author }: AuthorBioProps) {
   const bio = BIOS[author]
 
   return (
-    <div className="mx-auto mt-16 max-w-2xl rounded-xl border border-neutral-border bg-green-tint p-6">
+    <div className="mx-auto mt-16 max-w-2xl rounded-[1.375rem] border border-neutral-border bg-green-tint p-6">
       <div className="flex items-center gap-4">
         <div
           className="h-14 w-14 shrink-0 rounded-full bg-soft-cream"

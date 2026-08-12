@@ -2,7 +2,7 @@ import { ConsultationForm } from '@/components/forms/ConsultationForm'
 
 export function SidebarBookingForm() {
   return (
-    <aside className="hidden md:sticky md:top-24 md:block md:h-fit md:rounded-xl md:border md:border-neutral-border md:bg-white md:p-6">
+    <aside className="hidden lg:sticky lg:top-24 lg:block lg:h-fit lg:rounded-[1.375rem] lg:border lg:border-neutral-border lg:bg-white lg:p-6 lg:shadow-sm">
       <p className="font-semibold text-ink">Book your free session</p>
       <div className="mt-4">
         <ConsultationForm context="home" />

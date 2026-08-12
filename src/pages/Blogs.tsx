@@ -27,10 +27,10 @@ export default function Blogs() {
   return (
     <>
       <BlogHero searchValue={search} onSearchChange={setSearch} />
-      <div className="mt-10">
+      <div className="mt-8">
         <BlogCategories selected={category} onSelect={setCategory} />
       </div>
-      <div className="mt-10">
+      <div className="mt-8">
         <FeaturedPost post={blogPosts[0]} />
       </div>
       <BlogGrid posts={filtered} />
