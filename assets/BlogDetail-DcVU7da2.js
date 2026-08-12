@@ -1,1 +1,0 @@
-import{O as e,w as t}from"./index-Cnhjzeks.js";var n=t();function r(){let{slug:t}=e();return(0,n.jsxs)(`div`,{className:`mx-auto max-w-3xl px-4 py-24 text-center`,children:[(0,n.jsxs)(`h1`,{className:`text-3xl font-bold text-brand-green`,children:[`Blog Post: `,t]}),(0,n.jsx)(`p`,{className:`mt-4 text-muted-ink`,children:`Full page coming in Phase 3.`})]})}export{r as default};

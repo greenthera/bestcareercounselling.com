@@ -1,0 +1,1 @@
+import{w as e}from"./index-Cd-5TaVC.js";var t=e();function n(){return(0,t.jsxs)(`div`,{className:`mx-auto max-w-3xl px-4 py-24 text-center`,children:[(0,t.jsx)(`h1`,{className:`text-3xl font-bold text-brand-green`,children:`Thank you`}),(0,t.jsx)(`p`,{className:`mt-4 text-muted-ink`,children:`Your WhatsApp message is ready to send.`})]})}export{n as default};
