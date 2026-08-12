@@ -42,9 +42,10 @@ function ProfileSnapshot() {
             </div>
             <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-white/10">
               <div
-                className="h-full rounded-full bg-brand-yellow transition-[width] duration-[1200ms] ease-out"
+                className="h-full rounded-full bg-brand-yellow transition-[width] ease-out"
                 style={{
                   width: isInView ? `${row.score}%` : '0%',
+                  transitionDuration: '1200ms',
                   transitionDelay: `${index * 120}ms`,
                 }}
               />
