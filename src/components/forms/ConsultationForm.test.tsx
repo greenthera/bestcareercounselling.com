@@ -51,4 +51,9 @@ describe('ConsultationForm', () => {
     expect(decodeURIComponent(String(url))).toContain('stream selection and career options')
     expect(decodeURIComponent(String(url))).toContain('Aarav Shah')
   })
+
+  it('renders a custom submit label when provided', () => {
+    render(<ConsultationForm context="home" submitLabel="Book a Free Consultation" />)
+    expect(screen.getByRole('button', { name: 'Book a Free Consultation' })).toBeInTheDocument()
+  })
 })

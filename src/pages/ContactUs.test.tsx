@@ -1,0 +1,37 @@
+import { describe, it, expect } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
+import ContactUs from './ContactUs'
+
+describe('ContactUs page', () => {
+  it('renders every section heading in order', () => {
+    render(
+      <MemoryRouter>
+        <ContactUs />
+      </MemoryRouter>,
+    )
+
+    const headingNames = [
+      /book your free consultation/i,
+      /i want to talk to someone/i,
+      /what happens on the call/i,
+      /contact methods/i,
+      /meet us in person/i,
+      /kishan & meeta/i,
+      /booking faq/i,
+    ]
+
+    headingNames.forEach((name) => {
+      expect(screen.getByRole('heading', { name })).toBeInTheDocument()
+    })
+  })
+
+  it('renders the Google reviews section', () => {
+    render(
+      <MemoryRouter>
+        <ContactUs />
+      </MemoryRouter>,
+    )
+    expect(screen.getByText(/\[LIVE GOOGLE REVIEWS WIDGET/i)).toBeInTheDocument()
+  })
+})

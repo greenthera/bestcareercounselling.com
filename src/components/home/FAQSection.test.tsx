@@ -2,24 +2,30 @@ import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { FAQSection } from './FAQSection'
+import { homeFaqs } from '@/data/faqs'
 
 describe('FAQSection', () => {
   it('renders all eight questions', () => {
-    render(<FAQSection />)
+    render(<FAQSection faqs={homeFaqs} />)
     expect(screen.getAllByRole('button', { expanded: false })).toHaveLength(8)
   })
 
   it('expands an answer when its question is clicked', async () => {
-    render(<FAQSection />)
+    render(<FAQSection faqs={homeFaqs} />)
     const user = userEvent.setup()
     await user.click(screen.getByRole('button', { name: /is the first consultation really free/i }))
     expect(await screen.findByText(/yes\. the first consultation is completely free/i)).toBeInTheDocument()
   })
 
   it('embeds FAQPage structured data', () => {
-    render(<FAQSection />)
+    render(<FAQSection faqs={homeFaqs} />)
     const script = document.querySelector('script[type="application/ld+json"]')
     expect(script).not.toBeNull()
     expect(script?.textContent).toContain('FAQPage')
+  })
+
+  it('renders a custom heading when provided', () => {
+    render(<FAQSection faqs={homeFaqs} heading="Booking FAQ" />)
+    expect(screen.getByRole('heading', { name: 'Booking FAQ' })).toBeInTheDocument()
   })
 })

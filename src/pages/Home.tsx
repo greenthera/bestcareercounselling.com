@@ -12,6 +12,7 @@ import { GoogleReviews } from '@/components/trust/GoogleReviews'
 import { LocationsSection } from '@/components/home/LocationsSection'
 import { FAQSection } from '@/components/home/FAQSection'
 import { FinalCTA } from '@/components/home/FinalCTA'
+import { homeFaqs } from '@/data/faqs'
 
 export default function Home() {
   return (
@@ -30,7 +31,7 @@ export default function Home() {
         <GoogleReviews />
       </div>
       <LocationsSection />
-      <FAQSection />
+      <FAQSection faqs={homeFaqs} />
       <FinalCTA />
     </>
   )

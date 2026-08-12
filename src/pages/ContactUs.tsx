@@ -1,13 +1,26 @@
-import { ConsultationForm } from '@/components/forms/ConsultationForm'
+import { ContactHero } from '@/components/contact/ContactHero'
+import { TwoPaths } from '@/components/contact/TwoPaths'
+import { WhatHappensOnCall } from '@/components/contact/WhatHappensOnCall'
+import { ContactMethods } from '@/components/contact/ContactMethods'
+import { LocationsSection } from '@/components/home/LocationsSection'
+import { MeetFounders } from '@/components/home/MeetFounders'
+import { GoogleReviews } from '@/components/trust/GoogleReviews'
+import { FAQSection } from '@/components/home/FAQSection'
+import { bookingFaqs } from '@/data/faqs'
 
 export default function ContactUs() {
   return (
-    <div className="mx-auto max-w-md px-4 py-24">
-      <h1 className="text-center text-3xl font-bold text-brand-green">Book your free consultation</h1>
-      <p className="mt-2 text-center text-muted-ink">15 minutes with Kishan or Meeta. No cost, no obligation.</p>
-      <div className="mt-8 rounded-xl border border-neutral-border bg-white p-6">
-        <ConsultationForm context="home" />
+    <>
+      <ContactHero />
+      <TwoPaths />
+      <WhatHappensOnCall />
+      <ContactMethods />
+      <LocationsSection />
+      <MeetFounders />
+      <div className="mx-auto max-w-3xl px-4 py-16 md:px-8">
+        <GoogleReviews />
       </div>
-    </div>
+      <FAQSection faqs={bookingFaqs} heading="Booking FAQ" />
+    </>
   )
 }

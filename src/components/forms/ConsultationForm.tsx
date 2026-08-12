@@ -15,6 +15,7 @@ const CLASS_OPTIONS = [
 interface ConsultationFormProps {
   context: WhatsAppContext
   className?: string
+  submitLabel?: string
 }
 
 interface Errors {
@@ -23,7 +24,7 @@ interface Errors {
   currentClass?: string
 }
 
-export function ConsultationForm({ context, className }: ConsultationFormProps) {
+export function ConsultationForm({ context, className, submitLabel = 'Book Free Session' }: ConsultationFormProps) {
   const formId = useId()
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
@@ -96,7 +97,7 @@ export function ConsultationForm({ context, className }: ConsultationFormProps) 
       </div>
 
       <Button type="submit" className="w-full bg-brand-yellow text-ink hover:bg-brand-yellow/90">
-        Book Free Session
+        {submitLabel}
       </Button>
     </form>
   )
