@@ -31,7 +31,7 @@ export function FreeAssessmentSection() {
             <DialogTrigger asChild>
               <button
                 type="button"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-yellow py-1.5 pl-6 pr-1.5 text-sm font-semibold text-ink transition-all duration-300 hover:bg-brand-yellow/90 hover:shadow-[0_10px_30px_-8px_rgba(255,204,1,0.5)]"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-yellow py-2.5 pl-6 pr-2 text-sm font-semibold text-ink transition-all duration-300 hover:bg-brand-yellow/90 hover:shadow-[0_10px_30px_-8px_rgba(255,204,1,0.5)]"
               >
                 Take the Free Assessment
                 <PillCtaEndcap tone="dark" />

@@ -7,7 +7,7 @@ export function InlineCTA() {
       <p className="font-semibold text-ink">Not sure what is right for your child? Book a free consultation.</p>
       <Link
         to="/contact-us"
-        className="group mt-4 inline-flex items-center gap-2 rounded-full bg-ink py-1.5 pl-6 pr-1.5 text-sm font-semibold text-warm-white transition-colors hover:bg-ink/90"
+        className="group mt-4 inline-flex items-center gap-2 rounded-full bg-ink py-2.5 pl-6 pr-2 text-sm font-semibold text-warm-white transition-colors hover:bg-ink/90"
       >
         Book a Free Consultation
         <PillCtaEndcap tone="yellow" className="transition-transform duration-300 group-hover:translate-x-0.5" />

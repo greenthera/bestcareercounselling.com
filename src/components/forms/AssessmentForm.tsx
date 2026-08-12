@@ -109,7 +109,7 @@ export function AssessmentForm() {
         />
       </div>
 
-      <Button type="submit" className="w-full bg-brand-yellow text-ink hover:bg-brand-yellow/90">
+      <Button type="submit" className="h-auto w-full py-2.5 bg-brand-yellow text-ink hover:bg-brand-yellow/90">
         Take the Free Assessment
       </Button>
     </form>

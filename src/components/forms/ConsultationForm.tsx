@@ -96,7 +96,7 @@ export function ConsultationForm({ context, className, submitLabel = 'Book Free 
         {errors.currentClass && <p className="mt-1 text-sm text-red-600">{errors.currentClass}</p>}
       </div>
 
-      <Button type="submit" className="w-full bg-brand-yellow text-ink hover:bg-brand-yellow/90">
+      <Button type="submit" className="h-auto w-full py-2.5 bg-brand-yellow text-ink hover:bg-brand-yellow/90">
         {submitLabel}
       </Button>
     </form>

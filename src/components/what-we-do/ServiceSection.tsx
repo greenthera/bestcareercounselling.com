@@ -36,7 +36,7 @@ export function ServiceSection({ service }: ServiceSectionProps) {
           <DialogTrigger asChild>
             <button
               type="button"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink py-1.5 pl-6 pr-1.5 text-sm font-semibold text-warm-white transition-colors hover:bg-ink/90"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-ink py-2.5 pl-6 pr-2 text-sm font-semibold text-warm-white transition-colors hover:bg-ink/90"
             >
               {service.ctaLabel}
               <PillCtaEndcap tone="yellow" />
