@@ -19,18 +19,18 @@ describe('ConsultationForm', () => {
     const user = userEvent.setup()
     await user.click(screen.getByRole('button', { name: /book free session/i }))
 
-    expect(await screen.findByText(/student name is required/i)).toBeInTheDocument()
+    expect(await screen.findByText(/name is required/i)).toBeInTheDocument()
     expect(screen.getByText(/phone number is required/i)).toBeInTheDocument()
-    expect(screen.getByText(/select the current class/i)).toBeInTheDocument()
+    expect(screen.getByText(/select your current status/i)).toBeInTheDocument()
     expect(openSpy).not.toHaveBeenCalled()
   })
 
   it('rejects an invalid phone number', async () => {
     render(<ConsultationForm context="home" />)
     const user = userEvent.setup()
-    await user.type(screen.getByLabelText(/student name/i), 'Aarav Shah')
+    await user.type(screen.getByLabelText(/^name$/i), 'Aarav Shah')
     await user.type(screen.getByLabelText(/phone/i), '12345')
-    await user.selectOptions(screen.getByLabelText(/current class/i), 'Class 9–10')
+    await user.selectOptions(screen.getByLabelText(/current status/i), 'Class 9–10')
     await user.click(screen.getByRole('button', { name: /book free session/i }))
 
     expect(await screen.findByText(/enter a valid 10-digit phone number/i)).toBeInTheDocument()
@@ -40,9 +40,9 @@ describe('ConsultationForm', () => {
   it('opens WhatsApp with the contextual message on valid submit', async () => {
     render(<ConsultationForm context="after-10th" />)
     const user = userEvent.setup()
-    await user.type(screen.getByLabelText(/student name/i), 'Aarav Shah')
+    await user.type(screen.getByLabelText(/^name$/i), 'Aarav Shah')
     await user.type(screen.getByLabelText(/phone/i), '9876543210')
-    await user.selectOptions(screen.getByLabelText(/current class/i), 'Class 9–10')
+    await user.selectOptions(screen.getByLabelText(/current status/i), 'Class 9–10')
     await user.click(screen.getByRole('button', { name: /book free session/i }))
 
     expect(openSpy).toHaveBeenCalledTimes(1)

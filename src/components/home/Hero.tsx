@@ -7,7 +7,7 @@ import { Reveal } from '@/components/ui/reveal'
 
 export function Hero() {
   const directWhatsAppUrl = buildWhatsAppUrl(
-    buildContextualMessage('home', { name: '', phone: '' }).replace('Student Name: \n', '').replace('Phone: \n', ''),
+    buildContextualMessage('home', { name: '', phone: '' }).replace('Name: \n', '').replace('Phone: \n', ''),
   )
 
   return (

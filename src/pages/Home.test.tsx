@@ -30,7 +30,9 @@ describe('Home page', () => {
       expect(screen.getByRole('heading', { name })).toBeInTheDocument()
     })
 
-    expect(document.title).toBe('Career Counselling in Surat | Kishan & Meeta Patel')
+    expect(document.title).toBe(
+      'Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 1000+ Reviews',
+    )
   })
 
   it('renders the trust strip and Google reviews', () => {

@@ -19,6 +19,6 @@ describe('ServiceSection', () => {
     render(<ServiceSection service={service} />)
     const user = userEvent.setup()
     await user.click(screen.getByRole('button', { name: 'Book After 10th Counselling' }))
-    expect(await screen.findByLabelText(/student name/i)).toBeInTheDocument()
+    expect(await screen.findByLabelText(/^name$/i)).toBeInTheDocument()
   })
 })

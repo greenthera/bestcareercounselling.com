@@ -23,7 +23,7 @@ describe('BlogDetail page', () => {
     expect(screen.getByRole('heading', { level: 1, name: post.title })).toBeInTheDocument()
     expect(screen.getByRole('heading', { level: 2, name: post.sections[0].heading })).toBeInTheDocument()
     expect(screen.getByText(/not sure what is right for your child/i)).toBeInTheDocument()
-    expect(screen.getAllByLabelText(/student name/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByLabelText(/^name$/i).length).toBeGreaterThan(0)
     expect(screen.getAllByText('Kishan Patel').length).toBeGreaterThan(0)
 
     expect(document.title).toBe(`${post.title} | Career Counselling Blog`)

@@ -7,6 +7,6 @@ describe('Hero', () => {
     render(<Hero />)
     expect(screen.getByRole('heading', { level: 1, name: /stop guessing which stream is right/i })).toBeInTheDocument()
     expect(screen.getByText(/google's highest-rated career counsellors in surat/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/student name/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/^name$/i)).toBeInTheDocument()
   })
 })

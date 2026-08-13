@@ -8,8 +8,8 @@ describe('buildContextualMessage', () => {
       currentClass: 'Class 9–10',
       phone: '9876543210',
     })
-    expect(msg).toContain('Student Name: Aarav Shah')
-    expect(msg).toContain('Current Class: Class 9–10')
+    expect(msg).toContain('Name: Aarav Shah')
+    expect(msg).toContain('Current Status: Class 9–10')
     expect(msg).toContain('Phone: 9876543210')
     expect(msg).toContain('book a free career counselling consultation')
   })
@@ -30,7 +30,7 @@ describe('buildContextualMessage', () => {
       phone: '9876543212',
     })
     expect(msg).toContain('career change counselling')
-    expect(msg).not.toContain('Current Class')
+    expect(msg).not.toContain('Current Status')
   })
 
   it('builds the assessment context message including email', () => {

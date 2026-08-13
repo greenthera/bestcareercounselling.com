@@ -35,10 +35,10 @@ export function ConsultationForm({ context, className, submitLabel = 'Book Free 
     event.preventDefault()
     const nextErrors: Errors = {}
 
-    if (!name.trim()) nextErrors.name = 'Student name is required.'
+    if (!name.trim()) nextErrors.name = 'Name is required.'
     if (!phone.trim()) nextErrors.phone = 'Phone number is required.'
     else if (!isValidIndianPhone(phone)) nextErrors.phone = 'Enter a valid 10-digit phone number.'
-    if (!currentClass) nextErrors.currentClass = 'Select the current class.'
+    if (!currentClass) nextErrors.currentClass = 'Select your current status.'
 
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
@@ -51,7 +51,7 @@ export function ConsultationForm({ context, className, submitLabel = 'Book Free 
     <form onSubmit={handleSubmit} className={className} noValidate>
       <div className="mb-3">
         <label htmlFor={`${formId}-name`} className="mb-1 block text-sm font-medium text-ink">
-          Student Name
+          Name
         </label>
         <input
           id={`${formId}-name`}
@@ -64,7 +64,7 @@ export function ConsultationForm({ context, className, submitLabel = 'Book Free 
 
       <div className="mb-3">
         <label htmlFor={`${formId}-phone`} className="mb-1 block text-sm font-medium text-ink">
-          Phone / WhatsApp
+          Phone
         </label>
         <input
           id={`${formId}-phone`}
@@ -78,7 +78,7 @@ export function ConsultationForm({ context, className, submitLabel = 'Book Free 
 
       <div className="mb-4">
         <label htmlFor={`${formId}-class`} className="mb-1 block text-sm font-medium text-ink">
-          Current Class
+          Current Status
         </label>
         <select
           id={`${formId}-class`}
@@ -86,7 +86,7 @@ export function ConsultationForm({ context, className, submitLabel = 'Book Free 
           onChange={(e) => setCurrentClass(e.target.value)}
           className="w-full rounded-md border border-neutral-border bg-white px-3 py-2 text-sm"
         >
-          <option value="">Select current class</option>
+          <option value="">Select current status</option>
           {CLASS_OPTIONS.map((option) => (
             <option key={option} value={option}>
               {option}
