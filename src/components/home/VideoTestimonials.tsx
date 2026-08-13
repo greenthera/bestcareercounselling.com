@@ -4,6 +4,15 @@ import { useState } from 'react'
 import { videoTestimonials, type VideoTestimonial } from '@/data/testimonials'
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
+import counsellingOne from '@/assets/CounsellingOne.webp'
+import counsellingFour from '@/assets/CounsellingFour.webp'
+import counsellingThree from '@/assets/CounsellingThree.webp'
+
+const THUMBNAILS: Record<string, string> = {
+  'testimonial-1': counsellingOne,
+  'testimonial-2': counsellingFour,
+  'testimonial-3': counsellingThree,
+}
 
 export function VideoTestimonials() {
   const [active, setActive] = useState<VideoTestimonial | null>(null)
@@ -22,7 +31,7 @@ export function VideoTestimonials() {
             <div className="group h-full overflow-hidden rounded-[1.6rem] border border-neutral-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               <div className="relative aspect-video overflow-hidden">
                 <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-                  <PlaceholderVisual label={testimonial.thumbnailAlt} />
+                  <PlaceholderVisual label={testimonial.thumbnailAlt} src={THUMBNAILS[testimonial.id]} />
                 </div>
                 <Quote className="absolute left-3 top-3 h-6 w-6 text-brand-yellow" fill="currentColor" aria-hidden="true" />
                 <button
@@ -58,7 +67,7 @@ export function VideoTestimonials() {
             </DialogTitle>
           </DialogHeader>
           <div className="aspect-video overflow-hidden rounded-lg" role="img" aria-label={active?.thumbnailAlt}>
-            <PlaceholderVisual label={active?.thumbnailAlt ?? ''} />
+            <PlaceholderVisual label={active?.thumbnailAlt ?? ''} src={active ? THUMBNAILS[active.id] : undefined} />
           </div>
         </DialogContent>
       </Dialog>

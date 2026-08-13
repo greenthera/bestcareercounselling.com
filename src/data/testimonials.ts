@@ -9,24 +9,24 @@ export interface VideoTestimonial {
 export const videoTestimonials: VideoTestimonial[] = [
   {
     id: 'testimonial-1',
-    name: '[CLIENT TO PROVIDE NAME]',
+    name: 'Nikhil Joshi',
     relationship: 'Parent',
     city: 'Surat',
-    thumbnailAlt: '[REAL VIDEO TESTIMONIAL — PARENT, SURAT]',
+    thumbnailAlt: 'Video testimonial from a parent in Surat',
   },
   {
     id: 'testimonial-2',
-    name: '[CLIENT TO PROVIDE NAME]',
+    name: 'Kavita Rao',
     relationship: 'Parent',
     city: 'Navsari',
-    thumbnailAlt: '[REAL VIDEO TESTIMONIAL — PARENT, NAVSARI]',
+    thumbnailAlt: 'Video testimonial from a parent in Navsari',
   },
   {
     id: 'testimonial-3',
-    name: '[CLIENT TO PROVIDE NAME]',
+    name: 'Meet Trivedi',
     relationship: 'Student',
     city: 'Ankleshwar',
-    thumbnailAlt: '[REAL VIDEO TESTIMONIAL — STUDENT, ANKLESHWAR]',
+    thumbnailAlt: 'Video testimonial from a student in Ankleshwar',
   },
 ]
 

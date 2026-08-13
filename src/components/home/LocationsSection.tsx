@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 import { locations } from '@/data/locations'
-import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
+import { DummyMap } from '@/components/ui/dummy-map'
 import { Reveal } from '@/components/ui/reveal'
 
 export function LocationsSection() {
@@ -35,12 +35,8 @@ export function LocationsSection() {
                 <p className={location.hasMap ? 'text-warm-white' : 'text-ink'}>{location.phone}</p>
               </div>
               {location.hasMap && (
-                <div
-                  className="mt-3 aspect-video overflow-hidden rounded-xl"
-                  role="img"
-                  aria-label={`[MAP — ${location.city.toUpperCase()}]`}
-                >
-                  <PlaceholderVisual label={`[MAP — ${location.city.toUpperCase()}]`} tone="dark" />
+                <div className="mt-3 aspect-video overflow-hidden rounded-xl">
+                  <DummyMap city={location.city} />
                 </div>
               )}
             </div>

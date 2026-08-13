@@ -3,6 +3,7 @@ import { AssessmentForm } from '@/components/forms/AssessmentForm'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
+import counsellingTwo from '@/assets/CounsellingTwo.webp'
 
 export function FreeAssessmentSection() {
   return (
@@ -20,10 +21,10 @@ export function FreeAssessmentSection() {
           <div
             className="group mx-auto mt-8 aspect-[3/2] max-w-md overflow-hidden rounded-[1.6rem] border border-white/15"
             role="img"
-            aria-label="[SAMPLE REPORT PREVIEW — PARTIALLY BLURRED]"
+            aria-label="Sample assessment report preview"
           >
             <div className="h-full w-full blur-[1px] transition-all duration-500 group-hover:blur-none">
-              <PlaceholderVisual label="[SAMPLE REPORT PREVIEW — PARTIALLY BLURRED]" tone="dark" />
+              <PlaceholderVisual label="Sample assessment report preview" tone="dark" src={counsellingTwo} />
             </div>
           </div>
 

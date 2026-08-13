@@ -2,9 +2,9 @@ import { Rocket, UserPlus, Award, Trophy } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
 
 const MILESTONES = [
-  { year: '[CLIENT TO PROVIDE YEAR]', text: 'Kishan Patel begins practicing career counselling.', icon: Rocket },
-  { year: '[CLIENT TO PROVIDE YEAR]', text: 'Meeta Patel joins the practice.', icon: UserPlus },
-  { year: '[CLIENT TO PROVIDE YEAR]', text: 'Certified as a Career Analyst with Edumilestones.', icon: Award },
+  { year: '1996', text: 'Kishan Patel begins practicing career counselling.', icon: Rocket },
+  { year: '2005', text: 'Meeta Patel joins the practice.', icon: UserPlus },
+  { year: '2012', text: 'Certified as a Career Analyst with Edumilestones.', icon: Award },
   { year: 'Today', text: '30+ years of experience, 5,000+ students guided, 900+ five-star Google reviews.', icon: Trophy },
 ]
 

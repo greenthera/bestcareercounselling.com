@@ -1,5 +1,6 @@
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
+import counselling from '@/assets/Counselling.webp'
 
 export function WhoWeAreHero() {
   return (
@@ -16,8 +17,8 @@ export function WhoWeAreHero() {
         delay={120}
         className="mx-auto mt-10 aspect-[16/7] max-w-4xl overflow-hidden rounded-[1.6rem] border border-neutral-border shadow-sm"
       >
-        <div role="img" aria-label="[REAL PHOTO — OFFICE / COUNSELLING SESSION]" className="h-full w-full">
-          <PlaceholderVisual label="[REAL PHOTO — OFFICE / COUNSELLING SESSION]" />
+        <div role="img" aria-label="Career counselling session in progress" className="h-full w-full">
+          <PlaceholderVisual label="Career counselling session in progress" src={counselling} />
         </div>
       </Reveal>
     </section>

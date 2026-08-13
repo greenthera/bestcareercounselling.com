@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
-import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
+import { ReportPageMockup, type ReportPageVariant } from '@/components/home/ReportPageMockup'
 import { Reveal } from '@/components/ui/reveal'
 import { useInView } from '@/hooks/useInView'
 import { Expand } from 'lucide-react'
@@ -14,10 +14,10 @@ const DELIVERABLES = [
   'College and course list',
 ]
 
-const REPORT_PAGES = [
-  '[REAL REPORT PAGE — COVER]',
-  '[REAL REPORT PAGE — APTITUDE PROFILE]',
-  '[REAL REPORT PAGE — CAREER SHORTLIST]',
+const REPORT_PAGES: { label: string; variant: ReportPageVariant }[] = [
+  { label: 'Report cover', variant: 'cover' },
+  { label: 'Aptitude profile', variant: 'aptitude' },
+  { label: 'Career shortlist', variant: 'shortlist' },
 ]
 
 const SNAPSHOT = [
@@ -32,7 +32,7 @@ function ProfileSnapshot() {
 
   return (
     <div ref={ref} className="rounded-[1.6rem] bg-brand-green p-6 text-warm-white">
-      <p className="text-xs font-semibold uppercase tracking-wide text-warm-white/40">[Sample profile snapshot]</p>
+      <p className="text-xs font-semibold uppercase tracking-wide text-warm-white/40">Sample profile snapshot</p>
       <div className="mt-5 space-y-4">
         {SNAPSHOT.map((row, index) => (
           <div key={row.label}>
@@ -70,12 +70,12 @@ export function ReportSection() {
             <div className="relative rounded-[2rem] bg-brand-green p-3 shadow-lg">
               <div className="group relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-white/10">
                 <div
-                  key={activePage}
+                  key={activePage.variant}
                   className="h-full w-full animate-in fade-in zoom-in-[0.98] duration-500"
                   role="img"
-                  aria-label={activePage}
+                  aria-label={activePage.label}
                 >
-                  <PlaceholderVisual label={activePage} tone="dark" />
+                  <ReportPageMockup variant={activePage.variant} />
                 </div>
                 <button
                   type="button"
@@ -92,9 +92,9 @@ export function ReportSection() {
                   const isActive = index === activeIndex
                   return (
                     <button
-                      key={page}
+                      key={page.variant}
                       type="button"
-                      aria-label={`View report page: ${page}`}
+                      aria-label={`View report page: ${page.label}`}
                       aria-pressed={isActive}
                       onClick={() => {
                         setActiveIndex(index)
@@ -105,7 +105,7 @@ export function ReportSection() {
                         isActive ? 'border-brand-yellow' : 'border-white/10 opacity-50 hover:opacity-90',
                       )}
                     >
-                      <PlaceholderVisual label={page} tone="dark" className="p-2" />
+                      <ReportPageMockup variant={page.variant} className="p-2" />
                       {isActive && (
                         <span className="absolute inset-x-2 bottom-1 h-1 rounded-full bg-brand-yellow" aria-hidden="true" />
                       )}
@@ -144,9 +144,9 @@ export function ReportSection() {
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>
-          <DialogTitle className="sr-only">{activePage}</DialogTitle>
-          <div className="aspect-[4/3] overflow-hidden rounded-xl" role="img" aria-label={activePage}>
-            <PlaceholderVisual label={activePage} />
+          <DialogTitle className="sr-only">{activePage.label}</DialogTitle>
+          <div className="aspect-[4/3] overflow-hidden rounded-xl" role="img" aria-label={activePage.label}>
+            <ReportPageMockup variant={activePage.variant} />
           </div>
         </DialogContent>
       </Dialog>

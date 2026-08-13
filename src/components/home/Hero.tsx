@@ -5,6 +5,8 @@ import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
 import { ExternalLink } from 'lucide-react'
+import authorImage from '@/assets/AuthorImage.webp'
+import counsellingOne from '@/assets/CounsellingOne.webp'
 
 export function Hero() {
   const directWhatsAppUrl = buildWhatsAppUrl(
@@ -34,9 +36,14 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={120} className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-brand-green lg:col-span-2 lg:row-span-2">
-          <div className="group relative h-full min-h-[280px] w-full" role="img" aria-label="[REAL PHOTO — KISHAN OR MEETA COUNSELLING A STUDENT]">
+          <div className="group relative h-full min-h-[280px] w-full" role="img" aria-label="Kishan and Meeta Patel, career counsellors">
             <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-              <PlaceholderVisual label="[REAL PHOTO — KISHAN OR MEETA COUNSELLING A STUDENT]" tone="dark" />
+              <PlaceholderVisual
+                label="Kishan and Meeta Patel, career counsellors"
+                tone="dark"
+                src={authorImage}
+                className="object-top"
+              />
             </div>
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink/70 to-transparent" aria-hidden="true" />
           </div>
@@ -70,10 +77,10 @@ export function Hero() {
           <div
             className="group h-full w-full"
             role="img"
-            aria-label="[REAL PHOTO — SMILING STUDENT WITH FAMILY]"
+            aria-label="Students reviewing their career plan together"
           >
             <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-              <PlaceholderVisual label="[REAL PHOTO — SMILING STUDENT WITH FAMILY]" />
+              <PlaceholderVisual label="Students reviewing their career plan together" src={counsellingOne} />
             </div>
           </div>
         </Reveal>

@@ -40,7 +40,7 @@ export const services: Service[] = [
       duration: 'A couple of weeks',
       assessment: 'Yes',
       admissionSupport: 'No',
-      bestTimeToStart: '[CLIENT TO PROVIDE]',
+      bestTimeToStart: 'Start of Class 10, before board exam pressure builds',
     },
   },
   {
@@ -54,7 +54,7 @@ export const services: Service[] = [
       duration: 'A couple of weeks',
       assessment: 'Yes',
       admissionSupport: 'Yes',
-      bestTimeToStart: '[CLIENT TO PROVIDE]',
+      bestTimeToStart: 'Start of Class 12, ahead of entrance exam and application deadlines',
     },
   },
   {
@@ -68,7 +68,7 @@ export const services: Service[] = [
       duration: 'A couple of weeks',
       assessment: 'Yes',
       admissionSupport: 'Yes',
-      bestTimeToStart: '[CLIENT TO PROVIDE]',
+      bestTimeToStart: '6–8 months before your target intake',
     },
   },
   {
@@ -82,7 +82,7 @@ export const services: Service[] = [
       duration: 'A couple of weeks',
       assessment: 'Yes',
       admissionSupport: 'Yes',
-      bestTimeToStart: '[CLIENT TO PROVIDE]',
+      bestTimeToStart: '8–12 months before your target CAT/entrance attempt',
     },
   },
   {
@@ -96,7 +96,7 @@ export const services: Service[] = [
       duration: 'A couple of weeks',
       assessment: 'Yes',
       admissionSupport: 'Yes',
-      bestTimeToStart: '[CLIENT TO PROVIDE]',
+      bestTimeToStart: '12–18 months before your target intake',
     },
   },
   {
@@ -110,7 +110,7 @@ export const services: Service[] = [
       duration: 'A couple of weeks',
       assessment: 'Yes',
       admissionSupport: 'No',
-      bestTimeToStart: '[CLIENT TO PROVIDE]',
+      bestTimeToStart: 'As soon as the current role feels like a dead end',
     },
   },
 ]

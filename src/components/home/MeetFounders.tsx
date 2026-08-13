@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
+import counsellingThree from '@/assets/CounsellingThree.webp'
+import counsellingTwo from '@/assets/CounsellingTwo.webp'
 
 export function MeetFounders() {
   return (
@@ -15,9 +17,9 @@ export function MeetFounders() {
       <div className="mt-10 grid gap-4 md:grid-cols-2">
         <Reveal delay={80}>
           <div className="group h-full overflow-hidden rounded-[1.6rem] border border-neutral-border bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg">
-            <div className="relative aspect-square overflow-hidden" role="img" aria-label="[REAL PHOTO — KISHAN PATEL]">
+            <div className="relative aspect-square overflow-hidden" role="img" aria-label="Kishan Patel">
               <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-                <PlaceholderVisual label="[REAL PHOTO — KISHAN PATEL]" />
+                <PlaceholderVisual label="Kishan Patel" src={counsellingThree} />
               </div>
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink/70 to-transparent" aria-hidden="true" />
               <p className="absolute bottom-4 left-4 text-xl font-bold text-warm-white">Kishan Patel</p>
@@ -32,9 +34,9 @@ export function MeetFounders() {
 
         <Reveal delay={160}>
           <div className="group h-full overflow-hidden rounded-[1.6rem] border border-neutral-border bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg">
-            <div className="relative aspect-square overflow-hidden" role="img" aria-label="[REAL PHOTO — MEETA PATEL]">
+            <div className="relative aspect-square overflow-hidden" role="img" aria-label="Meeta Patel">
               <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-                <PlaceholderVisual label="[REAL PHOTO — MEETA PATEL]" />
+                <PlaceholderVisual label="Meeta Patel" src={counsellingTwo} />
               </div>
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink/70 to-transparent" aria-hidden="true" />
               <p className="absolute bottom-4 left-4 text-xl font-bold text-warm-white">Meeta Patel</p>
