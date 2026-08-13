@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
+import { ExternalLink } from 'lucide-react'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
 import { blogPosts } from '@/data/blogs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
+import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 
 const DEFAULT_MESSAGE = 'Hi, I want to know about career counselling for my child in Class ___'
 
@@ -19,8 +21,13 @@ export default function ThankYou() {
           href={buildWhatsAppUrl(DEFAULT_MESSAGE)}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-block rounded-full bg-brand-yellow px-6 py-3 text-sm font-semibold text-ink hover:bg-brand-yellow/90"
+          className="group mt-6 inline-flex items-center gap-2 rounded-full bg-brand-green py-2.5 pl-2 pr-6 text-sm font-semibold text-warm-white transition-colors hover:bg-brand-green/90"
         >
+          <PillCtaEndcap
+            tone="yellow"
+            icon={ExternalLink}
+            className="transition-transform duration-300 group-hover:-translate-x-0.5"
+          />
           Continue to WhatsApp
         </a>
       </div>

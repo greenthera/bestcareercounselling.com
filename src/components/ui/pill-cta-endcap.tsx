@@ -1,13 +1,15 @@
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, type LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface PillCtaEndcapProps {
   className?: string
   /** Use 'dark' when the endcap sits on a brand-yellow pill (yellow-on-yellow would lack contrast). */
   tone?: 'yellow' | 'dark'
+  /** Defaults to an arrow. Pass ExternalLink for CTAs that open in a new tab (e.g. WhatsApp). */
+  icon?: LucideIcon
 }
 
-export function PillCtaEndcap({ className, tone = 'yellow' }: PillCtaEndcapProps) {
+export function PillCtaEndcap({ className, tone = 'yellow', icon: Icon = ArrowUpRight }: PillCtaEndcapProps) {
   return (
     <span
       className={cn(
@@ -17,7 +19,7 @@ export function PillCtaEndcap({ className, tone = 'yellow' }: PillCtaEndcapProps
       )}
       aria-hidden="true"
     >
-      <ArrowUpRight className="h-4 w-4" />
+      <Icon className="h-4 w-4" />
     </span>
   )
 }

@@ -4,6 +4,7 @@ import { buildContextualMessage } from '@/components/whatsapp/whatsappMessages'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
+import { ExternalLink } from 'lucide-react'
 
 export function Hero() {
   const directWhatsAppUrl = buildWhatsAppUrl(
@@ -46,19 +47,34 @@ export function Hero() {
 
         <Reveal delay={180} className="rounded-[2rem] border border-neutral-border bg-white p-6 lg:col-span-2">
           <ConsultationForm context="home" />
-        </Reveal>
-
-        <Reveal delay={220} className="flex flex-col justify-center rounded-[2rem] border border-neutral-border bg-green-tint p-6 lg:col-span-2">
-          <p className="text-sm font-semibold text-ink">Prefer WhatsApp?</p>
           <a
             href={directWhatsAppUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mt-2 inline-flex w-fit items-center gap-2 text-sm font-medium text-brand-green hover:underline"
+            className="group mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-brand-green py-2.5 pl-2 pr-5 text-sm font-semibold text-warm-white transition-colors hover:bg-brand-green/90"
           >
+            <PillCtaEndcap
+              tone="yellow"
+              icon={ExternalLink}
+              className="transition-transform duration-300 group-hover:-translate-x-0.5"
+            />
             Message us directly, we reply fast
-            <PillCtaEndcap className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5" />
           </a>
+        </Reveal>
+
+        <Reveal
+          delay={220}
+          className="relative min-h-[200px] overflow-hidden rounded-[2rem] border border-neutral-border lg:col-span-2"
+        >
+          <div
+            className="group h-full w-full"
+            role="img"
+            aria-label="[REAL PHOTO — SMILING STUDENT WITH FAMILY]"
+          >
+            <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
+              <PlaceholderVisual label="[REAL PHOTO — SMILING STUDENT WITH FAMILY]" />
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { Menu, ArrowUpRight, Phone, MessageCircle, Star } from 'lucide-react'
+import { Menu, ArrowUpRight, Phone, ExternalLink, Star } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from '@/components/ui/sheet'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
@@ -93,9 +93,13 @@ export function MobileNav() {
               href="https://wa.me/918758175187"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-full border border-neutral-border py-2.5 text-sm font-medium text-ink transition-colors hover:border-brand-green hover:text-brand-green"
+              className="group flex items-center justify-center gap-2 rounded-full bg-brand-green py-2.5 pl-1.5 pr-4 text-sm font-semibold text-warm-white transition-colors hover:bg-brand-green/90"
             >
-              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              <PillCtaEndcap
+                tone="yellow"
+                icon={ExternalLink}
+                className="h-6 w-6 transition-transform duration-300 group-hover:-translate-x-0.5"
+              />
               WhatsApp
             </a>
             <a
