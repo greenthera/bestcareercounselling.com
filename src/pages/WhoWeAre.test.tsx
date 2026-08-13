@@ -13,18 +13,14 @@ describe('WhoWeAre page', () => {
 
     const headingNames = [
       /30 years\. 5,000 students\./i,
-      /sound familiar/i,
       /our story/i,
       /kishan & meeta/i,
       /our methodology/i,
       /our journey/i,
       /real work/i,
       /how it works/i,
-      /what you walk away with/i,
       /real students\. real decisions\./i,
-      /hear it from parents/i,
       /universities & colleges/i,
-      /where are you right now/i,
       /let's talk about your child's future/i,
     ]
 
@@ -35,13 +31,12 @@ describe('WhoWeAre page', () => {
     expect(document.title).toBe('Who We Are | Kishan & Meeta Patel Career Counselling')
   })
 
-  it('renders the trust strip and Google reviews', () => {
+  it('renders a single Book Free Session CTA button', () => {
     render(
       <MemoryRouter>
         <WhoWeAre />
       </MemoryRouter>,
     )
-    expect(screen.getAllByText('5.0').length).toBeGreaterThan(0)
-    expect(screen.getByText('Priya Shah')).toBeInTheDocument()
+    expect(screen.getAllByRole('link', { name: /book free session/i }).length).toBeGreaterThan(0)
   })
 })

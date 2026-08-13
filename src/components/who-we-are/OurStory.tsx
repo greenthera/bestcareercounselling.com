@@ -4,7 +4,6 @@ const TOPICS = [
   { title: 'Before career counselling', body: '[CLIENT TO PROVIDE: what Kishan was doing before he started counselling]' },
   { title: 'The moment that started it', body: '[CLIENT TO PROVIDE: the moment that made him start]' },
   { title: 'Why Surat', body: '[CLIENT TO PROVIDE: why the practice is based in Surat]' },
-  { title: 'Why Meeta joined', body: '[CLIENT TO PROVIDE: how Meeta came to join the practice]' },
   {
     title: 'Our philosophy',
     body: 'Career decisions should be based on understanding, assessment and counselling — not assumptions or pressure.',
