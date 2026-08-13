@@ -14,10 +14,10 @@ describe('ContactUs page', () => {
     const headingNames = [
       /book your free consultation/i,
       /i want to talk to someone/i,
+      /i want to start with the free assessment/i,
       /what happens on the call/i,
       /contact methods/i,
-      /meet us in person/i,
-      /kishan & meeta/i,
+      /meet us in surat/i,
       /booking faq/i,
     ]
 
@@ -28,12 +28,14 @@ describe('ContactUs page', () => {
     expect(document.title).toBe('Contact Us | Book a Free Consultation')
   })
 
-  it('renders the Google reviews section', () => {
+  it('does not render the removed founders, testimonial and free-assessment-panel sections', () => {
     render(
       <MemoryRouter>
         <ContactUs />
       </MemoryRouter>,
     )
-    expect(screen.getByText('Priya Shah')).toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /kishan & meeta/i })).not.toBeInTheDocument()
+    expect(screen.queryByText('Priya Shah')).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /not ready to book/i })).not.toBeInTheDocument()
   })
 })

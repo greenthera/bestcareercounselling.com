@@ -1,5 +1,12 @@
-import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
+import { Clock, Gift, ShieldCheck } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
+
+const HIGHLIGHTS: { label: string; icon: LucideIcon }[] = [
+  { label: '15-minute call', icon: Clock },
+  { label: 'Completely free', icon: Gift },
+  { label: 'No obligation', icon: ShieldCheck },
+]
 
 export function ContactHero() {
   return (
@@ -10,17 +17,19 @@ export function ContactHero() {
           15 minutes with Kishan or Meeta. No cost, no obligation, no sales pitch.
         </p>
       </Reveal>
-      <Reveal
-        delay={120}
-        className="mx-auto mt-10 aspect-[16/6] max-w-3xl overflow-hidden rounded-[1.6rem] border border-dashed border-neutral-border"
-      >
-        <div
-          role="img"
-          aria-label="[BOOKING / CALENDAR INTEGRATION — CLIENT TO PROVIDE OR CONFIRM SCHEDULING TOOL]"
-          className="h-full w-full"
-        >
-          <PlaceholderVisual label="[BOOKING / CALENDAR INTEGRATION — CLIENT TO PROVIDE OR CONFIRM SCHEDULING TOOL]" />
-        </div>
+      <Reveal delay={120} className="mx-auto mt-8 flex max-w-2xl flex-wrap items-center justify-center gap-3">
+        {HIGHLIGHTS.map((highlight) => {
+          const Icon = highlight.icon
+          return (
+            <span
+              key={highlight.label}
+              className="inline-flex items-center gap-2 rounded-full border border-neutral-border bg-white px-4 py-2 text-sm font-medium text-ink shadow-sm"
+            >
+              <Icon className="h-4 w-4 text-brand-green" aria-hidden="true" />
+              {highlight.label}
+            </span>
+          )
+        })}
       </Reveal>
     </section>
   )

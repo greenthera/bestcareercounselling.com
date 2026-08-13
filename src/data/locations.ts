@@ -10,8 +10,8 @@ export interface Location {
 export const locations: Location[] = [
   {
     city: 'Surat',
-    address: '[CLIENT TO PROVIDE ADDRESS]',
-    landmark: '[CLIENT TO PROVIDE LANDMARK]',
+    address: 'Nariman Point, City Light Rd, City Light Town, Athwa, Surat, Gujarat 395007',
+    landmark: 'Opp. Dharmraj Suzuki Showroom, near Ashok Panhouse',
     timings: '[CLIENT TO PROVIDE TIMINGS]',
     phone: '+91 87581 75187',
     hasMap: true,

@@ -2,9 +2,7 @@ import { ContactHero } from '@/components/contact/ContactHero'
 import { TwoPaths } from '@/components/contact/TwoPaths'
 import { WhatHappensOnCall } from '@/components/contact/WhatHappensOnCall'
 import { ContactMethods } from '@/components/contact/ContactMethods'
-import { LocationsSection } from '@/components/home/LocationsSection'
-import { MeetFounders } from '@/components/home/MeetFounders'
-import { GoogleReviews } from '@/components/trust/GoogleReviews'
+import { ContactLocation } from '@/components/contact/ContactLocation'
 import { FAQSection } from '@/components/home/FAQSection'
 import { bookingFaqs } from '@/data/faqs'
 import { usePageSeo } from '@/hooks/usePageSeo'
@@ -18,11 +16,7 @@ export default function ContactUs() {
       <TwoPaths />
       <WhatHappensOnCall />
       <ContactMethods />
-      <LocationsSection />
-      <MeetFounders />
-      <div className="mx-auto max-w-6xl px-4 py-10 md:px-8">
-        <GoogleReviews />
-      </div>
+      <ContactLocation />
       <FAQSection faqs={bookingFaqs} heading="Booking FAQ" />
     </>
   )
