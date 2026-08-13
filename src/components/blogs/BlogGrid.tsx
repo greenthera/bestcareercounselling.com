@@ -37,9 +37,9 @@ export function BlogGrid({ posts }: BlogGridProps) {
               className="group block h-full overflow-hidden rounded-[1.375rem] border border-neutral-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
               aria-label={`${post.title} — ${post.readTime}`}
             >
-              <div className="aspect-video overflow-hidden" role="img" aria-label={`[IMAGE — ${post.title.toUpperCase()}]`}>
+              <div className="aspect-video overflow-hidden" role="img" aria-label={post.title}>
                 <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-                  <PlaceholderVisual label="[IMAGE]" src={post.image} />
+                  <PlaceholderVisual label={post.title} src={post.image} />
                 </div>
               </div>
               <div className="p-5">

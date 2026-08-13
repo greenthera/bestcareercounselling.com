@@ -14,13 +14,9 @@ export function FeaturedPost({ post }: FeaturedPostProps) {
         to={`/blogs/${post.slug}`}
         className="group block overflow-hidden rounded-[1.6rem] border border-neutral-border bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg md:grid md:grid-cols-2"
       >
-        <div
-          className="aspect-video overflow-hidden md:aspect-auto"
-          role="img"
-          aria-label={`[FEATURED IMAGE — ${post.title.toUpperCase()}]`}
-        >
+        <div className="aspect-video overflow-hidden md:aspect-auto" role="img" aria-label={post.title}>
           <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-            <PlaceholderVisual label="[FEATURED IMAGE]" src={post.image} />
+            <PlaceholderVisual label={post.title} src={post.image} />
           </div>
         </div>
         <div className="p-6 md:p-10">

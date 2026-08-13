@@ -40,7 +40,7 @@ export default function BlogDetail() {
       <Breadcrumb title={post.title} />
       <ArticleHeader post={post} />
 
-      <div className="mx-auto mt-10 grid max-w-5xl gap-10 px-4 md:px-8 lg:grid-cols-[1fr_280px]">
+      <div className="mx-auto mt-10 grid max-w-5xl gap-10 px-4 pb-10 md:px-8 md:pb-14 lg:grid-cols-[1fr_280px]">
         <div className="min-w-0">
           <ArticleBody sections={post.sections.slice(0, 2)} />
           <div className="mx-auto max-w-2xl">

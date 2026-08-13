@@ -1,3 +1,9 @@
+import counselling from '@/assets/Counselling.webp'
+import counsellingOne from '@/assets/CounsellingOne.webp'
+import counsellingTwo from '@/assets/CounsellingTwo.webp'
+import counsellingThree from '@/assets/CounsellingThree.webp'
+import counsellingFour from '@/assets/CounsellingFour.webp'
+
 export type BlogCategory = 'After 10th' | 'After 12th' | 'Exams' | 'Colleges' | 'Careers' | 'Parenting'
 export type BlogAuthor = 'kishan' | 'meeta'
 
@@ -28,6 +34,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '6 min read',
     date: '2026-07-20',
     author: 'kishan',
+    image: counsellingOne,
     sections: [
       {
         heading: 'Start with the student, not the stream',
@@ -57,6 +64,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '5 min read',
     date: '2026-07-05',
     author: 'meeta',
+    image: counsellingTwo,
     sections: [
       {
         heading: 'What Maths adds to Commerce',
@@ -86,6 +94,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '7 min read',
     date: '2026-06-28',
     author: 'kishan',
+    image: counsellingThree,
     sections: [
       {
         heading: 'Science opens more than one door',
@@ -115,6 +124,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '6 min read',
     date: '2026-06-14',
     author: 'meeta',
+    image: counsellingFour,
     sections: [
       {
         heading: 'What to check beyond the name',
@@ -144,6 +154,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '5 min read',
     date: '2026-06-02',
     author: 'kishan',
+    image: counselling,
     sections: [
       {
         heading: 'What it measures',
@@ -173,6 +184,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '5 min read',
     date: '2026-05-24',
     author: 'meeta',
+    image: counsellingOne,
     sections: [
       {
         heading: 'Why this is so common',
@@ -202,6 +214,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '4 min read',
     date: '2026-05-15',
     author: 'kishan',
+    image: counsellingTwo,
     sections: [
       {
         heading: 'Before the session',
@@ -231,6 +244,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '4 min read',
     date: '2026-05-08',
     author: 'kishan',
+    image: counsellingThree,
     sections: [
       {
         heading: 'Local access, same process',
@@ -260,6 +274,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '6 min read',
     date: '2026-04-27',
     author: 'meeta',
+    image: counsellingFour,
     sections: [
       {
         heading: 'Reframing the Arts stream',
@@ -289,6 +304,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '8 min read',
     date: '2026-04-15',
     author: 'kishan',
+    image: counselling,
     sections: [
       {
         heading: 'Country and course come first',
@@ -318,6 +334,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '5 min read',
     date: '2026-04-02',
     author: 'meeta',
+    image: counsellingOne,
     sections: [
       {
         heading: 'When it tends to help',
@@ -347,6 +364,7 @@ export const blogPosts: BlogPost[] = [
     readTime: '6 min read',
     date: '2026-03-20',
     author: 'kishan',
+    image: counsellingTwo,
     sections: [
       {
         heading: 'Why a personal timeline matters more than a generic one',

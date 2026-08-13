@@ -29,9 +29,9 @@ export function ArticleHeader({ post }: ArticleHeaderProps) {
         <div
           className="aspect-[16/7] w-full transition-transform duration-700 ease-out group-hover:scale-105"
           role="img"
-          aria-label={`[BANNER IMAGE — ${post.title.toUpperCase()}]`}
+          aria-label={post.title}
         >
-          <PlaceholderVisual label="[BANNER IMAGE]" src={post.image} tone="dark" />
+          <PlaceholderVisual label={post.title} src={post.image} tone="dark" />
         </div>
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink/60 to-transparent"
