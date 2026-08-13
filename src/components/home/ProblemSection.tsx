@@ -1,37 +1,36 @@
 import { GitFork, ArrowLeftRight, RotateCcw, Compass } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
-import { cn } from '@/lib/utils'
 
 const PROBLEMS = [
   {
     eyebrow: 'Stream Confusion',
     text: 'Science, Commerce or Arts — and no way to decide',
     icon: GitFork,
-    position: 'left-0 top-0 md:left-[1%] md:top-[2%]',
+    angle: 315,
   },
   {
     eyebrow: 'Family Conflict',
     text: 'You and your child want different things',
     icon: ArrowLeftRight,
-    position: 'right-0 top-[6%] md:right-[1%] md:top-[8%]',
+    angle: 45,
   },
   {
     eyebrow: 'Wrong Choice',
     text: 'Wrong stream chosen. Now what?',
     icon: RotateCcw,
-    position: 'bottom-[8%] left-0 md:bottom-[10%] md:left-[3%]',
+    angle: 225,
   },
   {
     eyebrow: 'College List',
     text: 'No idea which colleges to even apply to',
     icon: Compass,
-    position: 'bottom-0 right-0 md:bottom-[1%] md:right-[3%]',
+    angle: 135,
   },
 ]
 
 export function ProblemSection() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-10 md:px-8 md:py-14">
+    <section className="mx-auto max-w-7xl px-4 pb-10 pt-16 md:px-8 md:pb-14 md:pt-24">
       <Reveal className="mx-auto max-w-xl text-center">
         <h2 className="text-3xl font-bold text-ink md:text-4xl">
           Sound <span className="text-brand-green">familiar</span>?
@@ -39,14 +38,21 @@ export function ProblemSection() {
         <p className="mt-2 text-muted-ink">Most families we meet are stuck on one of these.</p>
       </Reveal>
 
-      {/* Desktop: radial layout — the ring "strips" rotate continuously behind fixed, readable cards */}
-      <Reveal className="relative mx-auto mt-16 hidden aspect-square max-w-2xl md:block">
+      {/* Desktop: radial layout — rings and cards orbit slowly around the circle, pause on hover to read.
+          A single shared `--orbit-angle` custom property (see index.css) drives both the card's
+          position around the circle and its counter-rotation, so they can never drift out of sync
+          and the card content always stays upright. */}
+      <Reveal
+        className="group relative mx-auto mt-16 hidden aspect-square max-w-2xl md:block [animation:orbit-spin_140s_linear_infinite] [animation-play-state:running] motion-reduce:[animation:none] group-hover:[animation-play-state:paused]"
+      >
         <div
-          className="absolute inset-[10%] animate-[spin_90s_linear_infinite] rounded-full border-2 border-dashed border-brand-green/40 motion-reduce:animate-none"
+          className="absolute inset-[10%] rounded-full border-2 border-dashed border-brand-green/40"
+          style={{ transform: 'rotate(var(--orbit-angle))' }}
           aria-hidden="true"
         />
         <div
-          className="absolute inset-[22%] animate-[spin_70s_linear_infinite_reverse] rounded-full border-2 border-dashed border-brand-green/55 motion-reduce:animate-none"
+          className="absolute inset-[22%] rounded-full border-2 border-dashed border-brand-green/55"
+          style={{ transform: 'rotate(calc(-1 * var(--orbit-angle)))' }}
           aria-hidden="true"
         />
 
@@ -63,22 +69,31 @@ export function ProblemSection() {
           </p>
         </div>
 
-        {PROBLEMS.map((problem, index) => {
+        {PROBLEMS.map((problem) => {
           const Icon = problem.icon
           return (
-            <Reveal
+            <div
               key={problem.eyebrow}
-              delay={index * 100}
-              className={cn('absolute w-60 lg:w-64', problem.position)}
+              className="absolute left-1/2 top-1/2 [--radius:295px] lg:[--radius:305px]"
+              style={{
+                transform: `rotate(calc(var(--orbit-angle) + ${problem.angle}deg)) translateY(var(--radius))`,
+                transformOrigin: '0 0',
+              }}
             >
-              <div className="group rounded-2xl border border-neutral-border bg-white p-4 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-green-tint text-brand-green transition-colors duration-300 group-hover:bg-brand-yellow group-hover:text-ink">
-                  <Icon className="h-4 w-4" aria-hidden="true" />
-                </span>
-                <p className="mt-2.5 text-xs font-bold uppercase tracking-wide text-brand-green">{problem.eyebrow}</p>
-                <p className="mt-1 text-sm font-semibold text-ink">{problem.text}</p>
+              <div
+                style={{
+                  transform: `translate(-50%, -50%) rotate(calc(-1 * (var(--orbit-angle) + ${problem.angle}deg)))`,
+                }}
+              >
+                <div className="group/card w-60 rounded-2xl border border-neutral-border bg-white p-4 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl lg:w-64">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-green-tint text-brand-green transition-colors duration-300 group-hover/card:bg-brand-yellow group-hover/card:text-ink">
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <p className="mt-2.5 text-xs font-bold uppercase tracking-wide text-brand-green">{problem.eyebrow}</p>
+                  <p className="mt-1 text-sm font-semibold text-ink">{problem.text}</p>
+                </div>
               </div>
-            </Reveal>
+            </div>
           )
         })}
       </Reveal>

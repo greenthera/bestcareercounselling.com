@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@property --orbit-angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@keyframes orbit-spin {
+  to {
+    --orbit-angle: 360deg;
+  }
+}
+
 @layer base {
   :root {
     --background: 60 60% 99%;
