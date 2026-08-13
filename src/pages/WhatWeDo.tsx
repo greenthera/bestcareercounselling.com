@@ -41,7 +41,7 @@ export default function WhatWeDo() {
 
       <SuccessStoriesPreview />
       <VideoTestimonials />
-      <div className="mx-auto max-w-3xl px-4 py-10 md:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-10 md:px-8">
         <GoogleReviews />
       </div>
       <FreeAssessmentSection />

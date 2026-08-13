@@ -31,7 +31,7 @@ function ProfileSnapshot() {
   const { ref, isInView } = useInView<HTMLDivElement>(0.3)
 
   return (
-    <div ref={ref} className="rounded-[1.6rem] bg-ink p-6 text-warm-white">
+    <div ref={ref} className="rounded-[1.6rem] bg-brand-green p-6 text-warm-white">
       <p className="text-xs font-semibold uppercase tracking-wide text-warm-white/40">[Sample profile snapshot]</p>
       <div className="mt-5 space-y-4">
         {SNAPSHOT.map((row, index) => (
@@ -67,7 +67,7 @@ export function ReportSection() {
       <div className="mx-auto max-w-7xl rounded-[2rem] bg-green-tint px-6 py-14 md:px-10 md:py-16">
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <Reveal>
-            <div className="relative rounded-[2rem] bg-ink p-3 shadow-lg">
+            <div className="relative rounded-[2rem] bg-brand-green p-3 shadow-lg">
               <div className="group relative aspect-[4/3] overflow-hidden rounded-[1.5rem] border border-white/10">
                 <div
                   key={activePage}

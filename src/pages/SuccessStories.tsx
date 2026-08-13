@@ -19,7 +19,7 @@ export default function SuccessStories() {
       <StoryFilterGrid />
       <VideoTestimonials />
       <WhatMakesTheDifference />
-      <div className="mx-auto max-w-3xl px-4 py-10 md:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-10 md:px-8">
         <GoogleReviews />
       </div>
       <FinalCTA heading="Your child's story could be next." />

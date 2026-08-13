@@ -9,8 +9,9 @@ describe('GoogleReviews', () => {
     expect(screen.getByText(/900\+ google reviews/i)).toBeInTheDocument()
   })
 
-  it('marks itself as a placeholder pending live integration', () => {
+  it('renders written testimonial cards', () => {
     render(<GoogleReviews />)
-    expect(screen.getByText(/\[LIVE GOOGLE REVIEWS WIDGET/i)).toBeInTheDocument()
+    expect(screen.getByText('Priya Shah')).toBeInTheDocument()
+    expect(screen.getByText(/one session with kishan sir made it obvious/i)).toBeInTheDocument()
   })
 })

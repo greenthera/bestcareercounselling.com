@@ -34,6 +34,6 @@ describe('ContactUs page', () => {
         <ContactUs />
       </MemoryRouter>,
     )
-    expect(screen.getByText(/\[LIVE GOOGLE REVIEWS WIDGET/i)).toBeInTheDocument()
+    expect(screen.getByText('Priya Shah')).toBeInTheDocument()
   })
 })

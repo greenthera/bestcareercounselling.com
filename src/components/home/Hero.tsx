@@ -18,7 +18,7 @@ export function Hero() {
           <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-green-tint px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-green">
             Google's highest-rated career counsellors in Surat
           </span>
-          <h1 className="max-w-lg text-4xl font-bold leading-[1.08] tracking-tight text-ink md:text-[46px]">
+          <h1 className="text-4xl font-bold leading-[1.08] tracking-tight text-ink md:text-[46px]">
             Stop guessing which stream is{' '}
             <span className="relative inline-block whitespace-nowrap">
               <span className="relative z-10">right</span>
@@ -26,9 +26,10 @@ export function Hero() {
             </span>{' '}
             for your child.
           </h1>
-          <p className="mt-4 max-w-md text-base text-muted-ink md:text-lg">
-            Aptitude testing and one-on-one counselling from Kishan & Meeta Patel — 30 years, 5,000+ students, 900+
-            five-star reviews.
+          <p className="mt-4 text-base text-muted-ink md:text-lg">
+            Recognised as <span className="font-semibold text-ink">Best Career Counselling</span> in Surat, Kishan &
+            Meeta Patel bring 30 years of aptitude testing and one-on-one guidance to every family — trusted by
+            5,000+ students and backed by 900+ five-star reviews.
           </p>
         </Reveal>
 

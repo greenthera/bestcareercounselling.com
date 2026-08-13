@@ -8,6 +8,6 @@ describe('HowItWorks', () => {
     const steps = screen.getAllByRole('listitem')
     expect(steps).toHaveLength(4)
     expect(steps[0]).toHaveTextContent('Free consultation call')
-    expect(steps[3]).toHaveTextContent('Roadmap and admission support')
+    expect(steps[3]).toHaveTextContent('Roadmap and admission')
   })
 })

@@ -7,7 +7,7 @@ import { Reveal } from '@/components/ui/reveal'
 export function FreeAssessmentSection() {
   return (
     <section className="px-4 py-8 md:px-8">
-      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-ink px-6 py-14 text-center text-warm-white md:px-8 md:py-16">
+      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-brand-green px-6 py-14 text-center text-warm-white md:px-8 md:py-16">
         <div className="pointer-events-none absolute right-4 top-4 h-56 w-56 animate-float-slow rounded-full bg-brand-yellow/10 blur-3xl" aria-hidden="true" />
         <Reveal className="relative mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold md:text-4xl">

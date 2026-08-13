@@ -4,8 +4,8 @@ import { Reveal } from '@/components/ui/reveal'
 const STEPS = [
   { icon: PhoneCall, title: 'Free consultation call', description: '15 minutes. We understand the situation.' },
   { icon: Brain, title: 'Psychometric assessment', description: 'Aptitude, interest, personality and EQ.' },
-  { icon: Users, title: 'One-on-one session + report', description: 'Detailed counselling session with Kishan or Meeta.' },
-  { icon: Map, title: 'Roadmap and admission support', description: 'Course shortlist, college list, timeline and application help.' },
+  { icon: Users, title: 'One-on-one session', description: 'Detailed counselling session with Kishan or Meeta.' },
+  { icon: Map, title: 'Roadmap and admission', description: 'Course shortlist, college list, timeline and application help.' },
 ]
 
 export function HowItWorks() {

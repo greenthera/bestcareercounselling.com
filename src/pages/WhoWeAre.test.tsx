@@ -42,6 +42,6 @@ describe('WhoWeAre page', () => {
       </MemoryRouter>,
     )
     expect(screen.getAllByText('5.0').length).toBeGreaterThan(0)
-    expect(screen.getByText(/\[LIVE GOOGLE REVIEWS WIDGET/i)).toBeInTheDocument()
+    expect(screen.getByText('Priya Shah')).toBeInTheDocument()
   })
 })

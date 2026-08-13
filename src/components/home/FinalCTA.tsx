@@ -21,7 +21,7 @@ export function FinalCTA({
 
   return (
     <section className="px-4 py-8 md:px-8">
-      <div className="mx-auto max-w-7xl rounded-[2rem] bg-ink px-6 py-12 text-warm-white md:px-10 md:py-14">
+      <div className="mx-auto max-w-7xl rounded-[2rem] bg-brand-green px-6 py-12 text-warm-white md:px-10 md:py-14">
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
           <Reveal>
             <h2 className="text-3xl font-bold md:text-4xl">
