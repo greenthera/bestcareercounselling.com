@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 import WhatWeDo from './WhatWeDo'
 
 describe('WhatWeDo page', () => {
-  it('renders the hero, all six service sections, and the comparison table', () => {
+  it('renders the hero and all six service sections', () => {
     render(
       <MemoryRouter>
         <WhatWeDo />
@@ -18,18 +18,30 @@ describe('WhatWeDo page', () => {
     expect(screen.getByRole('heading', { name: 'MBA & Professional' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Study Abroad' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Career Change' })).toBeInTheDocument()
-    expect(screen.getByRole('table')).toBeInTheDocument()
     expect(document.title).toBe('What We Do | Career Counselling Services')
   })
 
-  it('renders the shared sections and final CTA', () => {
+  it('renders the Admission Consulting and Career Counselling category links', () => {
     render(
       <MemoryRouter>
         <WhatWeDo />
       </MemoryRouter>,
     )
-    expect(screen.getByRole('heading', { name: /sound familiar/i })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /not sure which counselling service you need/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Book a Free Consultation' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /admission consulting/i })).toHaveAttribute(
+      'href',
+      '/admission-consulting',
+    )
+    expect(screen.getByRole('link', { name: /career counselling/i })).toHaveAttribute('href', '/career-counselling')
+  })
+
+  it('does not render the removed sections', () => {
+    render(
+      <MemoryRouter>
+        <WhatWeDo />
+      </MemoryRouter>,
+    )
+    expect(screen.queryByRole('heading', { name: /sound familiar/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('heading', { name: /not sure which counselling service you need/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('table')).not.toBeInTheDocument()
   })
 })

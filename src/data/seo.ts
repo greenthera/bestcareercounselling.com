@@ -43,4 +43,14 @@ export const pageSeo = {
     description: 'Thank you for reaching out. Your WhatsApp message is ready to send.',
     path: '/thank-you',
   },
+  admissionConsulting: {
+    title: 'Admission Consulting | Best Career Counselling',
+    description: 'End-to-end admission consulting — shortlisting, applications, documents and deadline tracking.',
+    path: '/admission-consulting',
+  },
+  careerCounselling: {
+    title: 'Career Counselling | Best Career Counselling',
+    description: 'Aptitude-backed career counselling — assessment, one-on-one sessions and a practical roadmap.',
+    path: '/career-counselling',
+  },
 } satisfies Record<string, PageSeo>

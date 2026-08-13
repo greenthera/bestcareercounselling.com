@@ -2,7 +2,7 @@ import { services } from '@/data/services'
 
 export function ServiceNav() {
   return (
-    <nav aria-label="Service sections" className="sticky top-16 z-20 mb-6 px-3 md:top-20 md:mb-10 md:px-6">
+    <nav aria-label="Service sections" className="mb-3 px-3 md:mb-4 md:px-6">
       <div className="mx-auto flex w-fit max-w-full flex-wrap justify-center gap-2 rounded-[1.5rem] border border-neutral-border bg-white/90 px-4 py-3 shadow-sm backdrop-blur-md">
         {services.map((service) => (
           <a
