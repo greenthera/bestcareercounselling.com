@@ -59,7 +59,20 @@ export function Footer() {
 
         <div className="border-t border-white/10">
           <div className="flex flex-col gap-2 px-6 py-4 text-xs text-warm-white/40 md:px-10 lg:flex-row lg:items-center lg:justify-between">
-            <p>© {new Date().getFullYear()} All rights reserved.</p>
+            <div className="flex flex-col gap-1">
+              <p>© {new Date().getFullYear()} All rights reserved.</p>
+              <p>
+                Design and developed by{' '}
+                <a
+                  href="https://shivantra.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold text-brand-yellow transition-colors hover:text-warm-white"
+                >
+                  Shivantra
+                </a>
+              </p>
+            </div>
             <div className="flex flex-wrap gap-4">
               <span>Privacy Policy</span>
               <span>Terms</span>
