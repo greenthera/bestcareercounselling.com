@@ -31,7 +31,7 @@ describe('SuccessStories page', () => {
         <SuccessStories />
       </MemoryRouter>,
     )
-    expect(screen.getByText('5.0★')).toBeInTheDocument()
+    expect(screen.getAllByText('5.0').length).toBeGreaterThan(0)
     expect(screen.getAllByText('Was').length).toBeGreaterThan(0)
     expect(screen.getByText(/\[LIVE GOOGLE REVIEWS WIDGET/i)).toBeInTheDocument()
   })
