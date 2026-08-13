@@ -26,7 +26,7 @@ export function FAQSection({ faqs, heading = 'Frequently asked questions' }: FAQ
   }
 
   return (
-    <section className="mx-auto max-w-5xl px-4 py-10 md:px-8 md:py-14">
+    <section className="mx-auto max-w-3xl px-4 py-10 md:px-8 md:py-14">
       <Reveal>
         <h2 className="text-center text-3xl font-bold text-ink md:text-4xl">
           {headingLead && `${headingLead} `}
@@ -35,7 +35,7 @@ export function FAQSection({ faqs, heading = 'Frequently asked questions' }: FAQ
       </Reveal>
 
       <Reveal delay={100}>
-        <Accordion type="single" collapsible className="mt-9 grid gap-3.5 md:grid-cols-2">
+        <Accordion type="single" collapsible className="mt-9 grid gap-3.5">
           {faqs.map((faq, index) => (
             <AccordionItem
               key={faq.question}
