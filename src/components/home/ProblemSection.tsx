@@ -1,10 +1,11 @@
+import { GitFork, ArrowLeftRight, RotateCcw, Compass } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
 
 const PROBLEMS = [
-  'Science, Commerce or Arts — and no way to decide',
-  'You and your child want different things',
-  'Wrong stream chosen. Now what?',
-  'No idea which colleges to even apply to',
+  { text: 'Science, Commerce or Arts — and no way to decide', icon: GitFork },
+  { text: 'You and your child want different things', icon: ArrowLeftRight },
+  { text: 'Wrong stream chosen. Now what?', icon: RotateCcw },
+  { text: 'No idea which colleges to even apply to', icon: Compass },
 ]
 
 export function ProblemSection() {
@@ -19,16 +20,21 @@ export function ProblemSection() {
         </Reveal>
 
         <div className="mt-9 border-t border-white/15">
-          {PROBLEMS.map((problem, index) => (
-            <Reveal key={problem} delay={index * 90}>
-              <div className="group flex items-center gap-5 border-b border-white/15 py-5 transition-colors duration-300 hover:bg-white/5 md:py-6">
-                <span className="w-10 shrink-0 text-2xl font-extrabold text-brand-yellow/40 transition-colors duration-300 group-hover:text-brand-yellow md:text-3xl">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <p className="text-lg font-medium text-warm-white md:text-xl">{problem}</p>
-              </div>
-            </Reveal>
-          ))}
+          {PROBLEMS.map((problem, index) => {
+            const Icon = problem.icon
+            return (
+              <Reveal key={problem.text} delay={index * 90}>
+                <div className="border-b border-white/15">
+                  <div className="group -mx-4 flex items-center gap-5 rounded-2xl px-4 py-5 transition-colors duration-300 hover:bg-white/5 md:py-6">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-warm-white transition-all duration-300 group-hover:bg-brand-yellow group-hover:text-ink md:h-12 md:w-12">
+                      <Icon className="h-5 w-5 md:h-6 md:w-6" aria-hidden="true" />
+                    </span>
+                    <p className="text-lg font-medium text-warm-white md:text-xl">{problem.text}</p>
+                  </div>
+                </div>
+              </Reveal>
+            )
+          })}
         </div>
       </div>
     </section>
