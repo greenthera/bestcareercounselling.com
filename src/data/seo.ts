@@ -6,7 +6,7 @@ export interface PageSeo {
 
 export const pageSeo = {
   home: {
-    title: 'Career Counselling in Surat | Kishan & Meeta Patel',
+    title: 'Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 1000+ Reviews',
     description:
       'Career counselling and stream selection guidance from Kishan & Meeta Patel — Surat, Navsari, Ankleshwar, Valsad.',
     path: '/',
