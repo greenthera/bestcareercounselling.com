@@ -17,8 +17,11 @@ export function Footer() {
       <div className="mx-auto max-w-7xl rounded-[2rem] bg-ink text-warm-white">
         <div className="grid gap-10 px-6 py-12 sm:grid-cols-2 md:px-10 lg:grid-cols-4">
           <div>
-            <div className="inline-block rounded-2xl bg-white p-3">
-              <img src={logo} alt="Kishan & Meeta Patel — Best Career Counselling" className="h-14 w-auto" />
+            <div className="flex items-center gap-3">
+              <div className="inline-block shrink-0 rounded-2xl bg-white p-3">
+                <img src={logo} alt="" className="h-14 w-auto" />
+              </div>
+              <span className="text-lg font-bold text-warm-white">Best Career Counselling</span>
             </div>
             <p className="mt-3 text-sm text-warm-white/60">
               Career counselling and guidance for students, parents and working professionals across Gujarat.

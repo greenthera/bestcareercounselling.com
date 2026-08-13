@@ -10,7 +10,7 @@ describe('Header', () => {
         <Header />
       </MemoryRouter>,
     )
-    expect(screen.getByAltText(/kishan & meeta patel/i)).toBeInTheDocument()
+    expect(screen.getByText(/best career counselling/i)).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /book free session/i })).toHaveAttribute('href', '/contact-us')
   })
 })

@@ -23,8 +23,9 @@ export function Header() {
           scrolled ? 'shadow-md' : 'shadow-sm'
         }`}
       >
-        <Link to="/" className="shrink-0">
-          <img src={logo} alt="Kishan & Meeta Patel — Best Career Counselling" className="h-14 w-auto md:h-16" />
+        <Link to="/" className="flex shrink-0 items-center gap-2">
+          <img src={logo} alt="" className="h-14 w-auto md:h-16" />
+          <span className="text-sm font-bold leading-tight text-ink md:text-base">Best Career Counselling</span>
         </Link>
         <DesktopNav />
         <div className="flex items-center gap-2">

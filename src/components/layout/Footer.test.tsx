@@ -10,7 +10,7 @@ describe('Footer', () => {
         <Footer />
       </MemoryRouter>,
     )
-    expect(screen.getByAltText(/kishan & meeta patel/i)).toBeInTheDocument()
+    expect(screen.getByText(/best career counselling/i)).toBeInTheDocument()
     expect(screen.getByText(/5\.0★/)).toBeInTheDocument()
     expect(screen.getByText(/900\+ reviews/i)).toBeInTheDocument()
   })

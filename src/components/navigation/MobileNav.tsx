@@ -29,7 +29,10 @@ export function MobileNav() {
       <SheetContent side="right" className="flex w-5/6 flex-col p-0 sm:max-w-sm">
         <div className="border-b border-neutral-border p-6">
           <SheetTitle asChild>
-            <img src={logo} alt="Kishan & Meeta Patel — Best Career Counselling" className="h-14 w-auto" />
+            <div className="flex items-center gap-2">
+              <img src={logo} alt="" className="h-14 w-auto" />
+              <span className="text-lg font-bold text-ink">Best Career Counselling</span>
+            </div>
           </SheetTitle>
           <p className="mt-1 text-sm text-muted-ink">Career counselling for students &amp; parents</p>
           <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-green-tint px-3 py-1 text-xs font-semibold text-brand-green">
