@@ -1,5 +1,6 @@
 import { GitFork, ArrowLeftRight, RotateCcw, Compass } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
+import logo from '@/assets/logo.png'
 
 const PROBLEMS = [
   {
@@ -60,13 +61,16 @@ export function ProblemSection() {
           className="absolute inset-[26%] animate-glow-pulse rounded-full bg-brand-yellow/40 blur-2xl motion-reduce:animate-none"
           aria-hidden="true"
         />
-        <div className="absolute inset-[32%] flex flex-col items-center justify-center gap-1 rounded-full bg-brand-yellow text-center shadow-xl">
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-ink/50">Trusted since 1996</span>
-          <p className="px-6 text-lg font-extrabold uppercase leading-tight tracking-wide text-ink">
+        <div className="absolute inset-[32%] flex flex-col items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 text-center shadow-xl">
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white p-2 shadow-sm md:h-14 md:w-14">
+            <img src={logo} alt="" className="h-full w-full object-contain" />
+          </span>
+          <p className="text-sm font-extrabold uppercase leading-tight tracking-wide text-ink md:text-base">
             Best Career
             <br />
             Counselling
           </p>
+          <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-ink/50">Trusted since 1996</span>
         </div>
 
         {PROBLEMS.map((problem) => {

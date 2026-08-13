@@ -38,8 +38,13 @@
     --radius: 0.75rem;
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-warm-white text-ink font-sans antialiased;
+    overflow-x: hidden;
   }
 
   a:focus-visible,
