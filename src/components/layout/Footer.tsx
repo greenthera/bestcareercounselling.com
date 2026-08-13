@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { services } from '@/data/services'
+import logo from '@/assets/logo.png'
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
@@ -16,8 +17,10 @@ export function Footer() {
       <div className="mx-auto max-w-7xl rounded-[2rem] bg-ink text-warm-white">
         <div className="grid gap-10 px-6 py-12 sm:grid-cols-2 md:px-10 lg:grid-cols-4">
           <div>
-            <p className="text-lg font-bold">Kishan & Meeta Patel</p>
-            <p className="mt-2 text-sm text-warm-white/60">
+            <div className="inline-block rounded-2xl bg-white p-3">
+              <img src={logo} alt="Kishan & Meeta Patel — Best Career Counselling" className="h-14 w-auto" />
+            </div>
+            <p className="mt-3 text-sm text-warm-white/60">
               Career counselling and guidance for students, parents and working professionals across Gujarat.
             </p>
             <p className="mt-4 text-sm font-medium text-brand-yellow">Google 5.0★ · 900+ Reviews</p>

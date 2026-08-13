@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { DesktopNav } from '@/components/navigation/DesktopNav'
 import { MobileNav } from '@/components/navigation/MobileNav'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
+import logo from '@/assets/logo.png'
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -22,8 +23,8 @@ export function Header() {
           scrolled ? 'shadow-md' : 'shadow-sm'
         }`}
       >
-        <Link to="/" className="text-sm font-bold tracking-tight text-ink md:text-base">
-          Kishan & Meeta Patel
+        <Link to="/" className="shrink-0">
+          <img src={logo} alt="Kishan & Meeta Patel — Best Career Counselling" className="h-14 w-auto md:h-16" />
         </Link>
         <DesktopNav />
         <div className="flex items-center gap-2">

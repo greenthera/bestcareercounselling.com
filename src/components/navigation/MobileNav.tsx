@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from '@/components/ui/sheet'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { cn } from '@/lib/utils'
+import logo from '@/assets/logo.png'
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home', end: true },
@@ -27,7 +28,9 @@ export function MobileNav() {
       </SheetTrigger>
       <SheetContent side="right" className="flex w-5/6 flex-col p-0 sm:max-w-sm">
         <div className="border-b border-neutral-border p-6">
-          <SheetTitle className="text-xl font-bold">Kishan & Meeta Patel</SheetTitle>
+          <SheetTitle asChild>
+            <img src={logo} alt="Kishan & Meeta Patel — Best Career Counselling" className="h-14 w-auto" />
+          </SheetTitle>
           <p className="mt-1 text-sm text-muted-ink">Career counselling for students &amp; parents</p>
           <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-green-tint px-3 py-1 text-xs font-semibold text-brand-green">
             <Star size={12} fill="currentColor" />
