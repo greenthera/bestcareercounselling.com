@@ -4,7 +4,6 @@ import { BlogCategories } from '@/components/blogs/BlogCategories'
 import { FeaturedPost } from '@/components/blogs/FeaturedPost'
 import { BlogGrid } from '@/components/blogs/BlogGrid'
 import { FreeAssessmentSection } from '@/components/home/FreeAssessmentSection'
-import { FinalCTA } from '@/components/home/FinalCTA'
 import { blogPosts, type BlogCategory } from '@/data/blogs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
@@ -35,7 +34,6 @@ export default function Blogs() {
       </div>
       <BlogGrid posts={filtered} />
       <FreeAssessmentSection />
-      <FinalCTA />
     </>
   )
 }

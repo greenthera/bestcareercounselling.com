@@ -6,7 +6,6 @@ import { InlineCTA } from '@/components/blog-detail/InlineCTA'
 import { SidebarBookingForm } from '@/components/blog-detail/SidebarBookingForm'
 import { AuthorBio } from '@/components/blog-detail/AuthorBio'
 import { RelatedPosts } from '@/components/blog-detail/RelatedPosts'
-import { FinalCTA } from '@/components/home/FinalCTA'
 import { ArticleSchema } from '@/components/seo/ArticleSchema'
 import { BreadcrumbListSchema } from '@/components/seo/BreadcrumbListSchema'
 import { usePageSeo } from '@/hooks/usePageSeo'
@@ -56,7 +55,6 @@ export default function BlogDetail() {
       </div>
 
       <RelatedPosts currentSlug={post.slug} category={post.category} />
-      <FinalCTA />
     </>
   )
 }
