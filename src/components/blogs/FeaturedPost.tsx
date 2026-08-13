@@ -20,7 +20,7 @@ export function FeaturedPost({ post }: FeaturedPostProps) {
           aria-label={`[FEATURED IMAGE — ${post.title.toUpperCase()}]`}
         >
           <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-            <PlaceholderVisual label="[FEATURED IMAGE]" />
+            <PlaceholderVisual label="[FEATURED IMAGE]" src={post.image} />
           </div>
         </div>
         <div className="p-6 md:p-10">

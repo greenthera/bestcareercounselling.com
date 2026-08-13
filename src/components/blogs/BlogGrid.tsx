@@ -39,7 +39,7 @@ export function BlogGrid({ posts }: BlogGridProps) {
             >
               <div className="aspect-video overflow-hidden" role="img" aria-label={`[IMAGE — ${post.title.toUpperCase()}]`}>
                 <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-                  <PlaceholderVisual label="[IMAGE]" />
+                  <PlaceholderVisual label="[IMAGE]" src={post.image} />
                 </div>
               </div>
               <div className="p-5">

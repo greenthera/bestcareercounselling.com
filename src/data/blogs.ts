@@ -14,6 +14,8 @@ export interface BlogPost {
   readTime: string
   date: string
   author: BlogAuthor
+  /** Banner image URL for this post's card thumbnail and article header. Omit until a real image is available. */
+  image?: string
   sections: BlogSection[]
 }
 

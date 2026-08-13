@@ -1,4 +1,5 @@
 import type { BlogPost } from '@/data/blogs'
+import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
 
 const AUTHOR_NAMES = { kishan: 'Kishan Patel', meeta: 'Meeta Patel' } as const
@@ -23,6 +24,21 @@ export function ArticleHeader({ post }: ArticleHeaderProps) {
           <span>{post.readTime}</span>
         </p>
       </header>
+
+      <div className="group relative mt-6 overflow-hidden rounded-[1.6rem] border border-white/10 bg-brand-green shadow-lg transition-shadow duration-300 hover:shadow-xl">
+        <div
+          className="aspect-[16/7] w-full transition-transform duration-700 ease-out group-hover:scale-105"
+          role="img"
+          aria-label={`[BANNER IMAGE — ${post.title.toUpperCase()}]`}
+        >
+          <PlaceholderVisual label="[BANNER IMAGE]" src={post.image} tone="dark" />
+        </div>
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink/60 to-transparent"
+          aria-hidden="true"
+        />
+        <div className="pointer-events-none absolute -right-3 -top-3 h-16 w-16 rounded-2xl bg-brand-yellow shadow-lg" aria-hidden="true" />
+      </div>
     </Reveal>
   )
 }

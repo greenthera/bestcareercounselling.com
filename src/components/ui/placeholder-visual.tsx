@@ -5,15 +5,22 @@ interface PlaceholderVisualProps {
   label: string
   tone?: 'light' | 'dark'
   className?: string
+  /** Real image URL. When provided, renders the actual image instead of the placeholder pattern. */
+  src?: string
 }
 
 /**
  * Drop-in replacement for the flat "[REAL PHOTO — X]" text-in-a-box placeholders.
  * Renders the same visible label (so existing text-content assertions keep matching)
  * but with a textured pattern + icon badge so unfilled image slots still read as
- * designed, not empty, until real photography replaces them.
+ * designed, not empty, until real photography replaces them. Pass `src` once a real
+ * asset is available and it renders in place of the placeholder pattern.
  */
-export function PlaceholderVisual({ label, tone = 'light', className }: PlaceholderVisualProps) {
+export function PlaceholderVisual({ label, tone = 'light', className, src }: PlaceholderVisualProps) {
+  if (src) {
+    return <img src={src} alt={label} className={cn('h-full w-full object-cover', className)} />
+  }
+
   return (
     <div className={cn('relative flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden p-6 text-center', className)}>
       <div
