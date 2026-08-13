@@ -1,9 +1,19 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, GraduationCap, Landmark, ClipboardList, Briefcase, Globe, Repeat } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { services } from '@/data/services'
 import { Reveal } from '@/components/ui/reveal'
 import { cn } from '@/lib/utils'
+
+const SERVICE_ICONS: Record<string, LucideIcon> = {
+  'after-10th': GraduationCap,
+  'after-12th': Landmark,
+  'ug-pg-admission': ClipboardList,
+  mba: Briefcase,
+  'study-abroad': Globe,
+  'career-change': Repeat,
+}
 
 export function WhoWeHelp() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -20,6 +30,7 @@ export function WhoWeHelp() {
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {services.map((service, index) => {
               const isActive = index === activeIndex
+              const Icon = SERVICE_ICONS[service.id]
               return (
                 <Link
                   key={service.id}
@@ -31,11 +42,11 @@ export function WhoWeHelp() {
                 >
                   <span
                     className={cn(
-                      'flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold transition-colors duration-300',
+                      'flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors duration-300',
                       isActive ? 'bg-brand-yellow text-ink' : 'bg-green-tint text-brand-green',
                     )}
                   >
-                    {String(index + 1).padStart(2, '0')}
+                    <Icon className="h-4 w-4" aria-hidden="true" />
                   </span>
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-semibold text-ink">{service.title}</p>
