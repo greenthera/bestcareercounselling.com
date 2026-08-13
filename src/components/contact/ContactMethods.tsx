@@ -1,4 +1,5 @@
-import { Phone, Mail, MessageCircle } from 'lucide-react'
+import { Phone, Mail } from 'lucide-react'
+import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
 import { buildContextualMessage } from '@/components/whatsapp/whatsappMessages'
 import { Reveal } from '@/components/ui/reveal'
@@ -37,7 +38,7 @@ export function ContactMethods() {
             className="group flex h-full flex-col items-center rounded-[1.6rem] border border-neutral-border bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
           >
             <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-green-tint text-brand-green transition-colors duration-300 group-hover:bg-brand-yellow group-hover:text-ink">
-              <MessageCircle className="h-5 w-5" aria-hidden="true" />
+              <WhatsAppIcon className="h-5 w-5" />
             </span>
             <p className="mt-4 font-semibold text-ink">WhatsApp us</p>
             <p className="mt-1 text-sm text-brand-green">We reply fast</p>

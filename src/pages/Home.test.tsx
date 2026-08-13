@@ -30,7 +30,7 @@ describe('Home page', () => {
     })
 
     expect(document.title).toBe(
-      'Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 1000+ Reviews',
+      'Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 900+ Reviews',
     )
   })
 

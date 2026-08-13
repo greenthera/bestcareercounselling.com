@@ -14,7 +14,7 @@ export function FreeAssessmentSection() {
             Not ready to book? Start with the <span className="text-brand-yellow">free</span> assessment.
           </h2>
           <p className="mt-3 text-warm-white/60">
-            10 minutes. No payment. Get a snapshot of your child's aptitude and interest profile.
+            15 minutes. No payment. Get a snapshot of your child's aptitude and interest profile.
           </p>
 
           <div

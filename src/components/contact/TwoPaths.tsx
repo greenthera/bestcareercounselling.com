@@ -28,10 +28,10 @@ export function TwoPaths() {
             </span>
             <h3 className="mt-4 text-xl font-bold">I want to start with the free assessment</h3>
             <p className="mt-2 text-sm text-warm-white/70">
-              10 minutes. No payment. Get a snapshot of your child's aptitude and interest profile.
+              15 minutes. No payment. Get a snapshot of your child's aptitude and interest profile.
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
-              {['10 minutes', 'No payment', 'Instant snapshot'].map((tag) => (
+              {['15 minutes', 'No payment', 'Instant snapshot'].map((tag) => (
                 <span key={tag} className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-warm-white/80">
                   {tag}
                 </span>

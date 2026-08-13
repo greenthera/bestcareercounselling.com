@@ -6,7 +6,7 @@ export interface PageSeo {
 
 export const pageSeo = {
   home: {
-    title: 'Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 1000+ Reviews',
+    title: 'Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 900+ Reviews',
     description:
       'Career counselling and stream selection guidance from Kishan & Meeta Patel — Surat, Navsari, Ankleshwar, Valsad.',
     path: '/',
@@ -14,7 +14,7 @@ export const pageSeo = {
   whoWeAre: {
     title: 'Who We Are | Kishan & Meeta Patel Career Counselling',
     description:
-      '30 years, 5,000+ students guided. Meet Kishan & Meeta Patel and learn how we help families make informed career decisions.',
+      '30+ years, 5,000+ students guided. Meet Kishan & Meeta Patel and learn how we help families make informed career decisions.',
     path: '/who-we-are',
   },
   whatWeDo: {

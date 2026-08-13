@@ -12,7 +12,7 @@ describe('WhoWeAre page', () => {
     )
 
     const headingNames = [
-      /30 years\. 5,000 students\./i,
+      /30\+ years\. 5,000\+ students\./i,
       /our story/i,
       /kishan & meeta/i,
       /our methodology/i,
