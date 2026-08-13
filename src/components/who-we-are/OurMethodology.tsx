@@ -1,12 +1,13 @@
+import { ShieldCheck, Wand2, ListX, Hand, Megaphone } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
 
 const PILLARS = ['Aptitude', 'Interest', 'Personality', 'EQ', 'SWOT', 'Parent involvement']
 
 const DONT_DO = [
-  'No fortune telling',
-  'No fixed "hot career" list',
-  'No pushing students toward specific courses',
-  'No admission-selling-first approach',
+  { text: 'No fortune telling', icon: Wand2 },
+  { text: 'No fixed "hot career" list', icon: ListX },
+  { text: 'No pushing students toward specific courses', icon: Hand },
+  { text: 'No admission-selling-first approach', icon: Megaphone },
 ]
 
 export function OurMethodology() {
@@ -29,16 +30,29 @@ export function OurMethodology() {
         ))}
       </div>
 
-      <Reveal delay={200} className="mx-auto mt-8 max-w-2xl">
-        <div className="rounded-[1.375rem] border border-neutral-border bg-soft-cream p-6">
-          <h3 className="text-lg font-semibold text-ink">What we don't do</h3>
-          <ul className="mt-3 space-y-2">
-            {DONT_DO.map((item) => (
-              <li key={item} className="text-sm text-muted-ink">
-                {item}
-              </li>
-            ))}
-          </ul>
+      <Reveal delay={200} className="mx-auto mt-10 max-w-3xl">
+        <div className="rounded-[1.6rem] bg-brand-green px-6 py-8 md:px-8 md:py-10">
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-brand-yellow">
+              <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <h3 className="text-lg font-semibold text-warm-white">What we don't do</h3>
+          </div>
+          <div className="mt-4 border-t border-white/15">
+            {DONT_DO.map((item) => {
+              const Icon = item.icon
+              return (
+                <div key={item.text} className="border-b border-white/15">
+                  <div className="group -mx-4 flex items-center gap-4 rounded-2xl px-4 py-4 transition-colors duration-300 hover:bg-white/5">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-warm-white transition-colors duration-300 group-hover:bg-brand-yellow group-hover:text-ink">
+                      <Icon className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                    <p className="text-warm-white">{item.text}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </Reveal>
     </section>
