@@ -53,4 +53,19 @@ export const pageSeo = {
     description: 'Aptitude-backed career counselling — assessment, one-on-one sessions and a practical roadmap.',
     path: '/career-counselling',
   },
+  privacyPolicy: {
+    title: 'Privacy Policy | Best Career Counselling',
+    description: 'How Best Career Counselling collects, uses and protects your personal information.',
+    path: '/privacy-policy',
+  },
+  terms: {
+    title: 'Terms of Service | Best Career Counselling',
+    description: "The terms governing your use of Best Career Counselling's services.",
+    path: '/terms',
+  },
+  refundPolicy: {
+    title: 'Refund Policy | Best Career Counselling',
+    description: 'How cancellations and refunds are handled for paid consultations and assessments.',
+    path: '/refund-policy',
+  },
 } satisfies Record<string, PageSeo>

@@ -13,6 +13,9 @@ const ContactUs = lazy(() => import('@/pages/ContactUs'))
 const ThankYou = lazy(() => import('@/pages/ThankYou'))
 const AdmissionConsulting = lazy(() => import('@/pages/AdmissionConsulting'))
 const CareerCounselling = lazy(() => import('@/pages/CareerCounselling'))
+const PrivacyPolicy = lazy(() => import('@/pages/PrivacyPolicy'))
+const Terms = lazy(() => import('@/pages/Terms'))
+const RefundPolicy = lazy(() => import('@/pages/RefundPolicy'))
 
 export default function App() {
   return (
@@ -31,6 +34,9 @@ export default function App() {
             <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/admission-consulting" element={<AdmissionConsulting />} />
             <Route path="/career-counselling" element={<CareerCounselling />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
           </Route>
         </Routes>
       </Suspense>

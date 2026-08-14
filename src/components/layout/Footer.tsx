@@ -57,9 +57,16 @@ export function Footer() {
 
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-warm-white/40">Contact</p>
-            <p className="text-sm text-warm-white/75">+91 87581 75187</p>
-            <p className="break-words text-sm text-warm-white/75">kishan@bestcareercounselling.com</p>
-            <p className="mt-2 text-sm text-warm-white/75">Surat · Navsari · Ankleshwar · Valsad</p>
+            <a href="tel:+918758175187" className="block text-sm text-warm-white/75 transition-colors hover:text-brand-yellow">
+              +91 87581 75187
+            </a>
+            <a
+              href="mailto:kishan@bestcareercounselling.com"
+              className="block break-words text-sm text-warm-white/75 transition-colors hover:text-brand-yellow"
+            >
+              kishan@bestcareercounselling.com
+            </a>
+            <p className="mt-2 text-sm text-warm-white/75">Surat</p>
           </div>
         </div>
 
@@ -80,10 +87,15 @@ export function Footer() {
               </p>
             </div>
             <div className="flex flex-wrap gap-4">
-              <span>Privacy Policy</span>
-              <span>Terms</span>
-              <span>Refund Policy</span>
-              <span>Student Dashboard</span>
+              <Link to="/privacy-policy" className="transition-colors hover:text-warm-white">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="transition-colors hover:text-warm-white">
+                Terms
+              </Link>
+              <Link to="/refund-policy" className="transition-colors hover:text-warm-white">
+                Refund Policy
+              </Link>
             </div>
           </div>
         </div>
