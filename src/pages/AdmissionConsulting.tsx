@@ -96,8 +96,8 @@ export default function AdmissionConsulting() {
             Admission <span className="text-brand-green">Consulting</span>
           </h1>
           <p className="mt-4 text-lg text-muted-ink">
-            [DUMMY CONTENT] From shortlist to enrolment, we handle the paperwork and the pressure so you can focus on
-            making the right choice.
+            From shortlist to enrolment, Kishan &amp; Meeta Patel handle the paperwork and the pressure so you can
+            focus on making the right choice.
           </p>
         </Reveal>
       </section>
@@ -194,7 +194,7 @@ export default function AdmissionConsulting() {
       <FinalCTA
         variant="button"
         heading="Ready to start your admission process?"
-        description="[DUMMY CONTENT] Book a free 15-minute call and we'll map out your shortlist and timeline."
+        description="A 15-minute call costs nothing and gives you a clear shortlist and timeline to work from."
       />
     </>
   )

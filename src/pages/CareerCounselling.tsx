@@ -76,7 +76,8 @@ export default function CareerCounselling() {
             Career <span className="text-brand-green">Counselling</span>
           </h1>
           <p className="mt-4 text-lg text-muted-ink">
-            [DUMMY CONTENT] Understand strengths, weigh real options and leave with a plan — not just a suggestion.
+            Understand strengths, weigh real options and leave with a plan — backed by 30 years of aptitude testing
+            and one-on-one guidance from Kishan &amp; Meeta Patel.
           </p>
         </Reveal>
       </section>
@@ -138,7 +139,7 @@ export default function CareerCounselling() {
       <FinalCTA
         variant="button"
         heading="Not sure where to start?"
-        description="[DUMMY CONTENT] Book a free 15-minute call and we'll point you in the right direction."
+        description="A 15-minute call costs nothing and usually clears up more than months of guessing."
       />
     </>
   )
