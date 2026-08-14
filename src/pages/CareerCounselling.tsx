@@ -1,6 +1,7 @@
-import { Compass, Brain, Users, Map, HeartHandshake, Repeat2 } from 'lucide-react'
+import { Compass, Brain, Users, Map, HeartHandshake, Repeat2, School, GraduationCap, Briefcase, UsersRound } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
+import { HowItWorks } from '@/components/home/HowItWorks'
 import { FinalCTA } from '@/components/home/FinalCTA'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
@@ -35,6 +36,29 @@ const INCLUDES: { title: string; description: string; icon: LucideIcon }[] = [
     title: 'Ongoing support',
     description: "Follow-up check-ins as plans change — they usually do.",
     icon: Repeat2,
+  },
+]
+
+const WHO_ITS_FOR: { title: string; description: string; icon: LucideIcon }[] = [
+  {
+    title: 'Class 9–10 students',
+    description: 'Stream selection before it gets locked in.',
+    icon: School,
+  },
+  {
+    title: 'Class 11–12 students',
+    description: 'Course and career direction after boards.',
+    icon: GraduationCap,
+  },
+  {
+    title: 'Working professionals',
+    description: 'Career change, thought through and planned.',
+    icon: Briefcase,
+  },
+  {
+    title: 'Parents',
+    description: 'A shared, calmer way to reach a decision together.',
+    icon: UsersRound,
   },
 ]
 
@@ -78,6 +102,36 @@ export default function CareerCounselling() {
               </Reveal>
             )
           })}
+        </div>
+      </section>
+
+      <HowItWorks />
+
+      <section className="px-4 py-8 md:px-8">
+        <div className="mx-auto max-w-7xl rounded-[2rem] bg-brand-green px-6 py-14 text-center text-warm-white md:px-10 md:py-16">
+          <Reveal className="mx-auto max-w-xl">
+            <h2 className="text-3xl font-bold md:text-4xl">
+              Who it's <span className="text-brand-yellow">for</span>
+            </h2>
+            <p className="mt-2 text-warm-white/60">Guidance at every stage, not just after 10th.</p>
+          </Reveal>
+
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {WHO_ITS_FOR.map((item, index) => {
+              const Icon = item.icon
+              return (
+                <Reveal key={item.title} delay={index * 80}>
+                  <div className="group h-full rounded-[1.6rem] bg-white/5 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:bg-white/10">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow text-ink transition-transform duration-300 group-hover:scale-110">
+                      <Icon className="h-6 w-6" aria-hidden="true" />
+                    </span>
+                    <p className="mt-4 font-semibold text-warm-white">{item.title}</p>
+                    <p className="mt-1 text-sm text-warm-white/60">{item.description}</p>
+                  </div>
+                </Reveal>
+              )
+            })}
+          </div>
         </div>
       </section>
 
