@@ -58,4 +58,16 @@
     outline: 2px solid #014924;
     outline-offset: 2px;
   }
+
+  /*
+   * When a popup (Radix Dialog) opens, its scroll-lock library compensates for the vanished
+   * scrollbar by adding margin/padding-right to <body>, which shifts the whole page left.
+   * `scrollbar-gutter: stable` above already keeps the gutter reserved so the compensation is
+   * usually 0 — but on browsers where that isn't fully honored, force it to 0 here too. The
+   * extra `html` ancestor selector raises specificity above the library's own `!important` rule.
+   */
+  html body[data-scroll-locked] {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
 }
