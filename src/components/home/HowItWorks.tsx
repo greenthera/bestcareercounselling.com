@@ -14,7 +14,7 @@ const STEPS = [
   },
   {
     icon: Users,
-    titleLines: ['One-on-one', 'session'],
+    titleLines: ['One-on-one', 'Session'],
     description: 'Detailed counselling session with our counsellors.',
   },
   {
