@@ -52,7 +52,7 @@ describe('Footer', () => {
     )
     expect(screen.getByRole('link', { name: 'Privacy Policy' })).toHaveAttribute('href', '/privacy-policy')
     expect(screen.getByRole('link', { name: 'Terms' })).toHaveAttribute('href', '/terms')
-    expect(screen.getByRole('link', { name: 'Refund Policy' })).toHaveAttribute('href', '/refund-policy')
+    expect(screen.queryByRole('link', { name: 'Refund Policy' })).not.toBeInTheDocument()
     expect(screen.queryByText('Student Dashboard')).not.toBeInTheDocument()
   })
 

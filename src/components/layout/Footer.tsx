@@ -123,9 +123,6 @@ export function Footer() {
               <Link to="/terms" className="transition-colors hover:text-warm-white">
                 Terms
               </Link>
-              <Link to="/refund-policy" className="transition-colors hover:text-warm-white">
-                Refund Policy
-              </Link>
             </div>
           </div>
         </div>

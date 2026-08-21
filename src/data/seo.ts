@@ -63,9 +63,4 @@ export const pageSeo = {
     description: "The terms governing your use of Best Career Counselling's services.",
     path: '/terms',
   },
-  refundPolicy: {
-    title: 'Refund Policy | Best Career Counselling',
-    description: 'How cancellations and refunds are handled for paid consultations and assessments.',
-    path: '/refund-policy',
-  },
 } satisfies Record<string, PageSeo>
