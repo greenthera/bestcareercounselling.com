@@ -2,14 +2,26 @@ import { PhoneCall, Brain, Users, Map, Infinity as InfinityIcon } from 'lucide-r
 import { Reveal } from '@/components/ui/reveal'
 
 const STEPS = [
-  { icon: PhoneCall, title: 'Pre Counselling', description: "15 minutes. We understand you & your current status." },
+  {
+    icon: PhoneCall,
+    titleLines: ['Pre', 'Counselling'],
+    description: "15 minutes. We understand you & your current status.",
+  },
   {
     icon: Brain,
-    title: 'Comprehensive Career Assessment',
-    description: 'Career personality, interest & values; Skills, Abilities, Emotion Intelligence',
+    titleLines: ['Comprehensive', 'Career Assessment'],
+    description: 'Career personality, interest & values; Skills, Abilities, Emotional Intelligence',
   },
-  { icon: Users, title: 'One-on-one session', description: 'Detailed counselling session with Kishan and/or Meeta.' },
-  { icon: Map, title: 'Future Roadmap & Admission', description: 'Course shortlist, college list, timeline and application help.' },
+  {
+    icon: Users,
+    titleLines: ['One-on-one', 'session'],
+    description: 'Detailed counselling session with our counsellors.',
+  },
+  {
+    icon: Map,
+    titleLines: ['Future', 'Roadmap & Admission'],
+    description: 'Course shortlist, college list, timeline and application help.',
+  },
 ]
 
 export function HowItWorks() {
@@ -35,7 +47,7 @@ export function HowItWorks() {
           {STEPS.map((step, index) => {
             const Icon = step.icon
             return (
-              <Reveal key={step.title} delay={index * 100} as="li" className="h-full">
+              <Reveal key={step.titleLines.join(' ')} delay={index * 100} as="li" className="h-full">
                 <div className="group flex h-full flex-col items-center text-center">
                   <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-green text-warm-white shadow-lg transition-all duration-300 group-hover:-translate-y-1 group-hover:bg-brand-yellow group-hover:text-ink group-hover:shadow-xl">
                     <Icon className="h-6 w-6" aria-hidden="true" />
@@ -45,7 +57,11 @@ export function HowItWorks() {
                       Step {String(index + 1).padStart(2, '0')}
                     </span>
                     <div className="flex flex-1 flex-col justify-start">
-                      <p className="mt-1 font-semibold text-ink">{step.title}</p>
+                      <p className="mt-1 font-semibold leading-snug text-ink">
+                        {step.titleLines[0]}
+                        <br />
+                        {step.titleLines[1]}
+                      </p>
                       <p className="mt-1 text-sm text-muted-ink">{step.description}</p>
                     </div>
                   </div>
