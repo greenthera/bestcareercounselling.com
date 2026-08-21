@@ -8,7 +8,7 @@ import { pageSeo } from '@/data/seo'
 
 const INCLUDES: { title: string; description: string; icon: LucideIcon }[] = [
   {
-    title: 'Psychometric assessment',
+    title: 'Comprehensive Career Assessment',
     description: 'Aptitude, interest, personality and EQ, measured — not guessed.',
     icon: Brain,
   },
