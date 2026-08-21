@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom'
+import { Phone, Mail, MapPin } from 'lucide-react'
 import { services } from '@/data/services'
+import { locations } from '@/data/locations'
+import { contactEmails } from '@/data/contact'
+import { buildGoogleMapsSearchUrl } from '@/lib/maps'
 import logo from '@/assets/logo.png'
 
 const NAV_LINKS = [
@@ -12,6 +16,8 @@ const NAV_LINKS = [
 ]
 
 export function Footer() {
+  const surat = locations.find((location) => location.city === 'Surat') ?? locations[0]
+
   return (
     <footer className="px-3 pb-3 md:px-6 md:pb-6">
       <div className="mx-auto max-w-7xl rounded-[2rem] bg-ink text-warm-white">
@@ -57,16 +63,40 @@ export function Footer() {
 
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-warm-white/40">Contact</p>
-            <a href="tel:+918758175187" className="block text-sm text-warm-white/75 transition-colors hover:text-brand-yellow">
-              +91 87581 75187
-            </a>
-            <a
-              href="mailto:kishan@bestcareercounselling.com"
-              className="block break-words text-sm text-warm-white/75 transition-colors hover:text-brand-yellow"
-            >
-              kishan@bestcareercounselling.com
-            </a>
-            <p className="mt-2 text-sm text-warm-white/75">Surat</p>
+            <div className="space-y-3">
+              <a
+                href="tel:+918758175187"
+                className="flex items-center gap-2 text-sm text-warm-white/75 transition-colors hover:text-brand-yellow"
+              >
+                <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+                +91 87581 75187
+              </a>
+
+              <div className="flex items-start gap-2">
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-warm-white/75" aria-hidden="true" />
+                <div>
+                  {contactEmails.map((email) => (
+                    <a
+                      key={email}
+                      href={`mailto:${email}`}
+                      className="block break-words text-sm text-warm-white/75 transition-colors hover:text-brand-yellow"
+                    >
+                      {email}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <a
+                href={surat.mapLink ?? buildGoogleMapsSearchUrl(surat.mapQuery ?? surat.address)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-2 text-sm text-warm-white/75 transition-colors hover:text-brand-yellow"
+              >
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                {surat.address}
+              </a>
+            </div>
           </div>
         </div>
 

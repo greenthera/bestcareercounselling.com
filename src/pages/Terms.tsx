@@ -47,7 +47,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '8. Contact us',
     paragraphs: [
-      'Questions about these Terms can be sent to kishan@bestcareercounselling.com or +91 87581 75187.',
+      'Questions about these Terms can be sent to careercounsellingsurat@gmail.com, patel_kishan@rediffmail.com or +91 87581 75187.',
     ],
   },
 ]

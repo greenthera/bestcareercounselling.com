@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import { locations } from '@/data/locations'
-import { DummyMap } from '@/components/ui/dummy-map'
 import { Reveal } from '@/components/ui/reveal'
+import { buildGoogleMapsEmbedUrl, buildGoogleMapsSearchUrl } from '@/lib/maps'
 
 export function LocationsSection() {
   return (
@@ -24,19 +24,35 @@ export function LocationsSection() {
               <p className={cn('text-lg font-semibold', location.hasMap ? 'text-warm-white' : 'text-brand-green')}>
                 {location.city}
               </p>
-              <p className={cn('mt-2 text-sm', location.hasMap ? 'text-warm-white/70' : 'text-muted-ink')}>
+              <a
+                href={location.mapLink ?? buildGoogleMapsSearchUrl(location.mapQuery ?? location.address)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  'mt-2 block text-sm hover:underline',
+                  location.hasMap ? 'text-warm-white/70 hover:text-warm-white' : 'text-muted-ink hover:text-brand-green',
+                )}
+              >
                 {location.address}
-              </p>
-              <p className={cn('text-sm', location.hasMap ? 'text-warm-white/70' : 'text-muted-ink')}>
-                {location.landmark}
-              </p>
+              </a>
+              {location.landmark && (
+                <p className={cn('text-sm', location.hasMap ? 'text-warm-white/70' : 'text-muted-ink')}>
+                  {location.landmark}
+                </p>
+              )}
               <div className={cn('mt-3 space-y-1 border-t pt-3 text-sm', location.hasMap ? 'border-white/15' : 'border-neutral-border')}>
                 <p className={location.hasMap ? 'text-warm-white' : 'text-ink'}>{location.timings}</p>
                 <p className={location.hasMap ? 'text-warm-white' : 'text-ink'}>{location.phone}</p>
               </div>
               {location.hasMap && (
                 <div className="mt-3 aspect-video overflow-hidden rounded-xl">
-                  <DummyMap city={location.city} />
+                  <iframe
+                    title={`Map showing our ${location.city} office location`}
+                    src={location.mapEmbedUrl ?? buildGoogleMapsEmbedUrl(location.mapQuery ?? location.address)}
+                    className="h-full w-full border-0"
+                    loading="lazy"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                  />
                 </div>
               )}
             </div>

@@ -1,10 +1,12 @@
 import { MapPin, Clock, Phone } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
-import { DummyMap } from '@/components/ui/dummy-map'
 import { locations } from '@/data/locations'
+import { buildGoogleMapsEmbedUrl, buildGoogleMapsSearchUrl } from '@/lib/maps'
 
 export function ContactLocation() {
   const surat = locations.find((location) => location.city === 'Surat') ?? locations[0]
+  const mapsUrl = surat.mapLink ?? buildGoogleMapsSearchUrl(surat.mapQuery ?? surat.address)
+  const mapEmbedUrl = surat.mapEmbedUrl ?? buildGoogleMapsEmbedUrl(surat.mapQuery ?? surat.address)
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-10 md:px-8 md:py-14">
@@ -21,8 +23,15 @@ export function ContactLocation() {
             <MapPin className="h-6 w-6" aria-hidden="true" />
           </span>
           <p className="mt-5 text-xl font-bold text-ink">{surat.city} Office</p>
-          <p className="mt-2 text-muted-ink">{surat.address}</p>
-          <p className="text-muted-ink">{surat.landmark}</p>
+          <a
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 block text-muted-ink transition-colors hover:text-brand-green hover:underline"
+          >
+            {surat.address}
+          </a>
+          {surat.landmark && <p className="text-muted-ink">{surat.landmark}</p>}
 
           <div className="mt-5 space-y-2 border-t border-neutral-border pt-5 text-sm">
             <p className="flex items-center gap-2 text-ink">
@@ -40,7 +49,13 @@ export function ContactLocation() {
           delay={100}
           className="min-h-[280px] overflow-hidden rounded-[1.6rem] border border-neutral-border"
         >
-          <DummyMap city={surat.city} />
+          <iframe
+            title={`Map showing our ${surat.city} office location`}
+            src={mapEmbedUrl}
+            className="h-full min-h-[280px] w-full border-0"
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
         </Reveal>
       </div>
     </section>

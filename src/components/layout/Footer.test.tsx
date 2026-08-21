@@ -15,25 +15,32 @@ describe('Footer', () => {
     expect(screen.getByText(/900\+ reviews/i)).toBeInTheDocument()
   })
 
-  it('renders the Surat location', () => {
+  it('links the Surat address to Google Maps', () => {
     render(
       <MemoryRouter>
         <Footer />
       </MemoryRouter>,
     )
-    expect(screen.getByText('Surat')).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /LG-22, Nariman Point/i })).toHaveAttribute(
+      'href',
+      'https://maps.app.goo.gl/ND7zWHZV3Znj1FbNA',
+    )
   })
 
-  it('links the phone number and email', () => {
+  it('links the phone number and emails', () => {
     render(
       <MemoryRouter>
         <Footer />
       </MemoryRouter>,
     )
     expect(screen.getByRole('link', { name: /\+91 87581 75187/ })).toHaveAttribute('href', 'tel:+918758175187')
-    expect(screen.getByRole('link', { name: /kishan@bestcareercounselling\.com/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /careercounsellingsurat@gmail\.com/i })).toHaveAttribute(
       'href',
-      'mailto:kishan@bestcareercounselling.com',
+      'mailto:careercounsellingsurat@gmail.com',
+    )
+    expect(screen.getByRole('link', { name: /patel_kishan@rediffmail\.com/i })).toHaveAttribute(
+      'href',
+      'mailto:patel_kishan@rediffmail.com',
     )
   })
 

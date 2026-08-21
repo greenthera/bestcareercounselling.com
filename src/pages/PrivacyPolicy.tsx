@@ -50,7 +50,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '8. Contact us',
     paragraphs: [
-      'If you have questions about this Privacy Policy or how your information is handled, contact us at kishan@bestcareercounselling.com or +91 87581 75187.',
+      'If you have questions about this Privacy Policy or how your information is handled, contact us at careercounsellingsurat@gmail.com, patel_kishan@rediffmail.com or +91 87581 75187.',
     ],
   },
 ]

@@ -6,9 +6,13 @@ describe('ContactMethods', () => {
   it('renders call/WhatsApp and email contact details', () => {
     render(<ContactMethods />)
     expect(screen.getByRole('link', { name: /\+91 87581 75187/ })).toHaveAttribute('href', 'tel:+918758175187')
-    expect(screen.getByRole('link', { name: /kishan@bestcareercounselling\.com/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /careercounsellingsurat@gmail\.com/i })).toHaveAttribute(
       'href',
-      'mailto:kishan@bestcareercounselling.com',
+      'mailto:careercounsellingsurat@gmail.com',
+    )
+    expect(screen.getByRole('link', { name: /patel_kishan@rediffmail\.com/i })).toHaveAttribute(
+      'href',
+      'mailto:patel_kishan@rediffmail.com',
     )
   })
 })

@@ -5,6 +5,7 @@ import { blogPosts } from '@/data/blogs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
+import { contactEmails } from '@/data/contact'
 
 const DEFAULT_MESSAGE = 'Hi, I want to know about career counselling for my child in Class ___'
 
@@ -51,7 +52,11 @@ export default function ThankYou() {
       <section className="mt-16 rounded-xl border border-neutral-border bg-green-tint p-6 text-center">
         <h2 className="text-lg font-semibold text-ink">Contact details</h2>
         <p className="mt-2 text-ink">+91 87581 75187</p>
-        <p className="text-ink">kishan@bestcareercounselling.com</p>
+        {contactEmails.map((email) => (
+          <p key={email} className="text-ink">
+            {email}
+          </p>
+        ))}
       </section>
     </div>
   )

@@ -36,7 +36,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '6. Contact us',
     paragraphs: [
-      'For any refund or cancellation request, write to kishan@bestcareercounselling.com or call +91 87581 75187.',
+      'For any refund or cancellation request, write to careercounsellingsurat@gmail.com or patel_kishan@rediffmail.com, or call +91 87581 75187.',
     ],
   },
 ]

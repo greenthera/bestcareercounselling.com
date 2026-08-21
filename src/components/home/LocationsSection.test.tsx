@@ -13,6 +13,6 @@ describe('LocationsSection', () => {
 
   it('shows a map only for Surat', () => {
     render(<LocationsSection />)
-    expect(screen.getByRole('img', { name: /map showing our surat office location/i })).toBeInTheDocument()
+    expect(screen.getByTitle(/map showing our surat office location/i)).toBeInTheDocument()
   })
 })
