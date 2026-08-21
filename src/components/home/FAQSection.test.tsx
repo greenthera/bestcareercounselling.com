@@ -13,8 +13,8 @@ describe('FAQSection', () => {
   it('expands an answer when its question is clicked', async () => {
     render(<FAQSection faqs={homeFaqs} />)
     const user = userEvent.setup()
-    await user.click(screen.getByRole('button', { name: /is the first consultation really free/i }))
-    expect(await screen.findByText(/yes\. the first consultation is completely free/i)).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: /what if i don.t even know what i am good at/i }))
+    expect(await screen.findByText(/that is something we can work on/i)).toBeInTheDocument()
   })
 
   it('embeds FAQPage structured data', () => {

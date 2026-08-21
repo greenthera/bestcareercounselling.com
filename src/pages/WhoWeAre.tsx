@@ -8,6 +8,8 @@ import { HowItWorks } from '@/components/home/HowItWorks'
 import { SuccessStoriesPreview } from '@/components/home/SuccessStoriesPreview'
 import { UniversitiesSection } from '@/components/who-we-are/UniversitiesSection'
 import { FinalCTA } from '@/components/home/FinalCTA'
+import { FAQSection } from '@/components/home/FAQSection'
+import { whoWeAreFaqs } from '@/data/faqs'
 import { PersonSchema } from '@/components/seo/PersonSchema'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
@@ -28,6 +30,7 @@ export default function WhoWeAre() {
       <HowItWorks />
       <SuccessStoriesPreview />
       <UniversitiesSection />
+      <FAQSection faqs={whoWeAreFaqs} />
       <FinalCTA variant="button" />
     </>
   )

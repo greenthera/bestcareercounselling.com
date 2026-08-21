@@ -2,11 +2,20 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { ConsultationForm } from '@/components/forms/ConsultationForm'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { Reveal } from '@/components/ui/reveal'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+import { whatWeDoFaqCategories } from '@/data/faqs'
 import type { Service } from '@/data/services'
 
 const HEADINGS: Record<string, string> = {
   'after-10th': 'Career Counselling After 10th',
   'after-12th': 'Career Counselling After 12th',
+}
+
+const FAQ_CATEGORY_BY_SERVICE: Record<string, string> = {
+  'after-10th': 'After 10th',
+  'after-12th': 'After 12th and Course Selection',
+  'ug-pg-admission': 'College and UG Admissions',
+  mba: 'MBA and PGDM Admissions',
 }
 
 interface ServiceSectionProps {
@@ -15,6 +24,8 @@ interface ServiceSectionProps {
 
 export function ServiceSection({ service }: ServiceSectionProps) {
   const heading = HEADINGS[service.id] ?? service.title
+  const faqCategoryTitle = FAQ_CATEGORY_BY_SERVICE[service.id]
+  const faqs = whatWeDoFaqCategories.find((category) => category.title === faqCategoryTitle)?.faqs
 
   return (
     <section id={service.id} className="mx-auto max-w-3xl scroll-mt-36 px-4 py-10 md:px-8 md:py-14">
@@ -50,6 +61,23 @@ export function ServiceSection({ service }: ServiceSectionProps) {
           </DialogContent>
         </Dialog>
       </Reveal>
+
+      {faqs && (
+        <Reveal delay={100}>
+          <Accordion type="single" collapsible className="mt-10 grid gap-3.5">
+            {faqs.map((faq, index) => (
+              <AccordionItem
+                key={faq.question}
+                value={`faq-${index}`}
+                className="rounded-[1.375rem] border border-neutral-border bg-white px-5 shadow-sm transition-shadow duration-300 hover:shadow-md"
+              >
+                <AccordionTrigger>{faq.question}</AccordionTrigger>
+                <AccordionContent>{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Reveal>
+      )}
     </section>
   )
 }
