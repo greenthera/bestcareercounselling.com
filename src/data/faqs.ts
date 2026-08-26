@@ -291,30 +291,87 @@ export const whatWeDoFaqCategories: FaqCategory[] = [
       },
     ],
   },
+  {
+    title: 'Career Change',
+    faqs: [
+      {
+        question: 'I am not happy with my current career. Is career counselling the right place to start?',
+        answer:
+          "Yes. You don't have to know what you want to do next before coming to us. We first understand what isn't working for you, what you want to change and what you are looking for from your career. From there, we help you explore possible directions.",
+      },
+      {
+        question: 'I want to change my career, but I have no idea what I should move into. Can you help?',
+        answer:
+          'Yes. We look at your interests, personality, strengths, abilities, experience and what you want from your professional life. This helps us explore career options that could be a better fit for you.',
+      },
+      {
+        question: 'I have been working in the same field for years. Is it too late to change my career?',
+        answer:
+          'It is not necessarily too late. Your experience and skills can often be useful in a new role or industry. We help you understand what options are realistic for you and where your existing experience can still add value.',
+      },
+      {
+        question: 'I have a good job but still feel like I am in the wrong career. What should I do?',
+        answer:
+          'Having a good job does not always mean you are in the right career. Before making a major decision, we can help you understand what is missing, what you want from your work and whether you need a complete career change or simply a different role or work environment.',
+      },
+      {
+        question: 'I am scared that I will make the wrong decision again. Can counselling help?',
+        answer:
+          "Yes. We won't simply tell you to switch to one particular career. We help you understand yourself and your options better so that your next decision is based on more than just frustration or guesswork.",
+      },
+      {
+        question: 'I have skills and experience in my current field. Will they be useful if I change careers?',
+        answer:
+          'They may be. A career change does not always mean starting from zero. We look at your existing skills, experience and strengths to understand where they could be useful in a different career or industry.',
+      },
+      {
+        question: "I want better growth and opportunities, but I don't know which career would be right for me.",
+        answer:
+          'We can help you explore that. We first understand what you mean by better growth and what you are looking for from your professional life, and then look at career directions that fit your profile and expectations.',
+      },
+      {
+        question: 'I am thinking about doing an MBA because I want to change my career. Is an MBA the right option for me?',
+        answer:
+          "An MBA can be useful for some career changes, but it isn't automatically the right choice for everyone. We can first understand where you are and where you want to go, and then help you decide whether an MBA, another qualification or a different route makes more sense.",
+      },
+      {
+        question: 'My family is not sure about my decision to change careers. Can counselling help?',
+        answer:
+          'Yes. A career change can be a big decision, especially when family, finances and responsibilities are involved. We can help you understand your options clearly so that you can have a more informed conversation with your family.',
+      },
+      {
+        question: 'What will I actually get from career change counselling?',
+        answer:
+          "The aim is to help you understand why you want a change, what options may suit you, what you can build on from your existing experience and what direction you can explore next. The final decision remains yours, but you don't have to make it completely on your own.",
+      },
+    ],
+  },
 ]
 
 export const bookingFaqs: Faq[] = [
   {
-    question: 'Is the consultation really free?',
-    answer: 'Yes — completely free, with no obligation to continue.',
-  },
-  {
-    question: 'Is the session online or in person?',
+    question: "I don't live in Surat. Can I still take counselling from Best Career Counselling?",
     answer:
-      'Both. We offer online sessions as well as in-person sessions at our Surat, Navsari, Ankleshwar and Valsad locations.',
+      'Absolutely. We regularly counsel students and professionals who live outside Surat and even abroad. If you cannot visit our office, the counselling can be done online through Zoom or Google Meet.',
   },
   {
-    question: 'Should my child join the call?',
+    question: 'I want to understand whether counselling is right for me before I book it. Can I speak to someone first?',
     answer:
-      "Yes, we recommend both the student and parents join — the assessment is for the student, but the conversation works best with everyone involved.",
+      'Of course. Most of the initial discussion happens over a call or an office meeting. You can tell us what you are confused about, what you are looking for and what kind of help you need. We can then guide you about the right service for your situation.',
   },
   {
-    question: 'What should I have ready before the call?',
+    question: 'Once I decide to take counselling, what happens after I make the payment?',
     answer:
-      "Nothing formal — just your child's current class, recent marks if handy, and the questions on your mind. We'll guide the rest.",
+      'Once your counselling fee is paid, we schedule your counselling session and send you the Comprehensive Career Assessment link. You complete the assessment before your scheduled session, so that the counselling can focus on understanding your results, clearing your doubts and discussing your career direction.',
   },
   {
-    question: 'How soon can I get an appointment?',
-    answer: "We keep slots open through the week — WhatsApp or call us and we'll find a time that works for you.",
+    question: 'How long does the counselling session take, and what happens after it?',
+    answer:
+      "The counselling session usually takes around 1.5 to 2 hours. We discuss your Comprehensive Career Assessment results, understand your concerns and work through your career options and direction. Our support does not simply end with the counselling session. We continue to guide you through your education and career journey, including course and admission decisions, up to your Master's degree where applicable.",
+  },
+  {
+    question: 'How can I book an appointment with Best Career Counselling?',
+    answer:
+      'You can connect with us through WhatsApp, phone call or the appointment form on our website. If you are in Surat or nearby, you can also visit our office. We will first understand what you need and then help you take the next step.',
   },
 ]

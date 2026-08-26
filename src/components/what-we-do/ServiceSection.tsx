@@ -16,6 +16,7 @@ const FAQ_CATEGORY_BY_SERVICE: Record<string, string> = {
   'after-12th': 'After 12th and Course Selection',
   'ug-pg-admission': 'College and UG Admissions',
   mba: 'MBA and PGDM Admissions',
+  'career-change': 'Career Change',
 }
 
 interface ServiceSectionProps {

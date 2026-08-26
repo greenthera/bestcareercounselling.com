@@ -18,7 +18,7 @@ describe('ContactUs page', () => {
       /what happens on the call/i,
       /contact methods/i,
       /meet us in surat/i,
-      /booking faq/i,
+      /booking appointment faqs/i,
     ]
 
     headingNames.forEach((name) => {

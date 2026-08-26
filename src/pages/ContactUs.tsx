@@ -17,7 +17,7 @@ export default function ContactUs() {
       <WhatHappensOnCall />
       <ContactMethods />
       <ContactLocation />
-      <FAQSection faqs={bookingFaqs} heading="Booking FAQ" />
+      <FAQSection faqs={bookingFaqs} heading="Booking Appointment FAQs" />
     </>
   )
 }
