@@ -3,7 +3,7 @@ import { AssessmentForm } from '@/components/forms/AssessmentForm'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
-import counsellingTwo from '@/assets/CounsellingTwo.webp'
+import notReadyToBook from '@/assets/not-ready-to-book.webp'
 
 export function FreeAssessmentSection() {
   return (
@@ -21,10 +21,10 @@ export function FreeAssessmentSection() {
           <div
             className="group mx-auto mt-8 aspect-[3/2] max-w-md overflow-hidden rounded-[1.6rem] border border-white/15"
             role="img"
-            aria-label="Sample assessment report preview"
+            aria-label="Kishan speaking with students and parents"
           >
             <div className="h-full w-full blur-[1px] transition-all duration-500 group-hover:blur-none">
-              <PlaceholderVisual label="Sample assessment report preview" tone="dark" src={counsellingTwo} />
+              <PlaceholderVisual label="Kishan speaking with students and parents" tone="dark" src={notReadyToBook} />
             </div>
           </div>
 
