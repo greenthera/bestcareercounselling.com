@@ -5,8 +5,8 @@ import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
 import { ExternalLink } from 'lucide-react'
-import authorImage from '@/assets/AuthorImage.webp'
-import counsellingOne from '@/assets/CounsellingOne.webp'
+import heroPortrait from '@/assets/hero-portrait.webp'
+import heroLandscape from '@/assets/hero-landscape.webp'
 
 export function Hero() {
   const directWhatsAppUrl = buildWhatsAppUrl(
@@ -41,7 +41,7 @@ export function Hero() {
               <PlaceholderVisual
                 label="Kishan and Meeta Patel, career counsellors"
                 tone="dark"
-                src={authorImage}
+                src={heroPortrait}
                 className="object-top"
               />
             </div>
@@ -77,10 +77,10 @@ export function Hero() {
           <div
             className="group h-full w-full"
             role="img"
-            aria-label="Students reviewing their career plan together"
+            aria-label="Kishan Patel counselling students at a university admissions session"
           >
             <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-              <PlaceholderVisual label="Students reviewing their career plan together" src={counsellingOne} />
+              <PlaceholderVisual label="Kishan Patel counselling students at a university admissions session" src={heroLandscape} />
             </div>
           </div>
         </Reveal>
