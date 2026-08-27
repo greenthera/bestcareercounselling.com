@@ -1,1 +1,0 @@
-var e=`/bestcareercounselling.com/assets/CounsellingTwo-Cx3SKTm2.webp`;export{e as t};
