@@ -1,9 +1,9 @@
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
-import counselling from '@/assets/Counselling.webp'
-import counsellingOne from '@/assets/CounsellingOne.webp'
-import counsellingThree from '@/assets/CounsellingThree.webp'
-import counsellingFour from '@/assets/CounsellingFour.webp'
+import counselling from '@/assets/what-you-walk-away-with-1.webp'
+import counsellingOne from '@/assets/bestcareercounselling.webp'
+import counsellingThree from '@/assets/bestcareercounselling-1.webp'
+import counsellingFour from '@/assets/bestcareercounselling-4.webp'
 
 const PHOTOS = [
   { label: 'Our office in Surat', src: counsellingFour },

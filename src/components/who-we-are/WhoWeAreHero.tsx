@@ -1,6 +1,6 @@
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
-import counselling from '@/assets/Counselling.webp'
+import counselling from '@/assets/bestcareercounselling-3.webp'
 
 export function WhoWeAreHero() {
   return (
