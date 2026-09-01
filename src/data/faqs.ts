@@ -51,29 +51,6 @@ export const homeFaqs: Faq[] = [
   },
 ]
 
-export const successStoriesFaqs: Faq[] = [
-  {
-    question: 'My parents want me to choose one career, but I want something completely different. What should I do?',
-    answer:
-      "This happens with many students. We do not want the discussion to become about who is right or wrong. We look at the student's profile and the different career options and help the family understand why a particular direction may or may not be suitable.",
-  },
-  {
-    question: 'Can parents also understand what their child is actually good at?',
-    answer:
-      "Yes. Parents are part of many students' career decisions. The assessment and counselling can give them a better understanding of their child's strengths, interests, abilities and possible career directions.",
-  },
-  {
-    question: 'Should parents decide what career their child should choose?',
-    answer:
-      "Parents have an important role, but the decision also needs to consider the student's interests, abilities and aspirations. Our role is to help bring more clarity to the conversation so the student and family can make a better informed decision.",
-  },
-  {
-    question: "My child is capable, but I don't know where that potential can be used. Can counselling help?",
-    answer:
-      "Yes. We look at more than just marks. The assessment gives us a broader picture of the student's interests, personality, skills and abilities, which can help us explore where those strengths may fit.",
-  },
-]
-
 export const whoWeAreFaqs: Faq[] = [
   {
     question: 'What exactly happens during a career counselling session?',
