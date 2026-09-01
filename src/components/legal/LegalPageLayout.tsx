@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react'
 import { Reveal } from '@/components/ui/reveal'
 
 export interface LegalSection {
   heading: string
-  paragraphs: string[]
+  paragraphs: ReactNode[]
 }
 
 interface LegalPageLayoutProps {
@@ -25,8 +26,8 @@ export function LegalPageLayout({ title, lastUpdated, intro, sections }: LegalPa
         {sections.map((section, index) => (
           <Reveal key={section.heading} delay={index * 60}>
             <h2 className="text-xl font-bold text-ink">{section.heading}</h2>
-            {section.paragraphs.map((paragraph) => (
-              <p key={paragraph} className="mt-2 text-muted-ink">
+            {section.paragraphs.map((paragraph, paragraphIndex) => (
+              <p key={paragraphIndex} className="mt-2 text-muted-ink">
                 {paragraph}
               </p>
             ))}

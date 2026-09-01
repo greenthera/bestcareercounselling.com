@@ -1,4 +1,5 @@
 import { LegalPageLayout, type LegalSection } from '@/components/legal/LegalPageLayout'
+import { ContactLinks } from '@/components/legal/ContactLinks'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 
@@ -50,7 +51,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '8. Contact us',
     paragraphs: [
-      'If you have questions about this Privacy Policy or how your information is handled, contact us at careercounsellingsurat@gmail.com, patel_kishan@rediffmail.com or +91 87581 75187.',
+      <ContactLinks lead="If you have questions about this Privacy Policy or how your information is handled, contact us at" />,
     ],
   },
 ]
