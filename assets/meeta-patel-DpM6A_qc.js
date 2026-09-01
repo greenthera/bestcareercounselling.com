@@ -1,0 +1,1 @@
+var e=`/bestcareercounselling.com/assets/what-you-walk-away-with-1-DSxlHyoj.webp`,t=`/bestcareercounselling.com/assets/kishan-patel-QMzJr3qx.png`,n=`/bestcareercounselling.com/assets/meeta-patel-JZ0jfrpD.png`;export{t as n,e as r,n as t};
