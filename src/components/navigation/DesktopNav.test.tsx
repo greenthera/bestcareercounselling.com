@@ -4,13 +4,13 @@ import { MemoryRouter } from 'react-router-dom'
 import { DesktopNav } from './DesktopNav'
 
 describe('DesktopNav', () => {
-  it('renders all four primary nav links', () => {
+  it('renders all six primary nav links', () => {
     render(
       <MemoryRouter>
         <DesktopNav />
       </MemoryRouter>,
     )
-    ;['Home', 'Who We Are', 'What We Do', 'Contact Us'].forEach((label) => {
+    ;['Home', 'Who We Are', 'What We Do', 'Admission Consulting', 'Career Counselling', 'Contact Us'].forEach((label) => {
       expect(screen.getByRole('link', { name: label })).toBeInTheDocument()
     })
   })

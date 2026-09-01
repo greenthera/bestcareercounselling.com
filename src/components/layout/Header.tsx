@@ -31,7 +31,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <Link
             to="/contact-us"
-            className="hidden items-center gap-2 rounded-full bg-ink py-2.5 pl-5 pr-2 text-sm font-semibold text-warm-white transition-colors hover:bg-ink/90 lg:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-ink py-2.5 pl-5 pr-2 text-sm font-semibold text-warm-white transition-colors hover:bg-ink/90 xl:inline-flex"
           >
             Book Free Session
             <PillCtaEndcap tone="yellow" className="h-7 w-7" />

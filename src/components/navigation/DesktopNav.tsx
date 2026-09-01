@@ -4,12 +4,14 @@ const NAV_ITEMS = [
   { to: '/', label: 'Home' },
   { to: '/who-we-are', label: 'Who We Are' },
   { to: '/what-we-do', label: 'What We Do' },
+  { to: '/admission-consulting', label: 'Admission Consulting' },
+  { to: '/career-counselling', label: 'Career Counselling' },
   { to: '/contact-us', label: 'Contact Us' },
 ]
 
 export function DesktopNav() {
   return (
-    <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex">
+    <nav aria-label="Primary" className="hidden items-center gap-4 xl:flex">
       {NAV_ITEMS.map((item) => (
         <NavLink
           key={item.to}

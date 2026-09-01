@@ -9,6 +9,8 @@ const NAV_ITEMS = [
   { to: '/', label: 'Home', end: true },
   { to: '/who-we-are', label: 'Who We Are' },
   { to: '/what-we-do', label: 'What We Do' },
+  { to: '/admission-consulting', label: 'Admission Consulting' },
+  { to: '/career-counselling', label: 'Career Counselling' },
   { to: '/contact-us', label: 'Contact Us' },
 ]
 
@@ -19,7 +21,7 @@ export function MobileNav() {
         <button
           type="button"
           aria-label="Open menu"
-          className="flex h-10 w-10 items-center justify-center rounded-md text-ink lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-md text-ink xl:hidden"
         >
           <Menu size={24} />
         </button>

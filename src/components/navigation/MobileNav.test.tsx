@@ -14,5 +14,7 @@ describe('MobileNav', () => {
     const user = userEvent.setup()
     await user.click(screen.getByRole('button', { name: /open menu/i }))
     expect(await screen.findByRole('link', { name: 'What We Do' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Admission Consulting' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Career Counselling' })).toBeInTheDocument()
   })
 })
