@@ -20,7 +20,6 @@ describe('Home page', () => {
       /not ready to book/i,
       /meet kishan & meeta/i,
       /hear it from parents/i,
-      /real students\. real decisions\./i,
       /frequently asked questions/i,
       /let's talk about your child's future/i,
     ]

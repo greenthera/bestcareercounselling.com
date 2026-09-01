@@ -5,7 +5,6 @@ import { OurMethodology } from '@/components/who-we-are/OurMethodology'
 import { OurJourney } from '@/components/who-we-are/OurJourney'
 import { RealWork } from '@/components/who-we-are/RealWork'
 import { HowItWorks } from '@/components/home/HowItWorks'
-import { SuccessStoriesPreview } from '@/components/home/SuccessStoriesPreview'
 import { UniversitiesSection } from '@/components/who-we-are/UniversitiesSection'
 import { FinalCTA } from '@/components/home/FinalCTA'
 import { FAQSection } from '@/components/home/FAQSection'
@@ -28,7 +27,6 @@ export default function WhoWeAre() {
       <RealWork />
       <div className="h-2 md:h-4" aria-hidden="true" />
       <HowItWorks />
-      <SuccessStoriesPreview />
       <UniversitiesSection />
       <FAQSection faqs={whoWeAreFaqs} />
       <FinalCTA variant="button" />

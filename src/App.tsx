@@ -6,9 +6,6 @@ import { ScrollToTop } from '@/components/layout/ScrollToTop'
 const Home = lazy(() => import('@/pages/Home'))
 const WhoWeAre = lazy(() => import('@/pages/WhoWeAre'))
 const WhatWeDo = lazy(() => import('@/pages/WhatWeDo'))
-const SuccessStories = lazy(() => import('@/pages/SuccessStories'))
-const Blogs = lazy(() => import('@/pages/Blogs'))
-const BlogDetail = lazy(() => import('@/pages/BlogDetail'))
 const ContactUs = lazy(() => import('@/pages/ContactUs'))
 const ThankYou = lazy(() => import('@/pages/ThankYou'))
 const AdmissionConsulting = lazy(() => import('@/pages/AdmissionConsulting'))
@@ -26,9 +23,6 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/who-we-are" element={<WhoWeAre />} />
             <Route path="/what-we-do" element={<WhatWeDo />} />
-            <Route path="/success-stories" element={<SuccessStories />} />
-            <Route path="/blogs" element={<Blogs />} />
-            <Route path="/blogs/:slug" element={<BlogDetail />} />
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/admission-consulting" element={<AdmissionConsulting />} />

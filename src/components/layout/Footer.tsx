@@ -10,8 +10,6 @@ const NAV_LINKS = [
   { to: '/', label: 'Home' },
   { to: '/who-we-are', label: 'Who We Are' },
   { to: '/what-we-do', label: 'What We Do' },
-  { to: '/success-stories', label: 'Success Stories' },
-  { to: '/blogs', label: 'Blogs' },
   { to: '/contact-us', label: 'Contact Us' },
 ]
 

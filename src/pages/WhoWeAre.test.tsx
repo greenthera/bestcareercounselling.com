@@ -19,7 +19,6 @@ describe('WhoWeAre page', () => {
       /our journey/i,
       /real work/i,
       /how it works/i,
-      /real students\. real decisions\./i,
       /universities & colleges/i,
       /let's talk about your child's future/i,
     ]
