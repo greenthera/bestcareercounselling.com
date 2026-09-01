@@ -53,9 +53,9 @@ export function ExploreUniversities() {
     <section className="overflow-hidden px-4 py-10 md:px-8 md:py-14">
       <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-bold text-ink md:text-4xl">
-          Explore Courses <span className="text-brand-green">&amp; Universities</span>
+          Explore Universities
         </h2>
-        <p className="mt-2 text-muted-ink">Browse courses and universities from our network of partner institutions.</p>
+        <p className="mt-2 text-muted-ink">Browse universities from our network of partner institutions.</p>
       </Reveal>
 
       <Reveal delay={100} className="mt-10">
@@ -79,7 +79,7 @@ export function ExploreUniversities() {
           rel="noopener noreferrer"
           className="group inline-flex items-center gap-2 rounded-full bg-brand-green py-2.5 pl-6 pr-2 text-sm font-semibold text-warm-white transition-colors hover:bg-brand-green/90"
         >
-          Explore Courses
+          View All
           <PillCtaEndcap
             tone="yellow"
             icon={ExternalLink}
