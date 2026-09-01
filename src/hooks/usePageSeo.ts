@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
-import { SITE_URL } from '@/lib/seo'
+import { SITE_URL, SITE_NAME } from '@/lib/seo'
+
+const OG_IMAGE = `${SITE_URL}/og-image.png`
 
 interface PageSeoOptions {
   title: string
@@ -34,12 +36,18 @@ export function usePageSeo({ title, description, path }: PageSeoOptions) {
 
     upsertMeta('name', 'description', description)
     upsertCanonical(canonical)
+    upsertMeta('property', 'og:site_name', SITE_NAME)
+    upsertMeta('property', 'og:locale', 'en_IN')
     upsertMeta('property', 'og:title', title)
     upsertMeta('property', 'og:description', description)
     upsertMeta('property', 'og:url', canonical)
     upsertMeta('property', 'og:type', 'website')
+    upsertMeta('property', 'og:image', OG_IMAGE)
+    upsertMeta('property', 'og:image:width', '1200')
+    upsertMeta('property', 'og:image:height', '630')
     upsertMeta('name', 'twitter:card', 'summary_large_image')
     upsertMeta('name', 'twitter:title', title)
     upsertMeta('name', 'twitter:description', description)
+    upsertMeta('name', 'twitter:image', OG_IMAGE)
   }, [title, description, path])
 }

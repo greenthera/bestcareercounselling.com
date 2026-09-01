@@ -17,7 +17,7 @@ describe('usePageSeo', () => {
   it('sets a canonical link built from SITE_URL and the given path', () => {
     render(<Probe title="Test Title" description="Test description" path="/test" />)
     expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(
-      'https://bestcareercounselling.com/test',
+      'https://greenthera.shivantra.com/bestcareercounselling.com/test',
     )
   })
 
@@ -28,6 +28,13 @@ describe('usePageSeo', () => {
       'Test description',
     )
     expect(document.querySelector('meta[name="twitter:card"]')?.getAttribute('content')).toBe('summary_large_image')
+  })
+
+  it('sets an absolute og:image and twitter:image', () => {
+    render(<Probe title="Test Title" description="Test description" path="/test" />)
+    const ogImage = document.querySelector('meta[property="og:image"]')?.getAttribute('content')
+    expect(ogImage).toBe('https://greenthera.shivantra.com/bestcareercounselling.com/og-image.png')
+    expect(document.querySelector('meta[name="twitter:image"]')?.getAttribute('content')).toBe(ogImage)
   })
 
   it('updates existing tags rather than duplicating them across renders', () => {

@@ -10,6 +10,6 @@ describe('BreadcrumbListSchema', () => {
     expect(data['@type']).toBe('BreadcrumbList')
     expect(data.itemListElement).toHaveLength(3)
     expect(data.itemListElement[2].name).toBe('Some Post Title')
-    expect(data.itemListElement[2].item).toBe('https://bestcareercounselling.com/blogs/some-post')
+    expect(data.itemListElement[2].item).toBe('https://greenthera.shivantra.com/bestcareercounselling.com/blogs/some-post')
   })
 })
