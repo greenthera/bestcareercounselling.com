@@ -41,6 +41,6 @@ describe('Home page', () => {
       </MemoryRouter>,
     )
     expect(screen.getAllByText('5.0').length).toBeGreaterThan(0)
-    expect(screen.getByText('Priya Shah')).toBeInTheDocument()
+    expect(screen.getAllByText('Tejas Parmar').length).toBeGreaterThan(0)
   })
 })

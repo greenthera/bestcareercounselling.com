@@ -4,7 +4,7 @@ import { FeaturedCaseStudy } from '@/components/success-stories/FeaturedCaseStud
 import { StoryFilterGrid } from '@/components/success-stories/StoryFilterGrid'
 import { VideoTestimonials } from '@/components/home/VideoTestimonials'
 import { WhatMakesTheDifference } from '@/components/success-stories/WhatMakesTheDifference'
-import { GoogleReviews } from '@/components/trust/GoogleReviews'
+import { GoogleReviewsCarousel } from '@/components/trust/GoogleReviewsCarousel'
 import { FinalCTA } from '@/components/home/FinalCTA'
 import { FAQSection } from '@/components/home/FAQSection'
 import { successStoriesFaqs } from '@/data/faqs'
@@ -21,9 +21,7 @@ export default function SuccessStories() {
       <StoryFilterGrid />
       <VideoTestimonials />
       <WhatMakesTheDifference />
-      <div className="mx-auto max-w-6xl px-4 py-10 md:px-8">
-        <GoogleReviews />
-      </div>
+      <GoogleReviewsCarousel />
       <FAQSection faqs={successStoriesFaqs} />
       <FinalCTA heading="Your child's story could be next." />
     </>
