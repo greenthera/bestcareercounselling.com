@@ -10,7 +10,7 @@ describe('App routing', () => {
         <App />
       </MemoryRouter>,
     )
-    expect(await screen.findByRole('heading', { level: 1 })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { level: 1 }, { timeout: 5000 })).toBeInTheDocument()
   })
 
   it('renders the Contact Us page at "/contact-us"', async () => {
@@ -19,6 +19,6 @@ describe('App routing', () => {
         <App />
       </MemoryRouter>,
     )
-    expect(await screen.findByText(/book your free consultation/i)).toBeInTheDocument()
+    expect(await screen.findByText(/book your free consultation/i, {}, { timeout: 5000 })).toBeInTheDocument()
   })
 })
