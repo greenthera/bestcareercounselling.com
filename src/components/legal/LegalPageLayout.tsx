@@ -19,10 +19,6 @@ export function LegalPageLayout({ title, lastUpdated, intro, sections }: LegalPa
         <h1 className="text-4xl font-bold text-ink md:text-5xl">{title}</h1>
         <p className="mt-2 text-sm text-muted-ink">Last updated: {lastUpdated}</p>
         <p className="mt-6 text-muted-ink">{intro}</p>
-        <p className="mt-4 rounded-xl border border-dashed border-neutral-border bg-soft-cream p-4 text-xs text-muted-ink">
-          Sample policy content for demonstration purposes — to be reviewed and finalised by legal counsel before
-          publishing.
-        </p>
       </Reveal>
 
       <div className="mt-10 space-y-8">

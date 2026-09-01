@@ -12,7 +12,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '2. Services provided',
     paragraphs: [
-      'Best Career Counselling provides psychometric assessments, one-on-one career counselling, and admission consulting (shortlisting, application support and deadline tracking) for students, parents and working professionals.',
+      'Best Career Counselling provides Comprehensive Career Assessments, one-on-one career counselling, and admission consulting (shortlisting, application support and deadline tracking) for students, parents and working professionals.',
       'Our guidance is advisory in nature and based on the information and assessment results available at the time of counselling.',
     ],
   },
@@ -31,7 +31,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '5. Limitation of liability',
     paragraphs: [
-      'Our counselling and assessments are intended to support — not replace — your own judgement. Final decisions about streams, courses, colleges or careers rest with the student and family. We are not liable for outcomes arising from decisions made using our guidance.',
+      'Our counselling and assessments are intended to support, not replace, your own judgement. Final decisions about streams, courses, colleges or careers rest with the student and family. We are not liable for outcomes arising from decisions made using our guidance.',
     ],
   },
   {

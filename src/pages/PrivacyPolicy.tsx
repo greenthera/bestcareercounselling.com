@@ -12,7 +12,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '2. Information we collect',
     paragraphs: [
-      "We collect information you provide directly — such as your name, phone number, email address, current class or status, and any details shared during a consultation call, assessment or counselling session.",
+      'We collect information you provide directly, such as your name, phone number, email address, current class or status, and any details shared during a consultation call, assessment or counselling session.',
       'We may also collect basic technical information (such as browser type and pages visited) through standard website analytics to help us understand how the site is used.',
     ],
   },
@@ -26,7 +26,7 @@ const SECTIONS: LegalSection[] = [
   {
     heading: '4. Sharing of information',
     paragraphs: [
-      'We do not sell or rent your personal information. We may share limited information with trusted service providers strictly to deliver our services — for example, sending you booking confirmations over WhatsApp.',
+      'We do not sell or rent your personal information. We may share limited information with trusted service providers strictly to deliver our services, for example, sending you booking confirmations over WhatsApp.',
     ],
   },
   {
