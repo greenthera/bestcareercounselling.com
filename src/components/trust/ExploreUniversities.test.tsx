@@ -5,8 +5,8 @@ import { ExploreUniversities } from './ExploreUniversities'
 describe('ExploreUniversities', () => {
   it('renders the heading and a link to the external course explorer', () => {
     render(<ExploreUniversities />)
-    expect(screen.getByRole('heading', { name: /explore courses & universities/i })).toBeInTheDocument()
-    const link = screen.getByRole('link', { name: /explore courses/i })
+    expect(screen.getByRole('heading', { name: /explore universities/i })).toBeInTheDocument()
+    const link = screen.getByRole('link', { name: /view all/i })
     expect(link).toHaveAttribute('href', 'https://careertest.edumilestones.com/online-courses/universities/NTEy')
     expect(link).toHaveAttribute('target', '_blank')
   })

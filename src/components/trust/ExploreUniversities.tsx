@@ -53,7 +53,7 @@ export function ExploreUniversities() {
     <section className="overflow-hidden px-4 py-10 md:px-8 md:py-14">
       <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-bold text-ink md:text-4xl">
-          Explore Universities
+          Explore <span className="text-brand-green">Universities</span>
         </h2>
         <p className="mt-2 text-muted-ink">Browse universities from our network of partner institutions.</p>
       </Reveal>
