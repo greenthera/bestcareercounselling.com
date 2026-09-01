@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
+import { ExploreUniversities } from '@/components/trust/ExploreUniversities'
 import { FinalCTA } from '@/components/home/FinalCTA'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
@@ -190,6 +191,8 @@ export default function AdmissionConsulting() {
           </div>
         </div>
       </section>
+
+      <ExploreUniversities />
 
       <FinalCTA
         variant="button"

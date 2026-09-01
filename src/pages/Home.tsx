@@ -4,6 +4,7 @@ import { ProblemSection } from '@/components/home/ProblemSection'
 import { WhoWeHelp } from '@/components/home/WhoWeHelp'
 import { HowItWorks } from '@/components/home/HowItWorks'
 import { ReportSection } from '@/components/home/ReportSection'
+import { ExploreUniversities } from '@/components/trust/ExploreUniversities'
 import { FreeAssessmentSection } from '@/components/home/FreeAssessmentSection'
 import { MeetFounders } from '@/components/home/MeetFounders'
 import { GoogleReviewsCarousel } from '@/components/trust/GoogleReviewsCarousel'
@@ -23,6 +24,7 @@ export default function Home() {
       <WhoWeHelp />
       <HowItWorks />
       <ReportSection />
+      <ExploreUniversities />
       <FreeAssessmentSection />
       <MeetFounders />
       <GoogleReviewsCarousel />
