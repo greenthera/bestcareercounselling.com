@@ -27,7 +27,7 @@ export function MeetFounders() {
             <div className="p-6">
               <p className="text-xs font-bold uppercase tracking-wide text-brand-green">Career Counsellor</p>
               <p className="mt-2 text-sm text-ink">30+ years guiding students across Gujarat.</p>
-              <p className="text-sm text-ink">Certified Career Analyst — Edumilestones.</p>
+              <p className="text-sm text-ink">Certified Career Analyst, Edumilestones.</p>
             </div>
           </div>
         </Reveal>

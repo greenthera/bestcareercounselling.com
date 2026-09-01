@@ -33,31 +33,31 @@ const MILESTONES = [
   {
     period: '2000–2008',
     title: 'Deepening the Focus on Students & Learning',
-    text: "Kishan's work during this period is closely associated with Aptech Computer Education, where he continues developing his experience in student development, professional training and education. In 2000–01, he also trains students of Indian origin in the USA on VIPS — Values, Interest, Personality & Skills, bringing a strong focus on understanding the individual beyond academics.",
+    text: "Kishan's work during this period is closely associated with Aptech Computer Education, where he continues developing his experience in student development, professional training and education. In 2000–01, he also trains students of Indian origin in the USA on VIPS: Values, Interest, Personality & Skills, bringing a strong focus on understanding the individual beyond academics.",
     icon: BookOpen,
   },
   {
     period: '2009–2021',
     title: 'Expanding Education & Training Leadership',
-    text: 'Kishan continues to build his experience across educational and training organisations, including Arena Animation and ZICA — Zee Institute of Creative Art, where he serves as Centre Head and Business Development Manager. His work continues to span student development, institutional management, training and educational programmes, strengthening the experience that would eventually lead into Best Career Counselling.',
+    text: 'Kishan continues to build his experience across educational and training organisations, including Arena Animation and ZICA (Zee Institute of Creative Art), where he serves as Centre Head and Business Development Manager. His work continues to span student development, institutional management, training and educational programmes, strengthening the experience that would eventually lead into Best Career Counselling.',
     icon: Building2,
   },
   {
     period: '2015',
     title: 'Best Career Counselling Begins',
-    text: 'Best Career Counselling begins its journey, bringing together years of experience in education, training and student development with a focused purpose — helping students and families make better-informed career decisions.',
+    text: 'Best Career Counselling begins its journey, bringing together years of experience in education, training and student development with a focused purpose, helping students and families make better-informed career decisions.',
     icon: Sparkles,
   },
   {
     period: '2018',
     title: 'Meeta Patel Joins the Journey',
-    text: 'Meeta Patel joins Best Career Counselling and begins her journey as a career counsellor. Over the years, she becomes the emotional anchor of the counselling process — building trust with students and parents, listening deeply, and helping students understand their strengths, interests, challenges and aspirations.',
+    text: 'Meeta Patel joins Best Career Counselling and begins her journey as a career counsellor. Over the years, she becomes the emotional anchor of the counselling process, building trust with students and parents, listening deeply, and helping students understand their strengths, interests, challenges and aspirations.',
     icon: UserPlus,
   },
   {
     period: '2018–2024',
     title: 'Growing the Counselling Journey',
-    text: 'Best Career Counselling continues to grow through its work with students and families, helping them understand themselves, explore possibilities and make informed decisions about education and careers. Along the way, the trust of the students and families we served continued to grow — reflected in 950+ genuine and real 5-star Google reviews earned through our counselling and services. The focus remains simple: understand the individual before choosing the direction.',
+    text: 'Best Career Counselling continues to grow through its work with students and families, helping them understand themselves, explore possibilities and make informed decisions about education and careers. Along the way, the trust of the students and families we served continued to grow, reflected in 950+ genuine and real 5-star Google reviews earned through our counselling and services. The focus remains simple: understand the individual before choosing the direction.',
     icon: TrendingUp,
   },
   {
@@ -69,7 +69,7 @@ const MILESTONES = [
   {
     period: '15–16 January 2025',
     title: 'Our First MBA Admission Expo',
-    text: 'After months of preparation, marketing and relationship-building with educational institutions, we hosted our first Admission Expo — focused on MBA admissions. It marked a new chapter — bringing MBA aspirants, families and participating colleges and universities together on one platform.',
+    text: 'After months of preparation, marketing and relationship-building with educational institutions, we hosted our first Admission Expo, focused on MBA admissions. It marked a new chapter: bringing MBA aspirants, families and participating colleges and universities together on one platform.',
     icon: CalendarCheck,
   },
   {
@@ -108,7 +108,7 @@ export function OurJourney() {
             From education and training to career counselling and admissions guidance
           </p>
           <p className="mt-2 text-muted-ink">
-            Our journey has grown from decades of experience in education, training and student development —
+            Our journey has grown from decades of experience in education, training and student development,
             evolving into a wider guidance ecosystem for students and families.
           </p>
         </Reveal>

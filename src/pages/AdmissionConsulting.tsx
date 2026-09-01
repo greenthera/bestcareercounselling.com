@@ -22,7 +22,7 @@ import { pageSeo } from '@/data/seo'
 const INCLUDES: { title: string; description: string; icon: LucideIcon }[] = [
   {
     title: 'Course & college shortlisting',
-    description: 'A curated list matched to your profile, budget and goals — not a generic ranking list.',
+    description: 'A curated list matched to your profile, budget and goals, not a generic ranking list.',
     icon: ClipboardList,
   },
   {

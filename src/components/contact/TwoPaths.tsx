@@ -13,7 +13,7 @@ export function TwoPaths() {
           <div className="rounded-[1.6rem] border border-neutral-border bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg">
             <h3 className="text-xl font-bold text-ink">I want to talk to someone</h3>
             <p className="mt-2 text-sm text-muted-ink">
-              A free 15-minute call with Kishan or Meeta — no obligation.
+              A free 15-minute call with Kishan or Meeta, no obligation.
             </p>
             <div className="mt-6">
               <ConsultationForm context="home" submitLabel="Book Free Consultation" />

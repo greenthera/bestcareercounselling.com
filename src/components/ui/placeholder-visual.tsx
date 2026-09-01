@@ -10,7 +10,7 @@ interface PlaceholderVisualProps {
 }
 
 /**
- * Drop-in replacement for the flat "[REAL PHOTO — X]" text-in-a-box placeholders.
+ * Drop-in replacement for the flat "[REAL PHOTO - X]" text-in-a-box placeholders.
  * Renders the same visible label (so existing text-content assertions keep matching)
  * but with a textured pattern + icon badge so unfilled image slots still read as
  * designed, not empty, until real photography replaces them. Pass `src` once a real

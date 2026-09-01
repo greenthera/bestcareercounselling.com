@@ -46,7 +46,7 @@ export const services: Service[] = [
   {
     id: 'after-12th',
     title: 'After 12th',
-    description: 'Degree, course, college — before deadlines close.',
+    description: 'Degree, course and college, sorted before deadlines close.',
     ctaLabel: 'Book After 12th Counselling',
     covers: ['Course selection', 'College selection', 'Entrance exams', 'Career options', 'Application strategy', 'Roadmap'],
     comparison: {

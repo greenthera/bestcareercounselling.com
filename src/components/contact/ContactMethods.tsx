@@ -14,7 +14,7 @@ export function ContactMethods() {
     <section className="mx-auto max-w-5xl px-4 py-10 md:px-8 md:py-14">
       <Reveal className="mx-auto max-w-xl text-center">
         <h2 className="text-3xl font-bold text-ink md:text-4xl">Contact methods</h2>
-        <p className="mt-2 text-muted-ink">Whichever way is easiest for you — we reply fast.</p>
+        <p className="mt-2 text-muted-ink">Whichever way is easiest for you, we reply fast.</p>
       </Reveal>
 
       <div className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-3">

@@ -6,7 +6,6 @@ import { HowItWorks } from '@/components/home/HowItWorks'
 import { ReportSection } from '@/components/home/ReportSection'
 import { FreeAssessmentSection } from '@/components/home/FreeAssessmentSection'
 import { MeetFounders } from '@/components/home/MeetFounders'
-import { VideoTestimonials } from '@/components/home/VideoTestimonials'
 import { GoogleReviewsCarousel } from '@/components/trust/GoogleReviewsCarousel'
 import { FAQSection } from '@/components/home/FAQSection'
 import { FinalCTA } from '@/components/home/FinalCTA'
@@ -26,7 +25,6 @@ export default function Home() {
       <ReportSection />
       <FreeAssessmentSection />
       <MeetFounders />
-      <VideoTestimonials />
       <GoogleReviewsCarousel />
       <FAQSection faqs={homeFaqs} />
       <FinalCTA />

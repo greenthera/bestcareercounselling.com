@@ -30,7 +30,7 @@ export function Hero() {
           </h1>
           <p className="mt-4 text-base text-muted-ink md:text-lg">
             Recognised as <span className="font-semibold text-ink">Best Career Counselling</span> in Surat, Kishan &
-            Meeta Patel bring 30 years of aptitude testing and one-on-one guidance to every family — trusted by
+            Meeta Patel bring 30 years of aptitude testing and one-on-one guidance to every family, trusted by
             5,000+ students and backed by 900+ five-star reviews.
           </p>
         </Reveal>

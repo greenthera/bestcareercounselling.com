@@ -5,7 +5,7 @@ import logo from '@/assets/logo.png'
 const PROBLEMS = [
   {
     eyebrow: 'Stream Confusion',
-    text: 'Science, Commerce or Arts — and no way to decide',
+    text: 'Science, Commerce or Arts, and no way to decide',
     icon: GitFork,
     angle: 315,
   },
@@ -39,7 +39,7 @@ export function ProblemSection() {
         <p className="mt-2 text-muted-ink">Most families we meet are stuck on one of these.</p>
       </Reveal>
 
-      {/* Desktop: radial layout — rings and cards orbit slowly around the circle, pause on hover to read.
+      {/* Desktop: radial layout, rings and cards orbit slowly around the circle, pause on hover to read.
           A single shared `--orbit-angle` custom property (see index.css) drives both the card's
           position around the circle and its counter-rotation, so they can never drift out of sync
           and the card content always stays upright. */}

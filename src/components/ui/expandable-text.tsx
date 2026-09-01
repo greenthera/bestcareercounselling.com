@@ -8,7 +8,7 @@ interface ExpandableTextProps {
 
 /**
  * Clamps text to 3 lines and reveals the rest on click, animating the height change smoothly.
- * The "Read more" toggle only renders when the text actually overflows 3 lines — measured
+ * The "Read more" toggle only renders when the text actually overflows 3 lines, measured
  * against the browser's own line-clamp box, not a guessed height, so short text never gets
  * a toggle it doesn't need.
  */

@@ -4,7 +4,7 @@ const PEOPLE = {
   kishan: {
     name: 'Kishan Patel',
     jobTitle: 'Career Counsellor',
-    description: '30+ years guiding students across Gujarat. Certified Career Analyst — Edumilestones.',
+    description: '30+ years guiding students across Gujarat. Certified Career Analyst, Edumilestones.',
   },
   meeta: {
     name: 'Meeta Patel',

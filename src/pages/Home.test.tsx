@@ -19,7 +19,6 @@ describe('Home page', () => {
       /what you walk away with/i,
       /not ready to book/i,
       /meet kishan & meeta/i,
-      /hear it from parents/i,
       /frequently asked questions/i,
       /let's talk about your child's future/i,
     ]

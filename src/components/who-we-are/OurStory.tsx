@@ -7,7 +7,7 @@ const TOPICS = [
   },
   {
     title: 'The moment that started it',
-    body: 'A conversation with a student who had aced Science but was miserable in it — chosen for him, not by him — became the turning point that led Kishan to train formally in psychometric assessment and career counselling.',
+    body: 'A conversation with a student who had aced Science but was miserable in it (chosen for him, not by him) became the turning point that led Kishan to train formally in psychometric assessment and career counselling.',
   },
   {
     title: 'Why Surat',
@@ -15,7 +15,7 @@ const TOPICS = [
   },
   {
     title: 'Our philosophy',
-    body: 'Career decisions should be based on understanding, assessment and counselling — not assumptions or pressure.',
+    body: 'Career decisions should be based on understanding, assessment and counselling, not assumptions or pressure.',
   },
 ]
 

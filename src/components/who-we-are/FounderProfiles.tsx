@@ -23,7 +23,7 @@ export function FounderProfiles() {
                 <p className="text-xl font-bold text-brand-green">Kishan Patel</p>
                 <p className="text-sm text-muted-ink">Career Counsellor</p>
                 <p className="mt-2 text-sm text-ink">30+ years guiding students across Gujarat.</p>
-                <p className="text-sm text-ink">Certified Career Analyst — Edumilestones.</p>
+                <p className="text-sm text-ink">Certified Career Analyst, Edumilestones.</p>
                 <p className="mt-2 text-sm text-muted-ink">
                   Kishan began counselling students in Surat after years of watching bright kids pick streams for the
                   wrong reasons. Since then he's worked with thousands of families, combining structured aptitude
@@ -49,7 +49,7 @@ export function FounderProfiles() {
                 </p>
                 <p className="text-sm text-ink">Certified with the Edumilestones psychometric framework.</p>
                 <p className="mt-2 text-sm text-muted-ink">
-                  Meeta joined the practice to focus on the conversations that get skipped — the ones between parents
+                  Meeta joined the practice to focus on the conversations that get skipped: the ones between parents
                   and children who each have a different idea of what "the right choice" looks like. She helps both
                   sides get heard before a decision gets made.
                 </p>

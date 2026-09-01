@@ -8,7 +8,7 @@ export const pageSeo = {
   home: {
     title: 'Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 900+ Reviews',
     description:
-      'Career counselling and stream selection guidance from Kishan & Meeta Patel — Surat, Navsari, Ankleshwar, Valsad.',
+      'Career counselling and stream selection guidance from Kishan & Meeta Patel: Surat, Navsari, Ankleshwar, Valsad.',
     path: '/',
   },
   whoWeAre: {
@@ -20,7 +20,7 @@ export const pageSeo = {
   whatWeDo: {
     title: 'What We Do | Career Counselling Services',
     description:
-      'Career counselling for every stage — after 10th, after 12th, UG & PG admission, MBA, study abroad and career change.',
+      'Career counselling for every stage: after 10th, after 12th, UG & PG admission, MBA, study abroad and career change.',
     path: '/what-we-do',
   },
   successStories: {
@@ -45,12 +45,12 @@ export const pageSeo = {
   },
   admissionConsulting: {
     title: 'Admission Consulting | Best Career Counselling',
-    description: 'End-to-end admission consulting — shortlisting, applications, documents and deadline tracking.',
+    description: 'End-to-end admission consulting: shortlisting, applications, documents and deadline tracking.',
     path: '/admission-consulting',
   },
   careerCounselling: {
     title: 'Career Counselling | Best Career Counselling',
-    description: 'Aptitude-backed career counselling — assessment, one-on-one sessions and a practical roadmap.',
+    description: 'Aptitude-backed career counselling: assessment, one-on-one sessions and a practical roadmap.',
     path: '/career-counselling',
   },
   privacyPolicy: {

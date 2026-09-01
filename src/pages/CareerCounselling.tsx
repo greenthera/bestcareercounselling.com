@@ -9,7 +9,7 @@ import { pageSeo } from '@/data/seo'
 const INCLUDES: { title: string; description: string; icon: LucideIcon }[] = [
   {
     title: 'Comprehensive Career Assessment',
-    description: 'Aptitude, interest, personality and EQ, measured — not guessed.',
+    description: 'Aptitude, interest, personality and EQ, measured, not guessed.',
     icon: Brain,
   },
   {
@@ -34,7 +34,7 @@ const INCLUDES: { title: string; description: string; icon: LucideIcon }[] = [
   },
   {
     title: 'Ongoing support',
-    description: "Follow-up check-ins as plans change — they usually do.",
+    description: "Follow-up check-ins as plans change (they usually do).",
     icon: Repeat2,
   },
 ]
@@ -76,7 +76,7 @@ export default function CareerCounselling() {
             Career <span className="text-brand-green">Counselling</span>
           </h1>
           <p className="mt-4 text-lg text-muted-ink">
-            Understand strengths, weigh real options and leave with a plan — backed by 30 years of aptitude testing
+            Understand strengths, weigh real options and leave with a plan, backed by 30 years of aptitude testing
             and one-on-one guidance from Kishan &amp; Meeta Patel.
           </p>
         </Reveal>
