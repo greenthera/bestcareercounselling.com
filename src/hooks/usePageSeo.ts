@@ -7,6 +7,8 @@ interface PageSeoOptions {
   title: string
   description: string
   path: string
+  /** Set true for pages that shouldn't be indexed (e.g. a 404 page). Defaults to indexable. */
+  noindex?: boolean
 }
 
 function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
@@ -29,12 +31,13 @@ function upsertCanonical(href: string) {
   el.setAttribute('href', href)
 }
 
-export function usePageSeo({ title, description, path }: PageSeoOptions) {
+export function usePageSeo({ title, description, path, noindex }: PageSeoOptions) {
   useEffect(() => {
     document.title = title
     const canonical = `${SITE_URL}${path}`
 
     upsertMeta('name', 'description', description)
+    upsertMeta('name', 'robots', noindex ? 'noindex, nofollow' : 'index, follow')
     upsertCanonical(canonical)
     upsertMeta('property', 'og:site_name', SITE_NAME)
     upsertMeta('property', 'og:locale', 'en_IN')
@@ -49,5 +52,5 @@ export function usePageSeo({ title, description, path }: PageSeoOptions) {
     upsertMeta('name', 'twitter:title', title)
     upsertMeta('name', 'twitter:description', description)
     upsertMeta('name', 'twitter:image', OG_IMAGE)
-  }, [title, description, path])
+  }, [title, description, path, noindex])
 }

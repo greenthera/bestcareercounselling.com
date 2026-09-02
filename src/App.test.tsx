@@ -21,4 +21,13 @@ describe('App routing', () => {
     )
     expect(await screen.findByText(/book your free consultation/i, {}, { timeout: 5000 })).toBeInTheDocument()
   })
+
+  it('renders the 404 page for an unmatched route', async () => {
+    render(
+      <MemoryRouter initialEntries={['/this-page-does-not-exist']}>
+        <App />
+      </MemoryRouter>,
+    )
+    expect(await screen.findByRole('heading', { name: /page not found/i }, { timeout: 5000 })).toBeInTheDocument()
+  })
 })

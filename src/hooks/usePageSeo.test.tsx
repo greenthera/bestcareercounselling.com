@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { render } from '@testing-library/react'
 import { usePageSeo } from './usePageSeo'
 
-function Probe(props: { title: string; description: string; path: string }) {
+function Probe(props: { title: string; description: string; path: string; noindex?: boolean }) {
   usePageSeo(props)
   return null
 }
@@ -35,6 +35,14 @@ describe('usePageSeo', () => {
     const ogImage = document.querySelector('meta[property="og:image"]')?.getAttribute('content')
     expect(ogImage).toBe('https://greenthera.shivantra.com/bestcareercounselling.com/og-image.png')
     expect(document.querySelector('meta[name="twitter:image"]')?.getAttribute('content')).toBe(ogImage)
+  })
+
+  it('defaults to index, follow and sets noindex, nofollow when noindex is true', () => {
+    render(<Probe title="Test Title" description="Test description" path="/test" />)
+    expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe('index, follow')
+
+    render(<Probe title="Not Found" description="Missing page" path="/404" noindex />)
+    expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe('noindex, nofollow')
   })
 
   it('updates existing tags rather than duplicating them across renders', () => {

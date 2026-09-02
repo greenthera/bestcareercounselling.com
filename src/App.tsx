@@ -13,6 +13,7 @@ const AdmissionConsulting = lazy(() => import('@/pages/AdmissionConsulting'))
 const CareerCounselling = lazy(() => import('@/pages/CareerCounselling'))
 const PrivacyPolicy = lazy(() => import('@/pages/PrivacyPolicy'))
 const Terms = lazy(() => import('@/pages/Terms'))
+const NotFound = lazy(() => import('@/pages/NotFound'))
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/career-counselling" element={<CareerCounselling />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </Suspense>
