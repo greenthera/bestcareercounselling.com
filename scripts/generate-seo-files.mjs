@@ -3,27 +3,30 @@
 // URL and route list. Runs automatically before every build (see the "prebuild"
 // script in package.json), so these two files never drift out of sync by hand.
 //
-// The URL comes from the repo's .env file (VITE_SITE_URL) — same as src/lib/seo.ts
-// and index.html's %VITE_SITE_URL% placeholders. If the site ever moves to a new
-// domain, updating that one value here is all that's needed for these files too.
+// The URL preferably comes from the repo's .env file (VITE_SITE_URL) — same as
+// src/lib/seo.ts and index.html's %VITE_SITE_URL% placeholders — but that file is
+// gitignored and may not exist (fresh clone, CI), so this falls back to the same
+// hardcoded default src/lib/seo.ts uses. If the site ever moves to a new domain,
+// update .env (and that fallback) and this picks it up automatically.
 
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
 const rootDir = path.resolve(fileURLToPath(import.meta.url), '../..')
+const FALLBACK_SITE_URL = 'https://greenthera.shivantra.com/bestcareercounselling.com'
 
 function readSiteUrlFromEnvFile() {
   const envPath = path.join(rootDir, '.env')
+  if (!existsSync(envPath)) {
+    return undefined
+  }
   const envText = readFileSync(envPath, 'utf8')
   const match = envText.match(/^VITE_SITE_URL=(.+)$/m)
-  if (!match) {
-    throw new Error('VITE_SITE_URL not found in .env')
-  }
-  return match[1].trim()
+  return match?.[1].trim()
 }
 
-const SITE_URL = (process.env.VITE_SITE_URL || readSiteUrlFromEnvFile()).replace(/\/$/, '')
+const SITE_URL = (process.env.VITE_SITE_URL || readSiteUrlFromEnvFile() || FALLBACK_SITE_URL).replace(/\/$/, '')
 
 // Only routes that are actually registered in src/App.tsx. The thank-you page is
 // intentionally left out — it's a post-conversion confirmation page, not a landing
