@@ -66,7 +66,7 @@ function ReviewCard({ review }: { review: GoogleReview }) {
 
 function MarqueeRow({ reviews, reverse }: { reviews: GoogleReview[]; reverse?: boolean }) {
   return (
-    <div className="flex w-max gap-5">
+    <div className="flex w-max gap-5 [--row-play-state:running] hover:[--row-play-state:paused]">
       {[reviews, reviews].map((set, setIndex) => (
         <div
           key={setIndex}
@@ -75,7 +75,7 @@ function MarqueeRow({ reviews, reverse }: { reviews: GoogleReview[]; reverse?: b
               ? 'flex shrink-0 gap-5 animate-marquee-reverse motion-reduce:animate-none'
               : 'flex shrink-0 gap-5 animate-marquee motion-reduce:animate-none'
           }
-          style={{ animationPlayState: 'var(--marquee-play-state, running)' }}
+          style={{ animationPlayState: 'var(--row-play-state, running)' }}
           aria-hidden={setIndex === 1}
         >
           {set.map((review) => (
@@ -89,7 +89,7 @@ function MarqueeRow({ reviews, reverse }: { reviews: GoogleReview[]; reverse?: b
 
 export function GoogleReviewsCarousel() {
   return (
-    <section className="group/section overflow-hidden bg-brand-green py-14 md:py-20">
+    <section className="overflow-hidden bg-brand-green py-14 md:py-20">
       <Reveal className="mx-auto max-w-2xl px-4 text-center md:px-8">
         <div className="mx-auto flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5">
           <div className="flex gap-0.5 text-brand-yellow">
@@ -105,10 +105,7 @@ export function GoogleReviewsCarousel() {
         <p className="mt-2 text-warm-white/60">Real words from students and parents, straight from our Google Business Profile.</p>
       </Reveal>
 
-      <Reveal
-        delay={120}
-        className="relative mt-12 [--marquee-play-state:running] group-hover/section:[--marquee-play-state:paused]"
-      >
+      <Reveal delay={120} className="relative mt-12">
         <div
           className="space-y-5 overflow-hidden"
           style={{
