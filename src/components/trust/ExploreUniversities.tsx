@@ -79,7 +79,7 @@ export function ExploreUniversities() {
           rel="noopener noreferrer"
           className="group inline-flex items-center gap-2 rounded-full bg-brand-green py-2.5 pl-6 pr-2 text-sm font-semibold text-warm-white transition-colors hover:bg-brand-green/90"
         >
-          View All
+          View all Universities
           <PillCtaEndcap
             tone="yellow"
             icon={ExternalLink}
