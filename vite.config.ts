@@ -24,6 +24,14 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     base: command === 'build' ? DEPLOY_BASE_PATH : '/',
+    // Never inline small assets as base64 into JS chunks. The university logo
+    // wall (src/components/trust/ExploreUniversities.tsx) imports ~80 small
+    // images, most under Vite's default 4kb inline threshold — without this,
+    // they get base64-encoded straight into that page's JS bundle instead of
+    // staying as separate, browser-cacheable files, ballooning it 5x+.
+    build: {
+      assetsInlineLimit: 0,
+    },
     plugins: [react()],
     resolve: {
       alias: {

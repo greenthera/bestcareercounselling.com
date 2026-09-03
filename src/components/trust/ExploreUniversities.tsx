@@ -23,7 +23,7 @@ const ROWS = [
 
 function LogoTile({ src }: { src: string }) {
   return (
-    <div className="flex h-20 w-44 shrink-0 items-center justify-center rounded-2xl border border-neutral-border bg-white p-4 shadow-sm">
+    <div className="flex h-20 w-44 shrink-0 items-center justify-center rounded-2xl border border-neutral-border bg-white p-2 shadow-sm">
       <img src={src} alt="" className="h-full w-full object-contain" />
     </div>
   )
