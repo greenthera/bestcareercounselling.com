@@ -1,35 +1,38 @@
-import { GraduationCap, Landmark, Building2, School, BookOpen, Award, ExternalLink } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 
 const EXPLORE_URL = 'https://careertest.edumilestones.com/online-courses/universities/NTEy'
 
-const PLACEHOLDER_LOGOS = [
-  { id: 'logo-1', icon: GraduationCap },
-  { id: 'logo-2', icon: Landmark },
-  { id: 'logo-3', icon: Building2 },
-  { id: 'logo-4', icon: School },
-  { id: 'logo-5', icon: BookOpen },
-  { id: 'logo-6', icon: Award },
+const logoModules = import.meta.glob('../../assets/university-logo-*.webp', { eager: true }) as Record<
+  string,
+  { default: string }
+>
+const UNIVERSITY_LOGOS = Object.keys(logoModules)
+  .sort()
+  .map((path) => logoModules[path].default)
+
+// Split the logo set across the three marquee rows so each row shows a different
+// slice rather than all three cycling through the same logos in lockstep.
+const ROW_SIZE = Math.ceil(UNIVERSITY_LOGOS.length / 3)
+const ROWS = [
+  UNIVERSITY_LOGOS.slice(0, ROW_SIZE),
+  UNIVERSITY_LOGOS.slice(ROW_SIZE, ROW_SIZE * 2),
+  UNIVERSITY_LOGOS.slice(ROW_SIZE * 2),
 ]
 
-function LogoTile({ icon: Icon }: { icon: typeof GraduationCap }) {
+function LogoTile({ src }: { src: string }) {
   return (
-    <div
-      className="flex h-20 w-44 shrink-0 items-center justify-center gap-2 rounded-2xl border border-neutral-border bg-white px-4 shadow-sm"
-      role="img"
-      aria-label="University logo placeholder"
-    >
-      <Icon className="h-5 w-5 shrink-0 text-brand-green/40" aria-hidden="true" />
-      <span className="text-xs font-semibold uppercase tracking-wide text-muted-ink/50">University logo</span>
+    <div className="flex h-20 w-44 shrink-0 items-center justify-center rounded-2xl border border-neutral-border bg-white p-4 shadow-sm">
+      <img src={src} alt="" className="h-full w-full object-contain" />
     </div>
   )
 }
 
-function LogoRow({ reverse }: { reverse?: boolean }) {
+function LogoRow({ logos, reverse }: { logos: string[]; reverse?: boolean }) {
   return (
     <div className="flex w-max gap-4">
-      {[PLACEHOLDER_LOGOS, PLACEHOLDER_LOGOS].map((set, setIndex) => (
+      {[logos, logos].map((set, setIndex) => (
         <div
           key={setIndex}
           className={
@@ -39,8 +42,8 @@ function LogoRow({ reverse }: { reverse?: boolean }) {
           }
           aria-hidden={setIndex === 1}
         >
-          {set.map((logo) => (
-            <LogoTile key={logo.id} icon={logo.icon} />
+          {set.map((src, index) => (
+            <LogoTile key={`${src}-${index}`} src={src} />
           ))}
         </div>
       ))}
@@ -66,9 +69,9 @@ export function ExploreUniversities() {
             WebkitMaskImage: 'linear-gradient(90deg, transparent, black 6%, black 94%, transparent)',
           }}
         >
-          <LogoRow />
-          <LogoRow reverse />
-          <LogoRow />
+          <LogoRow logos={ROWS[0]} />
+          <LogoRow logos={ROWS[1]} reverse />
+          <LogoRow logos={ROWS[2]} />
         </div>
       </Reveal>
 

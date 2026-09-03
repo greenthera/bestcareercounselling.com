@@ -11,8 +11,8 @@ describe('ExploreUniversities', () => {
     expect(link).toHaveAttribute('target', '_blank')
   })
 
-  it('renders logo placeholder tiles', () => {
-    render(<ExploreUniversities />)
-    expect(screen.getAllByRole('img', { name: /university logo placeholder/i }).length).toBeGreaterThan(0)
+  it('renders university logo tiles', () => {
+    const { container } = render(<ExploreUniversities />)
+    expect(container.querySelectorAll('img').length).toBeGreaterThan(0)
   })
 })
