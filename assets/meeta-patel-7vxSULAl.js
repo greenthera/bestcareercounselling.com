@@ -1,0 +1,1 @@
+var e=`/assets/what-you-walk-away-with-1-DSxlHyoj.webp`,t=`/assets/kishan-patel-QMzJr3qx.png`,n=`/assets/meeta-patel-JZ0jfrpD.png`;export{t as n,e as r,n as t};
