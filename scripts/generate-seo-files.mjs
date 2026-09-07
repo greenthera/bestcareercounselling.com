@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
 const rootDir = path.resolve(fileURLToPath(import.meta.url), '../..')
-const FALLBACK_SITE_URL = 'https://greenthera.shivantra.com/bestcareercounselling.com'
+const FALLBACK_SITE_URL = 'https://bestcareercounselling.com'
 
 function readSiteUrlFromEnvFile() {
   const envPath = path.join(rootDir, '.env')

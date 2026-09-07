@@ -14,7 +14,7 @@ const DEPLOY_BASE_PATH = process.env.DEPLOY_BASE_PATH || '/'
 // file is gitignored, so a fresh clone or CI may not have it — without this,
 // index.html's %VITE_SITE_URL% placeholders would build with a literal,
 // unreplaced "%VITE_SITE_URL%" in canonical/OG tags instead of a real URL.
-const FALLBACK_SITE_URL = 'https://greenthera.shivantra.com/bestcareercounselling.com'
+const FALLBACK_SITE_URL = 'https://bestcareercounselling.com'
 
 export default defineConfig(({ command, mode }) => {
   // loadEnv reads .env straight off disk regardless of git tracking, so a local
