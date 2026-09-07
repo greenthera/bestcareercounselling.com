@@ -117,7 +117,7 @@ export function MobileNav() {
             </a>
           </div>
 
-          <p className="text-center text-xs text-muted-ink">Surat · Navsari · Ankleshwar · Valsad</p>
+          <p className="text-center text-xs text-muted-ink">Surat, Gujarat</p>
         </div>
       </SheetContent>
     </Sheet>

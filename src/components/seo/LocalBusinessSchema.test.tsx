@@ -9,7 +9,7 @@ describe('LocalBusinessSchema', () => {
     const data = JSON.parse(script?.textContent ?? '{}')
     expect(data['@type']).toBe('LocalBusiness')
     expect(data.telephone).toBe('+91-87581-75187')
-    expect(data.areaServed).toEqual(['Surat', 'Navsari', 'Ankleshwar', 'Valsad'])
+    expect(data.areaServed).toEqual(['Surat'])
     expect(data.aggregateRating.ratingValue).toBe('5.0')
     expect(data.aggregateRating.reviewCount).toBe('900')
     expect(data.address).toBeUndefined()

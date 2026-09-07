@@ -8,7 +8,7 @@ export const pageSeo = {
   home: {
     title: 'Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 900+ Reviews',
     description:
-      'Career counselling and stream selection guidance from Kishan & Meeta Patel: Surat, Navsari, Ankleshwar, Valsad.',
+      'Career counselling and stream selection guidance from Kishan & Meeta Patel in Surat — 30+ years of aptitude testing and one-on-one guidance.',
     path: '/',
   },
   whoWeAre: {
@@ -23,16 +23,6 @@ export const pageSeo = {
       'Career counselling for every stage: after 10th, after 12th, UG & PG admission, MBA, study abroad and career change.',
     path: '/what-we-do',
   },
-  successStories: {
-    title: 'Success Stories | Kishan & Meeta Patel',
-    description: 'Real students, real decisions, real outcomes — see how families moved from confusion to clarity.',
-    path: '/success-stories',
-  },
-  blogs: {
-    title: 'Blog | Career Guidance, Explained',
-    description: 'Practical guidance for students and parents making important education and career decisions.',
-    path: '/blogs',
-  },
   contactUs: {
     title: 'Contact Us | Book a Free Consultation',
     description: 'Book a free 15-minute consultation with Kishan or Meeta. No cost, no obligation, no sales pitch.',
@@ -45,12 +35,14 @@ export const pageSeo = {
   },
   admissionConsulting: {
     title: 'Admission Consulting | Best Career Counselling',
-    description: 'End-to-end admission consulting: shortlisting, applications, documents and deadline tracking.',
+    description:
+      'Admission consulting from shortlist to enrolment — Kishan & Meeta Patel handle applications, documents and deadlines so you can focus on the right choice.',
     path: '/admission-consulting',
   },
   careerCounselling: {
     title: 'Career Counselling | Best Career Counselling',
-    description: 'Aptitude-backed career counselling: assessment, one-on-one sessions and a practical roadmap.',
+    description:
+      'Career counselling backed by 30 years of aptitude testing. Understand your strengths, weigh real options and leave with a practical plan.',
     path: '/career-counselling',
   },
   privacyPolicy: {

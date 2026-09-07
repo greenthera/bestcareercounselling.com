@@ -10,7 +10,7 @@ export function LocalBusinessSchema() {
         name: SITE_NAME,
         telephone: '+91-87581-75187',
         url: SITE_URL,
-        areaServed: ['Surat', 'Navsari', 'Ankleshwar', 'Valsad'],
+        areaServed: ['Surat'],
         aggregateRating: {
           '@type': 'AggregateRating',
           ratingValue: '5.0',
