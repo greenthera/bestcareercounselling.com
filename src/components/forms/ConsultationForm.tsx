@@ -24,7 +24,7 @@ interface Errors {
   currentClass?: string
 }
 
-export function ConsultationForm({ context, className, submitLabel = 'Book Free 15-Min Consultation' }: ConsultationFormProps) {
+export function ConsultationForm({ context, className, submitLabel = 'Book Free Session' }: ConsultationFormProps) {
   const formId = useId()
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
