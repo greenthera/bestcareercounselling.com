@@ -17,7 +17,7 @@ describe('ConsultationForm', () => {
   it('shows validation errors when submitted empty', async () => {
     render(<ConsultationForm context="home" />)
     const user = userEvent.setup()
-    await user.click(screen.getByRole('button', { name: /book free session/i }))
+    await user.click(screen.getByRole('button', { name: /book free 15-min consultation/i }))
 
     expect(await screen.findByText(/name is required/i)).toBeInTheDocument()
     expect(screen.getByText(/phone number is required/i)).toBeInTheDocument()
@@ -31,7 +31,7 @@ describe('ConsultationForm', () => {
     await user.type(screen.getByLabelText(/^name$/i), 'Aarav Shah')
     await user.type(screen.getByLabelText(/phone/i), '12345')
     await user.selectOptions(screen.getByLabelText(/current status/i), 'Class 9–10')
-    await user.click(screen.getByRole('button', { name: /book free session/i }))
+    await user.click(screen.getByRole('button', { name: /book free 15-min consultation/i }))
 
     expect(await screen.findByText(/enter a valid 10-digit phone number/i)).toBeInTheDocument()
     expect(openSpy).not.toHaveBeenCalled()
@@ -43,7 +43,7 @@ describe('ConsultationForm', () => {
     await user.type(screen.getByLabelText(/^name$/i), 'Aarav Shah')
     await user.type(screen.getByLabelText(/phone/i), '9876543210')
     await user.selectOptions(screen.getByLabelText(/current status/i), 'Class 9–10')
-    await user.click(screen.getByRole('button', { name: /book free session/i }))
+    await user.click(screen.getByRole('button', { name: /book free 15-min consultation/i }))
 
     expect(openSpy).toHaveBeenCalledTimes(1)
     const [url] = openSpy.mock.calls[0]
