@@ -8,7 +8,7 @@ export const pageSeo = {
   home: {
     title: 'Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 900+ Reviews',
     description:
-      'Career counselling and stream selection guidance from Kishan & Meeta Patel in Surat — 30+ years of aptitude testing and one-on-one guidance.',
+      'Career counselling and stream selection guidance from Kishan & Meeta Patel in Surat, with 30+ years of aptitude testing and one-on-one guidance.',
     path: '/',
   },
   whoWeAre: {
@@ -36,7 +36,7 @@ export const pageSeo = {
   admissionConsulting: {
     title: 'Admission Consulting | Best Career Counselling',
     description:
-      'Admission consulting from shortlist to enrolment — Kishan & Meeta Patel handle applications, documents and deadlines so you can focus on the right choice.',
+      'Admission consulting from shortlist to enrolment. Kishan & Meeta Patel handle applications, documents and deadlines so you can focus on the right choice.',
     path: '/admission-consulting',
   },
   careerCounselling: {
