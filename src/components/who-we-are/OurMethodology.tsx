@@ -1,7 +1,7 @@
 import { ShieldCheck, Wand2, ListX, Hand, Megaphone } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
 
-const PILLARS = ['career personality', 'career interest', 'career values', 'learning styles', 'EQ & skills and abilities']
+const PILLARS = ['Career Personality', 'Career Interest', 'Career Values', 'Learning Styles', 'EQ & Skills and Abilities']
 
 const DONT_DO = [
   { text: 'No fortune telling', icon: Wand2 },

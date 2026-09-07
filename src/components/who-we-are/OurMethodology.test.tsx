@@ -6,8 +6,8 @@ describe('OurMethodology', () => {
   it("renders the methodology pillars and the What We Don't Do list", () => {
     render(<OurMethodology />)
     expect(screen.getByRole('heading', { name: /our methodology/i })).toBeInTheDocument()
-    expect(screen.getByText('career personality')).toBeInTheDocument()
-    expect(screen.getByText('EQ & skills and abilities')).toBeInTheDocument()
+    expect(screen.getByText('Career Personality')).toBeInTheDocument()
+    expect(screen.getByText('EQ & Skills and Abilities')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /what we don't do/i })).toBeInTheDocument()
     expect(screen.getByText(/no fortune telling/i)).toBeInTheDocument()
     expect(screen.getByText(/no admission-selling-first approach/i)).toBeInTheDocument()
