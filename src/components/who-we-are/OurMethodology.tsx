@@ -1,7 +1,7 @@
 import { ShieldCheck, Wand2, ListX, Hand, Megaphone } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
 
-const PILLARS = ['Aptitude', 'Interest', 'Personality', 'EQ', 'SWOT', 'Parent involvement']
+const PILLARS = ['career personality', 'career interest', 'career values', 'learning styles', 'EQ & skills and abilities']
 
 const DONT_DO = [
   { text: 'No fortune telling', icon: Wand2 },
@@ -16,13 +16,17 @@ export function OurMethodology() {
       <Reveal className="text-center">
         <h2 className="text-3xl font-bold text-ink md:text-4xl">Our methodology</h2>
         <p className="mx-auto mt-2 max-w-2xl text-muted-ink">
-          Every session is grounded in the Edumilestones psychometric framework, assessed across six pillars.
+          Every session is grounded in the psychometric framework, assessed across six pillars.
         </p>
       </Reveal>
 
-      <div className="mt-9 grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-6">
+      <div className="mt-9 grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-5">
         {PILLARS.map((pillar, index) => (
-          <Reveal key={pillar} delay={index * 70}>
+          <Reveal
+            key={pillar}
+            delay={index * 70}
+            className={index === PILLARS.length - 1 ? 'col-span-2 sm:col-span-1' : undefined}
+          >
             <div className="group rounded-[1.375rem] border border-neutral-border bg-white p-4 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               <p className="break-words font-semibold text-brand-green">{pillar}</p>
             </div>
