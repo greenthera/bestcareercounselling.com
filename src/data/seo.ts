@@ -45,6 +45,12 @@ export const pageSeo = {
       'Career counselling backed by 30 years of aptitude testing. Understand your strengths, weigh real options and leave with a practical plan.',
     path: '/career-counselling',
   },
+  schoolStudentCareerAssessment: {
+    title: 'Career Assessment for School Students | Best Career Counselling',
+    description:
+      'A free 3-minute self-assessment for school students. Answer 20 quick questions to see how much clarity you already have about your career direction.',
+    path: '/school-student-career-assessment',
+  },
   privacyPolicy: {
     title: 'Privacy Policy | Best Career Counselling',
     description: 'How Best Career Counselling collects, uses and protects your personal information.',
