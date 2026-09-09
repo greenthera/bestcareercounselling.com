@@ -2,14 +2,14 @@ import { jsPDF } from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import logoUrl from '@/assets/logo.png'
 
-// Matches the assessment page's own palette (see SchoolStudentCareerAssessment.tsx) —
-// kept as plain hex here since jsPDF takes color strings directly, no Tailwind involved.
-const INK = '#232C55'
-const MUTED = '#6B7098'
-const MARIGOLD = '#E8A33D'
-const BORDER = '#E7E2F3'
-const LAVENDER = '#F1EEFA'
-const LINK = '#3D4670'
+// Matches the site's own brand palette (see tailwind.config.js) — kept as plain hex
+// here since jsPDF takes color strings directly, no Tailwind involved.
+const INK = '#111513'
+const MUTED = '#66706A'
+const GREEN = '#014924'
+const YELLOW = '#FFCC01'
+const BORDER = '#E6E8E5'
+const SOFT_CREAM = '#FFF9E6'
 
 const SHIVANTRA_URL = 'https://shivantra.com/'
 const MARGIN = 16
@@ -27,7 +27,6 @@ interface Category {
 interface Tier {
   level: string
   description: string
-  color: string
 }
 
 export interface AssessmentPdfInput {
@@ -65,7 +64,7 @@ function drawFooter(doc: jsPDF, pageNumber: number, totalPages: number) {
 
   doc.setFontSize(9)
   doc.setFont('helvetica', 'bold')
-  doc.setTextColor(INK)
+  doc.setTextColor(GREEN)
   doc.text('Best Career Counselling', MARGIN, y)
   const companyWidth = doc.getTextWidth('Best Career Counselling')
 
@@ -78,10 +77,10 @@ function drawFooter(doc: jsPDF, pageNumber: number, totalPages: number) {
   const linkX = MARGIN + companyWidth + separatorWidth
   const linkText = 'Shivantra'
   doc.setFont('helvetica', 'bold')
-  doc.setTextColor(LINK)
+  doc.setTextColor(GREEN)
   doc.textWithLink(linkText, linkX, y, { url: SHIVANTRA_URL })
   const linkWidth = doc.getTextWidth(linkText)
-  doc.setDrawColor(LINK)
+  doc.setDrawColor(GREEN)
   doc.setLineWidth(0.25)
   doc.line(linkX, y + 0.8, linkX + linkWidth, y + 0.8)
 
@@ -116,7 +115,7 @@ export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
   const dateStr = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
   doc.text(dateStr, pageWidth - MARGIN, 19, { align: 'right' })
 
-  doc.setDrawColor(MARIGOLD)
+  doc.setDrawColor(YELLOW)
   doc.setLineWidth(1)
   doc.line(MARGIN, 34, pageWidth - MARGIN, 34)
 
@@ -129,7 +128,7 @@ export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
   doc.text(`Score: ${totalScore} / ${totalQuestions}`, MARGIN, y)
 
   doc.setFontSize(11)
-  doc.setTextColor(tier.color)
+  doc.setTextColor(GREEN)
   doc.text(tier.level, pageWidth - MARGIN, y, { align: 'right' })
 
   y += 8
@@ -152,9 +151,9 @@ export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
     head: [['Category', 'Score']],
     body: categoryScores,
     theme: 'plain',
-    headStyles: { fillColor: INK, textColor: '#FFFFFF', fontStyle: 'bold', fontSize: 10 },
+    headStyles: { fillColor: GREEN, textColor: '#FFFFFF', fontStyle: 'bold', fontSize: 10 },
     bodyStyles: { textColor: INK, fontSize: 10 },
-    alternateRowStyles: { fillColor: '#FBF6EC' },
+    alternateRowStyles: { fillColor: SOFT_CREAM },
     styles: { cellPadding: 3, lineColor: BORDER, lineWidth: 0.2 },
   })
 
@@ -173,12 +172,10 @@ export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
       y = 20
     }
 
-    doc.setFillColor(LAVENDER)
-    doc.roundedRect(MARGIN, y - 5, doc.getTextWidth(category.category) + 8, 7, 1.5, 1.5, 'F')
     doc.setFont('helvetica', 'bold')
-    doc.setFontSize(10)
-    doc.setTextColor(LINK)
-    doc.text(category.category, MARGIN + 4, y)
+    doc.setFontSize(12.5)
+    doc.setTextColor(GREEN)
+    doc.text(category.category, MARGIN, y)
     y += 9
 
     autoTable(doc, {
@@ -200,7 +197,7 @@ export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
         minCellHeight: 10,
         valign: 'middle',
       },
-      alternateRowStyles: { fillColor: '#FBF6EC' },
+      alternateRowStyles: { fillColor: SOFT_CREAM },
       styles: { lineColor: BORDER, lineWidth: 0.2 },
     })
 
