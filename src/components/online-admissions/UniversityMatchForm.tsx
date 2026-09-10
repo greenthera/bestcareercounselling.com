@@ -195,7 +195,7 @@ export function UniversityMatchForm({ className }: { className?: string }) {
       </div>
 
       <Button type="submit" className="mt-4 h-auto w-full bg-brand-yellow py-2.5 text-ink hover:bg-brand-yellow/90">
-        Show my options
+        Submit enquiry
       </Button>
 
       <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-muted-ink">

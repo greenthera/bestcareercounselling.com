@@ -18,10 +18,10 @@ describe('OnlineAdmissions page', () => {
       screen.getByRole('heading', { level: 1, name: /get into the right online university/i }),
     ).toBeInTheDocument()
     expect(screen.getByText(/find your best-fit university/i)).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /show my options/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /submit enquiry/i })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /which online program are you looking for/i })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /we help you decide/i })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /parents: have questions/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /have questions before your child applies/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /explore online bca/i })).toBeInTheDocument()
   })
 
