@@ -18,8 +18,10 @@ const MARGIN = 16
 // src/data/locations.ts and src/lib/seo.ts.
 const COMPANY = {
   name: 'Best Career Counselling',
-  description:
-    '30 years of career counselling and one-on-one guidance to every family, trusted by 5,000+ students and backed by 900+ five-star reviews.',
+  description: [
+    '30 years of career counselling and one-on-one guidance to every family,',
+    'trusted by 5,000+ students and backed by 900+ five-star reviews.',
+  ],
   phone: '+91 87581 75187',
   phoneUrl: 'tel:+918758175187',
   email: 'careercounsellingsurat@gmail.com',
@@ -142,7 +144,7 @@ export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
   doc.setFont('helvetica', 'normal')
   doc.setFontSize(8.5)
   doc.setTextColor(MUTED)
-  const descLines: string[] = doc.splitTextToSize(COMPANY.description, infoWidth)
+  const descLines: string[] = COMPANY.description.flatMap((line) => doc.splitTextToSize(line, infoWidth))
   doc.text(descLines, infoX, hy)
   hy += descLines.length * 4 + 1.5
 
