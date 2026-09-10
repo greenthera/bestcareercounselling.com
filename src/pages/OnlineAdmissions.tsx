@@ -256,7 +256,7 @@ export default function OnlineAdmissions() {
                   icon={MessageCircle}
                   className="transition-transform duration-300 group-hover:-translate-x-0.5"
                 />
-                Talk on WhatsApp
+                Chat on WhatsApp
               </a>
             </div>
             <p className="mt-3 text-xs text-muted-ink">
