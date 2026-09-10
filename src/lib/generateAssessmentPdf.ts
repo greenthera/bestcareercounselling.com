@@ -18,7 +18,8 @@ const MARGIN = 16
 // src/data/locations.ts and src/lib/seo.ts.
 const COMPANY = {
   name: 'Best Career Counselling',
-  tagline: 'Career counselling & guidance for students and families, Surat',
+  description:
+    '30 years of career counselling and one-on-one guidance to every family, trusted by 5,000+ students and backed by 900+ five-star reviews.',
   phone: '+91 87581 75187',
   phoneUrl: 'tel:+918758175187',
   email: 'careercounsellingsurat@gmail.com',
@@ -129,47 +130,55 @@ export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
   }
   const infoX = MARGIN + (logoDataUrl ? 24 : 0)
 
+  const infoWidth = pageWidth - MARGIN - infoX
+  let hy = 14
+
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(13)
-  doc.setTextColor(GREEN)
-  doc.text(COMPANY.name, infoX, 14)
+  doc.setTextColor(INK)
+  doc.text(COMPANY.name, infoX, hy)
+  hy += 5
 
   doc.setFont('helvetica', 'normal')
   doc.setFontSize(8.5)
   doc.setTextColor(MUTED)
-  doc.text(COMPANY.tagline, infoX, 19)
+  const descLines: string[] = doc.splitTextToSize(COMPANY.description, infoWidth)
+  doc.text(descLines, infoX, hy)
+  hy += descLines.length * 4 + 1.5
 
   // Contact line — phone, email and website are clickable links.
   const gap = 5
-  const contactY = 23.5
   doc.setTextColor(GREEN)
   let cx = infoX
-  cx += drawUnderlinedLink(doc, COMPANY.phone, cx, contactY, COMPANY.phoneUrl) + gap
-  cx += drawUnderlinedLink(doc, COMPANY.email, cx, contactY, COMPANY.emailUrl) + gap
-  drawUnderlinedLink(doc, COMPANY.website, cx, contactY, COMPANY.websiteUrl)
+  cx += drawUnderlinedLink(doc, COMPANY.phone, cx, hy, COMPANY.phoneUrl) + gap
+  cx += drawUnderlinedLink(doc, COMPANY.email, cx, hy, COMPANY.emailUrl) + gap
+  drawUnderlinedLink(doc, COMPANY.website, cx, hy, COMPANY.websiteUrl)
+  hy += 4.5
 
   doc.setTextColor(MUTED)
-  doc.text(COMPANY.address, infoX, 28)
+  doc.text(COMPANY.address, infoX, hy)
 
+  const dividerY = Math.max(hy + 4, 34)
   doc.setDrawColor(YELLOW)
   doc.setLineWidth(1)
-  doc.line(MARGIN, 36, pageWidth - MARGIN, 36)
+  doc.line(MARGIN, dividerY, pageWidth - MARGIN, dividerY)
 
   // Report title
+  const titleY = dividerY + 9
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(15)
   doc.setTextColor(INK)
-  doc.text('Career Assessment Report', MARGIN, 45)
+  doc.text('Career Assessment Report', MARGIN, titleY)
 
   doc.setFont('helvetica', 'normal')
   doc.setFontSize(9.5)
   doc.setTextColor(MUTED)
-  doc.text('School Student Career Assessment', MARGIN, 50.5)
+  doc.text('School Student Career Assessment', MARGIN, titleY + 5.5)
 
   const dateStr = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
-  doc.text(dateStr, pageWidth - MARGIN, 45, { align: 'right' })
+  doc.text(dateStr, pageWidth - MARGIN, titleY, { align: 'right' })
 
-  let y = 62
+  let y = titleY + 17
 
   // Result summary
   doc.setFont('helvetica', 'bold')

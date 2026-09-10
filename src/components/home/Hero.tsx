@@ -68,9 +68,7 @@ export function Hero() {
             />
             Message us directly, we reply fast
           </a>
-          <p className="mt-3 rounded-full bg-green-tint px-4 py-2 text-center text-xs font-semibold text-brand-green">
-            *Free pre-consulting 15 minutes enquiry session
-          </p>
+          <p className="mt-3 text-right text-xs text-muted-ink">*Free pre-consulting 15 minutes enquiry session</p>
         </Reveal>
 
         <Reveal
