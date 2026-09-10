@@ -39,6 +39,12 @@ export const pageSeo = {
       'Admission consulting from shortlist to enrolment. Kishan & Meeta Patel handle applications, documents and deadlines so you can focus on the right choice.',
     path: '/admission-consulting',
   },
+  onlineAdmissions: {
+    title: 'Online University Admissions | MBA, MCA, BBA, BCA, B.Com | Best Career Counselling',
+    description:
+      'Compare online universities, fees, eligibility and specializations with a dedicated admission counsellor before you apply. NMIMS, Manipal, DPU, Amity, ATLAS and more.',
+    path: '/admission-consulting/online-admissions',
+  },
   careerCounselling: {
     title: 'Career Counselling | Best Career Counselling',
     description:

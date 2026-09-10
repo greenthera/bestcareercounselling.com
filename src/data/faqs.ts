@@ -352,3 +352,46 @@ export const bookingFaqs: Faq[] = [
       'You can connect with us through WhatsApp, phone call or the appointment form on our website. If you are in Surat or nearby, you can also visit our office. We will first understand what you need and then help you take the next step.',
   },
 ]
+
+export const onlineAdmissionsFaqs: Faq[] = [
+  {
+    question: 'Is online education suitable for working professionals?',
+    answer:
+      'Many online programs are structured to accommodate working professionals, but suitability depends on the specific program, its schedule and your own circumstances. A counsellor can help you check whether a particular program fits your working hours and commitments.',
+  },
+  {
+    question: 'How do I know which university is right for me?',
+    answer:
+      'Start with your career objective, academic background, budget and preferred specialization. From there we can help you compare relevant options across factors such as fees, eligibility, curriculum and learning format, so the decision is based on your profile rather than someone else’s opinion.',
+  },
+  {
+    question: 'Can you help me compare universities?',
+    answer:
+      'Yes. The counselling conversation can be used to compare relevant programs across fees, eligibility, curriculum, learning format, examination pattern and how well each option fits your career objective.',
+  },
+  {
+    question: 'Do I need work experience for an online MBA?',
+    answer:
+      'Requirements vary by university and program. Some accept fresh graduates, others prefer or require work experience. A counsellor can check your eligibility against the specific programs you are considering.',
+  },
+  {
+    question: 'Can I get admission guidance before applying?',
+    answer:
+      'Yes. You can speak with a counsellor before you make any application decision. The purpose of that conversation is to help you understand your options clearly, not to push you toward a particular university.',
+  },
+  {
+    question: 'What documents are generally required?',
+    answer:
+      'Requirements vary by university, but commonly include academic mark sheets and certificates, along with identity and address-related documents. The specific university will confirm the final list for the program you choose.',
+  },
+  {
+    question: 'Can parents speak to the counsellor?',
+    answer:
+      'Yes. We encourage parents to join the conversation when they are involved in the education decision. A parent and student call can cover suitability, total cost, eligibility, course structure and career objective together.',
+  },
+  {
+    question: 'How much does an online degree cost?',
+    answer:
+      'Fees vary significantly by university, program and specialization. Ask us for the current fee structure and payment options for the programs you are considering.',
+  },
+]

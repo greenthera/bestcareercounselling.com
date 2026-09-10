@@ -37,6 +37,7 @@ const ROUTES = [
   { path: '/who-we-are', priority: '0.8', changefreq: 'monthly' },
   { path: '/what-we-do', priority: '0.8', changefreq: 'monthly' },
   { path: '/admission-consulting', priority: '0.8', changefreq: 'monthly' },
+  { path: '/admission-consulting/online-admissions', priority: '0.8', changefreq: 'monthly' },
   { path: '/career-counselling', priority: '0.8', changefreq: 'monthly' },
   { path: '/school-student-career-assessment', priority: '0.7', changefreq: 'monthly' },
   { path: '/contact-us', priority: '0.6', changefreq: 'monthly' },

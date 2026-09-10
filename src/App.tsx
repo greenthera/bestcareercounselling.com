@@ -10,6 +10,7 @@ const WhatWeDo = lazy(() => import('@/pages/WhatWeDo'))
 const ContactUs = lazy(() => import('@/pages/ContactUs'))
 const ThankYou = lazy(() => import('@/pages/ThankYou'))
 const AdmissionConsulting = lazy(() => import('@/pages/AdmissionConsulting'))
+const OnlineAdmissions = lazy(() => import('@/pages/OnlineAdmissions'))
 const CareerCounselling = lazy(() => import('@/pages/CareerCounselling'))
 const SchoolStudentCareerAssessment = lazy(() => import('@/pages/SchoolStudentCareerAssessment'))
 const PrivacyPolicy = lazy(() => import('@/pages/PrivacyPolicy'))
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="/contact-us" element={<ContactUs />} />
             <Route path="/thank-you" element={<ThankYou />} />
             <Route path="/admission-consulting" element={<AdmissionConsulting />} />
+            <Route path="/admission-consulting/online-admissions" element={<OnlineAdmissions />} />
             <Route path="/career-counselling" element={<CareerCounselling />} />
             <Route path="/school-student-career-assessment" element={<SchoolStudentCareerAssessment />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
