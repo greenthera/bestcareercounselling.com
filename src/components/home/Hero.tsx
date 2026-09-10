@@ -30,7 +30,7 @@ export function Hero() {
           </h1>
           <p className="mt-4 text-base text-muted-ink md:text-lg">
             Recognised as <span className="font-semibold text-ink">Best Career Counselling</span> in Surat, Kishan &
-            Meeta Patel bring 30 years of aptitude testing and one-on-one guidance to every family, trusted by
+            Meeta Patel bring 30 years of career counselling and one-on-one guidance to every family, trusted by
             5,000+ students and backed by 900+ five-star reviews.
           </p>
         </Reveal>
@@ -54,7 +54,7 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={180} className="rounded-[2rem] border border-neutral-border bg-white p-6 lg:col-span-2">
-          <ConsultationForm context="home" />
+          <ConsultationForm context="home" submitLabel="Book Free Session*" />
           <a
             href={directWhatsAppUrl}
             target="_blank"
@@ -68,6 +68,9 @@ export function Hero() {
             />
             Message us directly, we reply fast
           </a>
+          <p className="mt-3 rounded-full bg-green-tint px-4 py-2 text-center text-xs font-semibold text-brand-green">
+            *Free pre-consulting 15 minutes enquiry session
+          </p>
         </Reveal>
 
         <Reveal

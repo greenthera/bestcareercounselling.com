@@ -5,6 +5,7 @@ import { assessmentQuestions } from '@/data/SchoolStudentCareerAssessmentContent
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 import { Reveal } from '@/components/ui/reveal'
+import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
 import { cn } from '@/lib/utils'
 
@@ -176,7 +177,7 @@ export default function SchoolStudentCareerAssessment() {
     }
 
     const whatsappUrl = buildWhatsAppUrl(
-        `Hi, I just completed the Career Assessment on your website.\n\nMy score: ${totalScore}/${TOTAL_QUESTIONS} (${tier.level})\n\nI would like to book a free 15-minute consultation.`,
+        `Hi, I just completed the Career Assessment on your website.\n\nMy score: ${totalScore}/${TOTAL_QUESTIONS} (${tier.level})\n\nI would like a free pre-consulting 15 minutes enquiry session.`,
     )
 
     return (
@@ -345,7 +346,7 @@ export default function SchoolStudentCareerAssessment() {
                             picture of your interests, strengths and options.
                         </p>
 
-                        <div className="mt-8">
+                        <div className="mt-8 space-y-3">
                             <a
                                 href={whatsappUrl}
                                 target="_blank"
@@ -353,17 +354,21 @@ export default function SchoolStudentCareerAssessment() {
                                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-brand-yellow/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2"
                             >
                                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
-                                Book a free 15-minute consultation
+                                Free pre-consulting 15 minutes enquiry session
                             </a>
-                            <div className="mt-3 flex flex-col gap-3 sm:flex-row">
+                            <div className="flex flex-col gap-3 sm:flex-row">
                                 <button
                                     type="button"
                                     onClick={handleDownloadPdf}
                                     disabled={isDownloading}
-                                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-neutral-border px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-brand-green/40 disabled:cursor-wait disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2"
+                                    className="group flex flex-1 items-center justify-center gap-2 rounded-full bg-brand-green py-2.5 pl-2 pr-5 text-sm font-semibold text-warm-white transition-colors hover:bg-brand-green/90 disabled:cursor-wait disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2"
                                 >
-                                    <Download className="h-4 w-4" aria-hidden="true" />
-                                    {isDownloading ? 'Preparing PDF…' : 'Download PDF'}
+                                    <PillCtaEndcap
+                                        tone="yellow"
+                                        icon={Download}
+                                        className="transition-transform duration-300 group-hover:-translate-x-0.5"
+                                    />
+                                    {isDownloading ? 'Preparing report…' : 'Download Report'}
                                 </button>
                                 <button
                                     type="button"
@@ -375,8 +380,11 @@ export default function SchoolStudentCareerAssessment() {
                             </div>
                         </div>
 
-                        <p className="mt-6 text-center text-sm">
-                            <Link to="/" className="font-medium text-brand-green underline-offset-4 hover:underline">
+                        <p className="mt-10 text-center text-sm">
+                            <Link
+                                to="/"
+                                className="inline-block py-1.5 font-medium text-brand-green underline-offset-4 hover:underline"
+                            >
                                 Back to homepage
                             </Link>
                         </p>

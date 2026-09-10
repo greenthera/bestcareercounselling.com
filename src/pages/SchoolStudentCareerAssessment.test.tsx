@@ -49,7 +49,7 @@ describe('SchoolStudentCareerAssessment page', () => {
 
     expect(screen.getByRole('heading', { name: /here's where you stand/i })).toBeInTheDocument()
     expect(screen.getByText(String(TOTAL_QUESTIONS))).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /book a free 15-minute consultation/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /free pre-consulting 15 minutes enquiry session/i })).toHaveAttribute(
       'href',
       expect.stringContaining('wa.me'),
     )
@@ -72,7 +72,7 @@ describe('SchoolStudentCareerAssessment page', () => {
       await user.click(screen.getByRole('button', { name: i === TOTAL_QUESTIONS - 1 ? /see my result/i : /next/i }))
     }
 
-    await user.click(screen.getByRole('button', { name: /download pdf/i }))
+    await user.click(screen.getByRole('button', { name: /download report/i }))
 
     expect(downloadAssessmentPdf).toHaveBeenCalledTimes(1)
     const [payload] = downloadAssessmentPdf.mock.calls[0]
