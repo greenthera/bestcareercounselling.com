@@ -148,6 +148,10 @@ export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
   doc.text(descLines, infoX, hy)
   hy += descLines.length * 4 + 1.5
 
+  doc.setTextColor(MUTED)
+  doc.text(COMPANY.address, infoX, hy)
+  hy += 4.5
+
   // Contact line — phone, email and website are clickable links.
   const gap = 5
   doc.setTextColor(GREEN)
@@ -155,10 +159,6 @@ export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
   cx += drawUnderlinedLink(doc, COMPANY.phone, cx, hy, COMPANY.phoneUrl) + gap
   cx += drawUnderlinedLink(doc, COMPANY.email, cx, hy, COMPANY.emailUrl) + gap
   drawUnderlinedLink(doc, COMPANY.website, cx, hy, COMPANY.websiteUrl)
-  hy += 4.5
-
-  doc.setTextColor(MUTED)
-  doc.text(COMPANY.address, infoX, hy)
 
   const dividerY = Math.max(hy + 4, 34)
   doc.setDrawColor(YELLOW)
