@@ -113,6 +113,7 @@ export default function SchoolStudentCareerAssessment() {
     const [answers, setAnswers] = useState<Record<number, Answer>>({})
     const [error, setError] = useState('')
     const [isDownloading, setIsDownloading] = useState(false)
+    const [downloadError, setDownloadError] = useState('')
 
     const question = allQuestions[currentQuestion]
 
@@ -162,6 +163,7 @@ export default function SchoolStudentCareerAssessment() {
 
     async function handleDownloadPdf() {
         setIsDownloading(true)
+        setDownloadError('')
         try {
             const { downloadAssessmentPdf } = await import('@/lib/generateAssessmentPdf')
             await downloadAssessmentPdf({
@@ -171,6 +173,8 @@ export default function SchoolStudentCareerAssessment() {
                 totalQuestions: TOTAL_QUESTIONS,
                 tier,
             })
+        } catch {
+            setDownloadError('Could not prepare the report. Please refresh the page and try again.')
         } finally {
             setIsDownloading(false)
         }
@@ -378,6 +382,11 @@ export default function SchoolStudentCareerAssessment() {
                                     Take it again
                                 </button>
                             </div>
+                            {downloadError && (
+                                <p className="text-center text-sm text-red-600" role="alert">
+                                    {downloadError}
+                                </p>
+                            )}
                         </div>
 
                         <p className="mt-10 text-center text-sm">

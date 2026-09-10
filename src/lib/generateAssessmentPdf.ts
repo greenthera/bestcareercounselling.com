@@ -133,34 +133,37 @@ export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
   const infoX = MARGIN + (logoDataUrl ? 24 : 0)
 
   const infoWidth = pageWidth - MARGIN - infoX
-  let hy = 14
+  let hy = 15
 
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(13)
   doc.setTextColor(INK)
   doc.text(COMPANY.name, infoX, hy)
-  hy += 5
+  hy += 6.5
 
   doc.setFont('helvetica', 'normal')
   doc.setFontSize(8.5)
   doc.setTextColor(MUTED)
   const descLines: string[] = COMPANY.description.flatMap((line) => doc.splitTextToSize(line, infoWidth))
-  doc.text(descLines, infoX, hy)
-  hy += descLines.length * 4 + 1.5
+  for (const line of descLines) {
+    doc.text(line, infoX, hy)
+    hy += 4.4
+  }
+  hy += 3.5
 
   doc.setTextColor(MUTED)
   doc.text(COMPANY.address, infoX, hy)
-  hy += 4.5
+  hy += 6
 
   // Contact line — phone, email and website are clickable links.
-  const gap = 5
+  const gap = 6
   doc.setTextColor(GREEN)
   let cx = infoX
   cx += drawUnderlinedLink(doc, COMPANY.phone, cx, hy, COMPANY.phoneUrl) + gap
   cx += drawUnderlinedLink(doc, COMPANY.email, cx, hy, COMPANY.emailUrl) + gap
   drawUnderlinedLink(doc, COMPANY.website, cx, hy, COMPANY.websiteUrl)
 
-  const dividerY = Math.max(hy + 4, 34)
+  const dividerY = Math.max(hy + 6, 34)
   doc.setDrawColor(YELLOW)
   doc.setLineWidth(1)
   doc.line(MARGIN, dividerY, pageWidth - MARGIN, dividerY)

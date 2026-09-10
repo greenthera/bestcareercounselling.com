@@ -83,6 +83,23 @@ describe('SchoolStudentCareerAssessment page', () => {
     expect(payload.tier.level).toBeTruthy()
   })
 
+  it('shows a recoverable message if the report generator fails to load', async () => {
+    downloadAssessmentPdf.mockRejectedValueOnce(new Error('Failed to fetch dynamically imported module'))
+    const user = userEvent.setup()
+    renderPage()
+    await user.click(screen.getByRole('button', { name: /start the assessment/i }))
+
+    for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+      await user.click(screen.getByRole('radio', { name: /yes/i }))
+      await user.click(screen.getByRole('button', { name: i === TOTAL_QUESTIONS - 1 ? /see my result/i : /next/i }))
+    }
+
+    await user.click(screen.getByRole('button', { name: /download report/i }))
+
+    expect(await screen.findByRole('alert')).toHaveTextContent(/refresh the page and try again/i)
+    expect(screen.getByRole('button', { name: /download report/i })).toBeEnabled()
+  })
+
   it('restarts back to the intro screen', async () => {
     const user = userEvent.setup()
     renderPage()
