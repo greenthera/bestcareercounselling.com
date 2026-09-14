@@ -31,14 +31,15 @@ import { Reveal } from '@/components/ui/reveal'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { GoogleG } from '@/components/ui/google-g'
 import { UniversityMatchForm } from '@/components/online-admissions/UniversityMatchForm'
+import { AdmissionsGallery } from '@/components/online-admissions/AdmissionsGallery'
 import { GoogleReviewsCarousel } from '@/components/trust/GoogleReviewsCarousel'
 import { ExploreUniversities } from '@/components/trust/ExploreUniversities'
-import { RealWork } from '@/components/who-we-are/RealWork'
 import { FAQSection } from '@/components/home/FAQSection'
 import { onlineAdmissionsFaqs } from '@/data/faqs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
+import logo from '@/assets/logo.png'
 import planningTogether from '@/assets/bestcareercounselling-3.webp'
 
 const counsellorWhatsApp = buildWhatsAppUrl(
@@ -264,6 +265,16 @@ export default function OnlineAdmissions() {
             <p className="mt-3 text-xs text-muted-ink">
               Free counselling • No obligation • Application assistance available
             </p>
+
+            <div className="mt-8 flex w-fit items-center gap-3 rounded-2xl border border-neutral-border bg-white px-5 py-4 shadow-sm">
+              <img src={logo} alt="" className="h-12 w-auto shrink-0" />
+              <div>
+                <p className="text-sm font-bold text-ink">Best Career Counselling</p>
+                <p className="mt-0.5 text-xs text-muted-ink">
+                  30+ years of trusted career &amp; admission guidance
+                </p>
+              </div>
+            </div>
           </Reveal>
 
           <div id="match" className="scroll-mt-28">
@@ -436,9 +447,9 @@ export default function OnlineAdmissions() {
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-10">
-          <Reveal>
-            <div className="overflow-hidden rounded-[1.75rem] border border-neutral-border shadow-lg">
+        <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch lg:gap-10">
+          <Reveal className="h-full">
+            <div className="h-full min-h-[320px] overflow-hidden rounded-[1.75rem] border border-neutral-border shadow-lg">
               <img
                 src={planningTogether}
                 alt="Planning a student's university and career options together"
@@ -466,7 +477,7 @@ export default function OnlineAdmissions() {
         </div>
       </section>
 
-      <RealWork className="pt-0 md:pt-0" />
+      <AdmissionsGallery />
 
       {/* Differentiator — as a timeline */}
       <section className="px-4 py-8 md:px-8">

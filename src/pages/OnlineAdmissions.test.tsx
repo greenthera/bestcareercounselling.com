@@ -40,16 +40,16 @@ describe('OnlineAdmissions page', () => {
     expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe('index, follow')
   })
 
-  it('reuses the Who We Are Real Work gallery with its lightbox', async () => {
+  it('shows the bento-style admissions gallery with its own lightbox', async () => {
     const user = userEvent.setup()
     renderPage()
 
-    expect(screen.getByRole('heading', { name: /real work/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /inside our admission counselling/i })).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: /view photo: our office in surat/i }))
-    expect(screen.getByText('1 / 4')).toBeInTheDocument()
+    expect(screen.getByText('1 / 6')).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: /next photo/i }))
-    expect(screen.getByText('2 / 4')).toBeInTheDocument()
+    expect(screen.getByText('2 / 6')).toBeInTheDocument()
   })
 })

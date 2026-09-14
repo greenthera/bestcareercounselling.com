@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { ImageLightbox } from '@/components/ui/image-lightbox'
 import { Reveal } from '@/components/ui/reveal'
-import { cn } from '@/lib/utils'
 import counselling from '@/assets/what-you-walk-away-with-1.webp'
 import counsellingOne from '@/assets/bestcareercounselling.webp'
 import counsellingThree from '@/assets/bestcareercounselling-1.webp'
@@ -15,15 +14,11 @@ const PHOTOS = [
   { label: 'The counselling team at work', src: counsellingThree },
 ]
 
-interface RealWorkProps {
-  className?: string
-}
-
-export function RealWork({ className }: RealWorkProps) {
+export function RealWork() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   return (
-    <section className={cn('mx-auto max-w-7xl px-4 pb-0 pt-10 md:px-8 md:pt-14', className)}>
+    <section className="mx-auto max-w-7xl px-4 pb-0 pt-10 md:px-8 md:pt-14">
       <Reveal>
         <h2 className="text-center text-3xl font-bold text-ink md:text-4xl">Real work</h2>
       </Reveal>
