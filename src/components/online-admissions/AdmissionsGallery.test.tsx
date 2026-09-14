@@ -6,7 +6,7 @@ import { AdmissionsGallery } from './AdmissionsGallery'
 describe('AdmissionsGallery', () => {
   it('renders the heading and a bento grid of photo tiles', () => {
     render(<AdmissionsGallery />)
-    expect(screen.getByRole('heading', { name: /inside our admission counselling/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /moments from our events/i })).toBeInTheDocument()
     expect(screen.getAllByRole('img').length).toBeGreaterThanOrEqual(6)
   })
 

@@ -44,7 +44,7 @@ describe('OnlineAdmissions page', () => {
     const user = userEvent.setup()
     renderPage()
 
-    expect(screen.getByRole('heading', { name: /inside our admission counselling/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /moments from our events/i })).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: /view photo: our office in surat/i }))
     expect(screen.getByText('1 / 6')).toBeInTheDocument()

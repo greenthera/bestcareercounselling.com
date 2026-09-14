@@ -23,12 +23,14 @@ export function AdmissionsGallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   return (
-    <section className="mx-auto max-w-7xl px-4 pb-10 md:px-8 md:pb-14">
+    <section className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-20">
       <Reveal>
         <h2 className="text-center text-3xl font-bold text-ink md:text-4xl">
-          Inside our <span className="text-brand-green">admission counselling</span>
+          Moments from our <span className="text-brand-green">events</span>
         </h2>
-        <p className="mt-2 text-center text-muted-ink">A look at how we work with students and parents, one profile at a time.</p>
+        <p className="mt-2 text-center text-muted-ink">
+          A look back at the sessions, seminars, and gatherings we've been part of.
+        </p>
       </Reveal>
 
       <div className="mt-9 grid grid-cols-2 gap-3.5 lg:grid-cols-4 lg:auto-rows-[240px] lg:gap-4">

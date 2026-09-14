@@ -216,8 +216,8 @@ export default function OnlineAdmissions() {
     <>
       {/* Hero */}
       <section className="px-4 pt-8 md:px-8 md:pt-10">
-        <div className="mx-auto grid max-w-7xl items-start gap-6 lg:grid-cols-2">
-          <Reveal className="flex flex-col justify-center lg:py-6">
+        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2 lg:items-stretch">
+          <Reveal className="flex h-full flex-col">
             <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-green-tint px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-green">
               MBA · MCA · BBA · BCA · B.Com
             </span>
@@ -266,11 +266,11 @@ export default function OnlineAdmissions() {
               Free counselling • No obligation • Application assistance available
             </p>
 
-            <div className="mt-8 flex w-fit items-center gap-3 rounded-2xl border border-neutral-border bg-white px-5 py-4 shadow-sm">
-              <img src={logo} alt="" className="h-12 w-auto shrink-0" />
+            <div className="mt-8 flex w-fit items-center gap-4 rounded-2xl border border-neutral-border bg-white px-6 py-5 shadow-sm lg:mt-auto">
+              <img src={logo} alt="" className="h-16 w-auto shrink-0" />
               <div>
-                <p className="text-sm font-bold text-ink">Best Career Counselling</p>
-                <p className="mt-0.5 text-xs text-muted-ink">
+                <p className="text-lg font-bold text-ink">Best Career Counselling</p>
+                <p className="mt-1 text-sm text-muted-ink">
                   30+ years of trusted career &amp; admission guidance
                 </p>
               </div>
@@ -301,8 +301,46 @@ export default function OnlineAdmissions() {
         </Reveal>
       </section>
 
+      {/* Why us — no numbers */}
+      <section className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-20">
+        <Reveal className="mx-auto max-w-xl text-center">
+          <h2 className="text-3xl font-bold text-ink md:text-4xl">
+            We don't just help you apply. We help you <span className="text-brand-green">decide</span>.
+          </h2>
+        </Reveal>
+
+        <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch lg:gap-10">
+          <Reveal className="h-full">
+            <div className="h-full min-h-[320px] overflow-hidden rounded-[1.75rem] border border-neutral-border shadow-lg">
+              <img
+                src={planningTogether}
+                alt="Planning a student's university and career options together"
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {WHY_US.map((item, index) => {
+              const Icon = item.icon
+              return (
+                <Reveal key={item.title} delay={index * 60}>
+                  <div className="group h-full rounded-[1.6rem] border border-neutral-border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-tint text-brand-green transition-colors duration-300 group-hover:bg-brand-yellow group-hover:text-ink">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <p className="mt-4 font-semibold text-ink">{item.title}</p>
+                    <p className="mt-1 text-sm text-muted-ink">{item.description}</p>
+                  </div>
+                </Reveal>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* The problem — bold green, moved above the university marquee */}
-      <section className="mt-10 bg-brand-green px-4 py-16 text-warm-white md:px-8 md:py-20">
+      <section className="bg-brand-green px-4 py-16 text-warm-white md:px-8 md:py-20">
         <Reveal className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-yellow">
             The real problem
@@ -438,44 +476,6 @@ export default function OnlineAdmissions() {
       </section>
 
       <GoogleReviewsCarousel />
-
-      {/* Why us — no numbers */}
-      <section className="mx-auto max-w-7xl px-4 py-14 md:px-8 md:py-20">
-        <Reveal className="mx-auto max-w-xl text-center">
-          <h2 className="text-3xl font-bold text-ink md:text-4xl">
-            We don't just help you apply. We help you <span className="text-brand-green">decide</span>.
-          </h2>
-        </Reveal>
-
-        <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch lg:gap-10">
-          <Reveal className="h-full">
-            <div className="h-full min-h-[320px] overflow-hidden rounded-[1.75rem] border border-neutral-border shadow-lg">
-              <img
-                src={planningTogether}
-                alt="Planning a student's university and career options together"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {WHY_US.map((item, index) => {
-              const Icon = item.icon
-              return (
-                <Reveal key={item.title} delay={index * 60}>
-                  <div className="group h-full rounded-[1.6rem] border border-neutral-border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-tint text-brand-green transition-colors duration-300 group-hover:bg-brand-yellow group-hover:text-ink">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <p className="mt-4 font-semibold text-ink">{item.title}</p>
-                    <p className="mt-1 text-sm text-muted-ink">{item.description}</p>
-                  </div>
-                </Reveal>
-              )
-            })}
-          </div>
-        </div>
-      </section>
 
       <AdmissionsGallery />
 
