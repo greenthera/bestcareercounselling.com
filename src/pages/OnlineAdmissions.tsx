@@ -266,7 +266,7 @@ export default function OnlineAdmissions() {
               Free counselling • No obligation • Application assistance available
             </p>
 
-            <div className="mt-8 flex w-fit items-center gap-5 rounded-full border border-neutral-border bg-white px-8 py-7 shadow-sm lg:mt-auto">
+            <div className="mt-8 flex w-fit items-center gap-5 rounded-full border border-neutral-border bg-white px-8 py-4 shadow-sm lg:mt-auto">
               <img src={logo} alt="" className="h-24 w-auto shrink-0" />
               <div>
                 <p className="text-2xl font-bold text-ink">Best Career Counselling</p>
