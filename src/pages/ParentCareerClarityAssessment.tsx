@@ -1,6 +1,6 @@
 import { useId, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { Compass, ArrowLeft, ArrowRight, Phone, MessageCircle, CheckCircle2 } from 'lucide-react'
+import { Compass, ArrowLeft, ArrowRight, Phone, MessageCircle, CheckCircle2, Download } from 'lucide-react'
 import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon'
 import {
   parentAssessmentSections,
@@ -77,6 +77,9 @@ export default function ParentCareerClarityAssessment() {
   const [callbackErrors, setCallbackErrors] = useState<CallbackErrors>({})
   const [callbackSent, setCallbackSent] = useState(false)
 
+  const [isDownloading, setIsDownloading] = useState(false)
+  const [downloadError, setDownloadError] = useState('')
+
   const question = allQuestions[currentQuestion]
   const selectedAnswer = answers[question.id]
   const sectionIndex = parentAssessmentSections.findIndex((s) => s.section === question.section)
@@ -151,6 +154,29 @@ export default function ParentCareerClarityAssessment() {
       `What I need help with: ${reason}`
     window.open(buildWhatsAppUrl(message), '_blank', 'noopener,noreferrer')
     setCallbackSent(true)
+  }
+
+  async function handleDownloadPdf() {
+    setIsDownloading(true)
+    setDownloadError('')
+    try {
+      const { downloadParentAssessmentPdf } = await import('@/lib/generateAssessmentPdf')
+      await downloadParentAssessmentPdf({
+        sections: parentAssessmentSections,
+        answers,
+        lead: {
+          parentName: lead.parentName,
+          childName: lead.childName,
+          childClass: lead.childClass,
+          mobile: lead.mobile,
+          email: lead.email || undefined,
+        },
+      })
+    } catch {
+      setDownloadError('Could not prepare the report. Please refresh the page and try again.')
+    } finally {
+      setIsDownloading(false)
+    }
   }
 
   return (
@@ -371,6 +397,27 @@ export default function ParentCareerClarityAssessment() {
             <div className="text-center">
               <p className="text-sm font-medium text-muted-ink">Your assessment is complete</p>
               <h1 className="mt-2 text-2xl font-bold text-ink sm:text-3xl">Let's understand where you currently stand</h1>
+
+              <div className="mt-6 flex flex-col items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleDownloadPdf}
+                  disabled={isDownloading}
+                  className="group inline-flex items-center gap-2 rounded-full bg-brand-green py-2.5 pl-2 pr-5 text-sm font-semibold text-warm-white transition-colors hover:bg-brand-green/90 disabled:cursor-wait disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2"
+                >
+                  <PillCtaEndcap
+                    tone="yellow"
+                    icon={Download}
+                    className="transition-transform duration-300 group-hover:-translate-x-0.5"
+                  />
+                  {isDownloading ? 'Preparing report…' : 'Download Report'}
+                </button>
+                {downloadError && (
+                  <p className="text-sm text-red-600" role="alert">
+                    {downloadError}
+                  </p>
+                )}
+              </div>
             </div>
 
             <div className="mt-8 rounded-2xl bg-green-tint p-6 text-center">

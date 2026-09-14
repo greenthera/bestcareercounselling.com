@@ -5,6 +5,11 @@ import { MemoryRouter } from 'react-router-dom'
 import ParentCareerClarityAssessment from './ParentCareerClarityAssessment'
 import { parentAssessmentSections } from '@/data/ParentCareerClarityAssessmentContent'
 
+const downloadParentAssessmentPdf = vi.fn().mockResolvedValue(undefined)
+vi.mock('@/lib/generateAssessmentPdf', () => ({
+  downloadParentAssessmentPdf: (...args: unknown[]) => downloadParentAssessmentPdf(...args),
+}))
+
 const TOTAL_QUESTIONS = parentAssessmentSections.reduce((total, section) => total + section.questions.length, 0)
 
 function renderPage() {
@@ -85,6 +90,40 @@ describe('ParentCareerClarityAssessment page', () => {
     expect(screen.getByText(/clarity-seeking/i)).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /your snapshot/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /get in touch/i })).toHaveAttribute('href', expect.stringContaining('wa.me'))
+  })
+
+  it('downloads a PDF report with the lead details and answers', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await completeQuiz(user)
+    await fillLeadCapture(user)
+
+    await user.click(screen.getByRole('button', { name: /download report/i }))
+
+    expect(downloadParentAssessmentPdf).toHaveBeenCalledTimes(1)
+    const [payload] = downloadParentAssessmentPdf.mock.calls[0]
+    expect(payload.sections).toBe(parentAssessmentSections)
+    expect(Object.keys(payload.answers)).toHaveLength(TOTAL_QUESTIONS)
+    expect(payload.lead).toEqual({
+      parentName: 'Meera Shah',
+      childName: 'Aarav Shah',
+      childClass: 'Class 9',
+      mobile: '9876543210',
+      email: undefined,
+    })
+  })
+
+  it('shows a recoverable message if the report generator fails to load', async () => {
+    downloadParentAssessmentPdf.mockRejectedValueOnce(new Error('Failed to fetch dynamically imported module'))
+    const user = userEvent.setup()
+    renderPage()
+    await completeQuiz(user)
+    await fillLeadCapture(user)
+
+    await user.click(screen.getByRole('button', { name: /download report/i }))
+
+    expect(await screen.findByRole('alert')).toHaveTextContent(/refresh the page and try again/i)
+    expect(screen.getByRole('button', { name: /download report/i })).toBeEnabled()
   })
 
   it('submits the callback form via WhatsApp', async () => {

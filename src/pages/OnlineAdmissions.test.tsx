@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import OnlineAdmissions from './OnlineAdmissions'
 
@@ -37,5 +38,18 @@ describe('OnlineAdmissions page', () => {
   it('is indexable', () => {
     renderPage()
     expect(document.querySelector('meta[name="robots"]')?.getAttribute('content')).toBe('index, follow')
+  })
+
+  it('opens the gallery lightbox with navigation when a photo is clicked', async () => {
+    const user = userEvent.setup()
+    renderPage()
+
+    expect(screen.getByRole('heading', { name: /inside our admission counselling/i })).toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: /view photo: our office in surat/i }))
+    expect(screen.getByText('4 / 4')).toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: /next photo/i }))
+    expect(screen.getByText('1 / 4')).toBeInTheDocument()
   })
 })

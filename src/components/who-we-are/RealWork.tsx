@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
+import { ImageLightbox } from '@/components/ui/image-lightbox'
 import { Reveal } from '@/components/ui/reveal'
 import counselling from '@/assets/what-you-walk-away-with-1.webp'
 import counsellingOne from '@/assets/bestcareercounselling.webp'
@@ -13,6 +15,8 @@ const PHOTOS = [
 ]
 
 export function RealWork() {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+
   return (
     <section className="mx-auto max-w-7xl px-4 pb-0 pt-10 md:px-8 md:pt-14">
       <Reveal>
@@ -21,18 +25,25 @@ export function RealWork() {
       <div className="mt-9 grid grid-cols-2 gap-3.5 lg:grid-cols-4">
         {PHOTOS.map((photo, index) => (
           <Reveal key={photo.label} delay={index * 90}>
-            <div
-              className="group aspect-square overflow-hidden rounded-[1.375rem] border border-neutral-border shadow-sm transition-shadow duration-300 hover:shadow-lg"
-              role="img"
-              aria-label={photo.label}
+            <button
+              type="button"
+              onClick={() => setLightboxIndex(index)}
+              className="group aspect-square w-full overflow-hidden rounded-[1.375rem] border border-neutral-border shadow-sm transition-shadow duration-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2"
+              aria-label={`View photo: ${photo.label}`}
             >
               <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
                 <PlaceholderVisual label={photo.label} src={photo.src} />
               </div>
-            </div>
+            </button>
           </Reveal>
         ))}
       </div>
+
+      <ImageLightbox
+        images={PHOTOS.map((photo) => ({ src: photo.src, alt: photo.label }))}
+        index={lightboxIndex}
+        onIndexChange={setLightboxIndex}
+      />
     </section>
   )
 }

@@ -117,16 +117,15 @@ function drawFooter(doc: jsPDF, pageNumber: number, totalPages: number) {
   drawUnderlinedLink(doc, linkText, startX + prefixWidth, y, SHIVANTRA_URL)
 }
 
-export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
-  const { categories, answers, totalScore, totalQuestions, tier } = input
-  const doc = new jsPDF({ unit: 'mm', format: 'a4' })
+/**
+ * Draws the shared report letterhead (logo, company details, contact links, yellow
+ * divider) plus the report title/subtitle/date, identical across every generated PDF.
+ * Returns the y position the caller should continue drawing from.
+ */
+async function drawLetterhead(doc: jsPDF, titleText: string, subtitleText: string): Promise<number> {
   const pageWidth = doc.internal.pageSize.getWidth()
-  const pageHeight = doc.internal.pageSize.getHeight()
-  const contentWidth = pageWidth - MARGIN * 2
-
   const logoDataUrl = await loadImageAsDataUrl(logoUrl)
 
-  // Letterhead — logo plus full company contact details.
   if (logoDataUrl) {
     doc.addImage(logoDataUrl, 'PNG', MARGIN, 10, 19, 22.2)
   }
@@ -173,17 +172,27 @@ export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(15)
   doc.setTextColor(INK)
-  doc.text('Career Assessment Report', MARGIN, titleY)
+  doc.text(titleText, MARGIN, titleY)
 
   doc.setFont('helvetica', 'normal')
   doc.setFontSize(9.5)
   doc.setTextColor(MUTED)
-  doc.text('School Student Career Assessment', MARGIN, titleY + 5.5)
+  doc.text(subtitleText, MARGIN, titleY + 5.5)
 
   const dateStr = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
   doc.text(dateStr, pageWidth - MARGIN, titleY, { align: 'right' })
 
-  let y = titleY + 17
+  return titleY + 17
+}
+
+export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
+  const { categories, answers, totalScore, totalQuestions, tier } = input
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' })
+  const pageWidth = doc.internal.pageSize.getWidth()
+  const pageHeight = doc.internal.pageSize.getHeight()
+  const contentWidth = pageWidth - MARGIN * 2
+
+  let y = await drawLetterhead(doc, 'Career Assessment Report', 'School Student Career Assessment')
 
   // Result summary
   doc.setFont('helvetica', 'bold')
@@ -275,4 +284,140 @@ export async function downloadAssessmentPdf(input: AssessmentPdfInput) {
   }
 
   doc.save('career-assessment-report.pdf')
+}
+
+interface ParentAssessmentQuestion {
+  id: number
+  question: string
+  options: string[]
+}
+
+interface ParentAssessmentSection {
+  section: string
+  questions: ParentAssessmentQuestion[]
+}
+
+export interface ParentAssessmentLead {
+  parentName: string
+  childName: string
+  childClass: string
+  mobile: string
+  email?: string
+}
+
+export interface ParentAssessmentPdfInput {
+  sections: ParentAssessmentSection[]
+  answers: Record<number, number>
+  lead: ParentAssessmentLead
+}
+
+export async function downloadParentAssessmentPdf(input: ParentAssessmentPdfInput) {
+  const { sections, answers, lead } = input
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' })
+  const pageWidth = doc.internal.pageSize.getWidth()
+  const pageHeight = doc.internal.pageSize.getHeight()
+  const contentWidth = pageWidth - MARGIN * 2
+
+  let y = await drawLetterhead(doc, 'Parent Career Clarity Assessment Report', `For ${lead.childName} — ${lead.childClass}`)
+
+  // Report details — who this assessment was taken for.
+  const detailRows: [string, string][] = [
+    ['Parent Name', lead.parentName],
+    ['Child Name', lead.childName],
+    ["Child's Class", lead.childClass],
+    ['Mobile Number', lead.mobile],
+  ]
+  if (lead.email) detailRows.push(['Email Address', lead.email])
+
+  autoTable(doc, {
+    startY: y,
+    margin: { left: MARGIN, right: MARGIN },
+    body: detailRows,
+    theme: 'plain',
+    columnStyles: {
+      0: { cellWidth: 45, fontStyle: 'bold', textColor: INK },
+      1: { textColor: MUTED },
+    },
+    bodyStyles: { fontSize: 10, cellPadding: 2.5 },
+    styles: { lineColor: BORDER, lineWidth: 0.2 },
+  })
+
+  y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 10
+
+  // Current stage summary
+  doc.setFont('helvetica', 'bold')
+  doc.setFontSize(11)
+  doc.setTextColor(MUTED)
+  doc.text('YOUR CURRENT STAGE', MARGIN, y)
+  y += 6.5
+
+  doc.setFontSize(14)
+  doc.setTextColor(INK)
+  doc.text('Clarity-Seeking', MARGIN, y)
+  y += 7
+
+  doc.setFont('helvetica', 'normal')
+  doc.setFontSize(10)
+  doc.setTextColor(MUTED)
+  const stageDescription =
+    "You are actively thinking about your child's future and are involved in the decision-making process. " +
+    'However, your responses suggest that some important pieces may still need to come together before you can ' +
+    "make a truly confident career decision. You may have some understanding of your child's interests and " +
+    'abilities, but connecting these with the right career possibilities may require deeper evaluation.'
+  const stageLines: string[] = doc.splitTextToSize(stageDescription, contentWidth)
+  doc.text(stageLines, MARGIN, y)
+  y += stageLines.length * 5 + 10
+
+  // Full question-by-question responses, grouped by section
+  doc.setFont('helvetica', 'bold')
+  doc.setFontSize(13)
+  doc.setTextColor(INK)
+  doc.text('Your responses', MARGIN, y)
+  y += 8
+
+  for (const section of sections) {
+    if (y > pageHeight - 40) {
+      doc.addPage()
+      y = 20
+    }
+
+    doc.setFont('helvetica', 'bold')
+    doc.setFontSize(12.5)
+    doc.setTextColor(GREEN)
+    doc.text(section.section, MARGIN, y)
+    y += 9
+
+    autoTable(doc, {
+      startY: y,
+      margin: { left: MARGIN, right: MARGIN },
+      body: section.questions.map((q) => [
+        q.question,
+        answers[q.id] !== undefined ? q.options[answers[q.id]] : 'Not answered',
+      ]),
+      theme: 'plain',
+      columnStyles: {
+        0: { cellWidth: contentWidth * 0.55 },
+        1: { cellWidth: contentWidth * 0.45, fontStyle: 'bold' },
+      },
+      bodyStyles: {
+        textColor: INK,
+        fontSize: 9.5,
+        cellPadding: { top: 5, bottom: 5, left: 4, right: 4 },
+        minCellHeight: 10,
+        valign: 'middle',
+      },
+      alternateRowStyles: { fillColor: SOFT_CREAM },
+      styles: { lineColor: BORDER, lineWidth: 0.2 },
+    })
+
+    y = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 14
+  }
+
+  const totalPages = doc.getNumberOfPages()
+  for (let page = 1; page <= totalPages; page++) {
+    doc.setPage(page)
+    drawFooter(doc, page, totalPages)
+  }
+
+  doc.save('parent-career-clarity-assessment-report.pdf')
 }
