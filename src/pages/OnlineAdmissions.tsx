@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Star,
@@ -31,20 +30,16 @@ import type { LucideIcon } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { GoogleG } from '@/components/ui/google-g'
-import { ImageLightbox } from '@/components/ui/image-lightbox'
 import { UniversityMatchForm } from '@/components/online-admissions/UniversityMatchForm'
 import { GoogleReviewsCarousel } from '@/components/trust/GoogleReviewsCarousel'
 import { ExploreUniversities } from '@/components/trust/ExploreUniversities'
+import { RealWork } from '@/components/who-we-are/RealWork'
 import { FAQSection } from '@/components/home/FAQSection'
 import { onlineAdmissionsFaqs } from '@/data/faqs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
-import counsellingLaptop from '@/assets/Counselling.webp'
-import counsellingPathway from '@/assets/CounsellingTwo.webp'
-import counsellorsPortrait from '@/assets/AuthorImage.webp'
-import counsellingSession from '@/assets/bestcareercounselling.webp'
-import officeSurat from '@/assets/bestcareercounselling-4.webp'
+import planningTogether from '@/assets/bestcareercounselling-3.webp'
 
 const counsellorWhatsApp = buildWhatsAppUrl(
   'Hi, I want help choosing the right online university. Please guide me through my options.',
@@ -163,13 +158,6 @@ const HOW_STEPS: { title: string; description: string; icon: LucideIcon }[] = [
   { title: 'Start your program', description: 'Welcome to your next step.', icon: GraduationCap },
 ]
 
-const GALLERY_PHOTOS = [
-  { label: 'Mapping out a personalised career and admission pathway', src: counsellingPathway },
-  { label: 'Kishan & Meeta Patel — your admission counsellors', src: counsellorsPortrait },
-  { label: 'A one-on-one counselling session', src: counsellingSession },
-  { label: 'Our office in Surat', src: officeSurat },
-]
-
 const PARENT_CHECKLIST = [
   'University and program suitability',
   'Total cost and payment options',
@@ -222,7 +210,6 @@ function SectionCta({
 
 export default function OnlineAdmissions() {
   usePageSeo(pageSeo.onlineAdmissions)
-  const [galleryIndex, setGalleryIndex] = useState<number | null>(null)
 
   return (
     <>
@@ -453,7 +440,7 @@ export default function OnlineAdmissions() {
           <Reveal>
             <div className="overflow-hidden rounded-[1.75rem] border border-neutral-border shadow-lg">
               <img
-                src={counsellingLaptop}
+                src={planningTogether}
                 alt="Planning a student's university and career options together"
                 className="h-full w-full object-cover"
               />
@@ -479,42 +466,7 @@ export default function OnlineAdmissions() {
         </div>
       </section>
 
-      {/* Gallery */}
-      <section className="px-4 py-8 md:px-8">
-        <div className="mx-auto max-w-7xl rounded-[2rem] bg-soft-cream px-6 py-14 md:px-10 md:py-16">
-          <Reveal className="mx-auto max-w-xl text-center">
-            <h2 className="text-3xl font-bold text-ink md:text-4xl">
-              Inside our <span className="text-brand-green">admission counselling</span>
-            </h2>
-            <p className="mt-2 text-muted-ink">A look at how we work with students and parents, one profile at a time.</p>
-          </Reveal>
-
-          <div className="mt-9 grid grid-cols-2 gap-3.5 lg:grid-cols-4">
-            {GALLERY_PHOTOS.map((photo, index) => (
-              <Reveal key={photo.label} delay={index * 90}>
-                <button
-                  type="button"
-                  onClick={() => setGalleryIndex(index)}
-                  className="group aspect-square w-full overflow-hidden rounded-[1.375rem] border border-neutral-border shadow-sm transition-shadow duration-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2"
-                  aria-label={`View photo: ${photo.label}`}
-                >
-                  <img
-                    src={photo.src}
-                    alt={photo.label}
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                </button>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <ImageLightbox
-        images={GALLERY_PHOTOS.map((photo) => ({ src: photo.src, alt: photo.label }))}
-        index={galleryIndex}
-        onIndexChange={setGalleryIndex}
-      />
+      <RealWork className="pt-0 md:pt-0" />
 
       {/* Differentiator — as a timeline */}
       <section className="px-4 py-8 md:px-8">
