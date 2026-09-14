@@ -1,0 +1,1 @@
+var e=`/assets/what-you-walk-away-with-1-DSxlHyoj.webp`;export{e as t};
