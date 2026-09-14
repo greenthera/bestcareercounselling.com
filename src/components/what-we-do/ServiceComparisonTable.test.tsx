@@ -9,6 +9,6 @@ describe('ServiceComparisonTable', () => {
     expect(screen.getByRole('columnheader', { name: 'Service' })).toBeInTheDocument()
     expect(screen.getByRole('columnheader', { name: 'Best Time to Start' })).toBeInTheDocument()
     expect(screen.queryByRole('columnheader', { name: /price/i })).not.toBeInTheDocument()
-    expect(screen.getAllByRole('row')).toHaveLength(7) // header + 6 services
+    expect(screen.getAllByRole('row')).toHaveLength(8) // header + 7 services
   })
 })

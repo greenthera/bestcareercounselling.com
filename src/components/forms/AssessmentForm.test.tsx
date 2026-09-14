@@ -24,7 +24,7 @@ describe('AssessmentForm', () => {
     const user = userEvent.setup()
     await user.type(screen.getByLabelText(/^name$/i), 'Diya Shah')
     await user.type(screen.getByLabelText(/phone/i), '9876543210')
-    await user.selectOptions(screen.getByLabelText(/current status/i), 'Class 11–12')
+    await user.selectOptions(screen.getByLabelText(/current status/i), 'Class 12')
     await user.click(screen.getByRole('button', { name: /take the free assessment/i }))
 
     expect(openSpy).toHaveBeenCalledTimes(1)
@@ -35,7 +35,7 @@ describe('AssessmentForm', () => {
     const user = userEvent.setup()
     await user.type(screen.getByLabelText(/^name$/i), 'Diya Shah')
     await user.type(screen.getByLabelText(/phone/i), '9876543210')
-    await user.selectOptions(screen.getByLabelText(/current status/i), 'Class 11–12')
+    await user.selectOptions(screen.getByLabelText(/current status/i), 'Class 12')
     await user.type(screen.getByLabelText(/email/i), 'diya@example.com')
     await user.click(screen.getByRole('button', { name: /take the free assessment/i }))
 

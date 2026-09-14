@@ -1,5 +1,6 @@
 export type WhatsAppContext =
   | 'home'
+  | 'after-8th'
   | 'after-10th'
   | 'after-12th'
   | 'ug-pg-admission'
@@ -24,6 +25,10 @@ const templates: Record<WhatsAppContext, (f: WhatsAppFields) => string> = {
     `Hi, I would like to book a free career counselling consultation.\n\n` +
     `Name: ${f.name}\n${line('Current Status', f.currentClass)}Phone: ${f.phone}\n\n` +
     `I found you through the website.`,
+  'after-8th': (f) =>
+    `Hi, I am looking for career counselling for my child in Class 8.\n\n` +
+    `Name: ${f.name}\n${line('Current Status', f.currentClass)}Phone: ${f.phone}\n\n` +
+    `I would like to know more about early self-discovery and career awareness at this stage.`,
   'after-10th': (f) =>
     `Hi, I am looking for career counselling after Class 10.\n\n` +
     `Name: ${f.name}\n${line('Current Status', f.currentClass)}Phone: ${f.phone}\n\n` +

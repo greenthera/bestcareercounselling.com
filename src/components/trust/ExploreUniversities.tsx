@@ -51,14 +51,27 @@ function LogoRow({ logos, reverse }: { logos: string[]; reverse?: boolean }) {
   )
 }
 
-export function ExploreUniversities() {
+interface ExploreUniversitiesProps {
+  heading?: string
+  description?: string
+}
+
+export function ExploreUniversities({
+  heading = 'Explore Universities',
+  description = 'Browse universities from our network of partner institutions.',
+}: ExploreUniversitiesProps) {
+  const headingWords = heading.split(' ')
+  const lastWord = headingWords.pop()
+  const headingLead = headingWords.join(' ')
+
   return (
     <section className="overflow-hidden px-4 py-10 md:px-8 md:py-14">
       <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-bold text-ink md:text-4xl">
-          Explore <span className="text-brand-green">Universities</span>
+          {headingLead && `${headingLead} `}
+          <span className="text-brand-green">{lastWord}</span>
         </h2>
-        <p className="mt-2 text-muted-ink">Browse universities from our network of partner institutions.</p>
+        <p className="mt-2 text-muted-ink">{description}</p>
       </Reveal>
 
       <Reveal delay={100} className="mt-10">

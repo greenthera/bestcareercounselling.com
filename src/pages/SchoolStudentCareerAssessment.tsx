@@ -191,7 +191,10 @@ export default function SchoolStudentCareerAssessment() {
                     <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green-tint text-brand-green">
                         <Compass className="h-8 w-8" aria-hidden="true" />
                     </span>
-                    <h1 className="mt-6 text-3xl font-bold leading-tight text-ink md:text-4xl">
+                    <span className="mt-6 inline-flex rounded-full bg-green-tint px-3.5 py-1.5 text-sm font-semibold text-brand-green">
+                        Career Assessment for School Students
+                    </span>
+                    <h1 className="mt-4 text-3xl font-bold leading-tight text-ink md:text-4xl">
                         How clear is your career direction?
                     </h1>
                     <p className="mt-4 max-w-lg text-muted-ink">

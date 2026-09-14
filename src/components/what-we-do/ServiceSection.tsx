@@ -7,11 +7,13 @@ import { whatWeDoFaqCategories } from '@/data/faqs'
 import type { Service } from '@/data/services'
 
 const HEADINGS: Record<string, string> = {
+  'after-8th': 'Career Counselling After 8th',
   'after-10th': 'Career Counselling After 10th',
   'after-12th': 'Career Counselling After 12th',
 }
 
 const FAQ_CATEGORY_BY_SERVICE: Record<string, string> = {
+  'after-8th': 'Career Counselling from 8th Standard Onwards',
   'after-10th': 'After 10th',
   'after-12th': 'After 12th and Course Selection',
   'ug-pg-admission': 'College and UG Admissions',

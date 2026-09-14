@@ -5,13 +5,13 @@ import { ServiceSection } from './ServiceSection'
 import { services } from '@/data/services'
 
 describe('ServiceSection', () => {
-  const service = services[0]
+  const service = services.find((s) => s.id === 'after-10th')!
 
   it('renders the id anchor, heading, who-its-for, and covers list', () => {
     const { container } = render(<ServiceSection service={service} />)
     expect(container.querySelector('#after-10th')).not.toBeNull()
     expect(screen.getByRole('heading', { name: /career counselling after 10th/i })).toBeInTheDocument()
-    expect(screen.getByText(/students in class 9–10/i)).toBeInTheDocument()
+    expect(screen.getByText(/students in class 10/i)).toBeInTheDocument()
     expect(screen.getByText('Science vs Commerce vs Arts')).toBeInTheDocument()
   })
 

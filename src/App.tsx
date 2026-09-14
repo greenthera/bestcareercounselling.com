@@ -13,6 +13,7 @@ const AdmissionConsulting = lazy(() => import('@/pages/AdmissionConsulting'))
 const OnlineAdmissions = lazy(() => import('@/pages/OnlineAdmissions'))
 const CareerCounselling = lazy(() => import('@/pages/CareerCounselling'))
 const SchoolStudentCareerAssessment = lazy(() => import('@/pages/SchoolStudentCareerAssessment'))
+const ParentCareerClarityAssessment = lazy(() => import('@/pages/ParentCareerClarityAssessment'))
 const PrivacyPolicy = lazy(() => import('@/pages/PrivacyPolicy'))
 const Terms = lazy(() => import('@/pages/Terms'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
@@ -33,6 +34,7 @@ export default function App() {
             <Route path="/admission-consulting/online-admissions" element={<OnlineAdmissions />} />
             <Route path="/career-counselling" element={<CareerCounselling />} />
             <Route path="/school-student-career-assessment" element={<SchoolStudentCareerAssessment />} />
+            <Route path="/parent-career-clarity-assessment" element={<ParentCareerClarityAssessment />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="*" element={<NotFound />} />

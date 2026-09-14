@@ -4,8 +4,9 @@ import { isValidIndianPhone, buildWhatsAppUrl } from '@/lib/whatsapp'
 import { buildContextualMessage } from '@/components/whatsapp/whatsappMessages'
 
 const CLASS_OPTIONS = [
-  'Class 9–10',
-  'Class 11–12',
+  'Class 8',
+  'Class 10',
+  'Class 12',
   'UG Student',
   'PG / MBA',
   'Working Professional',

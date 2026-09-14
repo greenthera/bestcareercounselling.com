@@ -19,12 +19,37 @@ export interface Service {
 
 export const services: Service[] = [
   {
+    id: 'after-8th',
+    title: 'After 8th',
+    description: 'Too early to decide, but the right time to start understanding your child.',
+    ctaLabel: 'Book After 8th Counselling',
+    subheading: 'Early self-discovery, not early stream decisions.',
+    whoItsFor: 'Students in Class 8.',
+    covers: [
+      'Interests & personality',
+      'Strengths & weaknesses',
+      'Learning style',
+      'Skills & abilities',
+      'Study habits',
+      'Areas to improve',
+      'Parent counselling',
+      'Early direction, not a final decision',
+    ],
+    comparison: {
+      whoItsFor: 'Class 8',
+      duration: 'A couple of weeks',
+      assessment: 'Yes',
+      admissionSupport: 'No',
+      bestTimeToStart: 'Class 8 or 9, well before stream selection pressure begins',
+    },
+  },
+  {
     id: 'after-10th',
     title: 'After 10th',
     description: 'Science, Commerce or Arts? Decide with data, not pressure.',
     ctaLabel: 'Book After 10th Counselling',
     subheading: 'Stream selection based on understanding, not pressure.',
-    whoItsFor: 'Students in Class 9–10.',
+    whoItsFor: 'Students in Class 10.',
     covers: [
       'Science vs Commerce vs Arts',
       'Aptitude',
@@ -36,7 +61,7 @@ export const services: Service[] = [
       'Career roadmap',
     ],
     comparison: {
-      whoItsFor: 'Class 9–10',
+      whoItsFor: 'Class 10',
       duration: 'A couple of weeks',
       assessment: 'Yes',
       admissionSupport: 'No',
@@ -50,7 +75,7 @@ export const services: Service[] = [
     ctaLabel: 'Book After 12th Counselling',
     covers: ['Course selection', 'College selection', 'Entrance exams', 'Career options', 'Application strategy', 'Roadmap'],
     comparison: {
-      whoItsFor: 'Class 11–12',
+      whoItsFor: 'Class 12',
       duration: 'A couple of weeks',
       assessment: 'Yes',
       admissionSupport: 'Yes',

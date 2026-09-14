@@ -57,6 +57,12 @@ export const pageSeo = {
       'A free 3-minute self-assessment for school students. Answer 20 quick questions to see how much clarity you already have about your career direction.',
     path: '/school-student-career-assessment',
   },
+  parentCareerClarityAssessment: {
+    title: 'Parent Career Clarity Assessment | Best Career Counselling',
+    description:
+      "A free 3-4 minute assessment for parents. Answer 12 quick questions to see how clear you are about your child's career direction.",
+    path: '/parent-career-clarity-assessment',
+  },
   privacyPolicy: {
     title: 'Privacy Policy | Best Career Counselling',
     description: 'How Best Career Counselling collects, uses and protects your personal information.',

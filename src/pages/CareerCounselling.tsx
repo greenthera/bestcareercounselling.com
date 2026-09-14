@@ -41,12 +41,12 @@ const INCLUDES: { title: string; description: string; icon: LucideIcon }[] = [
 
 const WHO_ITS_FOR: { title: string; description: string; icon: LucideIcon }[] = [
   {
-    title: 'Class 9–10 students',
+    title: 'Class 10 students',
     description: 'Stream selection before it gets locked in.',
     icon: School,
   },
   {
-    title: 'Class 11–12 students',
+    title: 'Class 12 students',
     description: 'Course and career direction after boards.',
     icon: GraduationCap,
   },

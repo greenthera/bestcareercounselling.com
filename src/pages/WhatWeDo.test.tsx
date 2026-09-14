@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 import WhatWeDo from './WhatWeDo'
 
 describe('WhatWeDo page', () => {
-  it('renders the hero and all six service sections', () => {
+  it('renders the hero and all seven service sections', () => {
     render(
       <MemoryRouter>
         <WhatWeDo />
@@ -12,6 +12,7 @@ describe('WhatWeDo page', () => {
     )
 
     expect(screen.getByRole('heading', { level: 1, name: /career guidance for every important decision/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /career counselling after 8th/i })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /career counselling after 10th/i })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /career counselling after 12th/i })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'UG & PG Admission' })).toBeInTheDocument()

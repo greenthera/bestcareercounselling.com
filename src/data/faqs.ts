@@ -323,6 +323,46 @@ export const whatWeDoFaqCategories: FaqCategory[] = [
       },
     ],
   },
+  {
+    title: 'Career Counselling from 8th Standard Onwards',
+    faqs: [
+      {
+        question: 'Is 8th standard too early, or is it actually the right time to start career counselling for my child?',
+        answer:
+          '8th standard is not too early. At this stage, the goal is not to decide one career, but to help your child understand themselves better, identify their strengths and areas to improve, and start exploring possible directions. Starting early gives them more time to prepare for the important decisions that come after 10th.',
+      },
+      {
+        question: 'My child is only in 8th or 9th standard. What can career counselling actually help with at this stage?',
+        answer:
+          'At this stage, counselling helps your child understand their strengths, weaknesses, interests, personality, learning style and skills. It also helps them identify areas they need to work on and gradually develop clarity about their future direction before they have to make major education decisions.',
+      },
+      {
+        question: 'Can career counselling help my child understand their strengths and interests before choosing a stream?',
+        answer:
+          "Yes. Our Comprehensive Career Assessment looks at different aspects of the student's profile, including their interests, personality, learning style, skills and abilities. This helps the student and parents understand what may suit them better before making the stream decision after 10th.",
+      },
+      {
+        question: "My child has many interests but doesn't know what they could actually pursue as a career. Can you help?",
+        answer:
+          "Yes. We look beyond a student's current interests and understand how they connect with their personality, skills, abilities and other aspects of their profile. This helps identify areas worth exploring without forcing the student to decide on one career too early.",
+      },
+      {
+        question: 'Should we wait until 10th standard before taking career counselling?',
+        answer:
+          "You don't have to wait. Starting in 8th or 9th gives your child more time to understand themselves, work on areas that need improvement and explore different possibilities. When the time comes, we can also guide them with stream selection after 10th and the education and admission decisions that follow.",
+      },
+      {
+        question: 'Can counselling help my child with study habits, time management and areas they need to improve?',
+        answer:
+          "Yes. Counselling also looks at the student's current habits, learning style and areas of development. We help students understand what they need to work on and what changes they can start making at their current stage.",
+      },
+      {
+        question: 'If we start counselling in 8th standard, will you continue guiding my child later?',
+        answer:
+          "Yes. Our guidance can continue throughout the student's education journey. We can help with stream selection after 10th, course and college decisions and admissions after 12th, and further education and PG admissions, supporting the student through the journey up to their Master's degree.",
+      },
+    ],
+  },
 ]
 
 export const bookingFaqs: Faq[] = [

@@ -47,6 +47,7 @@ describe('buildContextualMessage', () => {
   it('covers every context key defined in the type', () => {
     const contexts: WhatsAppContext[] = [
       'home',
+      'after-8th',
       'after-10th',
       'after-12th',
       'ug-pg-admission',
