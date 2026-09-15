@@ -105,7 +105,7 @@ export function Footer() {
               <p>
                 Design and developed by{' '}
                 <a
-                  href="https://shivantra.com/"
+                  href="https://shivantra.com/?utm_source=bestcareercounselling.com&utm_medium=referral&utm_campaign=client_footer"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-bold text-brand-yellow transition-colors hover:text-warm-white"

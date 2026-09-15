@@ -11,7 +11,7 @@ const YELLOW = '#FFCC01'
 const BORDER = '#E6E8E5'
 const SOFT_CREAM = '#FFF9E6'
 
-const SHIVANTRA_URL = 'https://shivantra.com/'
+const SHIVANTRA_URL = 'https://shivantra.com/?utm_source=bestcareercounselling.com&utm_medium=referral&utm_campaign=client_footer'
 const MARGIN = 16
 
 // Company details for the report letterhead and footer. Mirrors src/data/contact.ts,
