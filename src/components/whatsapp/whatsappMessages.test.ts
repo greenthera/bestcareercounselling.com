@@ -11,7 +11,7 @@ describe('buildContextualMessage', () => {
     expect(msg).toContain('Name: Aarav Shah')
     expect(msg).toContain('Current Status: Class 9–10')
     expect(msg).toContain('Phone: 9876543210')
-    expect(msg).toContain('book a free career counselling consultation')
+    expect(msg).toContain('book a 15-minute pre-counselling session')
   })
 
   it('builds the after-10th context message', () => {

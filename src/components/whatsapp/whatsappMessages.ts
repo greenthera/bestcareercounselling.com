@@ -22,7 +22,7 @@ function line(label: string, value?: string): string {
 
 const templates: Record<WhatsAppContext, (f: WhatsAppFields) => string> = {
   home: (f) =>
-    `Hi, I would like to book a free career counselling consultation.\n\n` +
+    `Hi, I would like to book a 15-minute pre-counselling session.\n\n` +
     `Name: ${f.name}\n${line('Current Status', f.currentClass)}Phone: ${f.phone}\n\n` +
     `I found you through the website.`,
   'after-8th': (f) =>
