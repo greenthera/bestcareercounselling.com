@@ -1,7 +1,21 @@
 import { useId, useState, type FormEvent } from 'react'
-import { Lock } from 'lucide-react'
+import { CheckCircle2, Lock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { isValidIndianPhone, buildWhatsAppUrl } from '@/lib/whatsapp'
+import { isValidIndianPhone } from '@/lib/whatsapp'
+
+const GOOGLE_FORM_ACTION_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSfJMGHRKWJc_4sJqCakkbG9aL1KxT2hBCTGVJ8YcKvz0Y2ycA/formResponse'
+
+const GOOGLE_FORM_ENTRIES = {
+  course: 'entry.1781896297',
+  qualification: 'entry.742214592',
+  percentage: 'entry.1248524857',
+  budget: 'entry.1605985204',
+  goal: 'entry.1599261796',
+  name: 'entry.1176639313',
+  phone: 'entry.981566267',
+  email: 'entry.1373262059',
+}
 
 const COURSE_OPTIONS = ['Online MBA', 'Online MCA', 'Online BBA', 'Online BCA', 'Online B.Com', 'Not sure yet']
 const QUALIFICATION_OPTIONS = ['12th pass', 'Graduate', 'Post Graduate', 'Other']
@@ -56,8 +70,11 @@ export function UniversityMatchForm({ className }: { className?: string }) {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [errors, setErrors] = useState<Errors>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const [submitted, setSubmitted] = useState(false)
 
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault()
     const nextErrors: Errors = {}
     if (!name.trim()) nextErrors.name = 'Name is required.'
@@ -67,19 +84,41 @@ export function UniversityMatchForm({ className }: { className?: string }) {
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
 
-    const detail = (label: string, value: string) => (value ? `${label}: ${value}\n` : '')
-    const message =
-      `Hi, I would like help choosing the right online university.\n\n` +
-      detail('Course', course) +
-      detail('Qualification', qualification) +
-      detail('Academic %', percentage) +
-      detail('Budget', budget) +
-      detail('Goal', goal) +
-      `\nName: ${name}\nWhatsApp: ${phone}\n` +
-      detail('Email', email.trim()) +
-      `\nPlease help me compare my options.`
+    setIsSubmitting(true)
+    setSubmitError('')
+    try {
+      const formData = new FormData()
+      formData.append(GOOGLE_FORM_ENTRIES.course, course)
+      formData.append(GOOGLE_FORM_ENTRIES.qualification, qualification)
+      formData.append(GOOGLE_FORM_ENTRIES.percentage, percentage)
+      formData.append(GOOGLE_FORM_ENTRIES.budget, budget)
+      formData.append(GOOGLE_FORM_ENTRIES.goal, goal)
+      formData.append(GOOGLE_FORM_ENTRIES.name, name.trim())
+      formData.append(GOOGLE_FORM_ENTRIES.phone, phone.trim())
+      formData.append(GOOGLE_FORM_ENTRIES.email, email.trim())
 
-    window.open(buildWhatsAppUrl(message.trim()), '_blank', 'noopener,noreferrer')
+      await fetch(GOOGLE_FORM_ACTION_URL, { method: 'POST', mode: 'no-cors', body: formData })
+      setSubmitted(true)
+    } catch {
+      setSubmitError('Could not submit your details. Please check your connection and try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  if (submitted) {
+    return (
+      <div className={className}>
+        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-green-tint text-brand-green">
+          <CheckCircle2 className="h-6 w-6" aria-hidden="true" />
+        </span>
+        <p className="mt-4 text-lg font-bold text-ink">Thanks, {name.trim() || 'we'} got your details!</p>
+        <p className="mt-1 text-sm text-muted-ink">
+          A counsellor will review your profile and reach out on WhatsApp or email to help you shortlist the right
+          university.
+        </p>
+      </div>
+    )
   }
 
   return (
@@ -194,8 +233,18 @@ export function UniversityMatchForm({ className }: { className?: string }) {
         </Field>
       </div>
 
-      <Button type="submit" className="mt-4 h-auto w-full bg-brand-yellow py-2.5 text-ink hover:bg-brand-yellow/90">
-        Submit enquiry
+      {submitError && (
+        <p className="mt-3 text-sm text-red-600" role="alert">
+          {submitError}
+        </p>
+      )}
+
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="mt-4 h-auto w-full bg-brand-yellow py-2.5 text-ink hover:bg-brand-yellow/90 disabled:cursor-wait disabled:opacity-60"
+      >
+        {isSubmitting ? 'Submitting…' : 'Submit enquiry'}
       </Button>
 
       <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-muted-ink">
