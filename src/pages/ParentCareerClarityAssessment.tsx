@@ -21,6 +21,17 @@ import { cn } from '@/lib/utils'
 
 type Stage = 'intro' | 'quiz' | 'leadCapture' | 'result'
 
+const GOOGLE_FORM_ACTION_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSdTjBlQQkMcle2ZhKq59rPJ-tuHpXSYE8DAO0g8ahWHN_N5jg/formResponse'
+
+const GOOGLE_FORM_ENTRIES = {
+  parentName: 'entry.755426042',
+  childName: 'entry.1783431080',
+  childClass: 'entry.180962404',
+  mobile: 'entry.354449202',
+  email: 'entry.252864987',
+}
+
 const allQuestions = parentAssessmentSections.flatMap((section) =>
   section.questions.map((question) => ({ ...question, section: section.section })),
 )
@@ -72,6 +83,8 @@ export default function ParentCareerClarityAssessment() {
 
   const [lead, setLead] = useState<LeadDetails>({ parentName: '', childName: '', childClass: '', mobile: '', email: '' })
   const [leadErrors, setLeadErrors] = useState<LeadErrors>({})
+  const [isSubmittingLead, setIsSubmittingLead] = useState(false)
+  const [leadSubmitError, setLeadSubmitError] = useState('')
 
   const [reason, setReason] = useState('')
   const [callbackErrors, setCallbackErrors] = useState<CallbackErrors>({})
@@ -109,7 +122,7 @@ export default function ParentCareerClarityAssessment() {
     }
   }
 
-  function handleLeadSubmit(event: FormEvent) {
+  async function handleLeadSubmit(event: FormEvent) {
     event.preventDefault()
     const nextErrors: LeadErrors = {}
 
@@ -122,7 +135,23 @@ export default function ParentCareerClarityAssessment() {
     setLeadErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
 
-    setStage('result')
+    setIsSubmittingLead(true)
+    setLeadSubmitError('')
+    try {
+      const formData = new FormData()
+      formData.append(GOOGLE_FORM_ENTRIES.parentName, lead.parentName.trim())
+      formData.append(GOOGLE_FORM_ENTRIES.childName, lead.childName.trim())
+      formData.append(GOOGLE_FORM_ENTRIES.childClass, lead.childClass)
+      formData.append(GOOGLE_FORM_ENTRIES.mobile, lead.mobile.trim())
+      formData.append(GOOGLE_FORM_ENTRIES.email, lead.email.trim())
+
+      await fetch(GOOGLE_FORM_ACTION_URL, { method: 'POST', mode: 'no-cors', body: formData })
+      setStage('result')
+    } catch {
+      setLeadSubmitError('Could not submit your details. Please check your connection and try again.')
+    } finally {
+      setIsSubmittingLead(false)
+    }
   }
 
   function buildGetInTouchUrl() {
@@ -383,8 +412,18 @@ export default function ParentCareerClarityAssessment() {
                 />
               </div>
 
-              <Button type="submit" className="h-auto w-full py-2.5 bg-brand-yellow text-ink hover:bg-brand-yellow/90">
-                View My Assessment Result
+              {leadSubmitError && (
+                <p className="mb-4 text-sm text-red-600" role="alert">
+                  {leadSubmitError}
+                </p>
+              )}
+
+              <Button
+                type="submit"
+                disabled={isSubmittingLead}
+                className="h-auto w-full py-2.5 bg-brand-yellow text-ink hover:bg-brand-yellow/90 disabled:cursor-wait disabled:opacity-60"
+              >
+                {isSubmittingLead ? 'Submitting…' : 'View My Assessment Result'}
               </Button>
             </form>
           </div>
