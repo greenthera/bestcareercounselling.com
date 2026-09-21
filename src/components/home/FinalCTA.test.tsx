@@ -22,14 +22,14 @@ describe('FinalCTA', () => {
     expect(screen.getByRole('button', { name: 'Book a Free Consultation' })).toBeInTheDocument()
   })
 
-  it('renders a single Book Free Session button instead of a form when variant is button', () => {
+  it('renders a single Book 15-Min Pre Counselling Session button instead of a form when variant is button', () => {
     render(
       <MemoryRouter>
         <FinalCTA variant="button" />
       </MemoryRouter>,
     )
     expect(screen.getByRole('heading', { name: /let's talk about your child's future/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /book free session/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /book 15-min pre counselling session/i })).toBeInTheDocument()
     expect(screen.queryByLabelText(/^name$/i)).not.toBeInTheDocument()
   })
 })

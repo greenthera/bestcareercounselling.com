@@ -30,12 +30,12 @@ describe('WhoWeAre page', () => {
     expect(document.title).toBe('Who We Are | Kishan & Meeta Patel Career Counselling')
   })
 
-  it('renders a single Book Free Session CTA button', () => {
+  it('renders a single Book 15-Min Pre Counselling Session CTA button', () => {
     render(
       <MemoryRouter>
         <WhoWeAre />
       </MemoryRouter>,
     )
-    expect(screen.getAllByRole('link', { name: /book free session/i }).length).toBeGreaterThan(0)
+    expect(screen.getAllByRole('link', { name: /book 15-min pre counselling session/i }).length).toBeGreaterThan(0)
   })
 })

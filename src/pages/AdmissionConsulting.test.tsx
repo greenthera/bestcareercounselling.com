@@ -16,7 +16,7 @@ describe('AdmissionConsulting page', () => {
     expect(screen.getByText(/^Shortlist$/)).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /who it's for/i })).toBeInTheDocument()
     expect(screen.getByText(/study abroad aspirants/i)).toBeInTheDocument()
-    expect(screen.getAllByRole('link', { name: /book free session/i }).length).toBeGreaterThan(0)
+    expect(screen.getAllByRole('link', { name: /book 15-min pre counselling session/i }).length).toBeGreaterThan(0)
     expect(document.title).toBe('Admission Consulting | Best Career Counselling')
   })
 })

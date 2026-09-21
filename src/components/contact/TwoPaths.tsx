@@ -16,7 +16,7 @@ export function TwoPaths() {
               A free 15-minute call with Kishan or Meeta, no obligation.
             </p>
             <div className="mt-6">
-              <ConsultationForm context="home" submitLabel="Book Free Consultation" />
+              <ConsultationForm context="home" submitLabel="Book 15-Min Pre Counselling Session" />
             </div>
           </div>
         </Reveal>

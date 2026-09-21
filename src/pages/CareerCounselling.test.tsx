@@ -15,7 +15,7 @@ describe('CareerCounselling page', () => {
     expect(screen.getByRole('heading', { name: /how it works/i })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /who it's for/i })).toBeInTheDocument()
     expect(screen.getByText(/working professionals/i)).toBeInTheDocument()
-    expect(screen.getAllByRole('link', { name: /book free session/i }).length).toBeGreaterThan(0)
+    expect(screen.getAllByRole('link', { name: /book 15-min pre counselling session/i }).length).toBeGreaterThan(0)
     expect(document.title).toBe('Career Counselling | Best Career Counselling')
   })
 })

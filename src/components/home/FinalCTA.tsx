@@ -51,7 +51,7 @@ export function FinalCTA({
               to="/contact-us"
               className="group mt-7 inline-flex items-center gap-2 rounded-full bg-brand-yellow py-2.5 pl-6 pr-2 text-sm font-semibold text-ink transition-all duration-300 hover:bg-brand-yellow/90 hover:shadow-[0_10px_30px_-8px_rgba(255,204,1,0.5)]"
             >
-              Book Free Session
+              Book 15-Min Pre Counselling Session
               <PillCtaEndcap tone="dark" className="transition-transform duration-300 group-hover:translate-x-0.5" />
             </Link>
           </Reveal>

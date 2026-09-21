@@ -7,7 +7,7 @@ describe('TwoPaths', () => {
   it('renders the consultation form under the first path', () => {
     render(<TwoPaths />)
     expect(screen.getByRole('heading', { name: /i want to talk to someone/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Book Free Consultation' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Book 15-Min Pre Counselling Session' })).toBeInTheDocument()
   })
 
   it('opens the assessment form dialog under the second path', async () => {

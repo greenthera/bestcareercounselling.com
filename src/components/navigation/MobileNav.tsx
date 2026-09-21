@@ -89,7 +89,7 @@ export function MobileNav() {
               to="/contact-us"
               className="flex w-full items-center justify-center gap-2 rounded-full bg-ink py-2.5 pl-5 pr-2 text-sm font-semibold text-warm-white transition-colors hover:bg-ink/90"
             >
-              Book Free Session
+              Book 15-Min Pre Counselling Session
               <PillCtaEndcap tone="yellow" />
             </NavLink>
           </SheetClose>

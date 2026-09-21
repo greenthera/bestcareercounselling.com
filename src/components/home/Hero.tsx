@@ -54,7 +54,7 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={180} className="rounded-[2rem] border border-neutral-border bg-white p-6 lg:col-span-2">
-          <ConsultationForm context="home" submitLabel="Book Free Session*" />
+          <ConsultationForm context="home" submitLabel="Book 15-Min Pre Counselling Session" />
           <a
             href={directWhatsAppUrl}
             target="_blank"
@@ -68,7 +68,6 @@ export function Hero() {
             />
             Message us directly, we reply fast
           </a>
-          <p className="mt-3 text-right text-xs text-muted-ink">*Free pre-consulting 15 minutes enquiry session</p>
         </Reveal>
 
         <Reveal
