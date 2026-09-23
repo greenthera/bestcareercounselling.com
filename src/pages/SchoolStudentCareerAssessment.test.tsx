@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
@@ -20,7 +20,33 @@ function renderPage() {
   )
 }
 
+async function completeQuiz(user: ReturnType<typeof userEvent.setup>, answer: 'yes' | 'no' = 'yes') {
+  await user.click(screen.getByRole('button', { name: /start the assessment/i }))
+  for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+    await user.click(screen.getByRole('radio', { name: new RegExp(answer, 'i') }))
+    await user.click(screen.getByRole('button', { name: i === TOTAL_QUESTIONS - 1 ? /see my result/i : /next/i }))
+  }
+}
+
+async function fillLeadCapture(user: ReturnType<typeof userEvent.setup>) {
+  await user.type(screen.getByLabelText(/student name/i), 'Aarav Shah')
+  await user.type(screen.getByLabelText(/parent name/i), 'Meera Shah')
+  await user.selectOptions(screen.getByLabelText(/class/i), 'Class 9')
+  await user.type(screen.getByLabelText(/mobile number/i), '9876543210')
+  await user.click(screen.getByRole('button', { name: /see my result/i }))
+}
+
 describe('SchoolStudentCareerAssessment page', () => {
+  let fetchSpy: ReturnType<typeof vi.spyOn>
+
+  beforeEach(() => {
+    fetchSpy = vi.spyOn(window, 'fetch').mockResolvedValue(new Response())
+  })
+
+  afterEach(() => {
+    fetchSpy.mockRestore()
+  })
+
   it('starts on an intro screen and sets the page title', () => {
     renderPage()
     expect(screen.getByRole('heading', { name: /how clear is your career direction/i })).toBeInTheDocument()
@@ -36,16 +62,60 @@ describe('SchoolStudentCareerAssessment page', () => {
     expect(screen.getByRole('alert')).toHaveTextContent(/choose an answer/i)
   })
 
-  it('walks through every question and shows a scored result', async () => {
+  it('requires lead details before showing the result', async () => {
     const user = userEvent.setup()
     renderPage()
-    await user.click(screen.getByRole('button', { name: /start the assessment/i }))
+    await completeQuiz(user)
 
-    for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-      expect(screen.getByText(`Question ${i + 1} of ${TOTAL_QUESTIONS}`)).toBeInTheDocument()
-      await user.click(screen.getByRole('radio', { name: /yes/i }))
-      await user.click(screen.getByRole('button', { name: i === TOTAL_QUESTIONS - 1 ? /see my result/i : /next/i }))
-    }
+    await user.click(screen.getByRole('button', { name: /see my result/i }))
+    expect(screen.getByText(/student's name is required/i)).toBeInTheDocument()
+    expect(screen.getByText(/parent's name is required/i)).toBeInTheDocument()
+    expect(screen.getByText(/select your class/i)).toBeInTheDocument()
+    expect(screen.getByText(/mobile number is required/i)).toBeInTheDocument()
+  })
+
+  it('submits the lead details to the Google Form with the correct entry IDs', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await completeQuiz(user)
+    await user.type(screen.getByLabelText(/student name/i), 'Aarav Shah')
+    await user.type(screen.getByLabelText(/parent name/i), 'Meera Shah')
+    await user.selectOptions(screen.getByLabelText(/class/i), 'Class 9')
+    await user.type(screen.getByLabelText(/mobile number/i), '9876543210')
+    await user.type(screen.getByLabelText(/email address/i), 'meera@example.com')
+    await user.click(screen.getByRole('button', { name: /see my result/i }))
+
+    expect(await screen.findByRole('heading', { name: /here's where you stand/i })).toBeInTheDocument()
+
+    expect(fetchSpy).toHaveBeenCalledTimes(1)
+    const [url, options] = fetchSpy.mock.calls[0]
+    expect(url).toBe('https://docs.google.com/forms/d/e/1FAIpQLSdviDkn-2THnlcE3kt4rcx9ZdiGDMwqFlS1HIdFYXCeSIm6CQ/formResponse')
+    expect(options).toMatchObject({ method: 'POST', mode: 'no-cors' })
+
+    const body = options?.body as FormData
+    expect(body.get('entry.1940346655')).toBe('Aarav Shah')
+    expect(body.get('entry.1576762693')).toBe('Meera Shah')
+    expect(body.get('entry.108097604')).toBe('Class 9')
+    expect(body.get('entry.634323980')).toBe('9876543210')
+    expect(body.get('entry.612697315')).toBe('meera@example.com')
+  })
+
+  it('shows a recoverable error if the lead submission fails', async () => {
+    fetchSpy.mockRejectedValueOnce(new Error('Network error'))
+    const user = userEvent.setup()
+    renderPage()
+    await completeQuiz(user)
+    await fillLeadCapture(user)
+
+    expect(await screen.findByRole('alert')).toHaveTextContent(/could not submit your details/i)
+    expect(screen.getByRole('button', { name: /see my result/i })).toBeEnabled()
+  })
+
+  it('walks through every question and lead capture to show a scored result', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await completeQuiz(user)
+    await fillLeadCapture(user)
 
     expect(screen.getByRole('heading', { name: /here's where you stand/i })).toBeInTheDocument()
     expect(screen.getByText(String(TOTAL_QUESTIONS))).toBeInTheDocument()
@@ -65,12 +135,8 @@ describe('SchoolStudentCareerAssessment page', () => {
   it('downloads a PDF report with the answers and result', async () => {
     const user = userEvent.setup()
     renderPage()
-    await user.click(screen.getByRole('button', { name: /start the assessment/i }))
-
-    for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-      await user.click(screen.getByRole('radio', { name: /yes/i }))
-      await user.click(screen.getByRole('button', { name: i === TOTAL_QUESTIONS - 1 ? /see my result/i : /next/i }))
-    }
+    await completeQuiz(user)
+    await fillLeadCapture(user)
 
     await user.click(screen.getByRole('button', { name: /download report/i }))
 
@@ -87,12 +153,8 @@ describe('SchoolStudentCareerAssessment page', () => {
     downloadAssessmentPdf.mockRejectedValueOnce(new Error('Failed to fetch dynamically imported module'))
     const user = userEvent.setup()
     renderPage()
-    await user.click(screen.getByRole('button', { name: /start the assessment/i }))
-
-    for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-      await user.click(screen.getByRole('radio', { name: /yes/i }))
-      await user.click(screen.getByRole('button', { name: i === TOTAL_QUESTIONS - 1 ? /see my result/i : /next/i }))
-    }
+    await completeQuiz(user)
+    await fillLeadCapture(user)
 
     await user.click(screen.getByRole('button', { name: /download report/i }))
 
@@ -103,12 +165,8 @@ describe('SchoolStudentCareerAssessment page', () => {
   it('restarts back to the intro screen', async () => {
     const user = userEvent.setup()
     renderPage()
-    await user.click(screen.getByRole('button', { name: /start the assessment/i }))
-
-    for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-      await user.click(screen.getByRole('radio', { name: /no/i }))
-      await user.click(screen.getByRole('button', { name: i === TOTAL_QUESTIONS - 1 ? /see my result/i : /next/i }))
-    }
+    await completeQuiz(user, 'no')
+    await fillLeadCapture(user)
 
     await user.click(screen.getByRole('button', { name: /take it again/i }))
     expect(screen.getByRole('heading', { name: /how clear is your career direction/i })).toBeInTheDocument()

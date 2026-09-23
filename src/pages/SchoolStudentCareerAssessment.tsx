@@ -1,17 +1,44 @@
-import { useState } from 'react'
+import { useId, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { Compass, ArrowLeft, ArrowRight, MessageCircle, Download } from 'lucide-react'
-import { assessmentQuestions } from '@/data/SchoolStudentCareerAssessmentContent'
+import { Button } from '@/components/ui/button'
+import { assessmentQuestions, schoolStudentClassOptions } from '@/data/SchoolStudentCareerAssessmentContent'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 import { Reveal } from '@/components/ui/reveal'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
-import { buildWhatsAppUrl } from '@/lib/whatsapp'
+import { buildWhatsAppUrl, isValidIndianPhone } from '@/lib/whatsapp'
 import { cn } from '@/lib/utils'
 
 type Answer = 0 | 1
-type Stage = 'intro' | 'quiz' | 'result'
+type Stage = 'intro' | 'quiz' | 'leadCapture' | 'result'
 type Tone = 'green' | 'yellow'
+
+const GOOGLE_FORM_ACTION_URL =
+    'https://docs.google.com/forms/d/e/1FAIpQLSdviDkn-2THnlcE3kt4rcx9ZdiGDMwqFlS1HIdFYXCeSIm6CQ/formResponse'
+
+const GOOGLE_FORM_ENTRIES = {
+    studentName: 'entry.1940346655',
+    parentName: 'entry.1576762693',
+    studentClass: 'entry.108097604',
+    mobile: 'entry.634323980',
+    email: 'entry.612697315',
+}
+
+interface LeadDetails {
+    studentName: string
+    parentName: string
+    studentClass: string
+    mobile: string
+    email: string
+}
+
+interface LeadErrors {
+    studentName?: string
+    parentName?: string
+    studentClass?: string
+    mobile?: string
+}
 
 const allQuestions = assessmentQuestions.flatMap((category) =>
     category.questions.map((question) => ({
@@ -108,12 +135,24 @@ function EndcapArrow({ className }: { className?: string }) {
 export default function SchoolStudentCareerAssessment() {
     usePageSeo(pageSeo.schoolStudentCareerAssessment)
 
+    const formId = useId()
     const [stage, setStage] = useState<Stage>('intro')
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [answers, setAnswers] = useState<Record<number, Answer>>({})
     const [error, setError] = useState('')
     const [isDownloading, setIsDownloading] = useState(false)
     const [downloadError, setDownloadError] = useState('')
+
+    const [lead, setLead] = useState<LeadDetails>({
+        studentName: '',
+        parentName: '',
+        studentClass: '',
+        mobile: '',
+        email: '',
+    })
+    const [leadErrors, setLeadErrors] = useState<LeadErrors>({})
+    const [isSubmittingLead, setIsSubmittingLead] = useState(false)
+    const [leadSubmitError, setLeadSubmitError] = useState('')
 
     const question = allQuestions[currentQuestion]
 
@@ -141,7 +180,7 @@ export default function SchoolStudentCareerAssessment() {
         }
         setError('')
         if (currentQuestion === TOTAL_QUESTIONS - 1) {
-            setStage('result')
+            setStage('leadCapture')
             return
         }
         setCurrentQuestion((previous) => previous + 1)
@@ -158,7 +197,42 @@ export default function SchoolStudentCareerAssessment() {
         setAnswers({})
         setCurrentQuestion(0)
         setError('')
+        setLead({ studentName: '', parentName: '', studentClass: '', mobile: '', email: '' })
+        setLeadErrors({})
+        setLeadSubmitError('')
         setStage('intro')
+    }
+
+    async function handleLeadSubmit(event: FormEvent) {
+        event.preventDefault()
+        const nextErrors: LeadErrors = {}
+
+        if (!lead.studentName.trim()) nextErrors.studentName = "Student's name is required."
+        if (!lead.parentName.trim()) nextErrors.parentName = "Parent's name is required."
+        if (!lead.studentClass) nextErrors.studentClass = 'Select your class.'
+        if (!lead.mobile.trim()) nextErrors.mobile = 'Mobile number is required.'
+        else if (!isValidIndianPhone(lead.mobile)) nextErrors.mobile = 'Enter a valid 10-digit mobile number.'
+
+        setLeadErrors(nextErrors)
+        if (Object.keys(nextErrors).length > 0) return
+
+        setIsSubmittingLead(true)
+        setLeadSubmitError('')
+        try {
+            const formData = new FormData()
+            formData.append(GOOGLE_FORM_ENTRIES.studentName, lead.studentName.trim())
+            formData.append(GOOGLE_FORM_ENTRIES.parentName, lead.parentName.trim())
+            formData.append(GOOGLE_FORM_ENTRIES.studentClass, lead.studentClass)
+            formData.append(GOOGLE_FORM_ENTRIES.mobile, lead.mobile.trim())
+            formData.append(GOOGLE_FORM_ENTRIES.email, lead.email.trim())
+
+            await fetch(GOOGLE_FORM_ACTION_URL, { method: 'POST', mode: 'no-cors', body: formData })
+            setStage('result')
+        } catch {
+            setLeadSubmitError('Could not submit your details. Please check your connection and try again.')
+        } finally {
+            setIsSubmittingLead(false)
+        }
     }
 
     async function handleDownloadPdf() {
@@ -306,6 +380,104 @@ export default function SchoolStudentCareerAssessment() {
                         </div>
                     </div>
                 </div>
+            )}
+
+            {stage === 'leadCapture' && (
+                <Reveal>
+                    <div className="rounded-[2rem] border border-neutral-border bg-white p-6 shadow-sm sm:p-8">
+                        <h1 className="text-2xl font-bold text-ink">Almost there!</h1>
+                        <p className="mt-2 text-muted-ink">To prepare your result, please share a few details.</p>
+
+                        <form onSubmit={handleLeadSubmit} noValidate className="mt-6">
+                            <div className="mb-4">
+                                <label htmlFor={`${formId}-student-name`} className="mb-1 block text-sm font-medium text-ink">
+                                    Student Name
+                                </label>
+                                <input
+                                    id={`${formId}-student-name`}
+                                    value={lead.studentName}
+                                    onChange={(e) => setLead((previous) => ({ ...previous, studentName: e.target.value }))}
+                                    className="w-full rounded-md border border-neutral-border bg-white px-3 py-2 text-sm"
+                                />
+                                {leadErrors.studentName && <p className="mt-1 text-sm text-red-600">{leadErrors.studentName}</p>}
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor={`${formId}-parent-name`} className="mb-1 block text-sm font-medium text-ink">
+                                    Parent Name
+                                </label>
+                                <input
+                                    id={`${formId}-parent-name`}
+                                    value={lead.parentName}
+                                    onChange={(e) => setLead((previous) => ({ ...previous, parentName: e.target.value }))}
+                                    className="w-full rounded-md border border-neutral-border bg-white px-3 py-2 text-sm"
+                                />
+                                {leadErrors.parentName && <p className="mt-1 text-sm text-red-600">{leadErrors.parentName}</p>}
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor={`${formId}-class`} className="mb-1 block text-sm font-medium text-ink">
+                                    Class
+                                </label>
+                                <select
+                                    id={`${formId}-class`}
+                                    value={lead.studentClass}
+                                    onChange={(e) => setLead((previous) => ({ ...previous, studentClass: e.target.value }))}
+                                    className="w-full rounded-md border border-neutral-border bg-white px-3 py-2 text-sm"
+                                >
+                                    <option value="">Select class</option>
+                                    {schoolStudentClassOptions.map((option) => (
+                                        <option key={option} value={option}>
+                                            {option}
+                                        </option>
+                                    ))}
+                                </select>
+                                {leadErrors.studentClass && <p className="mt-1 text-sm text-red-600">{leadErrors.studentClass}</p>}
+                            </div>
+
+                            <div className="mb-4">
+                                <label htmlFor={`${formId}-mobile`} className="mb-1 block text-sm font-medium text-ink">
+                                    Mobile Number
+                                </label>
+                                <input
+                                    id={`${formId}-mobile`}
+                                    value={lead.mobile}
+                                    onChange={(e) => setLead((previous) => ({ ...previous, mobile: e.target.value }))}
+                                    inputMode="numeric"
+                                    className="w-full rounded-md border border-neutral-border bg-white px-3 py-2 text-sm"
+                                />
+                                {leadErrors.mobile && <p className="mt-1 text-sm text-red-600">{leadErrors.mobile}</p>}
+                            </div>
+
+                            <div className="mb-6">
+                                <label htmlFor={`${formId}-email`} className="mb-1 block text-sm font-medium text-ink">
+                                    Email Address <span className="font-normal text-muted-ink">(optional)</span>
+                                </label>
+                                <input
+                                    id={`${formId}-email`}
+                                    type="email"
+                                    value={lead.email}
+                                    onChange={(e) => setLead((previous) => ({ ...previous, email: e.target.value }))}
+                                    className="w-full rounded-md border border-neutral-border bg-white px-3 py-2 text-sm"
+                                />
+                            </div>
+
+                            {leadSubmitError && (
+                                <p className="mb-4 text-sm text-red-600" role="alert">
+                                    {leadSubmitError}
+                                </p>
+                            )}
+
+                            <Button
+                                type="submit"
+                                disabled={isSubmittingLead}
+                                className="h-auto w-full py-2.5 bg-brand-yellow text-ink hover:bg-brand-yellow/90 disabled:cursor-wait disabled:opacity-60"
+                            >
+                                {isSubmittingLead ? 'Submitting…' : 'See My Result'}
+                            </Button>
+                        </form>
+                    </div>
+                </Reveal>
             )}
 
             {stage === 'result' && (

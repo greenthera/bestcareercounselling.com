@@ -8,6 +8,8 @@ interface Category {
     questions: Question[];
 }
 
+export const schoolStudentClassOptions = ['Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12']
+
 export const assessmentQuestions: Category[] = [
     {
         category: "Career Awareness",
