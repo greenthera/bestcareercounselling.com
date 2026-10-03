@@ -39,7 +39,7 @@ import { onlineAdmissionsFaqs } from '@/data/faqs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
-import logo from '@/assets/logo.png'
+import logo from '@/assets/logo.webp'
 import planningTogether from '@/assets/bestcareercounselling-3.webp'
 
 const counsellorWhatsApp = buildWhatsAppUrl(
@@ -267,7 +267,7 @@ export default function OnlineAdmissions() {
             </p>
 
             <div className="mt-8 flex w-fit items-center gap-5 rounded-full border border-neutral-border bg-white px-8 py-4 shadow-sm lg:mt-auto">
-              <img src={logo} alt="" className="h-24 w-auto shrink-0" />
+              <img src={logo} alt="" loading="lazy" decoding="async" width={165} height={192} className="h-24 w-auto shrink-0" />
               <div>
                 <p className="text-2xl font-bold text-ink">Best Career Counselling</p>
                 <p className="mt-1.5 text-base text-muted-ink">
@@ -314,6 +314,8 @@ export default function OnlineAdmissions() {
             <div className="h-full min-h-[320px] overflow-hidden rounded-[1.75rem] border border-neutral-border shadow-lg">
               <img
                 src={planningTogether}
+                loading="lazy"
+                decoding="async"
                 alt="Planning a student's university and career options together"
                 className="h-full w-full object-cover"
               />

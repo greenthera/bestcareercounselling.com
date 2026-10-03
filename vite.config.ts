@@ -32,6 +32,10 @@ export default defineConfig(({ command, mode }) => {
     build: {
       assetsInlineLimit: 0,
     },
+    define: {
+      // Build date for src/hooks/useToday.ts (keeps prerendered dates hydration-safe).
+      'import.meta.env.VITE_BUILD_DATE': JSON.stringify(new Date().toISOString()),
+    },
     plugins: [react()],
     resolve: {
       alias: {

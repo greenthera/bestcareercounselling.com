@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Metric-matched stand-in shown until Inter loads (Arial with Inter's metrics, the
+   same overrides Next.js/fontaine generate), so swapping to Inter doesn't reflow the
+   prerendered hero text and shift the layout. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107.12%;
+  ascent-override: 90.44%;
+  descent-override: 22.52%;
+  line-gap-override: 0%;
+}
+
 @property --orbit-angle {
   syntax: '<angle>';
   inherits: true;

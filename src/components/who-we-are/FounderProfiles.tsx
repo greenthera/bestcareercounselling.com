@@ -1,7 +1,7 @@
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
-import counsellingThree from '@/assets/kishan-patel.png'
-import counsellingTwo from '@/assets/meeta-patel.png'
+import counsellingThree from '@/assets/kishan-patel.webp'
+import counsellingTwo from '@/assets/meeta-patel.webp'
 
 export function FounderProfiles() {
   return (

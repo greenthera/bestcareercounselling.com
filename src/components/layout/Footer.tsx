@@ -4,7 +4,8 @@ import { services } from '@/data/services'
 import { locations } from '@/data/locations'
 import { contactEmails } from '@/data/contact'
 import { buildGoogleMapsSearchUrl } from '@/lib/maps'
-import logo from '@/assets/logo.png'
+import logo from '@/assets/logo.webp'
+import { useToday } from '@/hooks/useToday'
 
 const NAV_LINKS = [
   { to: '/', label: 'Home' },
@@ -14,6 +15,7 @@ const NAV_LINKS = [
 ]
 
 export function Footer() {
+  const year = useToday().getFullYear()
   const surat = locations.find((location) => location.city === 'Surat') ?? locations[0]
 
   return (
@@ -23,7 +25,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-3">
               <div className="inline-block shrink-0 rounded-2xl bg-white p-3">
-                <img src={logo} alt="" className="h-14 w-auto" />
+                <img src={logo} alt="" loading="lazy" decoding="async" width={165} height={192} className="h-14 w-auto" />
               </div>
               <span className="text-lg font-bold text-warm-white">Best Career Counselling</span>
             </div>
@@ -34,7 +36,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-warm-white/40">Navigation</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-warm-white/70">Navigation</p>
             <ul className="space-y-2 text-sm">
               {NAV_LINKS.map((link) => (
                 <li key={link.to}>
@@ -47,7 +49,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-warm-white/40">Services</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-warm-white/70">Services</p>
             <ul className="space-y-2 text-sm">
               {services.map((service) => (
                 <li key={service.id}>
@@ -60,7 +62,7 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-warm-white/40">Contact</p>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-warm-white/70">Contact</p>
             <div className="space-y-3">
               <a
                 href="tel:+918758175187"
@@ -71,13 +73,13 @@ export function Footer() {
               </a>
 
               <div className="flex items-start gap-2">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-warm-white/75" aria-hidden="true" />
+                <Mail className="mt-2 h-4 w-4 shrink-0 text-warm-white/75" aria-hidden="true" />
                 <div>
                   {contactEmails.map((email) => (
                     <a
                       key={email}
                       href={`mailto:${email}`}
-                      className="block break-words text-sm text-warm-white/75 transition-colors hover:text-brand-yellow"
+                      className="block break-words py-1.5 text-sm text-warm-white/75 transition-colors hover:text-brand-yellow"
                     >
                       {email}
                     </a>
@@ -99,9 +101,9 @@ export function Footer() {
         </div>
 
         <div className="border-t border-white/10">
-          <div className="flex flex-col gap-2 px-6 py-4 text-xs text-warm-white/40 md:px-10 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col gap-2 px-6 py-4 text-xs text-warm-white/70 md:px-10 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-col gap-1">
-              <p>© {new Date().getFullYear()} All rights reserved.</p>
+              <p>© {year} All rights reserved.</p>
               <p>
                 Design and developed by{' '}
                 <a

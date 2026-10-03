@@ -16,7 +16,9 @@ export function Hero() {
   return (
     <section className="px-4 pb-4 pt-8 md:px-8 md:pb-6 md:pt-10">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-6">
-        <Reveal className="flex flex-col justify-center rounded-[2rem] border border-neutral-border bg-white p-8 lg:col-span-4 lg:p-11">
+        {/* The headline and portrait are the first paint (the portrait is the mobile LCP
+            element), so they render visible immediately rather than fading in via Reveal. */}
+        <div className="flex flex-col justify-center rounded-[2rem] border border-neutral-border bg-white p-8 lg:col-span-4 lg:p-11">
           <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-green-tint px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-green">
             Google's highest-rated career counsellors in Surat
           </span>
@@ -33,15 +35,18 @@ export function Hero() {
             Meeta Patel bring 30 years of career counselling and one-on-one guidance to every family, trusted by
             5,000+ students and backed by 900+ five-star reviews.
           </p>
-        </Reveal>
+        </div>
 
-        <Reveal delay={120} className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-brand-green lg:col-span-2 lg:row-span-2">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-brand-green lg:col-span-2 lg:row-span-2">
           <div className="group relative h-full min-h-[280px] w-full" role="img" aria-label="Kishan and Meeta Patel, career counsellors">
             <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
               <PlaceholderVisual
                 label="Kishan and Meeta Patel, career counsellors"
                 tone="dark"
                 src={heroPortrait}
+                width={720}
+                height={1280}
+                priority
                 className="object-top"
               />
             </div>
@@ -51,7 +56,7 @@ export function Hero() {
             <p className="text-xl font-bold text-brand-green">5,000+</p>
             <p className="text-xs text-muted-ink">Students guided</p>
           </div>
-        </Reveal>
+        </div>
 
         <Reveal delay={180} className="rounded-[2rem] border border-neutral-border bg-white p-6 lg:col-span-2">
           <ConsultationForm context="home" submitLabel="Book 15-Min Pre Counselling Session" />

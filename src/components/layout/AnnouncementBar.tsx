@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import { X } from 'lucide-react'
 import { getSeasonalMessage } from './seasonalMessage'
+import { useToday } from '@/hooks/useToday'
 
 export function AnnouncementBar() {
   const [dismissed, setDismissed] = useState(false)
+  const today = useToday()
   if (dismissed) return null
 
   return (
     <div className="flex items-center justify-center gap-3 bg-brand-green px-4 py-2 text-center text-sm text-warm-white" role="status">
-      <span>{getSeasonalMessage()}</span>
+      <span>{getSeasonalMessage(today)}</span>
       <button
         type="button"
         aria-label="Dismiss announcement"

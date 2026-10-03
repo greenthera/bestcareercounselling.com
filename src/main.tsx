@@ -1,6 +1,8 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
+// Self-hosted Inter (variable weight); only the subsets a page's text needs are fetched.
+import '@fontsource-variable/inter/wght.css'
 import './index.css'
 import App from './App.tsx'
 
@@ -20,10 +22,22 @@ window.addEventListener('vite:preloadError', () => {
   window.location.reload()
 })
 
-createRoot(document.getElementById('root')!).render(
+const container = document.getElementById('root')!
+const app = (
   <StrictMode>
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <App />
     </BrowserRouter>
-  </StrictMode>,
+  </StrictMode>
 )
+
+// The home page's HTML is prerendered into index.html at build time (see
+// scripts/prerender.mjs), so it paints before this bundle runs. Hydrate it when it
+// matches the current route; any other route (GitHub Pages serves every deep link
+// through index.html via 404.html) starts from an empty root instead.
+if (container.dataset.prerendered === window.location.pathname && container.firstElementChild) {
+  hydrateRoot(container, app)
+} else {
+  container.replaceChildren()
+  createRoot(container).render(app)
+}

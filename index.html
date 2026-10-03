@@ -24,21 +24,31 @@
     <meta name="twitter:title" content="Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 900+ Reviews" />
     <meta name="twitter:description" content="Career counselling and stream selection guidance from Kishan & Meeta Patel in Surat, with 30+ years of aptitude testing and one-on-one guidance." />
     <meta name="twitter:image" content="%VITE_SITE_URL%/og-image.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
     <title>Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 900+ Reviews</title>
-     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GR5WB6FTTP"></script>
+    <!-- Google Analytics. The gtag library (~170 KB) is fetched only once the page has
+         finished loading, so it never competes with first paint; anything pushed to
+         dataLayer before then is queued and sent when it arrives. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
       gtag('config', 'G-GR5WB6FTTP');
+
+      (function () {
+        function loadGtag() {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-GR5WB6FTTP';
+          document.head.appendChild(s);
+        }
+        function schedule() {
+          if ('requestIdleCallback' in window) requestIdleCallback(loadGtag, { timeout: 3000 });
+          else setTimeout(loadGtag, 1500);
+        }
+        if (document.readyState === 'complete') schedule();
+        else window.addEventListener('load', schedule);
+      })();
     </script>
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages

@@ -7,6 +7,15 @@ interface PlaceholderVisualProps {
   className?: string
   /** Real image URL. When provided, renders the actual image instead of the placeholder pattern. */
   src?: string
+  /**
+   * Marks the image as above-the-fold (e.g. the hero's LCP photo): loads eagerly at
+   * high fetch priority. Everything else lazy-loads, so offscreen photos don't
+   * compete with the first paint for bandwidth.
+   */
+  priority?: boolean
+  /** Intrinsic size hints. Optional — the container already sizes the image. */
+  width?: number
+  height?: number
 }
 
 /**
@@ -16,9 +25,20 @@ interface PlaceholderVisualProps {
  * designed, not empty, until real photography replaces them. Pass `src` once a real
  * asset is available and it renders in place of the placeholder pattern.
  */
-export function PlaceholderVisual({ label, tone = 'light', className, src }: PlaceholderVisualProps) {
+export function PlaceholderVisual({ label, tone = 'light', className, src, priority, width, height }: PlaceholderVisualProps) {
   if (src) {
-    return <img src={src} alt={label} className={cn('h-full w-full object-cover', className)} />
+    return (
+      <img
+        src={src}
+        alt={label}
+        width={width}
+        height={height}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : undefined}
+        decoding={priority ? undefined : 'async'}
+        className={cn('h-full w-full object-cover', className)}
+      />
+    )
   }
 
   return (

@@ -1,6 +1,6 @@
 import { GitFork, ArrowLeftRight, RotateCcw, Compass } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
-import logo from '@/assets/logo.png'
+import logo from '@/assets/logo.webp'
 
 const PROBLEMS = [
   {
@@ -63,7 +63,7 @@ export function ProblemSection() {
         />
         <div className="absolute inset-[32%] flex flex-col items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 text-center shadow-xl">
           <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white p-2 shadow-sm md:h-14 md:w-14">
-            <img src={logo} alt="" className="h-full w-full object-contain" />
+            <img src={logo} alt="" loading="lazy" decoding="async" width={165} height={192} className="h-full w-full object-contain" />
           </span>
           <p className="text-sm font-extrabold uppercase leading-tight tracking-wide text-ink md:text-base">
             Best Career

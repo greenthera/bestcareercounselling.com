@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Star, Quote } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
+import { useHydrated } from '@/hooks/useHydrated'
 import googleReviews from '@/data/googleReviews.json'
 
 interface GoogleReview {
@@ -33,6 +34,10 @@ function ReviewAvatar({ review }: { review: GoogleReview }) {
       src={review.avatar}
       alt=""
       referrerPolicy="no-referrer"
+      loading="lazy"
+      decoding="async"
+      width={44}
+      height={44}
       onError={() => setFailed(true)}
       className="h-11 w-11 shrink-0 rounded-full object-cover"
     />
@@ -88,6 +93,11 @@ function MarqueeRow({ reviews, reverse }: { reviews: GoogleReview[]; reverse?: b
 }
 
 export function GoogleReviewsCarousel() {
+  // 50 review cards (each row is rendered twice for the seamless loop) would roughly
+  // double the prerendered home page HTML, and the section is still faded out at
+  // that point anyway, so the rows only render once the page has hydrated.
+  const hydrated = useHydrated()
+
   return (
     <section className="overflow-hidden bg-brand-green py-14 md:py-20">
       <Reveal className="mx-auto max-w-2xl px-4 text-center md:px-8">
@@ -113,8 +123,12 @@ export function GoogleReviewsCarousel() {
             WebkitMaskImage: 'linear-gradient(90deg, transparent, black 6%, black 94%, transparent)',
           }}
         >
-          <MarqueeRow reviews={ROW_ONE} />
-          <MarqueeRow reviews={ROW_TWO} reverse />
+          {hydrated && (
+            <>
+              <MarqueeRow reviews={ROW_ONE} />
+              <MarqueeRow reviews={ROW_TWO} reverse />
+            </>
+          )}
         </div>
       </Reveal>
     </section>
