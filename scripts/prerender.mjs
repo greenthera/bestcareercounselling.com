@@ -10,7 +10,7 @@
 // first paint whenever the URL isn't the prerendered one, and main.tsx renders that
 // route client-side as before.
 
-import { readFileSync, readdirSync, writeFileSync, rmSync } from 'node:fs'
+import { readFileSync, writeFileSync, rmSync } from 'node:fs'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import path from 'node:path'
 
@@ -30,17 +30,14 @@ const renderedHtml = await render(ROUTE)
 // <head>, not inside #root where hydration would have to step over them.
 const leadingHints = renderedHtml.match(/^(?:<link [^>]*\/?>)*/)[0]
 const appHtml = renderedHtml.slice(leadingHints.length)
-const headTags = leadingHints.match(/<link [^>]*\/?>/g) ?? []
-
-// Preload the Latin Inter file (the only subset the page's text uses) so it arrives
-// alongside the CSS instead of after it, keeping the font swap close to first paint.
-const interLatin = readdirSync(path.join(distDir, 'assets')).find((file) =>
-  /^inter-latin-wght-normal-.*\.woff2$/.test(file),
-)
-if (!interLatin) {
-  throw new Error('prerender: Inter latin font file not found in dist/assets')
-}
-headTags.unshift(`<link rel="preload" as="font" type="font/woff2" crossorigin href="${BASE_PATH}assets/${interLatin}">`)
+// Keep only the high-priority hint (the hero photo, i.e. the LCP image). The others
+// (e.g. the header logo) are discovered just as early from the markup, and every
+// extra early fetch can hold back Chrome's first frame. For the same reason the Inter
+// font is deliberately NOT preloaded: fetching it before first paint made Chrome
+// delay that paint (by up to ~2s in Lighthouse) while it waited on the font. It's
+// discovered from the inlined CSS instead, and the metric-matched fallback in
+// index.css keeps the swap from shifting the layout.
+const headTags = (leadingHints.match(/<link [^>]*\/?>/g) ?? []).filter((tag) => /fetchPriority="high"/i.test(tag))
 
 const indexPath = path.join(distDir, 'index.html')
 let indexHtml = readFileSync(indexPath, 'utf8')
@@ -76,14 +73,35 @@ for (const tag of [entryScript, ...modulePreloads]) {
   indexHtml = indexHtml.replace(tag[0], '')
 }
 
+// The home route's lazy chunk and its imports, from Vite's manifest. Preloaded
+// together with the entry bundle (on the home page only), so they download in
+// parallel rather than as a second round trip once the entry bundle runs.
+const manifestDir = path.join(distDir, '.vite')
+const manifest = JSON.parse(readFileSync(path.join(manifestDir, 'manifest.json'), 'utf8'))
+const entryFiles = new Set([entryScript[1], ...modulePreloads.map((m) => m[1])])
+const homeChunks = new Set()
+function collectChunks(key) {
+  const chunk = manifest[key]
+  const href = chunk && BASE_PATH + chunk.file
+  if (!chunk || homeChunks.has(href) || entryFiles.has(href)) return
+  homeChunks.add(href)
+  for (const dep of chunk.imports ?? []) collectChunks(dep)
+}
+collectChunks('src/pages/Home.tsx')
+if (homeChunks.size === 0) {
+  throw new Error('prerender: src/pages/Home.tsx not found in the Vite manifest')
+}
+rmSync(manifestDir, { recursive: true, force: true })
+
 const prerenderedPath = BASE_PATH + ROUTE.slice(1)
 const loaderScript = `<script>
-      (function (root, entry, preloads) {
+      (function (root, entry, preloads, homeChunks) {
         var started = false
+        var routeChunks = []
         function load() {
           if (started) return
           started = true
-          preloads.forEach(function (href) {
+          preloads.concat(routeChunks).forEach(function (href) {
             var link = document.createElement('link')
             link.rel = 'modulepreload'
             link.crossOrigin = ''
@@ -101,6 +119,7 @@ const loaderScript = `<script>
           root.replaceChildren()
           load()
         } else {
+          routeChunks = homeChunks
           // Start once the largest paint has settled, so the bundle never competes with
           // the hero photo: the photo has painted as the LCP, or it's below the fold on
           // this screen, or it has loaded without being the largest element. The first
@@ -128,7 +147,7 @@ const loaderScript = `<script>
           })
           setTimeout(load, 3000)
         }
-      })(document.getElementById('root'), ${JSON.stringify(entryScript[1])}, ${JSON.stringify(modulePreloads.map((m) => m[1]))})
+      })(document.getElementById('root'), ${JSON.stringify(entryScript[1])}, ${JSON.stringify(modulePreloads.map((m) => m[1]))}, ${JSON.stringify([...homeChunks])})
     </script>`
 
 indexHtml = indexHtml

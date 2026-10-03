@@ -31,6 +31,8 @@ export default defineConfig(({ command, mode }) => {
     // staying as separate, browser-cacheable files, ballooning it 5x+.
     build: {
       assetsInlineLimit: 0,
+      // Lets scripts/prerender.mjs find the home route's chunks (removed after use).
+      manifest: true,
     },
     define: {
       // Build date for src/hooks/useToday.ts (keeps prerendered dates hydration-safe).

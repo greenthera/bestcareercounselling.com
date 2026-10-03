@@ -8,11 +8,11 @@ import { ExternalLink } from 'lucide-react'
 import heroPortrait from '@/assets/hero-portrait.webp'
 import heroPortraitSmall from '@/assets/hero-portrait-720.webp'
 import heroLandscape from '@/assets/hero-landscape.webp'
-import heroLandscapeSmall from '@/assets/hero-landscape-760.webp'
+import heroLandscapeSmall from '@/assets/hero-landscape-680.webp'
 
 // Rendered width of the hero's photo cards: one third of the 7xl grid on large screens,
-// half the viewport on tablets, full width (minus gutters) on phones.
-const HERO_IMAGE_SIZES = '(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw'
+// half the viewport on tablets, full width minus the 1rem side gutters on phones.
+const HERO_IMAGE_SIZES = '(min-width: 1024px) 420px, (min-width: 768px) 50vw, calc(100vw - 2rem)'
 
 export function Hero() {
   const directWhatsAppUrl = buildWhatsAppUrl(
@@ -97,7 +97,7 @@ export function Hero() {
               <PlaceholderVisual
                 label="Kishan Patel counselling students at a university admissions session"
                 src={heroLandscape}
-                srcSet={`${heroLandscapeSmall} 760w, ${heroLandscape} 1200w`}
+                srcSet={`${heroLandscapeSmall} 680w, ${heroLandscape} 1200w`}
                 sizes={HERO_IMAGE_SIZES}
               />
             </div>

@@ -4,10 +4,11 @@
 
 /* Metric-matched stand-in shown until Inter loads (Arial with Inter's metrics, the
    same overrides Next.js/fontaine generate), so swapping to Inter doesn't reflow the
-   prerendered hero text and shift the layout. */
+   prerendered hero text and shift the layout. Liberation Sans and Arimo share
+   Arial's metrics, so the same overrides hold where Arial isn't installed (Linux). */
 @font-face {
   font-family: 'Inter Fallback';
-  src: local('Arial');
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Arimo');
   size-adjust: 107.12%;
   ascent-override: 90.44%;
   descent-override: 22.52%;
