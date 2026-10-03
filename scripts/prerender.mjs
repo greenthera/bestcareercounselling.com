@@ -101,14 +101,32 @@ const loaderScript = `<script>
           root.replaceChildren()
           load()
         } else {
-          // Start once the prerendered page has actually painted. The timeout covers
-          // browsers without paint timing and tabs opened in the background.
+          // Start once the largest paint has settled, so the bundle never competes with
+          // the hero photo: the photo has painted as the LCP, or it's below the fold on
+          // this screen, or it has loaded without being the largest element. The first
+          // interaction starts it at once; the timeout covers browsers without LCP
+          // timing and tabs opened in the background.
+          var hero = document.querySelector('img[fetchpriority="high"]')
+          var painted = false
+          function heroOffscreen() {
+            return !hero || hero.getBoundingClientRect().top >= innerHeight
+          }
+          // A loaded photo that isn't the LCP paints within a frame or two of loading.
+          function soonAfterHeroPaints() {
+            if (painted && hero && hero.complete) setTimeout(load, 500)
+          }
           try {
             new PerformanceObserver(function (list) {
-              if (list.getEntriesByName('first-contentful-paint').length) load()
-            }).observe({ type: 'paint', buffered: true })
+              painted = true
+              if (heroOffscreen() || list.getEntries().some(function (entry) { return entry.url })) load()
+              else soonAfterHeroPaints()
+            }).observe({ type: 'largest-contentful-paint', buffered: true })
           } catch (e) {}
-          setTimeout(load, 1500)
+          if (hero) hero.addEventListener('load', soonAfterHeroPaints)
+          ;['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (type) {
+            addEventListener(type, load, { once: true, passive: true })
+          })
+          setTimeout(load, 3000)
         }
       })(document.getElementById('root'), ${JSON.stringify(entryScript[1])}, ${JSON.stringify(modulePreloads.map((m) => m[1]))})
     </script>`

@@ -25,9 +25,10 @@
     <meta name="twitter:description" content="Career counselling and stream selection guidance from Kishan & Meeta Patel in Surat, with 30+ years of aptitude testing and one-on-one guidance." />
     <meta name="twitter:image" content="%VITE_SITE_URL%/og-image.png" />
     <title>Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 900+ Reviews</title>
-    <!-- Google Analytics. The gtag library (~170 KB) is fetched only once the page has
-         finished loading, so it never competes with first paint; anything pushed to
-         dataLayer before then is queued and sent when it arrives. -->
+    <!-- Google Analytics. The gtag library (~170 KB) is fetched only after the app
+         bundle has started (src/main.tsx calls __startAnalytics) and the page has
+         finished loading, so it never competes with the first paint or the hero image;
+         anything pushed to dataLayer before then is queued and sent when it arrives. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -35,7 +36,8 @@
 
       gtag('config', 'G-GR5WB6FTTP');
 
-      (function () {
+      window.__startAnalytics = function () {
+        window.__startAnalytics = function () {};
         function loadGtag() {
           var s = document.createElement('script');
           s.async = true;
@@ -48,7 +50,7 @@
         }
         if (document.readyState === 'complete') schedule();
         else window.addEventListener('load', schedule);
-      })();
+      };
     </script>
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages

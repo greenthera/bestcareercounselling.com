@@ -76,6 +76,12 @@ export default {
           from: { opacity: '0', transform: 'translateY(28px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
+        // Same motion as the <Reveal> scroll transition, for above-the-fold content
+        // that should fade in on first paint without waiting for JS.
+        'reveal-in': {
+          from: { opacity: '0', transform: 'translateY(1.75rem)', filter: 'blur(2px)' },
+          to: { opacity: '1', transform: 'translateY(0)', filter: 'blur(0)' },
+        },
         'glow-pulse': {
           '0%, 100%': { opacity: '0.5' },
           '50%': { opacity: '1' },
@@ -95,6 +101,7 @@ export default {
         float: 'float 6s ease-in-out infinite',
         'float-slow': 'float-slow 8s ease-in-out infinite',
         'reveal-up': 'reveal-up 0.7s cubic-bezier(0.16,1,0.3,1) forwards',
+        'reveal-in': 'reveal-in 700ms cubic-bezier(0, 0, 0.2, 1) both',
         'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
         marquee: 'marquee 60s linear infinite',
         'marquee-reverse': 'marquee-reverse 70s linear infinite',

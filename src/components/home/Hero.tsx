@@ -6,7 +6,13 @@ import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
 import { ExternalLink } from 'lucide-react'
 import heroPortrait from '@/assets/hero-portrait.webp'
+import heroPortraitSmall from '@/assets/hero-portrait-720.webp'
 import heroLandscape from '@/assets/hero-landscape.webp'
+import heroLandscapeSmall from '@/assets/hero-landscape-760.webp'
+
+// Rendered width of the hero's photo cards: one third of the 7xl grid on large screens,
+// half the viewport on tablets, full width (minus gutters) on phones.
+const HERO_IMAGE_SIZES = '(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw'
 
 export function Hero() {
   const directWhatsAppUrl = buildWhatsAppUrl(
@@ -17,8 +23,9 @@ export function Hero() {
     <section className="px-4 pb-4 pt-8 md:px-8 md:pb-6 md:pt-10">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-6">
         {/* The headline and portrait are the first paint (the portrait is the mobile LCP
-            element), so they render visible immediately rather than fading in via Reveal. */}
-        <div className="flex flex-col justify-center rounded-[2rem] border border-neutral-border bg-white p-8 lg:col-span-4 lg:p-11">
+            element), so they fade in with a CSS animation that starts as soon as the
+            prerendered HTML paints, rather than via Reveal, which waits for JS. */}
+        <div className="flex animate-reveal-in flex-col justify-center rounded-[2rem] border border-neutral-border bg-white p-8 motion-reduce:animate-none lg:col-span-4 lg:p-11">
           <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-green-tint px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-brand-green">
             Google's highest-rated career counsellors in Surat
           </span>
@@ -37,15 +44,17 @@ export function Hero() {
           </p>
         </div>
 
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-brand-green lg:col-span-2 lg:row-span-2">
+        <div className="relative animate-reveal-in overflow-hidden rounded-[2rem] border border-white/10 bg-brand-green [animation-delay:120ms] motion-reduce:animate-none lg:col-span-2 lg:row-span-2">
           <div className="group relative h-full min-h-[280px] w-full" role="img" aria-label="Kishan and Meeta Patel, career counsellors">
             <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
               <PlaceholderVisual
                 label="Kishan and Meeta Patel, career counsellors"
                 tone="dark"
                 src={heroPortrait}
-                width={720}
-                height={1280}
+                srcSet={`${heroPortraitSmall} 720w, ${heroPortrait} 1000w`}
+                sizes={HERO_IMAGE_SIZES}
+                width={1000}
+                height={1778}
                 priority
                 className="object-top"
               />
@@ -85,7 +94,12 @@ export function Hero() {
             aria-label="Kishan Patel counselling students at a university admissions session"
           >
             <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-              <PlaceholderVisual label="Kishan Patel counselling students at a university admissions session" src={heroLandscape} />
+              <PlaceholderVisual
+                label="Kishan Patel counselling students at a university admissions session"
+                src={heroLandscape}
+                srcSet={`${heroLandscapeSmall} 760w, ${heroLandscape} 1200w`}
+                sizes={HERO_IMAGE_SIZES}
+              />
             </div>
           </div>
         </Reveal>

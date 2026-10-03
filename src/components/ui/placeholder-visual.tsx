@@ -13,6 +13,9 @@ interface PlaceholderVisualProps {
    * compete with the first paint for bandwidth.
    */
   priority?: boolean
+  /** Responsive variants (`srcset`) and their rendered slot width (`sizes`). */
+  srcSet?: string
+  sizes?: string
   /** Intrinsic size hints. Optional — the container already sizes the image. */
   width?: number
   height?: number
@@ -25,11 +28,23 @@ interface PlaceholderVisualProps {
  * designed, not empty, until real photography replaces them. Pass `src` once a real
  * asset is available and it renders in place of the placeholder pattern.
  */
-export function PlaceholderVisual({ label, tone = 'light', className, src, priority, width, height }: PlaceholderVisualProps) {
+export function PlaceholderVisual({
+  label,
+  tone = 'light',
+  className,
+  src,
+  srcSet,
+  sizes,
+  priority,
+  width,
+  height,
+}: PlaceholderVisualProps) {
   if (src) {
     return (
       <img
         src={src}
+        srcSet={srcSet}
+        sizes={sizes}
         alt={label}
         width={width}
         height={height}

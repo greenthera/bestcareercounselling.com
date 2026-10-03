@@ -41,3 +41,6 @@ if (container.dataset.prerendered === window.location.pathname && container.firs
   container.replaceChildren()
   createRoot(container).render(app)
 }
+
+// Defined in index.html; deferred to here so analytics never loads ahead of the page.
+;(window as Window & { __startAnalytics?: () => void }).__startAnalytics?.()
