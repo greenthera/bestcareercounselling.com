@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from '@/components/ui/sheet'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { cn } from '@/lib/utils'
-import logo from '@/assets/logo.png'
+import logo from '@/assets/logo.webp'
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home', end: true },
@@ -30,7 +30,7 @@ export function MobileNav() {
         <div className="border-b border-neutral-border p-6">
           <SheetTitle asChild>
             <div className="flex items-center gap-2">
-              <img src={logo} alt="" className="h-14 w-auto" />
+              <img src={logo} alt="" loading="lazy" decoding="async" width={165} height={192} className="h-14 w-auto" />
               <span className="text-lg font-bold text-ink">Best Career Counselling</span>
             </div>
           </SheetTitle>

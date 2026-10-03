@@ -1,4 +1,4 @@
-import logo from '@/assets/logo.png'
+import logo from '@/assets/logo.webp'
 
 /**
  * Full-page loading state shown by App.tsx's Suspense boundary while a lazy-loaded
@@ -16,7 +16,7 @@ export function PageLoader() {
           className="absolute inset-0 rounded-full border-2 border-neutral-border border-t-brand-green animate-spin motion-reduce:animate-none"
           aria-hidden="true"
         />
-        <img src={logo} alt="" className="relative h-20 w-auto animate-pulse" />
+        <img src={logo} alt="" width={165} height={192} className="relative h-20 w-auto animate-pulse" />
       </div>
       <span className="sr-only">Loading…</span>
     </div>
