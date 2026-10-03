@@ -1,1 +1,0 @@
-var e=`/assets/not-ready-to-book-C3eQULKs.webp`;export{e as t};

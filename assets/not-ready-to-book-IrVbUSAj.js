@@ -1,0 +1,1 @@
+var e=`/assets/not-ready-to-book-DgpL8_ZM.webp`;export{e as t};

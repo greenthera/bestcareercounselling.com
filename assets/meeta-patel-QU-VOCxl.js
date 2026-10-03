@@ -1,1 +1,0 @@
-var e=`/assets/kishan-patel-QMzJr3qx.png`,t=`/assets/meeta-patel-JZ0jfrpD.png`;export{e as n,t};
