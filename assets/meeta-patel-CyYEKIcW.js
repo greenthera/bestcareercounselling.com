@@ -1,1 +1,0 @@
-var e=`/assets/kishan-patel-B2h6qqKO.webp`,t=`/assets/meeta-patel-DwId59Hs.webp`;export{e as n,t};
