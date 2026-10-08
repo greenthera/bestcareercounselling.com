@@ -213,6 +213,8 @@ export default function ParentCareerClarityAssessment() {
     <>
       <Breadcrumbs
         items={[{ label: 'Parent Career Clarity Assessment', path: '/parent-career-clarity-assessment' }]}
+        maxWidthClassName={stage === 'result' ? 'max-w-4xl' : 'max-w-2xl'}
+        innerPadding
       />
       <section
         className={cn('mx-auto px-4 py-12 md:px-8 md:py-16', stage === 'result' ? 'max-w-4xl' : 'max-w-2xl')}

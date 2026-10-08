@@ -13,7 +13,7 @@ export default function ContactUs() {
   usePageSeo(pageSeo.contactUs)
   return (
     <>
-      <Breadcrumbs items={[{ label: 'Contact Us', path: '/contact-us' }]} />
+      <Breadcrumbs items={[{ label: 'Contact Us', path: '/contact-us' }]} maxWidthClassName="max-w-2xl" />
       <ContactHero />
       <TwoPaths />
       <WhatHappensOnCall />

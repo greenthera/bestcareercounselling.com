@@ -263,6 +263,8 @@ export default function SchoolStudentCareerAssessment() {
         <>
             <Breadcrumbs
                 items={[{ label: 'Career Assessment for School Students', path: '/school-student-career-assessment' }]}
+                maxWidthClassName="max-w-2xl"
+                innerPadding
             />
             <section className="mx-auto max-w-2xl px-4 py-12 md:px-8 md:py-16">
             {stage === 'intro' && (

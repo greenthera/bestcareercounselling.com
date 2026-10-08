@@ -222,6 +222,7 @@ export default function OnlineAdmissions() {
         path={pageSeo.onlineAdmissions.path}
       />
       <Breadcrumbs
+        align="left"
         items={[
           { label: 'Admission Consulting', path: '/admission-consulting' },
           { label: 'Online University Admissions', path: '/admission-consulting/online-admissions' },

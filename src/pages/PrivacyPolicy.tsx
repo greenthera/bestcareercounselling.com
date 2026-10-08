@@ -62,7 +62,7 @@ export default function PrivacyPolicy() {
 
   return (
     <>
-      <Breadcrumbs items={[{ label: 'Privacy Policy', path: '/privacy-policy' }]} />
+      <Breadcrumbs items={[{ label: 'Privacy Policy', path: '/privacy-policy' }]} maxWidthClassName="max-w-3xl" innerPadding />
       <LegalPageLayout
         title="Privacy Policy"
         lastUpdated="14 August 2026"

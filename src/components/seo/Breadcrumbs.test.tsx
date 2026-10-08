@@ -24,6 +24,19 @@ describe('Breadcrumbs', () => {
     expect(screen.queryByRole('link', { name: 'Career Counselling' })).not.toBeInTheDocument()
   })
 
+  it('defaults to the site-wide max width and switches when a page passes a narrower one', () => {
+    const { container, rerender } = renderBreadcrumbs([{ label: 'Career Counselling', path: '/career-counselling' }])
+    expect(container.querySelector('ol')).toHaveClass('max-w-7xl')
+
+    rerender(
+      <MemoryRouter>
+        <Breadcrumbs items={[{ label: 'Terms of Service', path: '/terms' }]} maxWidthClassName="max-w-3xl" />
+      </MemoryRouter>,
+    )
+    expect(container.querySelector('ol')).toHaveClass('max-w-3xl')
+    expect(container.querySelector('ol')).not.toHaveClass('max-w-7xl')
+  })
+
   it('renders every intermediate level as a link for a nested trail', () => {
     renderBreadcrumbs([
       { label: 'Admission Consulting', path: '/admission-consulting' },

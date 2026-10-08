@@ -57,7 +57,7 @@ export default function Terms() {
 
   return (
     <>
-      <Breadcrumbs items={[{ label: 'Terms of Service', path: '/terms' }]} />
+      <Breadcrumbs items={[{ label: 'Terms of Service', path: '/terms' }]} maxWidthClassName="max-w-3xl" innerPadding />
       <LegalPageLayout
         title="Terms of Service"
         lastUpdated="14 August 2026"
