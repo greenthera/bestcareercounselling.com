@@ -39,6 +39,7 @@ import { onlineAdmissionsFaqs } from '@/data/faqs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 import { ServiceSchema } from '@/components/seo/ServiceSchema'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
 import logo from '@/assets/logo.webp'
 import planningTogether from '@/assets/bestcareercounselling-3.webp'
@@ -219,6 +220,12 @@ export default function OnlineAdmissions() {
         name="Online University Admissions"
         description={pageSeo.onlineAdmissions.description}
         path={pageSeo.onlineAdmissions.path}
+      />
+      <Breadcrumbs
+        items={[
+          { label: 'Admission Consulting', path: '/admission-consulting' },
+          { label: 'Online University Admissions', path: '/admission-consulting/online-admissions' },
+        ]}
       />
       {/* Hero */}
       <section className="px-4 pt-8 md:px-8 md:pt-10">

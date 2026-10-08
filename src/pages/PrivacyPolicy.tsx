@@ -1,5 +1,6 @@
 import { LegalPageLayout, type LegalSection } from '@/components/legal/LegalPageLayout'
 import { ContactLinks } from '@/components/legal/ContactLinks'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 
@@ -60,11 +61,14 @@ export default function PrivacyPolicy() {
   usePageSeo(pageSeo.privacyPolicy)
 
   return (
-    <LegalPageLayout
-      title="Privacy Policy"
-      lastUpdated="14 August 2026"
-      intro="Your privacy matters to us. This policy explains how Best Career Counselling collects, uses and protects your personal information."
-      sections={SECTIONS}
-    />
+    <>
+      <Breadcrumbs items={[{ label: 'Privacy Policy', path: '/privacy-policy' }]} />
+      <LegalPageLayout
+        title="Privacy Policy"
+        lastUpdated="14 August 2026"
+        intro="Your privacy matters to us. This policy explains how Best Career Counselling collects, uses and protects your personal information."
+        sections={SECTIONS}
+      />
+    </>
   )
 }

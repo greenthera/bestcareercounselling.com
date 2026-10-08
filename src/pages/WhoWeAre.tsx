@@ -10,6 +10,7 @@ import { FinalCTA } from '@/components/home/FinalCTA'
 import { FAQSection } from '@/components/home/FAQSection'
 import { whoWeAreFaqs } from '@/data/faqs'
 import { PersonSchema } from '@/components/seo/PersonSchema'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 
@@ -19,6 +20,7 @@ export default function WhoWeAre() {
     <>
       <PersonSchema person="kishan" />
       <PersonSchema person="meeta" />
+      <Breadcrumbs items={[{ label: 'Who We Are', path: '/who-we-are' }]} />
       <WhoWeAreHero />
       <OurStory />
       <FounderProfiles />

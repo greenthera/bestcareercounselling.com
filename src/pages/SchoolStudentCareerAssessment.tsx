@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { assessmentQuestions, schoolStudentClassOptions } from '@/data/SchoolStudentCareerAssessmentContent'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { Reveal } from '@/components/ui/reveal'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { buildWhatsAppUrl, isValidIndianPhone } from '@/lib/whatsapp'
@@ -259,7 +260,11 @@ export default function SchoolStudentCareerAssessment() {
     )
 
     return (
-        <section className="mx-auto max-w-2xl px-4 py-12 md:px-8 md:py-16">
+        <>
+            <Breadcrumbs
+                items={[{ label: 'Career Assessment for School Students', path: '/school-student-career-assessment' }]}
+            />
+            <section className="mx-auto max-w-2xl px-4 py-12 md:px-8 md:py-16">
             {stage === 'intro' && (
                 <Reveal className="flex flex-col items-center text-center">
                     <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green-tint text-brand-green">
@@ -575,6 +580,7 @@ export default function SchoolStudentCareerAssessment() {
                     </div>
                 </Reveal>
             )}
-        </section>
+            </section>
+        </>
     )
 }

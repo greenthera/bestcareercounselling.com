@@ -13,6 +13,7 @@ import {
 } from '@/data/ParentCareerClarityAssessmentContent'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { Reveal } from '@/components/ui/reveal'
 import { Button } from '@/components/ui/button'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
@@ -209,9 +210,13 @@ export default function ParentCareerClarityAssessment() {
   }
 
   return (
-    <section
-      className={cn('mx-auto px-4 py-12 md:px-8 md:py-16', stage === 'result' ? 'max-w-4xl' : 'max-w-2xl')}
-    >
+    <>
+      <Breadcrumbs
+        items={[{ label: 'Parent Career Clarity Assessment', path: '/parent-career-clarity-assessment' }]}
+      />
+      <section
+        className={cn('mx-auto px-4 py-12 md:px-8 md:py-16', stage === 'result' ? 'max-w-4xl' : 'max-w-2xl')}
+      >
       {stage === 'intro' && (
         <Reveal className="flex flex-col items-center text-center">
           <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green-tint text-brand-green">
@@ -723,6 +728,7 @@ export default function ParentCareerClarityAssessment() {
           </div>
         </Reveal>
       )}
-    </section>
+      </section>
+    </>
   )
 }

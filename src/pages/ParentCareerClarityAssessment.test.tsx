@@ -55,7 +55,7 @@ describe('ParentCareerClarityAssessment page', () => {
 
   it('starts on an intro screen and sets the page title', () => {
     renderPage()
-    expect(screen.getByText(/parent career clarity assessment/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/parent career clarity assessment/i).length).toBeGreaterThan(0)
     expect(
       screen.getByRole('heading', { name: /how clear are you about your child's career direction/i }),
     ).toBeInTheDocument()

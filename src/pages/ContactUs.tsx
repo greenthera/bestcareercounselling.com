@@ -5,6 +5,7 @@ import { ContactMethods } from '@/components/contact/ContactMethods'
 import { ContactLocation } from '@/components/contact/ContactLocation'
 import { FAQSection } from '@/components/home/FAQSection'
 import { bookingFaqs } from '@/data/faqs'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 
@@ -12,6 +13,7 @@ export default function ContactUs() {
   usePageSeo(pageSeo.contactUs)
   return (
     <>
+      <Breadcrumbs items={[{ label: 'Contact Us', path: '/contact-us' }]} />
       <ContactHero />
       <TwoPaths />
       <WhatHappensOnCall />

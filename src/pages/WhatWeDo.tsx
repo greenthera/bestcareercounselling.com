@@ -4,6 +4,7 @@ import { ServiceNav } from '@/components/what-we-do/ServiceNav'
 import { ServiceSection } from '@/components/what-we-do/ServiceSection'
 import { FreeAssessmentSection } from '@/components/home/FreeAssessmentSection'
 import { services } from '@/data/services'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 
@@ -11,6 +12,7 @@ export default function WhatWeDo() {
   usePageSeo(pageSeo.whatWeDo)
   return (
     <>
+      <Breadcrumbs items={[{ label: 'What We Do', path: '/what-we-do' }]} />
       <WhatWeDoHero />
       <ServiceCategoryLinks />
       <ServiceNav />

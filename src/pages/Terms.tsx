@@ -1,5 +1,6 @@
 import { LegalPageLayout, type LegalSection } from '@/components/legal/LegalPageLayout'
 import { ContactLinks } from '@/components/legal/ContactLinks'
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
 
@@ -55,11 +56,14 @@ export default function Terms() {
   usePageSeo(pageSeo.terms)
 
   return (
-    <LegalPageLayout
-      title="Terms of Service"
-      lastUpdated="14 August 2026"
-      intro="These Terms govern your use of Best Career Counselling's services, including consultations, assessments and admission consulting."
-      sections={SECTIONS}
-    />
+    <>
+      <Breadcrumbs items={[{ label: 'Terms of Service', path: '/terms' }]} />
+      <LegalPageLayout
+        title="Terms of Service"
+        lastUpdated="14 August 2026"
+        intro="These Terms govern your use of Best Career Counselling's services, including consultations, assessments and admission consulting."
+        sections={SECTIONS}
+      />
+    </>
   )
 }
