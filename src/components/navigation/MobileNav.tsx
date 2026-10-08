@@ -3,7 +3,10 @@ import { NavLink } from 'react-router-dom'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from '@/components/ui/sheet'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { cn } from '@/lib/utils'
+import { buildWhatsAppUrl } from '@/lib/whatsapp'
 import logo from '@/assets/logo.webp'
+
+const DEFAULT_MESSAGE = 'Hi, I want to know about career counselling for my child in Class ___'
 
 const NAV_ITEMS = [
   { to: '/', label: 'Home', end: true },
@@ -96,7 +99,7 @@ export function MobileNav() {
 
           <div className="grid grid-cols-2 gap-2">
             <a
-              href="https://wa.me/918758175187"
+              href={buildWhatsAppUrl(DEFAULT_MESSAGE)}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center justify-center gap-2 rounded-full bg-brand-green py-2.5 pl-1.5 pr-4 text-sm font-semibold text-warm-white transition-colors hover:bg-brand-green/90"

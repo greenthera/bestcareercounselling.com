@@ -2,16 +2,7 @@ import { useId, useState, type FormEvent } from 'react'
 import { Button } from '@/components/ui/button'
 import { isValidIndianPhone, buildWhatsAppUrl } from '@/lib/whatsapp'
 import { buildContextualMessage } from '@/components/whatsapp/whatsappMessages'
-
-const CLASS_OPTIONS = [
-  'Class 8',
-  'Class 10',
-  'Class 12',
-  'UG Student',
-  'PG / MBA',
-  'Working Professional',
-  'Parent Enquiring',
-]
+import { currentStatusOptions } from '@/data/currentStatusOptions'
 
 interface Errors {
   name?: string
@@ -88,7 +79,7 @@ export function AssessmentForm() {
           className="w-full rounded-md border border-neutral-border bg-white px-3 py-2 text-sm"
         >
           <option value="">Select current status</option>
-          {CLASS_OPTIONS.map((option) => (
+          {currentStatusOptions.map((option) => (
             <option key={option} value={option}>
               {option}
             </option>
