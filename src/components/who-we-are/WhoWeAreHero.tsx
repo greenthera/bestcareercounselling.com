@@ -1,6 +1,6 @@
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
-import counselling from '@/assets/bestcareercounselling-3.webp'
+import counselling from '@/assets/career-counsellors-at-event.webp'
 
 export function WhoWeAreHero() {
   return (
@@ -17,8 +17,8 @@ export function WhoWeAreHero() {
         delay={120}
         className="mx-auto mt-10 aspect-[16/7] max-w-4xl overflow-hidden rounded-[1.6rem] border border-neutral-border shadow-sm"
       >
-        <div role="img" aria-label="Career counselling session in progress" className="h-full w-full">
-          <PlaceholderVisual label="Career counselling session in progress" src={counselling} />
+        <div role="img" aria-label="Kishan and Meeta Patel at a career counselling event" className="h-full w-full">
+          <PlaceholderVisual label="Kishan and Meeta Patel at a career counselling event" src={counselling} sizes="(min-width: 896px) 896px, 100vw" priority />
         </div>
       </Reveal>
     </section>

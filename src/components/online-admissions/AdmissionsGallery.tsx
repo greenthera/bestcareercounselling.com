@@ -3,20 +3,20 @@ import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { ImageLightbox } from '@/components/ui/image-lightbox'
 import { Reveal } from '@/components/ui/reveal'
 import { cn } from '@/lib/utils'
-import officeSurat from '@/assets/bestcareercounselling-4.webp'
-import oneOnOne from '@/assets/bestcareercounselling.webp'
-import parentWorkshop from '@/assets/what-you-walk-away-with-1.webp'
-import teamAtWork from '@/assets/bestcareercounselling-1.webp'
-import talkingWithStudents from '@/assets/not-ready-to-book.webp'
-import reviewingDocuments from '@/assets/what-you-walk-away-with-2.webp'
+import officeSurat from '@/assets/career-counselling-event-conversation.webp'
+import oneOnOne from '@/assets/career-counselling-group-discussion.webp'
+import parentWorkshop from '@/assets/career-counselling-small-group.webp'
+import teamAtWork from '@/assets/career-counselling-table-discussion.webp'
+import talkingWithStudents from '@/assets/career-guidance-networking-event.webp'
+import reviewingDocuments from '@/assets/career-counselling-workshop-discussion.webp'
 
 const PHOTOS = [
-  { label: 'Our office in Surat', src: officeSurat, tile: 'lg:col-span-2 lg:row-span-2' },
-  { label: 'A one-on-one counselling session', src: oneOnOne, tile: 'lg:col-span-2 lg:row-span-1' },
-  { label: 'A parent workshop session', src: parentWorkshop, tile: 'lg:col-span-1 lg:row-span-1' },
-  { label: 'The counselling team at work', src: teamAtWork, tile: 'lg:col-span-1 lg:row-span-1' },
-  { label: 'Talking through options with students', src: talkingWithStudents, tile: 'lg:col-span-2 lg:row-span-1' },
-  { label: 'Reviewing admission documents together', src: reviewingDocuments, tile: 'lg:col-span-2 lg:row-span-1' },
+  { label: 'A counsellor speaking with event attendees', src: officeSurat, tile: 'lg:col-span-2 lg:row-span-2' },
+  { label: 'A counsellor leading a group discussion', src: oneOnOne, tile: 'lg:col-span-2 lg:row-span-1' },
+  { label: 'A small-group counselling discussion', src: parentWorkshop, tile: 'lg:col-span-1 lg:row-span-1' },
+  { label: 'A counsellor speaking with a seated group', src: teamAtWork, tile: 'lg:col-span-1 lg:row-span-1' },
+  { label: 'Participants talking at a career guidance event', src: talkingWithStudents, tile: 'lg:col-span-2 lg:row-span-1' },
+  { label: 'A group discussing materials at a workshop', src: reviewingDocuments, tile: 'lg:col-span-2 lg:row-span-1' },
 ]
 
 export function AdmissionsGallery() {
@@ -43,7 +43,7 @@ export function AdmissionsGallery() {
               aria-label={`View photo: ${photo.label}`}
             >
               <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-                <PlaceholderVisual label={photo.label} src={photo.src} />
+                <PlaceholderVisual label={photo.label} src={photo.src} sizes="(min-width: 1024px) 640px, 50vw" />
               </div>
             </button>
           </Reveal>

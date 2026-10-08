@@ -16,7 +16,7 @@ export function FounderProfiles() {
             <div className="group h-full overflow-hidden rounded-[1.6rem] border border-neutral-border bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg">
               <div className="aspect-[4/3] overflow-hidden" role="img" aria-label="Kishan Patel">
                 <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-                  <PlaceholderVisual label="Kishan Patel" src={counsellingThree} />
+                  <PlaceholderVisual label="Kishan Patel" src={counsellingThree} sizes="(min-width: 768px) 392px, 100vw" />
                 </div>
               </div>
               <div className="p-6">
@@ -37,7 +37,7 @@ export function FounderProfiles() {
             <div className="group h-full overflow-hidden rounded-[1.6rem] border border-neutral-border bg-white shadow-sm transition-shadow duration-300 hover:shadow-lg">
               <div className="aspect-[4/3] overflow-hidden" role="img" aria-label="Meeta Patel">
                 <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-                  <PlaceholderVisual label="Meeta Patel" src={counsellingTwo} />
+                  <PlaceholderVisual label="Meeta Patel" src={counsellingTwo} sizes="(min-width: 768px) 392px, 100vw" />
                 </div>
               </div>
               <div className="p-6">

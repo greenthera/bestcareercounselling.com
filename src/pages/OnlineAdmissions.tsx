@@ -42,7 +42,8 @@ import { ServiceSchema } from '@/components/seo/ServiceSchema'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
 import logo from '@/assets/logo.webp'
-import planningTogether from '@/assets/bestcareercounselling-3.webp'
+import { imageMetadata } from '@/lib/imageMetadata'
+import planningTogether from '@/assets/career-counsellors-at-event.webp'
 
 const counsellorWhatsApp = buildWhatsAppUrl(
   'Hi, I want help choosing the right online university. Please guide me through my options.',
@@ -328,9 +329,13 @@ export default function OnlineAdmissions() {
             <div className="h-full min-h-[320px] overflow-hidden rounded-[1.75rem] border border-neutral-border shadow-lg">
               <img
                 src={planningTogether}
+                width={1400}
+                height={788}
+                srcSet={imageMetadata[planningTogether].srcSet}
+                sizes="(min-width: 1280px) 680px, (min-width: 1024px) 55vw, 100vw"
                 loading="lazy"
                 decoding="async"
-                alt="Planning a student's university and career options together"
+                alt="Kishan and Meeta Patel at a career counselling event"
                 className="h-full w-full object-cover"
               />
             </div>

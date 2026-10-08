@@ -1,5 +1,6 @@
 import { ImageIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { imageMetadata } from '@/lib/imageMetadata'
 
 interface PlaceholderVisualProps {
   label: string
@@ -40,14 +41,15 @@ export function PlaceholderVisual({
   height,
 }: PlaceholderVisualProps) {
   if (src) {
+    const metadata = imageMetadata[src]
     return (
       <img
         src={src}
-        srcSet={srcSet}
-        sizes={sizes}
+        srcSet={srcSet ?? metadata?.srcSet}
+        sizes={sizes ?? (metadata ? '(min-width: 1280px) 1280px, 100vw' : undefined)}
         alt={label}
-        width={width}
-        height={height}
+        width={width ?? metadata?.width}
+        height={height ?? metadata?.height}
         loading={priority ? 'eager' : 'lazy'}
         fetchPriority={priority ? 'high' : undefined}
         decoding={priority ? undefined : 'async'}

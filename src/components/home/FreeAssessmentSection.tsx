@@ -3,7 +3,7 @@ import { AssessmentForm } from '@/components/forms/AssessmentForm'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Reveal } from '@/components/ui/reveal'
-import notReadyToBook from '@/assets/not-ready-to-book.webp'
+import notReadyToBook from '@/assets/career-guidance-networking-event.webp'
 
 export function FreeAssessmentSection() {
   return (
@@ -21,10 +21,10 @@ export function FreeAssessmentSection() {
           <div
             className="group mx-auto mt-6 aspect-[3/2] max-w-2xl overflow-hidden rounded-[1.6rem] border border-white/15"
             role="img"
-            aria-label="Kishan speaking with students and parents"
+            aria-label="Participants talking at a career guidance event"
           >
             <div className="h-full w-full blur-[1px] transition-all duration-500 group-hover:blur-none">
-              <PlaceholderVisual label="Kishan speaking with students and parents" tone="dark" src={notReadyToBook} />
+              <PlaceholderVisual label="Participants talking at a career guidance event" tone="dark" src={notReadyToBook} sizes="(min-width: 1024px) 640px, 100vw" />
             </div>
           </div>
 

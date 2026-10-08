@@ -2,16 +2,16 @@ import { useState } from 'react'
 import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { ImageLightbox } from '@/components/ui/image-lightbox'
 import { Reveal } from '@/components/ui/reveal'
-import counselling from '@/assets/what-you-walk-away-with-1.webp'
-import counsellingOne from '@/assets/bestcareercounselling.webp'
-import counsellingThree from '@/assets/bestcareercounselling-1.webp'
-import counsellingFour from '@/assets/bestcareercounselling-4.webp'
+import counselling from '@/assets/career-counselling-small-group.webp'
+import counsellingOne from '@/assets/career-counselling-group-discussion.webp'
+import counsellingThree from '@/assets/career-counselling-table-discussion.webp'
+import counsellingFour from '@/assets/career-counselling-event-conversation.webp'
 
 const PHOTOS = [
-  { label: 'Our office in Surat', src: counsellingFour },
-  { label: 'A one-on-one counselling session', src: counsellingOne },
-  { label: 'A parent workshop session', src: counselling },
-  { label: 'The counselling team at work', src: counsellingThree },
+  { label: 'A counsellor speaking with event attendees', src: counsellingFour },
+  { label: 'A counsellor leading a group discussion', src: counsellingOne },
+  { label: 'A small-group counselling discussion', src: counselling },
+  { label: 'A counsellor speaking with a seated group', src: counsellingThree },
 ]
 
 export function RealWork() {
@@ -32,7 +32,7 @@ export function RealWork() {
               aria-label={`View photo: ${photo.label}`}
             >
               <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
-                <PlaceholderVisual label={photo.label} src={photo.src} />
+                <PlaceholderVisual label={photo.label} src={photo.src} sizes="(min-width: 1280px) 300px, (min-width: 1024px) 25vw, 50vw" />
               </div>
             </button>
           </Reveal>

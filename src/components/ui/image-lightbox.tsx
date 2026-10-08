@@ -1,4 +1,5 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog'
+import { imageMetadata } from '@/lib/imageMetadata'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 
 export interface LightboxImage {
@@ -46,6 +47,9 @@ export function ImageLightbox({ images, index, onIndexChange }: ImageLightboxPro
             <img
               src={current.src}
               alt={current.alt}
+              width={imageMetadata[current.src]?.width}
+              height={imageMetadata[current.src]?.height}
+              decoding="async"
               className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl"
             />
           )}

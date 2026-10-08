@@ -14,7 +14,7 @@ describe('AdmissionsGallery', () => {
     const user = userEvent.setup()
     render(<AdmissionsGallery />)
 
-    await user.click(screen.getByRole('button', { name: /view photo: our office in surat/i }))
+    await user.click(screen.getByRole('button', { name: /view photo: a counsellor speaking with event attendees/i }))
     expect(screen.getByText('1 / 6')).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: /next photo/i }))

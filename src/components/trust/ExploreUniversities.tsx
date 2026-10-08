@@ -24,7 +24,7 @@ const ROWS = [
 function LogoTile({ src }: { src: string }) {
   return (
     <div className="flex h-20 w-44 shrink-0 items-center justify-center rounded-2xl border border-neutral-border bg-white p-2 shadow-sm">
-      <img src={src} alt="" loading="lazy" decoding="async" width={320} height={128} className="h-full w-full object-contain" />
+      <img src={src} alt="" loading="lazy" decoding="async" width={src === logoModules['../../assets/university-logo-19.webp'].default ? 176 : 282} height={src === logoModules['../../assets/university-logo-19.webp'].default ? 80 : 128} className="h-full w-full object-contain" />
     </div>
   )
 }

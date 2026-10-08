@@ -5,9 +5,9 @@ import { Reveal } from '@/components/ui/reveal'
 import { useInView } from '@/hooks/useInView'
 import { Expand } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import walkAwayOne from '@/assets/what-you-walk-away-with-1.webp'
-import walkAwayTwo from '@/assets/what-you-walk-away-with-2.webp'
-import walkAwayThree from '@/assets/what-you-walk-away-with-3.webp'
+import walkAwayOne from '@/assets/career-counselling-small-group.webp'
+import walkAwayTwo from '@/assets/career-counselling-workshop-discussion.webp'
+import walkAwayThree from '@/assets/career-counsellors-at-seminar.webp'
 
 const DELIVERABLES = [
   '32-page career report',
@@ -18,8 +18,8 @@ const DELIVERABLES = [
 ]
 
 const REPORT_PAGES = [
-  { label: 'Walking a family through their report', src: walkAwayOne },
-  { label: 'A counselling session with a student and family', src: walkAwayTwo },
+  { label: 'A small-group counselling discussion', src: walkAwayOne },
+  { label: 'A group discussing materials at a workshop', src: walkAwayTwo },
   { label: 'Kishan and Meeta at a student and parent event', src: walkAwayThree },
 ]
 
@@ -78,7 +78,7 @@ export function ReportSection() {
                   role="img"
                   aria-label={activePage.label}
                 >
-                  <PlaceholderVisual label={activePage.label} src={activePage.src} />
+                  <PlaceholderVisual label={activePage.label} src={activePage.src} sizes="(min-width: 1024px) 640px, 100vw" />
                 </div>
                 <button
                   type="button"
@@ -108,7 +108,7 @@ export function ReportSection() {
                         isActive ? 'border-brand-yellow' : 'border-white/10 opacity-50 hover:opacity-90',
                       )}
                     >
-                      <PlaceholderVisual label={page.label} src={page.src} />
+                      <PlaceholderVisual label={page.label} src={page.src} sizes="160px" />
                       {isActive && (
                         <span className="absolute inset-x-2 bottom-1 h-1 rounded-full bg-brand-yellow" aria-hidden="true" />
                       )}
@@ -149,7 +149,7 @@ export function ReportSection() {
         <DialogContent>
           <DialogTitle className="sr-only">{activePage.label}</DialogTitle>
           <div className="aspect-[4/3] overflow-hidden rounded-xl" role="img" aria-label={activePage.label}>
-            <PlaceholderVisual label={activePage.label} src={activePage.src} />
+            <PlaceholderVisual label={activePage.label} src={activePage.src} sizes="(min-width: 1024px) 640px, 100vw" />
           </div>
         </DialogContent>
       </Dialog>
