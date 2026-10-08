@@ -5,11 +5,13 @@ import { Footer } from './Footer'
 import { MobileBottomBar } from './MobileBottomBar'
 import { WhatsAppButton } from '@/components/whatsapp/WhatsAppButton'
 import { LocalBusinessSchema } from '@/components/seo/LocalBusinessSchema'
+import { WebSiteSchema } from '@/components/seo/WebSiteSchema'
 
 export function Layout() {
   return (
     <div className="flex min-h-screen flex-col pb-16 md:pb-0">
       <LocalBusinessSchema />
+      <WebSiteSchema />
       <AnnouncementBar />
       <Header />
       <main className="flex-1">

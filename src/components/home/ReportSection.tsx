@@ -35,7 +35,7 @@ function ProfileSnapshot() {
 
   return (
     <div ref={ref} className="rounded-[1.6rem] bg-brand-green p-6 text-warm-white">
-      <p className="text-xs font-semibold uppercase tracking-wide text-warm-white/40">Sample profile snapshot</p>
+      <p className="text-xs font-semibold uppercase tracking-wide text-warm-white/60">Sample profile snapshot</p>
       <div className="mt-5 space-y-4">
         {SNAPSHOT.map((row, index) => (
           <div key={row.label}>

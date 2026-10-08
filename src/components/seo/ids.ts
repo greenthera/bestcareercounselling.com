@@ -4,6 +4,7 @@
 import { SITE_URL } from '@/lib/seo'
 
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`
+export const WEBSITE_ID = `${SITE_URL}/#website`
 
 export const PERSON_IDS = {
   kishan: `${SITE_URL}/#kishan-patel`,
