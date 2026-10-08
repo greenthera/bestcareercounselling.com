@@ -3,8 +3,14 @@ import { ConsultationForm } from '@/components/forms/ConsultationForm'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { Reveal } from '@/components/ui/reveal'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+import { ServiceSchema } from '@/components/seo/ServiceSchema'
 import { whatWeDoFaqCategories } from '@/data/faqs'
 import type { Service } from '@/data/services'
+
+// UG & PG admission guidance explicitly serves students across India, not just
+// Surat/Gujarat, per the site's own FAQ copy ("we work with students looking at
+// colleges and universities across India").
+const INDIA_WIDE_SERVICES = new Set(['ug-pg-admission'])
 
 const HEADINGS: Record<string, string> = {
   'after-8th': 'Career Counselling After 8th',
@@ -32,6 +38,12 @@ export function ServiceSection({ service }: ServiceSectionProps) {
 
   return (
     <section id={service.id} className="mx-auto max-w-3xl scroll-mt-36 px-4 py-10 md:px-8 md:py-14">
+      <ServiceSchema
+        name={heading}
+        description={service.description}
+        path={`/what-we-do#${service.id}`}
+        areaServed={INDIA_WIDE_SERVICES.has(service.id) ? ['Gujarat', 'India'] : undefined}
+      />
       <Reveal>
         <h2 className="text-3xl font-bold text-ink md:text-4xl">{heading}</h2>
         {service.subheading && <p className="mt-2 text-lg text-brand-green">{service.subheading}</p>}

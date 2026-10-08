@@ -19,6 +19,7 @@ import { ExploreUniversities } from '@/components/trust/ExploreUniversities'
 import { FinalCTA } from '@/components/home/FinalCTA'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
+import { ServiceSchema } from '@/components/seo/ServiceSchema'
 
 const INCLUDES: { title: string; description: string; icon: LucideIcon }[] = [
   {
@@ -88,6 +89,11 @@ export default function AdmissionConsulting() {
 
   return (
     <>
+      <ServiceSchema
+        name="Admission Consulting"
+        description={pageSeo.admissionConsulting.description}
+        path={pageSeo.admissionConsulting.path}
+      />
       <section className="px-4 pb-4 pt-10 text-center md:px-8 md:pb-6 md:pt-14">
         <Reveal className="mx-auto max-w-3xl">
           <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-green text-warm-white">

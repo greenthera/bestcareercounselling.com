@@ -38,6 +38,7 @@ import { FAQSection } from '@/components/home/FAQSection'
 import { onlineAdmissionsFaqs } from '@/data/faqs'
 import { usePageSeo } from '@/hooks/usePageSeo'
 import { pageSeo } from '@/data/seo'
+import { ServiceSchema } from '@/components/seo/ServiceSchema'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
 import logo from '@/assets/logo.webp'
 import planningTogether from '@/assets/bestcareercounselling-3.webp'
@@ -214,6 +215,11 @@ export default function OnlineAdmissions() {
 
   return (
     <>
+      <ServiceSchema
+        name="Online University Admissions"
+        description={pageSeo.onlineAdmissions.description}
+        path={pageSeo.onlineAdmissions.path}
+      />
       {/* Hero */}
       <section className="px-4 pt-8 md:px-8 md:pt-10">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-2 lg:items-stretch">

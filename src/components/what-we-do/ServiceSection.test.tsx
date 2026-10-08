@@ -21,4 +21,26 @@ describe('ServiceSection', () => {
     await user.click(screen.getByRole('button', { name: 'Book After 10th Counselling' }))
     expect(await screen.findByLabelText(/^name$/i)).toBeInTheDocument()
   })
+
+  it('embeds Service structured data matching the visible heading and description', () => {
+    const { container } = render(<ServiceSection service={service} />)
+    const script = container.querySelector('script[type="application/ld+json"]')
+    const data = JSON.parse(script?.textContent ?? '{}')
+
+    expect(data['@type']).toBe('Service')
+    expect(data.name).toBe('Career Counselling After 10th')
+    expect(data.description).toBe(service.description)
+    expect(data.provider).toEqual({ '@id': 'https://bestcareercounselling.com/#organization' })
+    expect(data.url).toBe('https://bestcareercounselling.com/what-we-do#after-10th')
+    expect(data.areaServed).toEqual(['Surat', 'Gujarat'])
+  })
+
+  it('serves UG & PG admission guidance across Gujarat and India', () => {
+    const ugPgService = services.find((s) => s.id === 'ug-pg-admission')!
+    const { container } = render(<ServiceSection service={ugPgService} />)
+    const script = container.querySelector('script[type="application/ld+json"]')
+    const data = JSON.parse(script?.textContent ?? '{}')
+
+    expect(data.areaServed).toEqual(['Gujarat', 'India'])
+  })
 })
