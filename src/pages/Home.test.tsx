@@ -27,9 +27,7 @@ describe('Home page', () => {
       expect(screen.getByRole('heading', { name })).toBeInTheDocument()
     })
 
-    expect(document.title).toBe(
-      'Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 900+ Reviews',
-    )
+    expect(document.title).toBe('Best Career Counselling Surat | 5★, 900+ Reviews')
   })
 
   it('renders the trust strip and Google reviews', () => {

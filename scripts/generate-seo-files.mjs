@@ -89,7 +89,7 @@ const notFoundPage = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Best Career Counselling Surat | Kishan Patel | Meeta Patel | 5 Star Google Review | 1000+ Reviews</title>
+    <title>Best Career Counselling Surat | 5★, 900+ Reviews</title>
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages
       // MIT License

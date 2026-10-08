@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { SITE_URL, SITE_NAME } from '@/lib/seo'
 
 const OG_IMAGE = `${SITE_URL}/og-image.png`
+const OG_IMAGE_ALT = 'Best Career Counselling: Kishan and Meeta Patel, Surat'
 
 interface PageSeoOptions {
   title: string
@@ -48,6 +49,7 @@ export function usePageSeo({ title, description, path, noindex }: PageSeoOptions
     upsertMeta('property', 'og:image', OG_IMAGE)
     upsertMeta('property', 'og:image:width', '1200')
     upsertMeta('property', 'og:image:height', '630')
+    upsertMeta('property', 'og:image:alt', OG_IMAGE_ALT)
     upsertMeta('name', 'twitter:card', 'summary_large_image')
     upsertMeta('name', 'twitter:title', title)
     upsertMeta('name', 'twitter:description', description)

@@ -28,9 +28,7 @@ describe('OnlineAdmissions page', () => {
 
   it('sets the page title and links CTAs to the match form', () => {
     renderPage()
-    expect(document.title).toBe(
-      'Online University Admissions | MBA, MCA, BBA, BCA, B.Com | Best Career Counselling',
-    )
+    expect(document.title).toBe('Online University Admissions | Best Career Counselling')
     const eligibilityCta = screen.getByRole('link', { name: /check my eligibility/i })
     expect(eligibilityCta).toHaveAttribute('href', '#match')
   })
