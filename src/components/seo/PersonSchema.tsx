@@ -1,4 +1,5 @@
 import { JsonLd } from './JsonLd'
+import { ORGANIZATION_ID, PERSON_IDS } from './ids'
 
 const PEOPLE = {
   kishan: {
@@ -25,6 +26,8 @@ export function PersonSchema({ person }: PersonSchemaProps) {
       data={{
         '@context': 'https://schema.org',
         '@type': 'Person',
+        '@id': PERSON_IDS[person],
+        worksFor: { '@id': ORGANIZATION_ID },
         ...data,
       }}
     />

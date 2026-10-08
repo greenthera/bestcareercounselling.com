@@ -8,6 +8,8 @@ describe('PersonSchema', () => {
     const script = document.querySelector('script[type="application/ld+json"]')
     const data = JSON.parse(script?.textContent ?? '{}')
     expect(data['@type']).toBe('Person')
+    expect(data['@id']).toBe('https://bestcareercounselling.com/#kishan-patel')
+    expect(data.worksFor).toEqual({ '@id': 'https://bestcareercounselling.com/#organization' })
     expect(data.name).toBe('Kishan Patel')
     expect(data.jobTitle).toBe('Career Counsellor')
   })
