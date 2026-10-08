@@ -1,1 +1,0 @@
-import{I as e,a as t,i as n,t as r}from"./index-c0xW9vpc.js";var i=e();function a({name:e,description:a,path:o,areaServed:s=[`Surat`,`Gujarat`]}){return(0,i.jsx)(t,{data:{"@context":`https://schema.org`,"@type":`Service`,serviceType:e,name:e,description:a,provider:{"@id":r},areaServed:s,url:`${n}${o}`}})}export{a as t};
