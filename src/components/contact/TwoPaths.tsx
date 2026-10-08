@@ -11,7 +11,7 @@ export function TwoPaths() {
       <div className="flex flex-col gap-5">
         <Reveal>
           <div className="rounded-[1.6rem] border border-neutral-border bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg">
-            <h3 className="text-xl font-bold text-ink">I want to talk to someone</h3>
+            <h2 className="text-xl font-bold text-ink">I want to talk to someone</h2>
             <p className="mt-2 text-sm text-muted-ink">
               A free 15-minute call with Kishan or Meeta, no obligation.
             </p>
@@ -26,7 +26,7 @@ export function TwoPaths() {
             <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow text-ink">
               <ClipboardCheck className="h-6 w-6" aria-hidden="true" />
             </span>
-            <h3 className="mt-4 text-xl font-bold">I want to start with the free assessment</h3>
+            <h2 className="mt-4 text-xl font-bold">I want to start with the free assessment</h2>
             <p className="mt-2 text-sm text-warm-white/70">
               15 minutes. No payment. Get a snapshot of your child's aptitude and interest profile.
             </p>

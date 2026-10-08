@@ -22,6 +22,8 @@ function renderPage() {
 
 async function completeQuiz(user: ReturnType<typeof userEvent.setup>) {
   await user.click(screen.getByRole('button', { name: /start the assessment/i }))
+    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Parent Career Clarity Assessment')
   for (let i = 0; i < TOTAL_QUESTIONS; i++) {
     const radios = screen.getAllByRole('radio')
     await user.click(radios[0])
@@ -57,7 +59,7 @@ describe('ParentCareerClarityAssessment page', () => {
     renderPage()
     expect(screen.getAllByText(/parent career clarity assessment/i).length).toBeGreaterThan(0)
     expect(
-      screen.getByRole('heading', { name: /how clear are you about your child's career direction/i }),
+      screen.getByRole('heading', { name: /^parent career clarity assessment$/i }),
     ).toBeInTheDocument()
     expect(document.title).toBe('Parent Career Clarity Assessment | Best Career Counselling')
   })
@@ -89,7 +91,7 @@ describe('ParentCareerClarityAssessment page', () => {
     await completeQuiz(user)
     await fillLeadCapture(user)
 
-    expect(screen.getByRole('heading', { name: /let's understand where you currently stand/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /your parent career clarity assessment results/i })).toBeInTheDocument()
     expect(screen.getByText(/clarity-seeking/i)).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /your snapshot/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /get in touch/i })).toHaveAttribute('href', expect.stringContaining('wa.me'))
@@ -106,7 +108,7 @@ describe('ParentCareerClarityAssessment page', () => {
     await user.type(screen.getByLabelText(/email address/i), 'meera@example.com')
     await user.click(screen.getByRole('button', { name: /view my assessment result/i }))
 
-    expect(await screen.findByRole('heading', { name: /let's understand where you currently stand/i })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: /your parent career clarity assessment results/i })).toBeInTheDocument()
 
     expect(fetchSpy).toHaveBeenCalledTimes(1)
     const [url, options] = fetchSpy.mock.calls[0]

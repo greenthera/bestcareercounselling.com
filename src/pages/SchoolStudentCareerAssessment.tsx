@@ -273,10 +273,10 @@ export default function SchoolStudentCareerAssessment() {
                         <Compass className="h-8 w-8" aria-hidden="true" />
                     </span>
                     <span className="mt-6 inline-flex rounded-full bg-green-tint px-3.5 py-1.5 text-sm font-semibold text-brand-green">
-                        Career Assessment for School Students
+                        How clear is your career direction?
                     </span>
                     <h1 className="mt-4 text-3xl font-bold leading-tight text-ink md:text-4xl">
-                        How clear is your career direction?
+                        Career Assessment for School Students
                     </h1>
                     <p className="mt-4 max-w-lg text-muted-ink">
                         20 quick yes-or-no questions across career awareness, academic fit, decision-making, exploration and
@@ -295,6 +295,7 @@ export default function SchoolStudentCareerAssessment() {
 
             {stage === 'quiz' && (
                 <div>
+          <h1 className="mb-6 text-2xl font-bold text-ink sm:text-3xl">Career Assessment for School Students</h1>
                     <div className="flex gap-1.5" role="list" aria-label="Progress through assessment categories">
                         {assessmentQuestions.map((category, index) => (
                             <div
@@ -392,7 +393,7 @@ export default function SchoolStudentCareerAssessment() {
             {stage === 'leadCapture' && (
                 <Reveal>
                     <div className="rounded-[2rem] border border-neutral-border bg-white p-6 shadow-sm sm:p-8">
-                        <h1 className="text-2xl font-bold text-ink">Almost there!</h1>
+                        <h1 className="text-2xl font-bold text-ink">Career Assessment for School Students: Your Details</h1>
                         <p className="mt-2 text-muted-ink">To prepare your result, please share a few details.</p>
 
                         <form onSubmit={handleLeadSubmit} noValidate className="mt-6">
@@ -492,7 +493,7 @@ export default function SchoolStudentCareerAssessment() {
                     <div className="rounded-[2rem] border border-neutral-border bg-white p-6 shadow-sm sm:p-10">
                         <div className="text-center">
                             <p className="text-sm font-medium text-muted-ink">Your assessment is complete</p>
-                            <h1 className="mt-2 text-2xl font-bold text-ink sm:text-3xl">Here's where you stand</h1>
+                            <h1 className="mt-2 text-2xl font-bold text-ink sm:text-3xl">Your School Student Career Assessment Results</h1>
 
                             <div className="mt-8">
                                 <ScoreRing score={totalScore} total={TOTAL_QUESTIONS} tone={tier.tone} />

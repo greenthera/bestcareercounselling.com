@@ -22,6 +22,8 @@ function renderPage() {
 
 async function completeQuiz(user: ReturnType<typeof userEvent.setup>, answer: 'yes' | 'no' = 'yes') {
   await user.click(screen.getByRole('button', { name: /start the assessment/i }))
+    expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Career Assessment for School Students')
   for (let i = 0; i < TOTAL_QUESTIONS; i++) {
     await user.click(screen.getByRole('radio', { name: new RegExp(answer, 'i') }))
     await user.click(screen.getByRole('button', { name: i === TOTAL_QUESTIONS - 1 ? /see my result/i : /next/i }))
@@ -49,7 +51,7 @@ describe('SchoolStudentCareerAssessment page', () => {
 
   it('starts on an intro screen and sets the page title', () => {
     renderPage()
-    expect(screen.getByRole('heading', { name: /how clear is your career direction/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /^career assessment for school students$/i })).toBeInTheDocument()
     expect(document.title).toBe('Career Assessment for School Students | Best Career Counselling')
   })
 
@@ -85,7 +87,7 @@ describe('SchoolStudentCareerAssessment page', () => {
     await user.type(screen.getByLabelText(/email address/i), 'meera@example.com')
     await user.click(screen.getByRole('button', { name: /see my result/i }))
 
-    expect(await screen.findByRole('heading', { name: /here's where you stand/i })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: /your school student career assessment results/i })).toBeInTheDocument()
 
     expect(fetchSpy).toHaveBeenCalledTimes(1)
     const [url, options] = fetchSpy.mock.calls[0]
@@ -117,7 +119,7 @@ describe('SchoolStudentCareerAssessment page', () => {
     await completeQuiz(user)
     await fillLeadCapture(user)
 
-    expect(screen.getByRole('heading', { name: /here's where you stand/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /your school student career assessment results/i })).toBeInTheDocument()
     expect(screen.getByText(String(TOTAL_QUESTIONS))).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /free pre-consulting 15 minutes enquiry session/i })).toHaveAttribute(
       'href',
@@ -169,6 +171,6 @@ describe('SchoolStudentCareerAssessment page', () => {
     await fillLeadCapture(user)
 
     await user.click(screen.getByRole('button', { name: /take it again/i }))
-    expect(screen.getByRole('heading', { name: /how clear is your career direction/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /^career assessment for school students$/i })).toBeInTheDocument()
   })
 })

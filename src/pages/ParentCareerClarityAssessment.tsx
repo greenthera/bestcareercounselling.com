@@ -225,10 +225,10 @@ export default function ParentCareerClarityAssessment() {
             <Compass className="h-8 w-8" aria-hidden="true" />
           </span>
           <span className="mt-6 inline-flex rounded-full bg-green-tint px-3.5 py-1.5 text-sm font-semibold text-brand-green">
-            Parent Career Clarity Assessment
+            How clear are you about your child's career direction?
           </span>
           <h1 className="mt-4 text-3xl font-bold leading-tight text-ink md:text-4xl">
-            How clear are you about your child's career direction?
+            Parent Career Clarity Assessment
           </h1>
           <p className="mt-4 max-w-lg text-muted-ink">
             Choosing the right stream, course or career is an important decision. Marks are only one part of the picture —
@@ -253,6 +253,7 @@ export default function ParentCareerClarityAssessment() {
 
       {stage === 'quiz' && (
         <div>
+          <h1 className="mb-6 text-2xl font-bold text-ink sm:text-3xl">Parent Career Clarity Assessment</h1>
           <div className="flex gap-1.5" role="list" aria-label="Progress through assessment sections">
             {parentAssessmentSections.map((section, index) => (
               <div
@@ -342,7 +343,7 @@ export default function ParentCareerClarityAssessment() {
       {stage === 'leadCapture' && (
         <Reveal>
           <div className="rounded-[2rem] border border-neutral-border bg-white p-6 shadow-sm sm:p-8">
-            <h1 className="text-2xl font-bold text-ink">Almost there!</h1>
+            <h1 className="text-2xl font-bold text-ink">Parent Career Clarity Assessment: Your Details</h1>
             <p className="mt-2 text-muted-ink">To prepare your assessment snapshot, please share a few details.</p>
 
             <form onSubmit={handleLeadSubmit} noValidate className="mt-6">
@@ -442,7 +443,7 @@ export default function ParentCareerClarityAssessment() {
           <div className="rounded-[2rem] border border-neutral-border bg-white p-6 shadow-sm sm:p-10">
             <div className="text-center">
               <p className="text-sm font-medium text-muted-ink">Your assessment is complete</p>
-              <h1 className="mt-2 text-2xl font-bold text-ink sm:text-3xl">Let's understand where you currently stand</h1>
+              <h1 className="mt-2 text-2xl font-bold text-ink sm:text-3xl">Your Parent Career Clarity Assessment Results</h1>
 
               <div className="mt-6 flex flex-col items-center gap-2">
                 <button

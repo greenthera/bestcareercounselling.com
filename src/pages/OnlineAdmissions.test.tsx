@@ -16,7 +16,7 @@ describe('OnlineAdmissions page', () => {
   it('renders the hero, key sections and the match form', () => {
     renderPage()
     expect(
-      screen.getByRole('heading', { level: 1, name: /get into the right online university/i }),
+      screen.getByRole('heading', { level: 1, name: /online university admissions without the confusion/i }),
     ).toBeInTheDocument()
     expect(screen.getByText(/find your best-fit university/i)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /submit enquiry/i })).toBeInTheDocument()

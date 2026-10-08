@@ -236,7 +236,7 @@ export default function OnlineAdmissions() {
               MBA · MCA · BBA · BCA · B.Com
             </span>
             <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-ink md:text-5xl">
-              Get into the right online university without the <YellowMark>confusion</YellowMark>
+              Online university admissions without the <YellowMark>confusion</YellowMark>
             </h1>
             <p className="mt-4 max-w-xl text-base text-muted-ink md:text-lg">
               Compare universities, fees, eligibility, specializations and career options with a dedicated admission
