@@ -1,23 +1,29 @@
-import { Menu, ArrowUpRight, Phone, ExternalLink, Star } from 'lucide-react'
-import { NavLink } from 'react-router-dom'
+import { useState } from 'react'
+import { Menu, ArrowUpRight, ChevronDown, Phone, ExternalLink, Star } from 'lucide-react'
+import { NavLink, useLocation } from 'react-router-dom'
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from '@/components/ui/sheet'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { cn } from '@/lib/utils'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
+import { navItems } from '@/data/navigation'
 import logo from '@/assets/logo.webp'
 
 const DEFAULT_MESSAGE = 'Hi, I want to know about career counselling for my child in Class ___'
 
-const NAV_ITEMS = [
-  { to: '/', label: 'Home', end: true },
-  { to: '/who-we-are', label: 'Who We Are' },
-  { to: '/what-we-do', label: 'What We Do' },
-  { to: '/admission-consulting', label: 'Admission Consulting' },
-  { to: '/career-counselling', label: 'Career Counselling' },
-  { to: '/contact-us', label: 'Contact Us' },
-]
+function activeParentTo(pathname: string): string | null {
+  return navItems.find((item) => item.children?.some((child) => child.to === pathname))?.to ?? null
+}
 
 export function MobileNav() {
+  const location = useLocation()
+  const [expandedTo, setExpandedTo] = useState<string | null>(() => activeParentTo(location.pathname))
+  const [lastPathname, setLastPathname] = useState(location.pathname)
+
+  if (location.pathname !== lastPathname) {
+    setLastPathname(location.pathname)
+    setExpandedTo(activeParentTo(location.pathname))
+  }
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -46,43 +52,109 @@ export function MobileNav() {
 
         <nav aria-label="Primary" className="flex-1 overflow-y-auto p-4">
           <ul className="space-y-1.5">
-            {NAV_ITEMS.map((item, index) => (
-              <li key={item.to}>
-                <SheetClose asChild>
-                  <NavLink
-                    to={item.to}
-                    end={item.end}
-                    className={({ isActive }) =>
-                      cn(
-                        'group flex items-center gap-3 rounded-2xl px-3 py-3 transition-colors',
-                        isActive ? 'bg-green-tint' : 'hover:bg-green-tint/60',
-                      )
-                    }
-                  >
-                    {({ isActive }) => (
-                      <>
-                        <span
-                          aria-hidden="true"
-                          className={cn(
-                            'flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold',
-                            isActive ? 'bg-brand-yellow text-ink' : 'bg-white text-brand-green',
-                          )}
-                        >
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
-                        <span className={cn('flex-1 text-base font-medium', isActive ? 'text-brand-green' : 'text-ink')}>
-                          {item.label}
-                        </span>
-                        <ArrowUpRight
-                          className={cn('h-4 w-4 shrink-0', isActive ? 'text-brand-green' : 'text-muted-ink')}
-                          aria-hidden="true"
-                        />
-                      </>
-                    )}
-                  </NavLink>
-                </SheetClose>
-              </li>
-            ))}
+            {navItems.map((item, index) => {
+              const badge = (isActive: boolean) => (
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    'flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold',
+                    isActive ? 'bg-brand-yellow text-ink' : 'bg-white text-brand-green',
+                  )}
+                >
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              )
+
+              if (!item.children) {
+                return (
+                  <li key={item.to}>
+                    <SheetClose asChild>
+                      <NavLink
+                        to={item.to}
+                        end={item.to === '/'}
+                        className={({ isActive }) =>
+                          cn(
+                            'group flex items-center gap-3 rounded-2xl px-3 py-3 transition-colors',
+                            isActive ? 'bg-green-tint' : 'hover:bg-green-tint/60',
+                          )
+                        }
+                      >
+                        {({ isActive }) => (
+                          <>
+                            {badge(isActive)}
+                            <span className={cn('flex-1 text-base font-medium', isActive ? 'text-brand-green' : 'text-ink')}>
+                              {item.label}
+                            </span>
+                            <ArrowUpRight
+                              className={cn('h-4 w-4 shrink-0', isActive ? 'text-brand-green' : 'text-muted-ink')}
+                              aria-hidden="true"
+                            />
+                          </>
+                        )}
+                      </NavLink>
+                    </SheetClose>
+                  </li>
+                )
+              }
+
+              const isExpanded = expandedTo === item.to
+              const isChildActive = item.children.some((child) => child.to === location.pathname)
+
+              return (
+                <li key={item.to}>
+                  <div className={cn('flex items-center gap-1 rounded-2xl transition-colors', isExpanded && 'bg-green-tint/60')}>
+                    <SheetClose asChild>
+                      <NavLink
+                        to={item.to}
+                        className={({ isActive }) =>
+                          cn('group flex flex-1 items-center gap-3 rounded-2xl px-3 py-3', (isActive || isChildActive) && !isExpanded && 'bg-green-tint')
+                        }
+                      >
+                        {({ isActive }) => (
+                          <>
+                            {badge(isActive || isChildActive)}
+                            <span className={cn('flex-1 text-base font-medium', isActive || isChildActive ? 'text-brand-green' : 'text-ink')}>
+                              {item.label}
+                            </span>
+                          </>
+                        )}
+                      </NavLink>
+                    </SheetClose>
+                    <button
+                      type="button"
+                      onClick={() => setExpandedTo(isExpanded ? null : item.to)}
+                      aria-label={`Toggle ${item.label} submenu`}
+                      aria-expanded={isExpanded}
+                      className="flex h-10 w-10 shrink-0 items-center justify-center text-muted-ink"
+                    >
+                      <ChevronDown className={cn('h-4 w-4 transition-transform duration-200', isExpanded && 'rotate-180')} aria-hidden="true" />
+                    </button>
+                  </div>
+
+                  {isExpanded && (
+                    <ul className="ml-11 mt-1 space-y-1 border-l border-neutral-border pl-4">
+                      {item.children.map((child) => (
+                        <li key={child.to}>
+                          <SheetClose asChild>
+                            <NavLink
+                              to={child.to}
+                              className={({ isActive }) =>
+                                cn(
+                                  'block rounded-lg px-3 py-2.5 text-sm transition-colors',
+                                  isActive ? 'font-medium text-brand-green' : 'text-muted-ink hover:text-ink',
+                                )
+                              }
+                            >
+                              {child.label}
+                            </NavLink>
+                          </SheetClose>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              )
+            })}
           </ul>
         </nav>
 
