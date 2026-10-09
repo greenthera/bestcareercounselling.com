@@ -54,6 +54,18 @@ export const pageSeo = {
       'Career counselling backed by 30 years of aptitude testing. Understand your strengths, weigh real options and leave with a practical plan.',
     path: '/career-counselling',
   },
+  mbaAdmissionCounselling: {
+    title: 'MBA Admission Counselling | Best Career Counselling',
+    description:
+      'Expert guidance to shortlist MBA colleges, understand entrance exam requirements and navigate the admission process. For MBA aspirants in Surat.',
+    path: '/mba-admission-counselling',
+  },
+  ugAdmissionCounselling: {
+    title: 'UG Admission Counselling | Best Career Counselling',
+    description:
+      'Explore undergraduate courses after Class 12, understand college admission criteria and choose the right path. UG admission counselling in Surat.',
+    path: '/ug-admission-counselling',
+  },
   schoolStudentCareerAssessment: {
     title: 'Career Assessment for School Students | Best Career Counselling',
     description:

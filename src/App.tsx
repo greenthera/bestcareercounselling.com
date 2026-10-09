@@ -12,6 +12,8 @@ const ThankYou = lazy(() => import('@/pages/ThankYou'))
 const AdmissionConsulting = lazy(() => import('@/pages/AdmissionConsulting'))
 const OnlineAdmissions = lazy(() => import('@/pages/OnlineAdmissions'))
 const CareerCounselling = lazy(() => import('@/pages/CareerCounselling'))
+const MbaAdmissionCounselling = lazy(() => import('@/pages/MbaAdmissionCounselling'))
+const UgAdmissionCounselling = lazy(() => import('@/pages/UgAdmissionCounselling'))
 const SchoolStudentCareerAssessment = lazy(() => import('@/pages/SchoolStudentCareerAssessment'))
 const ParentCareerClarityAssessment = lazy(() => import('@/pages/ParentCareerClarityAssessment'))
 const PrivacyPolicy = lazy(() => import('@/pages/PrivacyPolicy'))
@@ -33,6 +35,8 @@ export default function App() {
             <Route path="/admission-consulting" element={<AdmissionConsulting />} />
             <Route path="/admission-consulting/online-admissions" element={<OnlineAdmissions />} />
             <Route path="/career-counselling" element={<CareerCounselling />} />
+            <Route path="/mba-admission-counselling" element={<MbaAdmissionCounselling />} />
+            <Route path="/ug-admission-counselling" element={<UgAdmissionCounselling />} />
             <Route path="/school-student-career-assessment" element={<SchoolStudentCareerAssessment />} />
             <Route path="/parent-career-clarity-assessment" element={<ParentCareerClarityAssessment />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
