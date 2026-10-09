@@ -66,31 +66,31 @@ export function MobileNav() {
               )
 
               if (!item.children) {
+                // NavLink here is wrapped by SheetClose's `asChild`, which clones this
+                // element and naively string-concatenates the className prop. React
+                // Router's function-based className (for the active-state check) gets
+                // stringified instead of evaluated in that case, so isActive is computed
+                // manually here and passed as a plain string instead.
+                const isActive = item.to === '/' ? location.pathname === '/' : location.pathname.startsWith(item.to)
                 return (
                   <li key={item.to}>
                     <SheetClose asChild>
                       <NavLink
                         to={item.to}
                         end={item.to === '/'}
-                        className={({ isActive }) =>
-                          cn(
-                            'group flex items-center gap-3 rounded-2xl px-3 py-3 transition-colors',
-                            isActive ? 'bg-green-tint' : 'hover:bg-green-tint/60',
-                          )
-                        }
-                      >
-                        {({ isActive }) => (
-                          <>
-                            {badge(isActive)}
-                            <span className={cn('flex-1 text-base font-medium', isActive ? 'text-brand-green' : 'text-ink')}>
-                              {item.label}
-                            </span>
-                            <ArrowUpRight
-                              className={cn('h-4 w-4 shrink-0', isActive ? 'text-brand-green' : 'text-muted-ink')}
-                              aria-hidden="true"
-                            />
-                          </>
+                        className={cn(
+                          'group flex items-center gap-3 rounded-2xl px-3 py-3 transition-colors',
+                          isActive ? 'bg-green-tint' : 'hover:bg-green-tint/60',
                         )}
+                      >
+                        {badge(isActive)}
+                        <span className={cn('flex-1 text-base font-medium', isActive ? 'text-brand-green' : 'text-ink')}>
+                          {item.label}
+                        </span>
+                        <ArrowUpRight
+                          className={cn('h-4 w-4 shrink-0', isActive ? 'text-brand-green' : 'text-muted-ink')}
+                          aria-hidden="true"
+                        />
                       </NavLink>
                     </SheetClose>
                   </li>
@@ -99,6 +99,7 @@ export function MobileNav() {
 
               const isExpanded = expandedTo === item.to
               const isChildActive = item.children.some((child) => child.to === location.pathname)
+              const isParentActive = location.pathname === item.to || isChildActive
 
               return (
                 <li key={item.to}>
@@ -106,18 +107,15 @@ export function MobileNav() {
                     <SheetClose asChild>
                       <NavLink
                         to={item.to}
-                        className={({ isActive }) =>
-                          cn('group flex flex-1 items-center gap-3 rounded-2xl px-3 py-3', (isActive || isChildActive) && !isExpanded && 'bg-green-tint')
-                        }
-                      >
-                        {({ isActive }) => (
-                          <>
-                            {badge(isActive || isChildActive)}
-                            <span className={cn('flex-1 text-base font-medium', isActive || isChildActive ? 'text-brand-green' : 'text-ink')}>
-                              {item.label}
-                            </span>
-                          </>
+                        className={cn(
+                          'group flex flex-1 items-center gap-3 rounded-2xl px-3 py-3',
+                          isParentActive && !isExpanded && 'bg-green-tint',
                         )}
+                      >
+                        {badge(isParentActive)}
+                        <span className={cn('flex-1 text-base font-medium', isParentActive ? 'text-brand-green' : 'text-ink')}>
+                          {item.label}
+                        </span>
                       </NavLink>
                     </SheetClose>
                     <button
@@ -133,23 +131,24 @@ export function MobileNav() {
 
                   {isExpanded && (
                     <ul className="ml-11 mt-1 space-y-1 border-l border-neutral-border pl-4">
-                      {item.children.map((child) => (
-                        <li key={child.to}>
-                          <SheetClose asChild>
-                            <NavLink
-                              to={child.to}
-                              className={({ isActive }) =>
-                                cn(
+                      {item.children.map((child) => {
+                        const isChildLinkActive = location.pathname === child.to
+                        return (
+                          <li key={child.to}>
+                            <SheetClose asChild>
+                              <NavLink
+                                to={child.to}
+                                className={cn(
                                   'block rounded-lg px-3 py-2.5 text-sm transition-colors',
-                                  isActive ? 'font-medium text-brand-green' : 'text-muted-ink hover:text-ink',
-                                )
-                              }
-                            >
-                              {child.label}
-                            </NavLink>
-                          </SheetClose>
-                        </li>
-                      ))}
+                                  isChildLinkActive ? 'font-medium text-brand-green' : 'text-muted-ink hover:text-ink',
+                                )}
+                              >
+                                {child.label}
+                              </NavLink>
+                            </SheetClose>
+                          </li>
+                        )
+                      })}
                     </ul>
                   )}
                 </li>
