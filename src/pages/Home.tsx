@@ -11,13 +11,13 @@ import { GoogleReviewsCarousel } from '@/components/trust/GoogleReviewsCarousel'
 import { FAQSection } from '@/components/home/FAQSection'
 import { FinalCTA } from '@/components/home/FinalCTA'
 import { homeFaqs } from '@/data/faqs'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 
 export default function Home() {
-  usePageSeo(pageSeo.home)
   return (
     <>
+      <PageSeo {...pageSeo.home} />
       <Hero />
       <TrustStrip />
       <ProblemSection />

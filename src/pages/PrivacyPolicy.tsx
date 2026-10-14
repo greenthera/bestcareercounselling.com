@@ -1,7 +1,7 @@
 import { LegalPageLayout, type LegalSection } from '@/components/legal/LegalPageLayout'
 import { ContactLinks } from '@/components/legal/ContactLinks'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 
 const SECTIONS: LegalSection[] = [
@@ -58,10 +58,9 @@ const SECTIONS: LegalSection[] = [
 ]
 
 export default function PrivacyPolicy() {
-  usePageSeo(pageSeo.privacyPolicy)
-
   return (
     <>
+      <PageSeo {...pageSeo.privacyPolicy} />
       <Breadcrumbs items={[{ label: 'Privacy Policy', path: '/privacy-policy' }]} maxWidthClassName="max-w-3xl" innerPadding />
       <LegalPageLayout
         title="Privacy Policy"

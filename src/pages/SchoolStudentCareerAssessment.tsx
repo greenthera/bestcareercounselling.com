@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Compass, ArrowLeft, ArrowRight, MessageCircle, Download } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { assessmentQuestions, schoolStudentClassOptions } from '@/data/SchoolStudentCareerAssessmentContent'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { Reveal } from '@/components/ui/reveal'
@@ -134,8 +134,6 @@ function EndcapArrow({ className }: { className?: string }) {
 }
 
 export default function SchoolStudentCareerAssessment() {
-    usePageSeo(pageSeo.schoolStudentCareerAssessment)
-
     const formId = useId()
     const [stage, setStage] = useState<Stage>('intro')
     const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -261,6 +259,7 @@ export default function SchoolStudentCareerAssessment() {
 
     return (
         <>
+            <PageSeo {...pageSeo.schoolStudentCareerAssessment} />
             <Breadcrumbs
                 items={[{ label: 'Career Assessment for School Students', path: '/school-student-career-assessment' }]}
                 maxWidthClassName="max-w-2xl"

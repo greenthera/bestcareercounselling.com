@@ -17,7 +17,7 @@ import type { LucideIcon } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
 import { ExploreUniversities } from '@/components/trust/ExploreUniversities'
 import { FinalCTA } from '@/components/home/FinalCTA'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 import { ServiceSchema } from '@/components/seo/ServiceSchema'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
@@ -86,10 +86,9 @@ const WHO_ITS_FOR: { title: string; description: string; icon: LucideIcon }[] = 
 ]
 
 export default function AdmissionConsulting() {
-  usePageSeo(pageSeo.admissionConsulting)
-
   return (
     <>
+      <PageSeo {...pageSeo.admissionConsulting} />
       <ServiceSchema
         name="Admission Consulting"
         description={pageSeo.admissionConsulting.description}

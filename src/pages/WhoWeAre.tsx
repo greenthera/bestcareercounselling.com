@@ -11,13 +11,13 @@ import { FAQSection } from '@/components/home/FAQSection'
 import { whoWeAreFaqs } from '@/data/faqs'
 import { PersonSchema } from '@/components/seo/PersonSchema'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 
 export default function WhoWeAre() {
-  usePageSeo(pageSeo.whoWeAre)
   return (
     <>
+      <PageSeo {...pageSeo.whoWeAre} />
       <PersonSchema person="kishan" />
       <PersonSchema person="meeta" />
       <Breadcrumbs items={[{ label: 'Who We Are', path: '/who-we-are' }]} />

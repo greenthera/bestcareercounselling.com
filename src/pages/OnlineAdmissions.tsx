@@ -36,7 +36,7 @@ import { GoogleReviewsCarousel } from '@/components/trust/GoogleReviewsCarousel'
 import { ExploreUniversities } from '@/components/trust/ExploreUniversities'
 import { FAQSection } from '@/components/home/FAQSection'
 import { onlineAdmissionsFaqs } from '@/data/faqs'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 import { ServiceSchema } from '@/components/seo/ServiceSchema'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
@@ -213,10 +213,9 @@ function SectionCta({
 }
 
 export default function OnlineAdmissions() {
-  usePageSeo(pageSeo.onlineAdmissions)
-
   return (
     <>
+      <PageSeo {...pageSeo.onlineAdmissions} />
       <ServiceSchema
         name="Online University Admissions"
         description={pageSeo.onlineAdmissions.description}

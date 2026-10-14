@@ -6,12 +6,11 @@ import { FeaturedPost } from '@/components/blogs/FeaturedPost'
 import { BlogGrid } from '@/components/blogs/BlogGrid'
 import { FreeAssessmentSection } from '@/components/home/FreeAssessmentSection'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 import { getAllBlogPosts, filterBlogPosts } from '@/lib/blog'
 
 export default function Blogs() {
-  usePageSeo(pageSeo.blogs)
   const [searchParams, setSearchParams] = useSearchParams()
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
@@ -47,6 +46,7 @@ export default function Blogs() {
 
   return (
     <>
+      <PageSeo {...pageSeo.blogs} />
       <Breadcrumbs items={[{ label: 'Blog', path: '/blogs' }]} />
       <BlogHero searchValue={search} onSearchChange={handleSearchChange} />
       <div className="mt-10 md:mt-14">

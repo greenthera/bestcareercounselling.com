@@ -3,7 +3,7 @@ title: "Which Course & Career Is Right After 12th?"
 description: "Best courses and career options after 12th for Science, Commerce, and Arts students. Discover AI careers, eligibility, and tips to choose the right path."
 date: "2026-10-14"
 author: "Best Career Counselling"
-keywords: "course after 12th, career after 12th, science commerce arts courses, AI careers after 12th, career counselling"
+keywords: "course after 12th, career after 12th, career option after 12th, courses after 12th, course and career options after 12th, Which course and career is right for you after 12th, science commerce arts courses, AI careers after 12th, career counselling"
 category: "After 12th"
 image: "/images/blog/course-and-career-after-12th.webp"
 ---

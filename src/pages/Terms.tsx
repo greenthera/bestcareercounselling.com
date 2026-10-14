@@ -1,7 +1,7 @@
 import { LegalPageLayout, type LegalSection } from '@/components/legal/LegalPageLayout'
 import { ContactLinks } from '@/components/legal/ContactLinks'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 
 const SECTIONS: LegalSection[] = [
@@ -53,10 +53,9 @@ const SECTIONS: LegalSection[] = [
 ]
 
 export default function Terms() {
-  usePageSeo(pageSeo.terms)
-
   return (
     <>
+      <PageSeo {...pageSeo.terms} />
       <Breadcrumbs items={[{ label: 'Terms of Service', path: '/terms' }]} maxWidthClassName="max-w-3xl" innerPadding />
       <LegalPageLayout
         title="Terms of Service"

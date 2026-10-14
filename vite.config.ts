@@ -12,8 +12,8 @@ const DEPLOY_BASE_PATH = process.env.DEPLOY_BASE_PATH || '/'
 
 // Same fallback src/lib/seo.ts and scripts/generate-seo-files.mjs use. The .env
 // file is gitignored, so a fresh clone or CI may not have it — without this,
-// index.html's %VITE_SITE_URL% placeholders would build with a literal,
-// unreplaced "%VITE_SITE_URL%" in canonical/OG tags instead of a real URL.
+// import.meta.env.VITE_SITE_URL (read by src/lib/seo.ts, which every page's
+// PageSeo canonical/OG tag is built from) would be undefined in that build.
 const FALLBACK_SITE_URL = 'https://bestcareercounselling.com'
 
 export default defineConfig(({ command, mode }) => {

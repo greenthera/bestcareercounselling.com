@@ -6,13 +6,13 @@ import { ContactLocation } from '@/components/contact/ContactLocation'
 import { FAQSection } from '@/components/home/FAQSection'
 import { bookingFaqs } from '@/data/faqs'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 
 export default function ContactUs() {
-  usePageSeo(pageSeo.contactUs)
   return (
     <>
+      <PageSeo {...pageSeo.contactUs} />
       <Breadcrumbs items={[{ label: 'Contact Us', path: '/contact-us' }]} maxWidthClassName="max-w-2xl" />
       <ContactHero />
       <TwoPaths />

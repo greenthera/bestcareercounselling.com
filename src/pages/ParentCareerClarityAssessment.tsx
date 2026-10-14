@@ -11,7 +11,7 @@ import {
   parentAssessmentWhyItMatters,
   parentAssessmentCompleteChecklist,
 } from '@/data/ParentCareerClarityAssessmentContent'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { Reveal } from '@/components/ui/reveal'
@@ -74,8 +74,6 @@ function EndcapArrow({ className }: { className?: string }) {
 }
 
 export default function ParentCareerClarityAssessment() {
-  usePageSeo(pageSeo.parentCareerClarityAssessment)
-
   const formId = useId()
   const [stage, setStage] = useState<Stage>('intro')
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -211,6 +209,7 @@ export default function ParentCareerClarityAssessment() {
 
   return (
     <>
+      <PageSeo {...pageSeo.parentCareerClarityAssessment} />
       <Breadcrumbs
         items={[{ label: 'Parent Career Clarity Assessment', path: '/parent-career-clarity-assessment' }]}
         maxWidthClassName={stage === 'result' ? 'max-w-4xl' : 'max-w-2xl'}

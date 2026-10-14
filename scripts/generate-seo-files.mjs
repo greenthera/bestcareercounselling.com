@@ -1,19 +1,20 @@
 #!/usr/bin/env node
-// Regenerates public/robots.txt, public/sitemap.xml and public/404.html from the
-// site's canonical URL, route list, and deploy base path. Runs automatically
-// before every build (see the "prebuild" script in package.json), so these files
-// never drift out of sync by hand.
+// Regenerates public/robots.txt and public/sitemap.xml from the site's canonical URL
+// and route list (scripts/routes.mjs). Runs automatically before every build (see the
+// "prebuild" script in package.json), so these files never drift out of sync by hand.
+// dist/404.html is generated separately, by scripts/prerender.mjs (it needs a real
+// rendered NotFound page, not just a URL list).
 //
 // The URL preferably comes from the repo's .env file (VITE_SITE_URL) — same as
-// src/lib/seo.ts and index.html's %VITE_SITE_URL% placeholders — but that file is
-// gitignored and may not exist (fresh clone, CI), so this falls back to the same
-// hardcoded default src/lib/seo.ts uses. If the site ever moves to a new domain,
-// update .env (and that fallback) and this picks it up automatically.
+// src/lib/seo.ts — but that file is gitignored and may not exist (fresh clone, CI),
+// so this falls back to the same hardcoded default src/lib/seo.ts uses. If the site
+// ever moves to a new domain, update .env (and that fallback) and this picks it up
+// automatically.
 
-import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
-import matter from 'gray-matter'
+import { STATIC_ROUTES, getBlogRoutes } from './routes.mjs'
 
 const rootDir = path.resolve(fileURLToPath(import.meta.url), '../..')
 const FALLBACK_SITE_URL = 'https://bestcareercounselling.com'
@@ -30,41 +31,9 @@ function readSiteUrlFromEnvFile() {
 
 const SITE_URL = (process.env.VITE_SITE_URL || readSiteUrlFromEnvFile() || FALLBACK_SITE_URL).replace(/\/$/, '')
 
-// Only routes that are actually registered in src/App.tsx. The thank-you page is
-// intentionally left out — it's a post-conversion confirmation page, not a landing
-// page worth surfacing in search results.
-const ROUTES = [
-  { path: '/', priority: '1.0', changefreq: 'weekly' },
-  { path: '/who-we-are', priority: '0.8', changefreq: 'monthly' },
-  { path: '/what-we-do', priority: '0.8', changefreq: 'monthly' },
-  { path: '/admission-consulting', priority: '0.8', changefreq: 'monthly' },
-  { path: '/admission-consulting/online-admissions', priority: '0.8', changefreq: 'monthly' },
-  { path: '/career-counselling', priority: '0.8', changefreq: 'monthly' },
-  { path: '/mba-admission-counselling', priority: '0.8', changefreq: 'monthly' },
-  { path: '/ug-admission-counselling', priority: '0.8', changefreq: 'monthly' },
-  { path: '/school-student-career-assessment', priority: '0.7', changefreq: 'monthly' },
-  { path: '/parent-career-clarity-assessment', priority: '0.7', changefreq: 'monthly' },
-  { path: '/blogs', priority: '0.7', changefreq: 'weekly' },
-  { path: '/contact-us', priority: '0.6', changefreq: 'monthly' },
-  { path: '/privacy-policy', priority: '0.3', changefreq: 'yearly' },
-  { path: '/terms', priority: '0.3', changefreq: 'yearly' },
-]
-
 const today = new Date().toISOString().slice(0, 10)
 
-// Each blog post in src/content/blog gets its own sitemap entry, with the post's own
-// frontmatter date as lastmod (rather than today's date) since that's when the content
-// actually last changed.
-const blogDir = path.join(rootDir, 'src/content/blog')
-const blogRoutes = readdirSync(blogDir)
-  .filter((file) => file.endsWith('.md'))
-  .map((file) => {
-    const { data } = matter(readFileSync(path.join(blogDir, file), 'utf8'))
-    const slug = file.replace(/\.md$/, '')
-    return { path: `/blogs/${slug}`, priority: '0.6', changefreq: 'monthly', lastmod: data.date }
-  })
-
-const urlEntries = [...ROUTES, ...blogRoutes]
+const urlEntries = [...STATIC_ROUTES, ...getBlogRoutes(rootDir)]
   .map(
     (route) => `  <url>
     <loc>${SITE_URL}${route.path}</loc>
@@ -87,57 +56,7 @@ Allow: /
 Sitemap: ${SITE_URL}/sitemap.xml
 `
 
-// GitHub Pages is a static file host, so a direct/refreshed visit to a client-side
-// route like "/who-we-are" 404s because no such file exists on the server. This
-// 404.html (the "spa-github-pages" trick: https://github.com/rafgraph/spa-github-pages)
-// redirects that 404 back to index.html with the intended path encoded in the query
-// string, which index.html then restores via history.replaceState before React
-// Router mounts.
-//
-// pathSegmentsToKeep must match the number of path segments the site is actually
-// served under (0 when served from a domain's root, more if DEPLOY_BASE_PATH sets
-// a subpath — see package.json's "predeploy" script) — deriving it here from the
-// same DEPLOY_BASE_PATH vite.config.ts uses means a base-path change can never
-// leave this file stale, which previously caused an infinite-redirect loop on
-// refresh once the site moved from a subpath to serving at its own domain's root.
-const DEPLOY_BASE_PATH = process.env.DEPLOY_BASE_PATH || '/'
-const pathSegmentsToKeep = DEPLOY_BASE_PATH.split('/').filter(Boolean).length
-
-const notFoundPage = `<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Best Career Counselling Surat | 5★, 900+ Reviews</title>
-    <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      //
-      // Auto-generated by scripts/generate-seo-files.mjs from DEPLOY_BASE_PATH — do not
-      // hand-edit pathSegmentsToKeep here, it will be overwritten on the next build.
-      var pathSegmentsToKeep = ${pathSegmentsToKeep}
-
-      var l = window.location
-      l.replace(
-        l.protocol +
-          '//' +
-          l.hostname +
-          (l.port ? ':' + l.port : '') +
-          l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') +
-          '/?/' +
-          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-          l.hash,
-      )
-    </script>
-  </head>
-  <body></body>
-</html>
-`
-
 writeFileSync(path.join(rootDir, 'public/sitemap.xml'), sitemap)
 writeFileSync(path.join(rootDir, 'public/robots.txt'), robots)
-writeFileSync(path.join(rootDir, 'public/404.html'), notFoundPage)
 
 console.log(`Generated sitemap.xml and robots.txt for ${SITE_URL}`)
-console.log(`Generated 404.html with pathSegmentsToKeep=${pathSegmentsToKeep} (DEPLOY_BASE_PATH=${DEPLOY_BASE_PATH})`)

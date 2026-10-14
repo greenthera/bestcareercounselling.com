@@ -18,7 +18,7 @@ import { Reveal } from '@/components/ui/reveal'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { ExploreUniversities } from '@/components/trust/ExploreUniversities'
 import { FinalCTA } from '@/components/home/FinalCTA'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 import { ServiceSchema } from '@/components/seo/ServiceSchema'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
@@ -117,10 +117,9 @@ const WHO_ITS_FOR: { title: string; description: string; icon: LucideIcon }[] = 
 ]
 
 export default function UgAdmissionCounselling() {
-  usePageSeo(pageSeo.ugAdmissionCounselling)
-
   return (
     <>
+      <PageSeo {...pageSeo.ugAdmissionCounselling} />
       <ServiceSchema
         name="UG Admission Counselling"
         description={pageSeo.ugAdmissionCounselling.description}

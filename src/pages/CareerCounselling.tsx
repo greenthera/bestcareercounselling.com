@@ -3,7 +3,7 @@ import type { LucideIcon } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
 import { HowItWorks } from '@/components/home/HowItWorks'
 import { FinalCTA } from '@/components/home/FinalCTA'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 import { ServiceSchema } from '@/components/seo/ServiceSchema'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
@@ -65,10 +65,9 @@ const WHO_ITS_FOR: { title: string; description: string; icon: LucideIcon }[] = 
 ]
 
 export default function CareerCounselling() {
-  usePageSeo(pageSeo.careerCounselling)
-
   return (
     <>
+      <PageSeo {...pageSeo.careerCounselling} />
       <ServiceSchema
         name="Career Counselling"
         description={pageSeo.careerCounselling.description}

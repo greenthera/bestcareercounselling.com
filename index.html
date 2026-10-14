@@ -7,24 +7,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#014924" />
-    <meta name="robots" content="index, follow" />
-    <meta name="description" content="Career counselling and stream selection guidance from Kishan & Meeta Patel in Surat, with 30+ years of aptitude testing and one-on-one guidance." />
-    <link rel="canonical" href="%VITE_SITE_URL%/" />
-    <meta property="og:site_name" content="Best Career Counselling" />
-    <meta property="og:locale" content="en_IN" />
-    <meta property="og:title" content="Best Career Counselling Surat | 5★, 900+ Reviews" />
-    <meta property="og:description" content="Career counselling and stream selection guidance from Kishan & Meeta Patel in Surat, with 30+ years of aptitude testing and one-on-one guidance." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="%VITE_SITE_URL%/" />
-    <meta property="og:image" content="%VITE_SITE_URL%/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Best Career Counselling: Kishan and Meeta Patel, Surat" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Best Career Counselling Surat | 5★, 900+ Reviews" />
-    <meta name="twitter:description" content="Career counselling and stream selection guidance from Kishan & Meeta Patel in Surat, with 30+ years of aptitude testing and one-on-one guidance." />
-    <meta name="twitter:image" content="%VITE_SITE_URL%/og-image.png" />
-    <title>Best Career Counselling Surat | 5★, 900+ Reviews</title>
+    <!--
+      Title, description, robots, canonical and OG/Twitter tags are intentionally NOT
+      hardcoded here. Every page renders its own via <PageSeo> (src/components/seo/PageSeo.tsx),
+      which scripts/prerender.mjs bakes into each route's own static HTML file at build
+      time — so this template never has a route-specific default to fall out of sync
+      with, and is never served to a real visitor without prerendering having filled
+      these in first (see scripts/prerender.mjs; `npm run dev` is the only place a brief
+      title-less flash before hydration is possible, which doesn't matter for local work).
+    -->
     <!-- Google Tag Manager (deferred: loads after app start + page load) -->
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -49,24 +40,6 @@
     <!-- End Google Tag Manager -->
     <!-- Microsoft Clarity code -->
     <script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "ytt2424q9z"); </script>
-    <script type="text/javascript">
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      // Restores the real deep-linked path (encoded by public/404.html) before React Router mounts.
-      ;(function (l) {
-        if (l.search[1] === '/') {
-          var decoded = l.search
-            .slice(1)
-            .split('&')
-            .map(function (s) {
-              return s.replace(/~and~/g, '&')
-            })
-            .join('?')
-          window.history.replaceState(null, '', l.pathname.slice(0, -1) + decoded + l.hash)
-        }
-      })(window.location)
-    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

@@ -31,10 +31,10 @@ const app = (
   </StrictMode>
 )
 
-// The home page's HTML is prerendered into index.html at build time (see
-// scripts/prerender.mjs), so it paints before this bundle runs. Hydrate it when it
-// matches the current route; any other route (GitHub Pages serves every deep link
-// through index.html via 404.html) starts from an empty root instead.
+// Every route's HTML is prerendered into its own static file at build time (see
+// scripts/prerender.mjs), so real content paints before this bundle runs. Hydrate it
+// when it matches the current route; a path with no prerendered file of its own (e.g.
+// a search param combination no static file covers) starts from an empty root instead.
 if (container.dataset.prerendered === window.location.pathname && container.firstElementChild) {
   hydrateRoot(container, app)
 } else {

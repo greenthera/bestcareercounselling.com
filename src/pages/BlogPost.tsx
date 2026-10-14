@@ -7,7 +7,7 @@ import { PlaceholderVisual } from '@/components/ui/placeholder-visual'
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { FinalCTA } from '@/components/home/FinalCTA'
 import { BlogPostingSchema } from '@/components/seo/BlogPostingSchema'
-import { usePageSeo } from '@/hooks/usePageSeo'
+import { PageSeo } from '@/components/seo/PageSeo'
 import { getBlogPostBySlug } from '@/lib/blog'
 import NotFound from './NotFound'
 
@@ -19,30 +19,20 @@ export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>()
   const post = slug ? getBlogPostBySlug(slug) : undefined
 
-  usePageSeo(
-    post
-      ? {
-          title: `${post.title} | Best Career Counselling`,
-          description: post.description,
-          path: `/blogs/${post.slug}`,
-          type: 'article',
-          publishedTime: post.date,
-          keywords: post.keywords,
-        }
-      : {
-          title: 'Page Not Found | Best Career Counselling',
-          description: "The page you're looking for doesn't exist or may have moved.",
-          path: '/404',
-          noindex: true,
-        },
-  )
-
   if (!post) {
     return <NotFound />
   }
 
   return (
     <>
+      <PageSeo
+        title={`${post.title} | Best Career Counselling`}
+        description={post.description}
+        path={`/blogs/${post.slug}`}
+        type="article"
+        publishedTime={post.date}
+        keywords={post.keywords}
+      />
       <BlogPostingSchema
         title={post.title}
         description={post.description}
