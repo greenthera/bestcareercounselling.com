@@ -11,7 +11,7 @@ describe('DesktopNav', () => {
         <DesktopNav />
       </MemoryRouter>,
     )
-    ;['Home', 'Who We Are', 'What We Do', 'Admission Consulting', 'Career Counselling', 'Blog', 'Contact Us'].forEach(
+    ;['Home', 'Who We Are', 'What We Do', 'Admission Consulting', 'Career Counselling', 'Blogs', 'Contact Us'].forEach(
       (label) => {
         expect(screen.getByRole('link', { name: label })).toBeInTheDocument()
       },
