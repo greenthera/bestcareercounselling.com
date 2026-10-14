@@ -16,9 +16,19 @@
       these in first (see scripts/prerender.mjs; `npm run dev` is the only place a brief
       title-less flash before hydration is possible, which doesn't matter for local work).
     -->
-    <!-- Google Tag Manager (deferred: loads after app start + page load) -->
+    <!--
+      Google Tag Manager + Microsoft Clarity (deferred together: loads after app start +
+      page load). Both are pure analytics with no visible output of their own — queuing
+      the real script downloads until after the page has rendered and gone idle keeps
+      them from competing with the hero image and app bundle for main-thread time and
+      bandwidth during the part of the load that visitors actually see and wait on.
+      window.dataLayer / window.clarity are set up immediately so any call made before
+      the real scripts load is queued and replayed once they're ready, same as each
+      tool's own standard snippet already does.
+    -->
     <script>
       window.dataLayer = window.dataLayer || [];
+      window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments) };
 
       window.__startAnalytics = function () {
         window.__startAnalytics = function () {};
@@ -29,17 +39,24 @@
           s.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-KFNZCKML';
           document.head.appendChild(s);
         }
+        function loadClarity() {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.clarity.ms/tag/ytt2424q9z';
+          document.head.appendChild(s);
+        }
         function schedule() {
-          if ('requestIdleCallback' in window) requestIdleCallback(loadGTM, { timeout: 3000 });
-          else setTimeout(loadGTM, 1500);
+          function run() {
+            loadGTM();
+            loadClarity();
+          }
+          if ('requestIdleCallback' in window) requestIdleCallback(run, { timeout: 3000 });
+          else setTimeout(run, 1500);
         }
         if (document.readyState === 'complete') schedule();
         else window.addEventListener('load', schedule);
       };
     </script>
-    <!-- End Google Tag Manager -->
-    <!-- Microsoft Clarity code -->
-    <script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "ytt2424q9z"); </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
