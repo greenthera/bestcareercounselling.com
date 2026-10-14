@@ -10,9 +10,10 @@
 // hardcoded default src/lib/seo.ts uses. If the site ever moves to a new domain,
 // update .env (and that fallback) and this picks it up automatically.
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import matter from 'gray-matter'
 
 const rootDir = path.resolve(fileURLToPath(import.meta.url), '../..')
 const FALLBACK_SITE_URL = 'https://bestcareercounselling.com'
@@ -43,6 +44,7 @@ const ROUTES = [
   { path: '/ug-admission-counselling', priority: '0.8', changefreq: 'monthly' },
   { path: '/school-student-career-assessment', priority: '0.7', changefreq: 'monthly' },
   { path: '/parent-career-clarity-assessment', priority: '0.7', changefreq: 'monthly' },
+  { path: '/blogs', priority: '0.7', changefreq: 'weekly' },
   { path: '/contact-us', priority: '0.6', changefreq: 'monthly' },
   { path: '/privacy-policy', priority: '0.3', changefreq: 'yearly' },
   { path: '/terms', priority: '0.3', changefreq: 'yearly' },
@@ -50,14 +52,28 @@ const ROUTES = [
 
 const today = new Date().toISOString().slice(0, 10)
 
-const urlEntries = ROUTES.map(
-  (route) => `  <url>
+// Each blog post in src/content/blog gets its own sitemap entry, with the post's own
+// frontmatter date as lastmod (rather than today's date) since that's when the content
+// actually last changed.
+const blogDir = path.join(rootDir, 'src/content/blog')
+const blogRoutes = readdirSync(blogDir)
+  .filter((file) => file.endsWith('.md'))
+  .map((file) => {
+    const { data } = matter(readFileSync(path.join(blogDir, file), 'utf8'))
+    const slug = file.replace(/\.md$/, '')
+    return { path: `/blogs/${slug}`, priority: '0.6', changefreq: 'monthly', lastmod: data.date }
+  })
+
+const urlEntries = [...ROUTES, ...blogRoutes]
+  .map(
+    (route) => `  <url>
     <loc>${SITE_URL}${route.path}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${route.lastmod ?? today}</lastmod>
     <changefreq>${route.changefreq}</changefreq>
     <priority>${route.priority}</priority>
   </url>`,
-).join('\n')
+  )
+  .join('\n')
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

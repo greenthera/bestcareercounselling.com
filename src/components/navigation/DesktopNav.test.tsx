@@ -5,15 +5,17 @@ import { MemoryRouter } from 'react-router-dom'
 import { DesktopNav } from './DesktopNav'
 
 describe('DesktopNav', () => {
-  it('renders all six primary nav links', () => {
+  it('renders all seven primary nav links', () => {
     render(
       <MemoryRouter>
         <DesktopNav />
       </MemoryRouter>,
     )
-    ;['Home', 'Who We Are', 'What We Do', 'Admission Consulting', 'Career Counselling', 'Contact Us'].forEach((label) => {
-      expect(screen.getByRole('link', { name: label })).toBeInTheDocument()
-    })
+    ;['Home', 'Who We Are', 'What We Do', 'Admission Consulting', 'Career Counselling', 'Blog', 'Contact Us'].forEach(
+      (label) => {
+        expect(screen.getByRole('link', { name: label })).toBeInTheDocument()
+      },
+    )
   })
 
   it('reveals the MBA and UG pages in the Admission Consulting submenu on click', async () => {

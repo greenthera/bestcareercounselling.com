@@ -30,6 +30,11 @@ export const pageSeo = {
     description: 'Book a free 15-minute consultation with Kishan or Meeta. No cost, no obligation, no sales pitch.',
     path: '/contact-us',
   },
+  blogs: {
+    title: 'Blog | Best Career Counselling',
+    description: 'Career guidance, stream selection and admission advice from Kishan & Meeta Patel, Surat.',
+    path: '/blogs',
+  },
   thankYou: {
     title: 'Thank You | Kishan & Meeta Patel',
     description: 'Thank you for reaching out. Your WhatsApp message is ready to send.',

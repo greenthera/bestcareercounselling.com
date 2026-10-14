@@ -22,5 +22,6 @@ export const navItems: NavItem[] = [
     ],
   },
   { to: '/career-counselling', label: 'Career Counselling' },
+  { to: '/blogs', label: 'Blog' },
   { to: '/contact-us', label: 'Contact Us' },
 ]
