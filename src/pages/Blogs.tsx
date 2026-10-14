@@ -47,7 +47,7 @@ export default function Blogs() {
   return (
     <>
       <PageSeo {...pageSeo.blogs} />
-      <Breadcrumbs items={[{ label: 'Blog', path: '/blogs' }]} />
+      <Breadcrumbs items={[{ label: 'Blogs', path: '/blogs' }]} />
       <BlogHero searchValue={search} onSearchChange={handleSearchChange} />
       <div className="mt-10 md:mt-14">
         <BlogCategories selected={category} onSelect={handleCategoryChange} />

@@ -42,7 +42,7 @@ export default function BlogPost() {
       />
       <Breadcrumbs
         items={[
-          { label: 'Blog', path: '/blogs' },
+          { label: 'Blogs', path: '/blogs' },
           { label: post.title, path: `/blogs/${post.slug}` },
         ]}
       />
