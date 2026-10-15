@@ -8,9 +8,9 @@ export interface PageSeo {
 
 export const pageSeo = {
   home: {
-    title: 'Best Career Counselling Surat | 5★, 900+ Reviews',
+    title: 'Best Career Counsellor in Surat | Career Counselling Services',
     description:
-      'Career counselling and stream selection guidance from Kishan & Meeta Patel in Surat, with 30+ years of aptitude testing and one-on-one guidance.',
+      'Best career counsellor in Surat? Get career counselling after 10th and 12th, plus career assessment to choose the right path.',
     path: '/',
   },
   whoWeAre: {
@@ -42,9 +42,9 @@ export const pageSeo = {
     noindex: true,
   },
   admissionConsulting: {
-    title: 'Admission Consulting | Best Career Counselling',
+    title: 'Admission Counselling in Surat | Best Career Counselling',
     description:
-      'Admission consulting from shortlist to enrolment. Kishan & Meeta Patel handle applications, documents and deadlines so you can focus on the right choice.',
+      'Admission consulting in Surat, from college shortlisting to enrolment. We handle applications, documents and deadlines for you.',
     path: '/admission-consulting',
   },
   onlineAdmissions: {
@@ -60,15 +60,15 @@ export const pageSeo = {
     path: '/career-counselling',
   },
   mbaAdmissionCounselling: {
-    title: 'MBA Admission Counselling | Best Career Counselling',
+    title: 'MBA Consultant in Surat | Best Career Counselling',
     description:
-      'Expert guidance to shortlist MBA colleges, understand entrance exam requirements and navigate the admission process. For MBA aspirants in Surat.',
+      'MBA consultant in Surat for CAT, XAT, GMAT and other entrance exams. Get help with specialisation, college shortlisting and final admission.',
     path: '/mba-admission-counselling',
   },
   ugAdmissionCounselling: {
-    title: 'UG Admission Counselling | Best Career Counselling',
+    title: 'UG Admission Counselling in Surat | Best Career Counselling',
     description:
-      'Explore undergraduate courses after Class 12, understand college admission criteria and choose the right path. UG admission counselling in Surat.',
+      'UG admission counselling in Surat for the right course and college. Get expert help with course selection, college shortlisting, forms and deadlines.',
     path: '/ug-admission-counselling',
   },
   schoolStudentCareerAssessment: {

@@ -17,6 +17,6 @@ describe('UgAdmissionCounselling page', () => {
     expect(screen.getAllByText(/students and parents/i).length).toBeGreaterThan(0)
     expect(screen.getByRole('link', { name: /book a free session/i })).toHaveAttribute('href', '/contact-us')
     expect(screen.getAllByRole('link', { name: /book 15-min pre counselling session/i }).length).toBeGreaterThan(0)
-    expect(document.title).toBe('UG Admission Counselling | Best Career Counselling')
+    expect(document.title).toBe('UG Admission Counselling in Surat | Best Career Counselling')
   })
 })

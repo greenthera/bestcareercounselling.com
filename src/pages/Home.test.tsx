@@ -27,7 +27,7 @@ describe('Home page', () => {
       expect(screen.getByRole('heading', { name })).toBeInTheDocument()
     })
 
-    expect(document.title).toBe('Best Career Counselling Surat | 5★, 900+ Reviews')
+    expect(document.title).toBe('Best Career Counsellor in Surat | Career Counselling Services')
   })
 
   it('renders the trust strip and Google reviews', () => {

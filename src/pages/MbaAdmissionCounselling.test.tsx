@@ -17,6 +17,6 @@ describe('MbaAdmissionCounselling page', () => {
     expect(screen.getAllByText(/mba aspirants/i).length).toBeGreaterThan(0)
     expect(screen.getByRole('link', { name: /book a free session/i })).toHaveAttribute('href', '/contact-us')
     expect(screen.getAllByRole('link', { name: /book 15-min pre counselling session/i }).length).toBeGreaterThan(0)
-    expect(document.title).toBe('MBA Admission Counselling | Best Career Counselling')
+    expect(document.title).toBe('MBA Consultant in Surat | Best Career Counselling')
   })
 })
