@@ -393,6 +393,90 @@ export const bookingFaqs: Faq[] = [
   },
 ]
 
+export const admissionConsultingFaqs: Faq[] = [
+  {
+    question: 'How admission counselling services in Surat help me?',
+    answer:
+      'An admission counselling service can help you compare different colleges based on course options, eligibility requirements, academic results and career prospect. So, you can understand which college, course, and career option is best for you for your life ambitions.',
+  },
+  {
+    question: 'Who is the best admission counsellor in Surat?',
+    answer:
+      'Best Career Counselling (Kishan & Meeta Patel) is the best admission counsellor in Surat. We provide personalised guidance to help students make better educational and career decisions based on their strength, skills, and life goals.',
+  },
+  {
+    question: 'How can I find a reliable admission consultant in Surat?',
+    answer:
+      'Finding the right admission consultant in Surat requires the consultant to be aware of your academic past, career aspirations & education opportunities. It is wise to study their experience, consulting methods, service types & reviews of other students about them.',
+  },
+  {
+    question: 'Can an admission counsellor help me choose the right course based on my interests?',
+    answer:
+      'Yes, admission counsellors can help students to learn their skills, talents, and career goals and then only find the right courses. The best admission counselling services in Surat also make sure that students select colleges and plan their college education.',
+  },
+  {
+    question: 'How do I book a consultation with an admission counsellor in Surat?',
+    answer:
+      'You can contact Best Career Counselling (Kishan & Meeta Patel) through the website or call +91 87581 75187 to enquire about a consultation. Our team can help you understand the counselling process and available admission guidance.',
+  },
+]
+
+export const mbaAdmissionCounsellingFaqs: Faq[] = [
+  {
+    question: 'Why do I need MBA admission counselling in Surat?',
+    answer:
+      'You may need MBA admission counselling in Surat to choose the right college based on your academic profile, entrance exam scores, budget, and career goals. We at bestcareercounselling.com help students to guide through college selection and the admission process.',
+  },
+  {
+    question: 'Who are the best MBA admissions consultants in Surat?',
+    answer:
+      'Best Career Counselling (Kishan & Meeta Patel) is widely recognised as the best MBA admissions consultant in Surat that understands your career goals, academic background, and college preferences and helps students find suitable MBA programs and admission options.',
+  },
+  {
+    question: 'How much do MBA consultants in Surat charge?',
+    answer:
+      'In Surat, fees for MBA admission counselling are determined by various factors including services rendered and the level of assistance needed. Best Career Counselling should be referred to in order to know more about the services and their costs.',
+  },
+  {
+    question: 'Can MBA consultants help with ISB, IIM, and international applications?',
+    answer:
+      'Yes, MBA admission consultants can provide students with assistance related to eligibility requirements, application procedure and selection of suitable colleges such as ISB and IIMs. The kind of help students receive with their applications for MBA programmes outside India depends largely on the types of services offered by different MBA consultants.',
+  },
+  {
+    question: 'Is direct admission available through MBA counselling in Surat?',
+    answer:
+      'Yes, direct MBA admission options are available in Surat through government & university affiliated institutes but not available through centralised counselling like ACPC in Gujarat. Best Career Counselling can help you understand available MBA admission routes and their requirements.',
+  },
+]
+
+export const ugAdmissionCounsellingFaqs: Faq[] = [
+  {
+    question: 'Who is the best UG admission counsellor in Surat?',
+    answer:
+      'Best Career Counselling (Kishan & Meeta Patel) is the highest-rated UG admission counsellor in Surat. We help students find suitable undergraduate courses & colleges based on their academic performance, interests, and career goals.',
+  },
+  {
+    question: 'How can UG admission counselling in Surat help me?',
+    answer:
+      'UG admission counselling helps you understand different degree options, compare colleges, and check eligibility requirements. The counselling makes the admission process easier to understand and manage.',
+  },
+  {
+    question: 'How do I choose the right college for my undergraduate degree?',
+    answer:
+      'When making a choice regarding a college where to apply for undergraduate degree courses, make sure to take into account various aspects like curriculum affecting the course, eligibility, fee structure, location, teaching staff, and job prospects. For this purpose, you can take help from a UG admission consultant in Surat.',
+  },
+  {
+    question: 'Can I get UG admission counselling based on my marks and eligibility?',
+    answer:
+      'Yes, admission counselling can help you shortlist colleges and courses based on your Class 12 marks and eligibility criteria. Your available options will depend on the course requirements and the admission policies of individual colleges.',
+  },
+  {
+    question: 'What services are included in UG admission counselling?',
+    answer:
+      'UG admission counselling involves course selection, college shortlisting, advice on eligibility, and assistance with entrance exams, application processes, documents, merit lists, counselling rounds & enrolment. For more information, please visit bestcareercounselling.com.',
+  },
+]
+
 export const onlineAdmissionsFaqs: Faq[] = [
   {
     question: 'Is online education suitable for working professionals?',

@@ -18,6 +18,8 @@ import { Reveal } from '@/components/ui/reveal'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { ExploreUniversities } from '@/components/trust/ExploreUniversities'
 import { FinalCTA } from '@/components/home/FinalCTA'
+import { FAQSection } from '@/components/home/FAQSection'
+import { ugAdmissionCounsellingFaqs } from '@/data/faqs'
 import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 import { ServiceSchema } from '@/components/seo/ServiceSchema'
@@ -254,6 +256,8 @@ export default function UgAdmissionCounselling() {
       </section>
 
       <ExploreUniversities description="Discover universities and colleges offering undergraduate programs across different fields of study. Compare your options and find institutions worth considering for your next academic step." />
+
+      <FAQSection faqs={ugAdmissionCounsellingFaqs} />
 
       <FinalCTA
         variant="button"

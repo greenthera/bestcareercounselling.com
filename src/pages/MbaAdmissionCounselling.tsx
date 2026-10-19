@@ -19,6 +19,8 @@ import { Reveal } from '@/components/ui/reveal'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { ExploreUniversities } from '@/components/trust/ExploreUniversities'
 import { FinalCTA } from '@/components/home/FinalCTA'
+import { FAQSection } from '@/components/home/FAQSection'
+import { mbaAdmissionCounsellingFaqs } from '@/data/faqs'
 import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 import { ServiceSchema } from '@/components/seo/ServiceSchema'
@@ -254,6 +256,8 @@ export default function MbaAdmissionCounselling() {
       </section>
 
       <ExploreUniversities description="Explore leading universities and business schools to find the right options for your MBA journey." />
+
+      <FAQSection faqs={mbaAdmissionCounsellingFaqs} />
 
       <FinalCTA
         variant="button"

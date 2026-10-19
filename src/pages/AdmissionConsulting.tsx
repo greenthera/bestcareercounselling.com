@@ -17,6 +17,8 @@ import type { LucideIcon } from 'lucide-react'
 import { Reveal } from '@/components/ui/reveal'
 import { ExploreUniversities } from '@/components/trust/ExploreUniversities'
 import { FinalCTA } from '@/components/home/FinalCTA'
+import { FAQSection } from '@/components/home/FAQSection'
+import { admissionConsultingFaqs } from '@/data/faqs'
 import { PageSeo } from '@/components/seo/PageSeo'
 import { pageSeo } from '@/data/seo'
 import { ServiceSchema } from '@/components/seo/ServiceSchema'
@@ -200,6 +202,8 @@ export default function AdmissionConsulting() {
       </section>
 
       <ExploreUniversities />
+
+      <FAQSection faqs={admissionConsultingFaqs} />
 
       <FinalCTA
         variant="button"

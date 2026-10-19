@@ -4,6 +4,8 @@ export interface PageSeo {
   path: string
   /** Set true for pages that shouldn't be indexed (e.g. a post-submission confirmation page). Defaults to indexable. */
   noindex?: boolean
+  /** Comma-separated topics. Optional; omitted pages don't get a keywords tag. */
+  keywords?: string
 }
 
 export const pageSeo = {
@@ -12,6 +14,8 @@ export const pageSeo = {
     description:
       'Best career counsellor in Surat? Get career counselling after 10th and 12th, plus career assessment to choose the right path.',
     path: '/',
+    keywords:
+      'Best career counsellor in Surat, Career counselling services in Surat, Career counselling after 10th in Surat, Career counselling after 12th in Surat, Career Assessment in Surat',
   },
   whoWeAre: {
     title: 'Who We Are | Kishan & Meeta Patel Career Counselling',
