@@ -103,19 +103,26 @@ export default function AdmissionConsulting() {
             <GraduationCap className="h-7 w-7" aria-hidden="true" />
           </span>
           <h1 className="mt-5 text-4xl font-bold leading-tight text-ink md:text-6xl">
-            Admission <span className="text-brand-green">Consulting</span>
+            Admission <span className="text-brand-green">Consulting</span> in Surat
           </h1>
           <p className="mt-4 text-lg text-muted-ink">
-            From shortlist to enrolment, Kishan &amp; Meeta Patel handle the paperwork and the pressure so you can
-            focus on making the right choice.
+            Best Career Counselling (Kishan &amp; Meeta Patel) offers admission counselling services in Surat to help
+            students find the right course, understand eligibility criteria, and college selection. With expert
+            guidance at every step, students can compare their options and choose a college that aligns with their
+            academic background, interests, &amp; career objectives.
           </p>
         </Reveal>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-10 md:px-8 md:py-14">
-        <Reveal className="mx-auto max-w-xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold text-ink md:text-4xl">What's included</h2>
-          <p className="mt-2 text-muted-ink">Everything you need to get from shortlist to admission letter.</p>
+          <p className="mt-3 font-semibold text-ink">Our Admission Counselling Services in Surat</p>
+          <p className="mt-2 text-muted-ink">
+            Our admission counselling services in Surat guide you through college shortlisting, applications,
+            documentation, and deadlines. As the best admission counsellor in Surat, we help simplify every step of
+            the admission process.
+          </p>
         </Reveal>
 
         <div className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -138,11 +145,16 @@ export default function AdmissionConsulting() {
 
       <section className="px-4 py-8 md:px-8">
         <div className="mx-auto max-w-7xl rounded-[2rem] bg-soft-cream px-6 py-14 md:px-10 md:py-16">
-          <Reveal className="mx-auto max-w-xl text-center">
+          <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold text-ink md:text-4xl">
               How it <span className="text-brand-green">works</span>
             </h2>
-            <p className="mt-2 text-muted-ink">Four steps. Start to finish.</p>
+            <p className="mt-3 font-semibold text-ink">Admission Counselling Process in Surat</p>
+            <p className="mt-2 text-muted-ink">
+              From understanding your academic profile to completing admission formalities, we follow a clear
+              process to evaluate college options, prepare applications, &amp; stay on track with your admission
+              plans.
+            </p>
           </Reveal>
 
           <ol className="relative mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -175,11 +187,15 @@ export default function AdmissionConsulting() {
 
       <section className="px-4 py-8 md:px-8">
         <div className="mx-auto max-w-7xl rounded-[2rem] bg-brand-green px-6 py-14 text-center text-warm-white md:px-10 md:py-16">
-          <Reveal className="mx-auto max-w-xl">
+          <Reveal className="mx-auto max-w-2xl">
             <h2 className="text-3xl font-bold md:text-4xl">
               Who it's <span className="text-brand-yellow">for</span>
             </h2>
-            <p className="mt-2 text-warm-white/60">Admission support at every stage.</p>
+            <p className="mt-3 font-semibold text-warm-white">Admission Counselling for Students at Every Stage</p>
+            <p className="mt-2 text-warm-white/60">
+              Whether you are completing Class 12, planning PG studies, considering an MBA, or international
+              education, admission counsellors in Surat guide you for next academic step.
+            </p>
           </Reveal>
 
           <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -201,14 +217,14 @@ export default function AdmissionConsulting() {
         </div>
       </section>
 
-      <ExploreUniversities />
+      <ExploreUniversities description="Discover leading universities and their academic programs to find institutions that match your preferred course, eligibility, and admission requirements." />
 
       <FAQSection faqs={admissionConsultingFaqs} />
 
       <FinalCTA
         variant="button"
-        heading="Ready to start your admission process?"
-        description="A 15-minute call costs nothing and gives you a clear shortlist and timeline to work from."
+        heading="Ready to Start Your Admission Process?"
+        description="Your next academic step starts with the right decision. Talk to Best Career Counselling to get guidance on course selection, eligibility, and the admission process."
       />
     </>
   )
