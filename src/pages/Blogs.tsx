@@ -66,9 +66,7 @@ export default function Blogs() {
       {(gridPosts.length > 0 || !isDefaultView) && (
         <BlogGrid posts={gridPosts} page={page} onPageChange={handlePageChange} />
       )}
-      <div className="mt-6 md:mt-10">
-        <FreeAssessmentSection />
-      </div>
+      <FreeAssessmentSection />
     </>
   )
 }
