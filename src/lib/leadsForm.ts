@@ -1,32 +1,38 @@
 // Posts a lead to the Google Form that backs the lead-tracking Google Sheet (the
-// "backend of record" — see public/ConfigureConversionTracking.md). Entry IDs come
-// from the form's "Get pre-filled link" output; if the form's questions are ever
-// edited, added to or recreated, these IDs change and must be re-collected the same
-// way, or submissions will silently stop landing in the right columns.
+// "backend of record"). Entry IDs come from the form's "Get pre-filled link" output;
+// if the form's questions are ever edited, added to or recreated, these IDs change and
+// must be re-collected the same way, or submissions will silently stop landing in the
+// right columns.
 
 // Falls back to the form collected for this site if VITE_GFORM_URL isn't set, the
 // same pattern src/lib/seo.ts uses for VITE_SITE_URL — so a fresh clone or CI build
 // still works without a local .env file.
 const GFORM_URL =
   import.meta.env.VITE_GFORM_URL ||
-  'https://docs.google.com/forms/d/e/1FAIpQLSeEV9QGcM6u-Nb7dtb92ddWJX0kVzmMQAPLRHs6qb73zy2DzQ/formResponse'
+  'https://docs.google.com/forms/d/e/1FAIpQLSfvIhJMmBIghgJgKROt9FnO5IyFCTtpENS0UP97LtKyNQmcog/formResponse'
 
+// Order matches the Form's own question order (lead_id, name, email, phone, notes,
+// then the shared attribution fields). `notes` carries whatever is specific to the
+// form that captured this lead (e.g. "Status: Class 10" or "Course: Online MBA;
+// Qualification: Graduate; ...") — the one field every form fills in differently,
+// instead of giving every possible form-specific field its own column.
 export const ENTRY = {
-  lead_id: 'entry.243360331',
-  name: 'entry.1081356038',
-  phone: 'entry.1290721114',
-  status: 'entry.1238164411',
-  form_id: 'entry.1777820978',
-  page: 'entry.837934175',
-  utm_source: 'entry.1608291639',
-  utm_medium: 'entry.762024564',
-  utm_campaign: 'entry.491650539',
-  utm_term: 'entry.1658321924',
-  utm_content: 'entry.475079642',
-  gclid: 'entry.197075013',
-  fbclid: 'entry.112890306',
-  landing_page: 'entry.2124836624',
-  referrer: 'entry.1682408961',
+  lead_id: 'entry.1311777246',
+  name: 'entry.689730906',
+  email: 'entry.1156704139',
+  phone: 'entry.808173884',
+  notes: 'entry.1381980248',
+  form_id: 'entry.2074549916',
+  page: 'entry.1871426431',
+  utm_source: 'entry.784612854',
+  utm_medium: 'entry.769170639',
+  utm_campaign: 'entry.1997714945',
+  utm_term: 'entry.292238718',
+  utm_content: 'entry.367534719',
+  gclid: 'entry.1303728676',
+  fbclid: 'entry.275821024',
+  landing_page: 'entry.1821401819',
+  referrer: 'entry.439433515',
 } as const
 
 export type LeadFormData = Record<keyof typeof ENTRY, string>

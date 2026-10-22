@@ -1,7 +1,7 @@
 import { useId, useState, type FormEvent } from 'react'
 import { Button } from '@/components/ui/button'
-import { isValidIndianPhone, buildWhatsAppUrl } from '@/lib/whatsapp'
-import { buildContextualMessage } from '@/components/whatsapp/whatsappMessages'
+import { isValidIndianPhone } from '@/lib/whatsapp'
+import { submitLead } from '@/lib/submitLead'
 import { currentStatusOptions } from '@/data/currentStatusOptions'
 
 interface Errors {
@@ -17,9 +17,12 @@ export function AssessmentForm() {
   const [currentClass, setCurrentClass] = useState('')
   const [email, setEmail] = useState('')
   const [errors, setErrors] = useState<Errors>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
+    if (isSubmitting) return
+
     const nextErrors: Errors = {}
 
     if (!name.trim()) nextErrors.name = 'Name is required.'
@@ -30,13 +33,14 @@ export function AssessmentForm() {
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
 
-    const message = buildContextualMessage('assessment', {
-      name,
-      phone,
-      currentClass,
-      email: email.trim() || undefined,
+    setIsSubmitting(true)
+    submitLead({
+      formId: 'assessment',
+      context: 'assessment',
+      fields: { name, phone, currentClass, email: email.trim() || undefined },
+      email: email.trim(),
+      notes: `Status: ${currentClass}`,
     })
-    window.open(buildWhatsAppUrl(message), '_blank', 'noopener,noreferrer')
   }
 
   return (
@@ -101,8 +105,12 @@ export function AssessmentForm() {
         />
       </div>
 
-      <Button type="submit" className="h-auto w-full py-2.5 bg-brand-yellow text-ink hover:bg-brand-yellow/90">
-        Take the Free Assessment
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="h-auto w-full py-2.5 bg-brand-yellow text-ink hover:bg-brand-yellow/90 disabled:opacity-60"
+      >
+        {isSubmitting ? 'Opening WhatsApp…' : 'Take the Free Assessment'}
       </Button>
     </form>
   )

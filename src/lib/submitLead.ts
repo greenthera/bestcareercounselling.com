@@ -3,33 +3,35 @@ import { saveLeadToForm } from '@/lib/leadsForm'
 import { buildWhatsAppUrl } from '@/lib/whatsapp'
 import { buildContextualMessage, type WhatsAppContext, type WhatsAppFields } from '@/components/whatsapp/whatsappMessages'
 
-interface SubmitLeadParams {
+interface SaveLeadParams {
   /** Which on-page form this is (e.g. "hero", "footer", "contact-page") — becomes form_id. */
   formId: string
-  context: WhatsAppContext
-  fields: WhatsAppFields
+  name: string
+  phone: string
+  email?: string
+  /** Whatever is specific to this form, as readable text (e.g. "Status: Class 10",
+   * or "Course: Online MBA; Qualification: Graduate") — every form collects different
+   * extra fields, so instead of one Sheet column per possible field across every form,
+   * this single text field carries whichever ones this particular form has. */
+  notes?: string
 }
 
-// Shared by every lead-capture form on the site (see public/ConfigureConversionTracking.md,
-// section 5.3). On submit, in order: generate a lead ID, save the lead to the Google
-// Sheet (never blocks on this — a slow/failed request must never stop the WhatsApp
-// redirect), log a generate_lead event with no personal data, then open WhatsApp with
-// a tagged message carrying the same lead ID so the two can be reconciled later.
-//
-// window.open is called synchronously (not after a delay) so browsers still treat it
-// as a direct result of the click/submit and don't pop-up-block it — a setTimeout'd
-// window.open risks losing that "user gesture" trust, especially on iOS Safari, which
-// is exactly the browser this needs to work reliably on.
-export function submitLead({ formId, context, fields }: SubmitLeadParams): void {
+// Saves a lead to the Google Sheet and logs a generate_lead event, without opening
+// WhatsApp — for forms that show their own result/thank-you screen instead of
+// redirecting immediately (the assessment forms, the online-admissions form). Returns
+// the generated lead ID so a caller that opens WhatsApp itself can tag the message
+// with it via buildLeadRef, for the same Sheet-row-to-chat reconciliation submitLead
+// provides.
+export function saveLead({ formId, name, phone, email, notes }: SaveLeadParams): string {
   const leadId = newLeadId()
   const attribution = getAttribution()
-  const ref = `${formId}-${attribution?.utm_source || 'DIRECT'}`
 
   saveLeadToForm({
     lead_id: leadId,
-    name: fields.name,
-    phone: fields.phone,
-    status: fields.currentClass ?? '',
+    name,
+    email: email ?? '',
+    phone,
+    notes: notes ?? '',
     form_id: formId,
     page: window.location.pathname,
     utm_source: attribution?.utm_source ?? '',
@@ -45,24 +47,69 @@ export function submitLead({ formId, context, fields }: SubmitLeadParams): void 
 
   track('generate_lead', {
     form_id: formId,
-    current_status: fields.currentClass ?? '',
     lead_channel: 'whatsapp',
     lead_id: leadId,
   })
 
-  const message = buildContextualMessage(context, fields)
-  const taggedMessage = `${message}\n\nRef: ${ref}-${leadId}`
-  const whatsappUrl = buildWhatsAppUrl(taggedMessage)
+  return leadId
+}
 
-  // Deliberately omits noopener/noreferrer: browsers always return null from window.open
-  // when either is set — even when the popup opens successfully — which would make the
-  // blocked-popup check below fire every time, redirecting the original tab in addition
-  // to the new one actually opening. Safe to omit here because the destination is always
-  // this fixed, hardcoded wa.me URL, never attacker-controlled, so there's no tabnabbing
-  // risk from giving it an opener reference.
-  const win = window.open(whatsappUrl, '_blank')
+// `{form_id}-{utm_source or DIRECT}-{lead_id}` — the same Ref format submitLead tags
+// its WhatsApp messages with, exposed separately for forms that build and send their
+// own WhatsApp message after saveLead (rather than through submitLead itself).
+export function buildLeadRef(formId: string, leadId: string): string {
+  const attribution = getAttribution()
+  return `${formId}-${attribution?.utm_source || 'DIRECT'}-${leadId}`
+}
+
+// Builds the `notes` text for forms whose own fields don't get their own Sheet column
+// (every form collects different extras, so only Name/Email/Phone are common enough to
+// warrant real columns — see saveLead above). One "Label: value" line per field, blank
+// fields skipped, separated by real line breaks rather than semicolons — the Sheet's
+// notes column is a Paragraph-type field, so each one renders on its own line instead
+// of a single hard-to-scan run-on sentence.
+export function buildLeadNotes(fields: Record<string, string>): string {
+  return Object.entries(fields)
+    .filter(([, value]) => value)
+    .map(([label, value]) => `${label}: ${value}`)
+    .join('\n')
+}
+
+// Opens a WhatsApp URL the popup-safe way: synchronously (so browsers still treat it as
+// a direct result of the click and don't pop-up-block it — a setTimeout'd window.open
+// risks losing that "user gesture" trust, especially on iOS Safari), and deliberately
+// without noopener/noreferrer, since browsers always return null from window.open when
+// either is set — even when the popup opens successfully — which would make the
+// blocked-popup check below fire every time, redirecting the original tab in addition
+// to the new one actually opening. Safe to omit here because the destination is always
+// a fixed, hardcoded wa.me URL, never attacker-controlled, so there's no tabnabbing risk
+// from giving it an opener reference.
+export function openWhatsApp(url: string): void {
+  const win = window.open(url, '_blank')
   if (!win) {
     // Popup genuinely blocked (most commonly iOS Safari) — fall back to a same-tab redirect.
-    window.location.href = whatsappUrl
+    window.location.href = url
   }
+}
+
+interface SubmitLeadParams {
+  formId: string
+  context: WhatsAppContext
+  fields: WhatsAppFields
+  email?: string
+  notes?: string
+}
+
+// Full flow for forms that redirect straight to WhatsApp on submit (hero, footer,
+// contact page, per-service forms). On submit, in order: save the lead (never blocks
+// on this — a slow/failed request must never stop the WhatsApp redirect), log a
+// generate_lead event with no personal data, then open WhatsApp with a tagged message
+// carrying the same lead ID so the two can be reconciled later.
+export function submitLead({ formId, context, fields, email, notes }: SubmitLeadParams): void {
+  const leadId = saveLead({ formId, name: fields.name, phone: fields.phone, email, notes })
+  const ref = buildLeadRef(formId, leadId)
+
+  const message = buildContextualMessage(context, fields)
+  const taggedMessage = `${message}\n\nRef: ${ref}`
+  openWhatsApp(buildWhatsAppUrl(taggedMessage))
 }

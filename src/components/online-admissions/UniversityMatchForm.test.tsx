@@ -2,29 +2,30 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { UniversityMatchForm } from './UniversityMatchForm'
+import { ENTRY } from '@/lib/leadsForm'
 
 describe('UniversityMatchForm', () => {
-  let fetchSpy: ReturnType<typeof vi.spyOn>
+  let sendBeaconSpy: ReturnType<typeof vi.spyOn>
 
   beforeEach(() => {
-    fetchSpy = vi.spyOn(window, 'fetch').mockResolvedValue(new Response())
+    sendBeaconSpy = vi.spyOn(navigator, 'sendBeacon').mockReturnValue(true)
   })
 
   afterEach(() => {
-    fetchSpy.mockRestore()
+    sendBeaconSpy.mockRestore()
   })
 
-  it('validates name and phone before submitting to the Google Form', async () => {
+  it('validates name and phone before submitting', async () => {
     const user = userEvent.setup()
     render(<UniversityMatchForm />)
 
     await user.click(screen.getByRole('button', { name: /submit enquiry/i }))
     expect(await screen.findByText(/name is required/i)).toBeInTheDocument()
     expect(screen.getByText(/whatsapp number is required/i)).toBeInTheDocument()
-    expect(fetchSpy).not.toHaveBeenCalled()
+    expect(sendBeaconSpy).not.toHaveBeenCalled()
   })
 
-  it('submits the selected profile to the Google Form with the correct entry IDs', async () => {
+  it('saves the lead to the shared Leads Sheet, with the course/qualification/etc. combined into notes', async () => {
     const user = userEvent.setup()
     render(<UniversityMatchForm />)
 
@@ -38,30 +39,28 @@ describe('UniversityMatchForm', () => {
 
     expect(await screen.findByText(/thanks, aarav shah got your details/i)).toBeInTheDocument()
 
-    expect(fetchSpy).toHaveBeenCalledTimes(1)
-    const [url, options] = fetchSpy.mock.calls[0]
-    expect(url).toBe('https://docs.google.com/forms/d/e/1FAIpQLSfJMGHRKWJc_4sJqCakkbG9aL1KxT2hBCTGVJ8YcKvz0Y2ycA/formResponse')
-    expect(options).toMatchObject({ method: 'POST', mode: 'no-cors' })
-
-    const body = options?.body as FormData
-    expect(body.get('entry.1781896297')).toBe('Online MBA')
-    expect(body.get('entry.742214592')).toBe('Graduate')
-    expect(body.get('entry.1605985204')).toBe('₹1–2 Lakh')
-    expect(body.get('entry.1176639313')).toBe('Aarav Shah')
-    expect(body.get('entry.981566267')).toBe('9876543210')
-    expect(body.get('entry.1373262059')).toBe('aarav@example.com')
+    expect(sendBeaconSpy).toHaveBeenCalledTimes(1)
+    const [, body] = sendBeaconSpy.mock.calls[0]
+    const params = body as URLSearchParams
+    expect(params.get(ENTRY.name)).toBe('Aarav Shah')
+    expect(params.get(ENTRY.phone)).toBe('9876543210')
+    expect(params.get(ENTRY.email)).toBe('aarav@example.com')
+    expect(params.get(ENTRY.form_id)).toBe('online-admissions')
+    expect(params.get(ENTRY.notes)).toBe('Course: Online MBA\nQualification: Graduate\nBudget: ₹1–2 Lakh')
   })
 
-  it('shows a recoverable error if the submission fails', async () => {
-    fetchSpy.mockRejectedValueOnce(new Error('Network error'))
+  it('omits fields the visitor left blank from notes instead of sending empty labels', async () => {
     const user = userEvent.setup()
     render(<UniversityMatchForm />)
 
-    await user.type(screen.getByLabelText(/full name/i), 'Aarav Shah')
+    await user.selectOptions(screen.getByLabelText(/which course/i), 'Online MCA')
+    await user.type(screen.getByLabelText(/full name/i), 'Priya Mehta')
     await user.type(screen.getByLabelText(/whatsapp number/i), '9876543210')
     await user.click(screen.getByRole('button', { name: /submit enquiry/i }))
 
-    expect(await screen.findByRole('alert')).toHaveTextContent(/could not submit your details/i)
-    expect(screen.getByRole('button', { name: /submit enquiry/i })).toBeEnabled()
+    await screen.findByText(/thanks, priya mehta got your details/i)
+
+    const [, body] = sendBeaconSpy.mock.calls[0]
+    expect((body as URLSearchParams).get(ENTRY.notes)).toBe('Course: Online MCA')
   })
 })

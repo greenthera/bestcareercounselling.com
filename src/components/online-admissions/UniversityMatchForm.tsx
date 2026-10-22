@@ -2,20 +2,7 @@ import { useId, useState, type FormEvent } from 'react'
 import { CheckCircle2, Lock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { isValidIndianPhone } from '@/lib/whatsapp'
-
-const GOOGLE_FORM_ACTION_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSfJMGHRKWJc_4sJqCakkbG9aL1KxT2hBCTGVJ8YcKvz0Y2ycA/formResponse'
-
-const GOOGLE_FORM_ENTRIES = {
-  course: 'entry.1781896297',
-  qualification: 'entry.742214592',
-  percentage: 'entry.1248524857',
-  budget: 'entry.1605985204',
-  goal: 'entry.1599261796',
-  name: 'entry.1176639313',
-  phone: 'entry.981566267',
-  email: 'entry.1373262059',
-}
+import { saveLead, buildLeadNotes } from '@/lib/submitLead'
 
 const COURSE_OPTIONS = ['Online MBA', 'Online MCA', 'Online BBA', 'Online BCA', 'Online B.Com', 'Not sure yet']
 const QUALIFICATION_OPTIONS = ['12th pass', 'Graduate', 'Post Graduate', 'Other']
@@ -71,10 +58,9 @@ export function UniversityMatchForm({ className }: { className?: string }) {
   const [email, setEmail] = useState('')
   const [errors, setErrors] = useState<Errors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitError, setSubmitError] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
-  async function handleSubmit(event: FormEvent) {
+  function handleSubmit(event: FormEvent) {
     event.preventDefault()
     const nextErrors: Errors = {}
     if (!name.trim()) nextErrors.name = 'Name is required.'
@@ -85,25 +71,15 @@ export function UniversityMatchForm({ className }: { className?: string }) {
     if (Object.keys(nextErrors).length > 0) return
 
     setIsSubmitting(true)
-    setSubmitError('')
-    try {
-      const formData = new FormData()
-      formData.append(GOOGLE_FORM_ENTRIES.course, course)
-      formData.append(GOOGLE_FORM_ENTRIES.qualification, qualification)
-      formData.append(GOOGLE_FORM_ENTRIES.percentage, percentage)
-      formData.append(GOOGLE_FORM_ENTRIES.budget, budget)
-      formData.append(GOOGLE_FORM_ENTRIES.goal, goal)
-      formData.append(GOOGLE_FORM_ENTRIES.name, name.trim())
-      formData.append(GOOGLE_FORM_ENTRIES.phone, phone.trim())
-      formData.append(GOOGLE_FORM_ENTRIES.email, email.trim())
-
-      await fetch(GOOGLE_FORM_ACTION_URL, { method: 'POST', mode: 'no-cors', body: formData })
-      setSubmitted(true)
-    } catch {
-      setSubmitError('Could not submit your details. Please check your connection and try again.')
-    } finally {
-      setIsSubmitting(false)
-    }
+    saveLead({
+      formId: 'online-admissions',
+      name: name.trim(),
+      phone: phone.trim(),
+      email: email.trim(),
+      notes: buildLeadNotes({ Course: course, Qualification: qualification, Percentage: percentage, Budget: budget, Goal: goal }),
+    })
+    setSubmitted(true)
+    setIsSubmitting(false)
   }
 
   if (submitted) {
@@ -232,12 +208,6 @@ export function UniversityMatchForm({ className }: { className?: string }) {
           />
         </Field>
       </div>
-
-      {submitError && (
-        <p className="mt-3 text-sm text-red-600" role="alert">
-          {submitError}
-        </p>
-      )}
 
       <Button
         type="submit"

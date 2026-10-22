@@ -9,22 +9,12 @@ import { Breadcrumbs } from '@/components/seo/Breadcrumbs'
 import { Reveal } from '@/components/ui/reveal'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { buildWhatsAppUrl, isValidIndianPhone } from '@/lib/whatsapp'
+import { saveLead, buildLeadNotes } from '@/lib/submitLead'
 import { cn } from '@/lib/utils'
 
 type Answer = 0 | 1
 type Stage = 'intro' | 'quiz' | 'leadCapture' | 'result'
 type Tone = 'green' | 'yellow'
-
-const GOOGLE_FORM_ACTION_URL =
-    'https://docs.google.com/forms/d/e/1FAIpQLSdviDkn-2THnlcE3kt4rcx9ZdiGDMwqFlS1HIdFYXCeSIm6CQ/formResponse'
-
-const GOOGLE_FORM_ENTRIES = {
-    studentName: 'entry.1940346655',
-    parentName: 'entry.1576762693',
-    studentClass: 'entry.108097604',
-    mobile: 'entry.634323980',
-    email: 'entry.612697315',
-}
 
 interface LeadDetails {
     studentName: string
@@ -151,7 +141,6 @@ export default function SchoolStudentCareerAssessment() {
     })
     const [leadErrors, setLeadErrors] = useState<LeadErrors>({})
     const [isSubmittingLead, setIsSubmittingLead] = useState(false)
-    const [leadSubmitError, setLeadSubmitError] = useState('')
 
     const question = allQuestions[currentQuestion]
 
@@ -198,11 +187,10 @@ export default function SchoolStudentCareerAssessment() {
         setError('')
         setLead({ studentName: '', parentName: '', studentClass: '', mobile: '', email: '' })
         setLeadErrors({})
-        setLeadSubmitError('')
         setStage('intro')
     }
 
-    async function handleLeadSubmit(event: FormEvent) {
+    function handleLeadSubmit(event: FormEvent) {
         event.preventDefault()
         const nextErrors: LeadErrors = {}
 
@@ -216,22 +204,15 @@ export default function SchoolStudentCareerAssessment() {
         if (Object.keys(nextErrors).length > 0) return
 
         setIsSubmittingLead(true)
-        setLeadSubmitError('')
-        try {
-            const formData = new FormData()
-            formData.append(GOOGLE_FORM_ENTRIES.studentName, lead.studentName.trim())
-            formData.append(GOOGLE_FORM_ENTRIES.parentName, lead.parentName.trim())
-            formData.append(GOOGLE_FORM_ENTRIES.studentClass, lead.studentClass)
-            formData.append(GOOGLE_FORM_ENTRIES.mobile, lead.mobile.trim())
-            formData.append(GOOGLE_FORM_ENTRIES.email, lead.email.trim())
-
-            await fetch(GOOGLE_FORM_ACTION_URL, { method: 'POST', mode: 'no-cors', body: formData })
-            setStage('result')
-        } catch {
-            setLeadSubmitError('Could not submit your details. Please check your connection and try again.')
-        } finally {
-            setIsSubmittingLead(false)
-        }
+        saveLead({
+            formId: 'school-student-career-assessment',
+            name: lead.studentName.trim(),
+            phone: lead.mobile.trim(),
+            email: lead.email.trim(),
+            notes: buildLeadNotes({ 'Parent Name': lead.parentName.trim(), 'Student Class': lead.studentClass }),
+        })
+        setStage('result')
+        setIsSubmittingLead(false)
     }
 
     async function handleDownloadPdf() {
@@ -468,12 +449,6 @@ export default function SchoolStudentCareerAssessment() {
                                     className="w-full rounded-md border border-neutral-border bg-white px-3 py-2 text-sm"
                                 />
                             </div>
-
-                            {leadSubmitError && (
-                                <p className="mb-4 text-sm text-red-600" role="alert">
-                                    {leadSubmitError}
-                                </p>
-                            )}
 
                             <Button
                                 type="submit"

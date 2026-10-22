@@ -18,20 +18,10 @@ import { Reveal } from '@/components/ui/reveal'
 import { Button } from '@/components/ui/button'
 import { PillCtaEndcap } from '@/components/ui/pill-cta-endcap'
 import { isValidIndianPhone, buildWhatsAppUrl } from '@/lib/whatsapp'
+import { saveLead, buildLeadNotes, buildLeadRef, openWhatsApp } from '@/lib/submitLead'
 import { cn } from '@/lib/utils'
 
 type Stage = 'intro' | 'quiz' | 'leadCapture' | 'result'
-
-const GOOGLE_FORM_ACTION_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSdTjBlQQkMcle2ZhKq59rPJ-tuHpXSYE8DAO0g8ahWHN_N5jg/formResponse'
-
-const GOOGLE_FORM_ENTRIES = {
-  parentName: 'entry.755426042',
-  childName: 'entry.1783431080',
-  childClass: 'entry.180962404',
-  mobile: 'entry.354449202',
-  email: 'entry.252864987',
-}
 
 const allQuestions = parentAssessmentSections.flatMap((section) =>
   section.questions.map((question) => ({ ...question, section: section.section })),
@@ -83,7 +73,6 @@ export default function ParentCareerClarityAssessment() {
   const [lead, setLead] = useState<LeadDetails>({ parentName: '', childName: '', childClass: '', mobile: '', email: '' })
   const [leadErrors, setLeadErrors] = useState<LeadErrors>({})
   const [isSubmittingLead, setIsSubmittingLead] = useState(false)
-  const [leadSubmitError, setLeadSubmitError] = useState('')
 
   const [reason, setReason] = useState('')
   const [callbackErrors, setCallbackErrors] = useState<CallbackErrors>({})
@@ -121,7 +110,7 @@ export default function ParentCareerClarityAssessment() {
     }
   }
 
-  async function handleLeadSubmit(event: FormEvent) {
+  function handleLeadSubmit(event: FormEvent) {
     event.preventDefault()
     const nextErrors: LeadErrors = {}
 
@@ -135,22 +124,15 @@ export default function ParentCareerClarityAssessment() {
     if (Object.keys(nextErrors).length > 0) return
 
     setIsSubmittingLead(true)
-    setLeadSubmitError('')
-    try {
-      const formData = new FormData()
-      formData.append(GOOGLE_FORM_ENTRIES.parentName, lead.parentName.trim())
-      formData.append(GOOGLE_FORM_ENTRIES.childName, lead.childName.trim())
-      formData.append(GOOGLE_FORM_ENTRIES.childClass, lead.childClass)
-      formData.append(GOOGLE_FORM_ENTRIES.mobile, lead.mobile.trim())
-      formData.append(GOOGLE_FORM_ENTRIES.email, lead.email.trim())
-
-      await fetch(GOOGLE_FORM_ACTION_URL, { method: 'POST', mode: 'no-cors', body: formData })
-      setStage('result')
-    } catch {
-      setLeadSubmitError('Could not submit your details. Please check your connection and try again.')
-    } finally {
-      setIsSubmittingLead(false)
-    }
+    saveLead({
+      formId: 'parent-career-clarity-assessment',
+      name: lead.parentName.trim(),
+      phone: lead.mobile.trim(),
+      email: lead.email.trim(),
+      notes: buildLeadNotes({ 'Child Name': lead.childName.trim(), 'Child Class': lead.childClass }),
+    })
+    setStage('result')
+    setIsSubmittingLead(false)
   }
 
   function buildGetInTouchUrl() {
@@ -176,11 +158,20 @@ export default function ParentCareerClarityAssessment() {
     setCallbackErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
 
+    const leadId = saveLead({
+      formId: 'parent-career-clarity-callback',
+      name: lead.parentName.trim(),
+      phone: lead.mobile.trim(),
+      email: lead.email.trim(),
+      notes: buildLeadNotes({ 'Child Name': lead.childName.trim(), 'Child Class': lead.childClass, Reason: reason }),
+    })
+    const ref = buildLeadRef('parent-career-clarity-callback', leadId)
+
     const message =
       `Hi, I would like a call back regarding my child's career guidance.\n\n` +
       `Parent Name: ${lead.parentName}\nChild Name: ${lead.childName}\nChild's Class: ${lead.childClass}\nPhone: ${lead.mobile}\n` +
-      `What I need help with: ${reason}`
-    window.open(buildWhatsAppUrl(message), '_blank', 'noopener,noreferrer')
+      `What I need help with: ${reason}\n\nRef: ${ref}`
+    openWhatsApp(buildWhatsAppUrl(message))
     setCallbackSent(true)
   }
 
@@ -418,12 +409,6 @@ export default function ParentCareerClarityAssessment() {
                   className="w-full rounded-md border border-neutral-border bg-white px-3 py-2 text-sm"
                 />
               </div>
-
-              {leadSubmitError && (
-                <p className="mb-4 text-sm text-red-600" role="alert">
-                  {leadSubmitError}
-                </p>
-              )}
 
               <Button
                 type="submit"

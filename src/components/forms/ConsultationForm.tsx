@@ -42,7 +42,7 @@ export function ConsultationForm({ context, formId, className, submitLabel = 'Bo
     if (Object.keys(nextErrors).length > 0) return
 
     setIsSubmitting(true)
-    submitLead({ formId, context, fields: { name, phone, currentClass } })
+    submitLead({ formId, context, fields: { name, phone, currentClass }, notes: `Status: ${currentClass}` })
   }
 
   return (

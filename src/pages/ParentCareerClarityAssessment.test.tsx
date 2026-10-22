@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import ParentCareerClarityAssessment from './ParentCareerClarityAssessment'
 import { parentAssessmentSections } from '@/data/ParentCareerClarityAssessmentContent'
+import { ENTRY } from '@/lib/leadsForm'
 
 const downloadParentAssessmentPdf = vi.fn().mockResolvedValue(undefined)
 vi.mock('@/lib/generateAssessmentPdf', () => ({
@@ -43,16 +44,16 @@ async function fillLeadCapture(user: ReturnType<typeof userEvent.setup>) {
 
 describe('ParentCareerClarityAssessment page', () => {
   let openSpy: ReturnType<typeof vi.spyOn>
-  let fetchSpy: ReturnType<typeof vi.spyOn>
+  let sendBeaconSpy: ReturnType<typeof vi.spyOn>
 
   beforeEach(() => {
     openSpy = vi.spyOn(window, 'open').mockImplementation(() => null)
-    fetchSpy = vi.spyOn(window, 'fetch').mockResolvedValue(new Response())
+    sendBeaconSpy = vi.spyOn(navigator, 'sendBeacon').mockReturnValue(true)
   })
 
   afterEach(() => {
     openSpy.mockRestore()
-    fetchSpy.mockRestore()
+    sendBeaconSpy.mockRestore()
   })
 
   it('starts on an intro screen and sets the page title', () => {
@@ -97,7 +98,7 @@ describe('ParentCareerClarityAssessment page', () => {
     expect(screen.getByRole('link', { name: /get in touch/i })).toHaveAttribute('href', expect.stringContaining('wa.me'))
   })
 
-  it('submits the lead details to the Google Form with the correct entry IDs', async () => {
+  it('saves the lead to the shared Leads Sheet, with child name/class combined into notes', async () => {
     const user = userEvent.setup()
     renderPage()
     await completeQuiz(user)
@@ -110,28 +111,14 @@ describe('ParentCareerClarityAssessment page', () => {
 
     expect(await screen.findByRole('heading', { name: /your parent career clarity assessment results/i })).toBeInTheDocument()
 
-    expect(fetchSpy).toHaveBeenCalledTimes(1)
-    const [url, options] = fetchSpy.mock.calls[0]
-    expect(url).toBe('https://docs.google.com/forms/d/e/1FAIpQLSdTjBlQQkMcle2ZhKq59rPJ-tuHpXSYE8DAO0g8ahWHN_N5jg/formResponse')
-    expect(options).toMatchObject({ method: 'POST', mode: 'no-cors' })
-
-    const body = options?.body as FormData
-    expect(body.get('entry.755426042')).toBe('Meera Shah')
-    expect(body.get('entry.1783431080')).toBe('Aarav Shah')
-    expect(body.get('entry.180962404')).toBe('Class 9')
-    expect(body.get('entry.354449202')).toBe('9876543210')
-    expect(body.get('entry.252864987')).toBe('meera@example.com')
-  })
-
-  it('shows a recoverable error if the lead submission fails', async () => {
-    fetchSpy.mockRejectedValueOnce(new Error('Network error'))
-    const user = userEvent.setup()
-    renderPage()
-    await completeQuiz(user)
-    await fillLeadCapture(user)
-
-    expect(await screen.findByRole('alert')).toHaveTextContent(/could not submit your details/i)
-    expect(screen.getByRole('button', { name: /view my assessment result/i })).toBeEnabled()
+    expect(sendBeaconSpy).toHaveBeenCalledTimes(1)
+    const [, body] = sendBeaconSpy.mock.calls[0]
+    const params = body as URLSearchParams
+    expect(params.get(ENTRY.name)).toBe('Meera Shah')
+    expect(params.get(ENTRY.phone)).toBe('9876543210')
+    expect(params.get(ENTRY.email)).toBe('meera@example.com')
+    expect(params.get(ENTRY.form_id)).toBe('parent-career-clarity-assessment')
+    expect(params.get(ENTRY.notes)).toBe('Child Name: Aarav Shah\nChild Class: Class 9')
   })
 
   it('downloads a PDF report with the lead details and answers', async () => {
@@ -181,6 +168,26 @@ describe('ParentCareerClarityAssessment page', () => {
     const [url] = openSpy.mock.calls[0]
     expect(String(url)).toContain('https://wa.me/918758175187?text=')
     expect(decodeURIComponent(String(url))).toContain('Meera Shah')
+    expect(decodeURIComponent(String(url))).toMatch(/Ref: parent-career-clarity-callback-DIRECT-[a-z0-9-]+/)
     expect(screen.getByText(/we've opened whatsapp/i)).toBeInTheDocument()
+  })
+
+  it('also saves the callback request to the shared Leads Sheet', async () => {
+    const user = userEvent.setup()
+    renderPage()
+    await completeQuiz(user)
+    await fillLeadCapture(user)
+
+    await user.selectOptions(screen.getByLabelText(/what would you like help with/i), 'Stream Selection')
+    await user.click(screen.getByRole('button', { name: /request a call back/i }))
+
+    // fillLeadCapture's own submit already sent one beacon — the callback form sends a second.
+    expect(sendBeaconSpy).toHaveBeenCalledTimes(2)
+    const [, body] = sendBeaconSpy.mock.calls[1]
+    const params = body as URLSearchParams
+    expect(params.get(ENTRY.name)).toBe('Meera Shah')
+    expect(params.get(ENTRY.phone)).toBe('9876543210')
+    expect(params.get(ENTRY.form_id)).toBe('parent-career-clarity-callback')
+    expect(params.get(ENTRY.notes)).toBe('Child Name: Aarav Shah\nChild Class: Class 9\nReason: Stream Selection')
   })
 })

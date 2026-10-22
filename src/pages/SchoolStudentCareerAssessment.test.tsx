@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import SchoolStudentCareerAssessment from './SchoolStudentCareerAssessment'
 import { assessmentQuestions } from '@/data/SchoolStudentCareerAssessmentContent'
+import { ENTRY } from '@/lib/leadsForm'
 
 const downloadAssessmentPdf = vi.fn().mockResolvedValue(undefined)
 vi.mock('@/lib/generateAssessmentPdf', () => ({
@@ -39,14 +40,14 @@ async function fillLeadCapture(user: ReturnType<typeof userEvent.setup>) {
 }
 
 describe('SchoolStudentCareerAssessment page', () => {
-  let fetchSpy: ReturnType<typeof vi.spyOn>
+  let sendBeaconSpy: ReturnType<typeof vi.spyOn>
 
   beforeEach(() => {
-    fetchSpy = vi.spyOn(window, 'fetch').mockResolvedValue(new Response())
+    sendBeaconSpy = vi.spyOn(navigator, 'sendBeacon').mockReturnValue(true)
   })
 
   afterEach(() => {
-    fetchSpy.mockRestore()
+    sendBeaconSpy.mockRestore()
   })
 
   it('starts on an intro screen and sets the page title', () => {
@@ -76,7 +77,7 @@ describe('SchoolStudentCareerAssessment page', () => {
     expect(screen.getByText(/mobile number is required/i)).toBeInTheDocument()
   })
 
-  it('submits the lead details to the Google Form with the correct entry IDs', async () => {
+  it('saves the lead to the shared Leads Sheet, with parent name/class combined into notes', async () => {
     const user = userEvent.setup()
     renderPage()
     await completeQuiz(user)
@@ -89,28 +90,14 @@ describe('SchoolStudentCareerAssessment page', () => {
 
     expect(await screen.findByRole('heading', { name: /your school student career assessment results/i })).toBeInTheDocument()
 
-    expect(fetchSpy).toHaveBeenCalledTimes(1)
-    const [url, options] = fetchSpy.mock.calls[0]
-    expect(url).toBe('https://docs.google.com/forms/d/e/1FAIpQLSdviDkn-2THnlcE3kt4rcx9ZdiGDMwqFlS1HIdFYXCeSIm6CQ/formResponse')
-    expect(options).toMatchObject({ method: 'POST', mode: 'no-cors' })
-
-    const body = options?.body as FormData
-    expect(body.get('entry.1940346655')).toBe('Aarav Shah')
-    expect(body.get('entry.1576762693')).toBe('Meera Shah')
-    expect(body.get('entry.108097604')).toBe('Class 9')
-    expect(body.get('entry.634323980')).toBe('9876543210')
-    expect(body.get('entry.612697315')).toBe('meera@example.com')
-  })
-
-  it('shows a recoverable error if the lead submission fails', async () => {
-    fetchSpy.mockRejectedValueOnce(new Error('Network error'))
-    const user = userEvent.setup()
-    renderPage()
-    await completeQuiz(user)
-    await fillLeadCapture(user)
-
-    expect(await screen.findByRole('alert')).toHaveTextContent(/could not submit your details/i)
-    expect(screen.getByRole('button', { name: /see my result/i })).toBeEnabled()
+    expect(sendBeaconSpy).toHaveBeenCalledTimes(1)
+    const [, body] = sendBeaconSpy.mock.calls[0]
+    const params = body as URLSearchParams
+    expect(params.get(ENTRY.name)).toBe('Aarav Shah')
+    expect(params.get(ENTRY.phone)).toBe('9876543210')
+    expect(params.get(ENTRY.email)).toBe('meera@example.com')
+    expect(params.get(ENTRY.form_id)).toBe('school-student-career-assessment')
+    expect(params.get(ENTRY.notes)).toBe('Parent Name: Meera Shah\nStudent Class: Class 9')
   })
 
   it('walks through every question and lead capture to show a scored result', async () => {

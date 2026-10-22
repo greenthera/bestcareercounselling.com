@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { ConsultationForm } from './ConsultationForm'
+import { ENTRY } from '@/lib/leadsForm'
 
 describe('ConsultationForm', () => {
   let openSpy: ReturnType<typeof vi.spyOn>
@@ -66,12 +67,14 @@ describe('ConsultationForm', () => {
     expect(sendBeaconSpy).toHaveBeenCalledTimes(1)
     const [, body] = sendBeaconSpy.mock.calls[0]
     expect(body).toBeInstanceOf(URLSearchParams)
+    expect((body as URLSearchParams).get(ENTRY.notes)).toBe('Status: Class 10')
 
     const dataLayer = (window as unknown as { dataLayer: Record<string, unknown>[] }).dataLayer
     const leadEvent = dataLayer.find((entry) => entry.event === 'generate_lead')
-    expect(leadEvent).toMatchObject({ form_id: 'test', current_status: 'Class 10' })
+    expect(leadEvent).toMatchObject({ form_id: 'test', lead_channel: 'whatsapp' })
     expect(leadEvent).not.toHaveProperty('name')
     expect(leadEvent).not.toHaveProperty('phone')
+    expect(leadEvent).not.toHaveProperty('current_status')
   })
 
   it('disables the submit button after the first click to prevent duplicate leads', async () => {

@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { submitLead } from './submitLead'
+import { submitLead, saveLead, buildLeadRef, buildLeadNotes } from './submitLead'
+import { ENTRY } from '@/lib/leadsForm'
 
 describe('submitLead', () => {
   let openSpy: ReturnType<typeof vi.spyOn>
@@ -51,9 +52,24 @@ describe('submitLead', () => {
 
     const dataLayer = (window as unknown as { dataLayer: Record<string, unknown>[] }).dataLayer
     const leadEvent = dataLayer.find((entry) => entry.event === 'generate_lead')
-    expect(leadEvent).toMatchObject({ form_id: 'hero', current_status: 'Class 10', lead_channel: 'whatsapp' })
+    expect(leadEvent).toMatchObject({ form_id: 'hero', lead_channel: 'whatsapp' })
     expect(leadEvent).not.toHaveProperty('name')
     expect(leadEvent).not.toHaveProperty('phone')
+  })
+
+  it('saves email and notes (the form-specific extra info) to the Sheet', () => {
+    submitLead({
+      formId: 'hero',
+      context: 'home',
+      fields: { name: 'Aarav Shah', phone: '9876543210', currentClass: 'Class 10' },
+      email: 'aarav@example.com',
+      notes: 'Status: Class 10',
+    })
+
+    const [, body] = sendBeaconSpy.mock.calls[0]
+    const params = body as URLSearchParams
+    expect(params.get(ENTRY.email)).toBe('aarav@example.com')
+    expect(params.get(ENTRY.notes)).toBe('Status: Class 10')
   })
 
   it('falls back to a same-tab redirect when window.open is blocked', () => {
@@ -76,5 +92,74 @@ describe('submitLead', () => {
     expect(assignedHrefs[0]).toContain('https://wa.me/')
 
     Object.defineProperty(window, 'location', { configurable: true, value: originalLocation })
+  })
+})
+
+describe('saveLead', () => {
+  let sendBeaconSpy: ReturnType<typeof vi.spyOn>
+
+  beforeEach(() => {
+    localStorage.clear()
+    window.history.pushState({}, '', '/')
+    sendBeaconSpy = vi.spyOn(navigator, 'sendBeacon').mockReturnValue(true)
+    ;(window as unknown as { dataLayer?: unknown[] }).dataLayer = []
+  })
+
+  afterEach(() => {
+    sendBeaconSpy.mockRestore()
+  })
+
+  it('saves the lead without opening WhatsApp, for forms with their own result screen', () => {
+    const openSpy = vi.spyOn(window, 'open')
+    const leadId = saveLead({ formId: 'online-admissions', name: 'Aarav Shah', phone: '9876543210', email: 'a@b.com', notes: 'Course: Online MBA' })
+
+    expect(leadId).toBeTruthy()
+    expect(openSpy).not.toHaveBeenCalled()
+    expect(sendBeaconSpy).toHaveBeenCalledTimes(1)
+
+    const [, body] = sendBeaconSpy.mock.calls[0]
+    const params = body as URLSearchParams
+    expect(params.get(ENTRY.lead_id)).toBe(leadId)
+    expect(params.get(ENTRY.form_id)).toBe('online-admissions')
+    expect(params.get(ENTRY.notes)).toBe('Course: Online MBA')
+    openSpy.mockRestore()
+  })
+
+  it('still logs a generate_lead event', () => {
+    saveLead({ formId: 'online-admissions', name: 'Aarav Shah', phone: '9876543210' })
+    const dataLayer = (window as unknown as { dataLayer: Record<string, unknown>[] }).dataLayer
+    expect(dataLayer.find((entry) => entry.event === 'generate_lead')).toMatchObject({ form_id: 'online-admissions' })
+  })
+})
+
+describe('buildLeadRef', () => {
+  beforeEach(() => {
+    localStorage.clear()
+  })
+
+  it('uses DIRECT when no attribution is stored', () => {
+    expect(buildLeadRef('hero', 'abc123')).toBe('hero-DIRECT-abc123')
+  })
+
+  it('uses the stored utm_source when attribution is present', () => {
+    localStorage.setItem(
+      'attribution_v1',
+      JSON.stringify({ utm_source: 'google', utm_medium: '', utm_campaign: '', utm_term: '', utm_content: '', gclid: '', fbclid: '', landing_page: '/', referrer: '' }),
+    )
+    expect(buildLeadRef('footer', 'xyz789')).toBe('footer-google-xyz789')
+  })
+})
+
+describe('buildLeadNotes', () => {
+  it('puts each field on its own line, not joined into one run-on sentence', () => {
+    expect(buildLeadNotes({ Course: 'Online MBA', Budget: '₹1–2 Lakh' })).toBe('Course: Online MBA\nBudget: ₹1–2 Lakh')
+  })
+
+  it('skips fields the visitor left blank', () => {
+    expect(buildLeadNotes({ Course: 'Online MBA', Qualification: '', Budget: '' })).toBe('Course: Online MBA')
+  })
+
+  it('returns an empty string when every field is blank', () => {
+    expect(buildLeadNotes({ Course: '', Budget: '' })).toBe('')
   })
 })
