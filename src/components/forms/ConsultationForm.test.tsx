@@ -5,17 +5,20 @@ import { ConsultationForm } from './ConsultationForm'
 
 describe('ConsultationForm', () => {
   let openSpy: ReturnType<typeof vi.spyOn>
+  let sendBeaconSpy: ReturnType<typeof vi.spyOn>
 
   beforeEach(() => {
     openSpy = vi.spyOn(window, 'open').mockImplementation(() => null)
+    sendBeaconSpy = vi.spyOn(navigator, 'sendBeacon').mockReturnValue(true)
   })
 
   afterEach(() => {
     openSpy.mockRestore()
+    sendBeaconSpy.mockRestore()
   })
 
   it('shows validation errors when submitted empty', async () => {
-    render(<ConsultationForm context="home" />)
+    render(<ConsultationForm context="home" formId="test" />)
     const user = userEvent.setup()
     await user.click(screen.getByRole('button', { name: /book 15-min pre counselling session/i }))
 
@@ -26,7 +29,7 @@ describe('ConsultationForm', () => {
   })
 
   it('rejects an invalid phone number', async () => {
-    render(<ConsultationForm context="home" />)
+    render(<ConsultationForm context="home" formId="test" />)
     const user = userEvent.setup()
     await user.type(screen.getByLabelText(/^name$/i), 'Aarav Shah')
     await user.type(screen.getByLabelText(/phone/i), '12345')
@@ -38,7 +41,7 @@ describe('ConsultationForm', () => {
   })
 
   it('opens WhatsApp with the contextual message on valid submit', async () => {
-    render(<ConsultationForm context="after-10th" />)
+    render(<ConsultationForm context="after-10th" formId="test" />)
     const user = userEvent.setup()
     await user.type(screen.getByLabelText(/^name$/i), 'Aarav Shah')
     await user.type(screen.getByLabelText(/phone/i), '9876543210')
@@ -52,8 +55,41 @@ describe('ConsultationForm', () => {
     expect(decodeURIComponent(String(url))).toContain('Aarav Shah')
   })
 
+  it('saves the lead to the Google Form and logs a generate_lead event', async () => {
+    render(<ConsultationForm context="after-10th" formId="test" />)
+    const user = userEvent.setup()
+    await user.type(screen.getByLabelText(/^name$/i), 'Aarav Shah')
+    await user.type(screen.getByLabelText(/phone/i), '9876543210')
+    await user.selectOptions(screen.getByLabelText(/current status/i), 'Class 10')
+    await user.click(screen.getByRole('button', { name: /book 15-min pre counselling session/i }))
+
+    expect(sendBeaconSpy).toHaveBeenCalledTimes(1)
+    const [, body] = sendBeaconSpy.mock.calls[0]
+    expect(body).toBeInstanceOf(URLSearchParams)
+
+    const dataLayer = (window as unknown as { dataLayer: Record<string, unknown>[] }).dataLayer
+    const leadEvent = dataLayer.find((entry) => entry.event === 'generate_lead')
+    expect(leadEvent).toMatchObject({ form_id: 'test', current_status: 'Class 10' })
+    expect(leadEvent).not.toHaveProperty('name')
+    expect(leadEvent).not.toHaveProperty('phone')
+  })
+
+  it('disables the submit button after the first click to prevent duplicate leads', async () => {
+    render(<ConsultationForm context="after-10th" formId="test" />)
+    const user = userEvent.setup()
+    await user.type(screen.getByLabelText(/^name$/i), 'Aarav Shah')
+    await user.type(screen.getByLabelText(/phone/i), '9876543210')
+    await user.selectOptions(screen.getByLabelText(/current status/i), 'Class 10')
+
+    const button = screen.getByRole('button', { name: /book 15-min pre counselling session/i })
+    await user.click(button)
+
+    expect(button).toBeDisabled()
+    expect(openSpy).toHaveBeenCalledTimes(1)
+  })
+
   it('renders a custom submit label when provided', () => {
-    render(<ConsultationForm context="home" submitLabel="Book a Free Consultation" />)
+    render(<ConsultationForm context="home" formId="test" submitLabel="Book a Free Consultation" />)
     expect(screen.getByRole('button', { name: 'Book a Free Consultation' })).toBeInTheDocument()
   })
 })

@@ -5,6 +5,11 @@ import { BrowserRouter } from 'react-router-dom'
 import '@fontsource-variable/inter/wght.css'
 import './index.css'
 import App from './App.tsx'
+import { captureAttribution } from '@/lib/tracking'
+
+// Capture UTM/gclid/fbclid + landing page/referrer before anything else runs, so the
+// very first page a visitor lands on is never missed.
+captureAttribution()
 
 // A redeploy replaces the hashed chunk files, so a page that's still open or was
 // served from cache can 404 when it lazy-loads a chunk it references (a lazy route,

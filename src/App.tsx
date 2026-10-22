@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 import { Layout } from '@/components/layout/Layout'
 import { ScrollToTop } from '@/components/layout/ScrollToTop'
 import { PageLoader } from '@/components/ui/page-loader'
+import { ClickTracking } from '@/components/analytics/ClickTracking'
+import { RouteTracking } from '@/components/analytics/RouteTracking'
 
 const Home = lazy(() => import('@/pages/Home'))
 const WhoWeAre = lazy(() => import('@/pages/WhoWeAre'))
@@ -26,6 +28,8 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <ClickTracking />
+      <RouteTracking />
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route element={<Layout />}>

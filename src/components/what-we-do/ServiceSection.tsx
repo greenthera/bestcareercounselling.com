@@ -72,7 +72,7 @@ export function ServiceSection({ service }: ServiceSectionProps) {
             <DialogHeader>
               <DialogTitle>{service.ctaLabel}</DialogTitle>
             </DialogHeader>
-            <ConsultationForm context={service.id} submitLabel={service.ctaLabel} />
+            <ConsultationForm context={service.id} formId={`what-we-do-${service.id}`} submitLabel={service.ctaLabel} />
           </DialogContent>
         </Dialog>
       </Reveal>

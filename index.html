@@ -17,14 +17,16 @@
       title-less flash before hydration is possible, which doesn't matter for local work).
     -->
     <!--
-      Google Tag Manager + Microsoft Clarity (deferred together: loads after app start +
-      page load). Both are pure analytics with no visible output of their own — queuing
-      the real script downloads until after the page has rendered and gone idle keeps
-      them from competing with the hero image and app bundle for main-thread time and
-      bandwidth during the part of the load that visitors actually see and wait on.
-      window.dataLayer / window.clarity are set up immediately so any call made before
-      the real scripts load is queued and replayed once they're ready, same as each
-      tool's own standard snippet already does.
+      Google Tag Manager (GTM-WRKXVSF7 — replaces the site's previous container,
+      GTM-KFNZCKML, now that lead-conversion tracking is configured inside this one) +
+      Microsoft Clarity (deferred together: loads after app start + page load). Both are
+      pure analytics with no visible output of their own — queuing the real script
+      downloads until after the page has rendered and gone idle keeps them from competing
+      with the hero image and app bundle for main-thread time and bandwidth during the
+      part of the load that visitors actually see and wait on. window.dataLayer /
+      window.clarity are set up immediately so any call made before the real scripts load
+      is queued and replayed once they're ready, same as each tool's own standard snippet
+      already does.
     -->
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -36,7 +38,7 @@
           window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
           var s = document.createElement('script');
           s.async = true;
-          s.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-KFNZCKML';
+          s.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-WRKXVSF7';
           document.head.appendChild(s);
         }
         function loadClarity() {
@@ -60,7 +62,7 @@
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KFNZCKML"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRKXVSF7"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>

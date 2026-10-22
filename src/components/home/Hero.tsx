@@ -68,11 +68,12 @@ export function Hero() {
         </div>
 
         <Reveal delay={180} className="rounded-[2rem] border border-neutral-border bg-white p-6 lg:col-span-2">
-          <ConsultationForm context="home" submitLabel="Book 15-Min Pre Counselling Session" />
+          <ConsultationForm context="home" formId="hero" submitLabel="Book 15-Min Pre Counselling Session" />
           <a
             href={directWhatsAppUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-location="hero-message-us"
             className="group mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-brand-green py-2.5 pl-2 pr-5 text-sm font-semibold text-warm-white transition-colors hover:bg-brand-green/90"
           >
             <PillCtaEndcap

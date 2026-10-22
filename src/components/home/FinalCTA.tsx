@@ -8,6 +8,7 @@ interface FinalCTAProps {
   heading?: string
   description?: string
   context?: WhatsAppContext
+  formId?: string
   submitLabel?: string
   variant?: 'form' | 'button'
 }
@@ -16,6 +17,7 @@ export function FinalCTA({
   heading = "Let's talk about your child's future",
   description = 'A 15-minute call costs nothing and usually clears up more than months of guessing.',
   context = 'home',
+  formId = 'footer',
   submitLabel,
   variant = 'form',
 }: FinalCTAProps) {
@@ -37,7 +39,7 @@ export function FinalCTA({
             </Reveal>
 
             <Reveal delay={100} className="rounded-[1.6rem] bg-white p-6 text-left text-ink">
-              <ConsultationForm context={context} submitLabel={submitLabel} />
+              <ConsultationForm context={context} formId={formId} submitLabel={submitLabel} />
             </Reveal>
           </div>
         ) : (
