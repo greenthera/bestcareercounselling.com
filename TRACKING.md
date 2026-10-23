@@ -134,13 +134,27 @@ this project if unset (see `.env` / `src/lib/leadsForm.ts`).
 deferred (after page load + idle), alongside Microsoft Clarity, so neither competes
 with the page's own content for bandwidth or main-thread time on first load.
 
-**Not yet configured inside GTM itself** (this is GTM/GA4 web UI work, not code):
-- Custom Event triggers for `generate_lead`, `whatsapp_click`, `phone_click`, `page_view_spa`
-- Data Layer Variables for `form_id`, `link_location`, `lead_id`
-- A GA4 Event tag per event above
-- Google Ads Conversion tag + Meta Pixel Lead tag on `generate_lead` (only if/when ads are running)
-- Marking `generate_lead` as a GA4 key event, and registering `form_id` / `link_location`
-  as GA4 custom dimensions
+**GTM/GA4 web UI configuration — done (2026-10-22):**
+- Custom Event triggers created: `generate_lead`, `whatsapp_click`, `phone_click`, `page_view_spa`
+- Data Layer Variables created: `form_id`, `link_location`, `lead_id`
+- GA4 Configuration tag created (holds the Measurement ID, fires on all pages)
+- A GA4 Event tag created for each of the 4 events above, each mapped to its matching
+  GA4 event name and parameters
+- GTM container tested end to end in Preview mode, then **published live** — all 4 tags
+  individually tested and confirmed firing correctly:
+  - `generate_lead` — tested by submitting a form; confirmed in Tags Fired panel and in
+    GA4 Realtime (event count ticking up)
+  - `whatsapp_click` — tested by clicking a WhatsApp link; confirmed in Tags Fired panel
+  - `phone_click` — tested by clicking a call/`tel:` link; confirmed in Tags Fired panel
+  - `page_view_spa` — tested by navigating between pages; confirmed in Tags Fired panel
+- GA4 custom dimensions registered: `form_id`, `link_location` (both Event-scoped)
+- `generate_lead` marked as a GA4 key event (Admin → Events → Recent events → starred),
+  done 2026-10-23 once it appeared in that list (same ~24h processing delay as above —
+  the event itself was already being tracked correctly well before this point)
+
+**Not yet done:**
+- Google Ads Conversion tag + Meta Pixel Lead tag on `generate_lead` — only needed
+  if/when running paid ads (see 4 "Out of scope")
 
 ## How to test
 
