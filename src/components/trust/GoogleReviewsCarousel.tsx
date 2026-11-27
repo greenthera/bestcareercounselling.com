@@ -107,7 +107,7 @@ export function GoogleReviewsCarousel() {
               <Star key={i} size={14} fill="currentColor" stroke="none" />
             ))}
           </div>
-          <span className="text-sm font-semibold text-warm-white">5.0 · 948 Google Reviews</span>
+          <span className="text-sm font-semibold text-warm-white">5.0 · 964 Google Reviews</span>
         </div>
         <h2 className="mt-5 text-3xl font-bold text-warm-white md:text-4xl">
           Loved <span className="text-brand-yellow">on Google</span>
