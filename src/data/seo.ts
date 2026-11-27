@@ -20,7 +20,7 @@ export const pageSeo = {
   whoWeAre: {
     title: 'Who We Are | Kishan & Meeta Patel Career Counselling',
     description:
-      '30+ years, 5,000+ students guided. Meet Kishan & Meeta Patel and learn how we help families make informed career decisions.',
+      '30+ years, 1,00,000+ students guided. Meet Kishan & Meeta Patel and learn how we help families make informed career decisions.',
     path: '/who-we-are',
   },
   whatWeDo: {

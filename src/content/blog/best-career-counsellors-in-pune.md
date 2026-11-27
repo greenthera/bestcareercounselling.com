@@ -33,7 +33,7 @@ We created the list of the best career counsellors in Pune for students in 2026,
 
 **Rating:** 5.0 (950+ Google reviews)
 
-Best Career Counselling (Kishan & Meeta Patel) is widely regarded as the top-rated career counsellor in Pune, trusted by students and parents for stream and course decisions. Established in 2015, we have guided over 5,000 students with our personalised career counselling across India, including Pune.
+Best Career Counselling (Kishan & Meeta Patel) is widely regarded as the top-rated career counsellor in Pune, trusted by students and parents for stream and course decisions. Established in 2015, we have guided over 1,00,000 students with our personalised career counselling across India, including Pune.
 
 The service is run by Kishan Patel, a Certified Career Analyst with 30 years of experience in education and training, and Meeta Patel, who works with parents and students together on stream choice after Class 10. We provide career counselling in Pune at every stage, from Class 8 and stream selection after Class 10 to course and college choice after Class 12, UG, PG admissions & professional courses like MBA.
 

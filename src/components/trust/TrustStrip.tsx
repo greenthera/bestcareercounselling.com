@@ -15,7 +15,7 @@ const STATS: Stat[] = [
   { value: '5.0', label: 'Google Rating', icon: Star },
   { value: '950+', label: 'Reviews', numeric: 950, icon: MessageSquareQuote },
   { value: '30+', label: 'Years', numeric: 30, icon: CalendarClock },
-  { value: '5,000+', label: 'Students Guided', numeric: 5000, icon: Users },
+  { value: '1,00,000+', label: 'Students Guided', numeric: 100000, icon: Users },
   { value: '4', label: 'Cities', numeric: 4, icon: MapPin },
 ]
 
@@ -32,7 +32,7 @@ function StatItem({
 }) {
   const count = useCountUp(stat.numeric ?? 0, { start: isInView && stat.numeric !== undefined })
   const display =
-    stat.numeric !== undefined && isInView ? `${count}${stat.value.replace(/[0-9,]/g, '')}` : stat.value
+    stat.numeric !== undefined && isInView ? `${count.toLocaleString('en-IN')}${stat.value.replace(/[0-9,]/g, '')}` : stat.value
   const Icon = stat.icon
 
   return (

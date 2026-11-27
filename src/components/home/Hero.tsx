@@ -40,7 +40,7 @@ export function Hero() {
           <p className="mt-4 text-base text-muted-ink md:text-lg">
             Recognised as <span className="font-semibold text-ink">Best Career Counselling</span> in Surat, Kishan &
             Meeta Patel bring 30 years of career counselling and one-on-one guidance to every family, trusted by
-            5,000+ students and backed by 950+ five-star reviews.
+            1,00,000+ students and backed by 950+ five-star reviews.
           </p>
         </div>
 
@@ -62,7 +62,7 @@ export function Hero() {
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink/70 to-transparent" aria-hidden="true" />
           </div>
           <div className="absolute bottom-4 left-4 rounded-2xl bg-white/95 p-4 shadow-lg transition-transform duration-300 hover:-translate-y-1">
-            <p className="text-xl font-bold text-brand-green">5,000+</p>
+            <p className="text-xl font-bold text-brand-green">1,00,000+</p>
             <p className="text-xs text-muted-ink">Students guided</p>
           </div>
         </div>

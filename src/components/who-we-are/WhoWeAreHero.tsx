@@ -10,7 +10,7 @@ export function WhoWeAreHero() {
           Meet Kishan &amp; Meeta Patel, your <span className="text-brand-green">career counsellors</span>.
         </h1>
         <p className="mt-4 text-lg text-muted-ink">
-          30+ years. 5,000+ students. One question we keep answering: What should I do with my life?
+          30+ years. 1,00,000+ students. One question we keep answering: What should I do with my life?
         </p>
       </Reveal>
       <Reveal
