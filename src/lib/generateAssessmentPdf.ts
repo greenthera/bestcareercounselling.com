@@ -20,7 +20,7 @@ const COMPANY = {
   name: 'Best Career Counselling',
   description: [
     '30 years of career counselling and one-on-one guidance to every family,',
-    'trusted by 5,000+ students and backed by 900+ five-star reviews.',
+    'trusted by 5,000+ students and backed by 950+ five-star reviews.',
   ],
   phone: '+91 87581 75187',
   phoneUrl: 'tel:+918758175187',

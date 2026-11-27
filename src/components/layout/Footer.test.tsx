@@ -12,7 +12,7 @@ describe('Footer', () => {
     )
     expect(screen.getByText(/best career counselling/i)).toBeInTheDocument()
     expect(screen.getByText(/5\.0★/)).toBeInTheDocument()
-    expect(screen.getByText(/900\+ reviews/i)).toBeInTheDocument()
+    expect(screen.getByText(/950\+ reviews/i)).toBeInTheDocument()
   })
 
   it('links the Surat address to Google Maps', () => {

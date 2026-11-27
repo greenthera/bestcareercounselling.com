@@ -46,7 +46,7 @@ export function MobileNav() {
           <p className="mt-1 text-sm text-muted-ink">Career counselling for students &amp; parents</p>
           <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-green-tint px-3 py-1 text-xs font-semibold text-brand-green">
             <Star size={12} fill="currentColor" />
-            5.0 Google Rating · 900+ Reviews
+            5.0 Google Rating · 950+ Reviews
           </div>
         </div>
 

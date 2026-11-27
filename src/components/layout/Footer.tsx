@@ -32,7 +32,7 @@ export function Footer() {
             <p className="mt-3 text-sm text-warm-white/60">
               Career counselling and guidance for students, parents and working professionals across Gujarat.
             </p>
-            <p className="mt-4 text-sm font-medium text-brand-yellow">Google 5.0★ · 900+ Reviews</p>
+            <p className="mt-4 text-sm font-medium text-brand-yellow">Google 5.0★ · 950+ Reviews</p>
           </div>
 
           <div>

@@ -13,7 +13,7 @@ interface Stat {
 
 const STATS: Stat[] = [
   { value: '5.0', label: 'Google Rating', icon: Star },
-  { value: '900+', label: 'Reviews', numeric: 900, icon: MessageSquareQuote },
+  { value: '950+', label: 'Reviews', numeric: 950, icon: MessageSquareQuote },
   { value: '30+', label: 'Years', numeric: 30, icon: CalendarClock },
   { value: '5,000+', label: 'Students Guided', numeric: 5000, icon: Users },
   { value: '4', label: 'Cities', numeric: 4, icon: MapPin },
