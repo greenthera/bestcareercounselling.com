@@ -7,7 +7,7 @@ describe('GoogleReviewsCarousel', () => {
   it('renders the aggregate rating summary', () => {
     render(<GoogleReviewsCarousel />)
     expect(screen.getByRole('heading', { name: /loved on google/i })).toBeInTheDocument()
-    expect(screen.getByText(/5\.0 · 964 google reviews/i)).toBeInTheDocument()
+    expect(screen.getByText(/5\.0 · 950\+ google reviews/i)).toBeInTheDocument()
   })
 
   it('renders every review, each duplicated once for the seamless marquee loop', () => {

@@ -49,7 +49,7 @@ export function LocalBusinessSchema() {
         aggregateRating: {
           '@type': 'AggregateRating',
           ratingValue: '5.0',
-          reviewCount: '900',
+          reviewCount: '950',
         },
       }}
     />

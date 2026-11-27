@@ -44,6 +44,6 @@ describe('LocalBusinessSchema', () => {
     ])
     expect(data.sameAs).toEqual(['https://maps.app.goo.gl/ND7zWHZV3Znj1FbNA'])
     expect(data.aggregateRating.ratingValue).toBe('5.0')
-    expect(data.aggregateRating.reviewCount).toBe('900')
+    expect(data.aggregateRating.reviewCount).toBe('950')
   })
 })
